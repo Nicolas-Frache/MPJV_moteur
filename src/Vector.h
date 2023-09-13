@@ -32,7 +32,7 @@ class Vector
 		float norm2();
 
 		Vector mult_by_component(Vector vect);
-
+		float scalar_product(Vector vect);
 		
 
 		// getters

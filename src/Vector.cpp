@@ -92,6 +92,10 @@ Vector Vector::mult_by_component(Vector vect) {
 	return Vector(X, Y, Z);
 }
 
+float Vector::scalar_product(Vector vect) {
+	return _X * vect.x() + _Y * vect.y() + _Z * vect.z();
+}
+
 
 float Vector::x() {
 	return _X;

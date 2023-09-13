@@ -7,17 +7,14 @@ Vector::Vector(float X, float Y, float Z) {
 	_Z = Z;
 }
 
-
-// setters
-
 void Vector::set(float X, float Y, float Z) {
 	_X = X;
 	_Y = Y;
 	_Z = Z;
 }
 
-// operators
 
+// operators
 Vector Vector::operator+(Vector vect) {
 	float X = _X + vect.x();
 	float Y = _Y + vect.y();
@@ -69,6 +66,15 @@ Vector Vector::normalize() {
 float Vector::norm2() {
 	return _X * _X + _Y * _Y + _Z * _Z;
 }
+
+Vector Vector::mult_by_component(Vector vect) {
+	float X = _X * vect.x();
+	float Y = _Y * vect.y();
+	float Z = _Z * vect.z();
+
+	return Vector(X, Y, Z);
+}
+
 
 float Vector::x() {
 	return _X;

@@ -53,7 +53,22 @@ ostream& operator<<(ostream& os, Vector vect) {
 	return os;
 }
 
-// getters
+float Vector::norm() {
+	return sqrt(_X * _X + _Y * _Y + _Z * _Z);
+}
+
+Vector Vector::normalize() {
+	float norm = this->norm();
+	float X = _X / norm;
+	float Y = _Y / norm;
+	float Z = _Z / norm;
+
+	return Vector(X, Y, Z);
+}
+
+float Vector::norm2() {
+	return _X * _X + _Y * _Y + _Z * _Z;
+}
 
 float Vector::x() {
 	return _X;

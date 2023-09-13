@@ -24,6 +24,10 @@ class Vector
 		void operator*=(float mult);
 		friend ostream& operator<<(ostream& os, const Vector vect);
 
+		float norm();
+		Vector normalize();
+		float norm2();
+
 		// getters
 		float x();
 		float y();

@@ -20,6 +20,9 @@ class Vector
 		// operators
 		Vector operator+(Vector vect);
 		void operator+=(Vector vect);
+		Vector operator-();
+		Vector operator-(Vector vect);
+		void operator-=(Vector vect);
 		Vector operator*(float mult);
 		void operator*=(float mult);
 		friend ostream& operator<<(ostream& os, const Vector vect);

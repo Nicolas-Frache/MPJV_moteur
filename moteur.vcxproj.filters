@@ -7,13 +7,7 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ofApp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="Vector.cpp">
+    <ClCompile Include="src\Vector.cpp">
       <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
@@ -26,10 +20,7 @@
     <ClInclude Include="src\ofApp.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\ofApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="Vector.h">
+    <ClInclude Include="src\Vector.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

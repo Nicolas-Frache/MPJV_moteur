@@ -1,5 +1,5 @@
 #include "ofApp.h"
-#include "..\Vector.h"
+#include "Vector.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){

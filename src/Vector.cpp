@@ -70,7 +70,43 @@ ostream& operator<<(ostream& os, Vector vect) {
 	return os;
 }
 
+<<<<<<< Updated upstream
 // getters
+=======
+float Vector::norm() {
+	return sqrt(_X * _X + _Y * _Y + _Z * _Z);
+}
+
+Vector Vector::normalize() {
+	float norm = this->norm();
+	float X = _X / norm;
+	float Y = _Y / norm;
+	float Z = _Z / norm;
+
+	return Vector(X, Y, Z);
+}
+
+float Vector::norm2() {
+	return _X * _X + _Y * _Y + _Z * _Z;
+}
+
+Vector Vector::mult_by_component(Vector vect) {
+	float X = _X * vect.x();
+	float Y = _Y * vect.y();
+	float Z = _Z * vect.z();
+
+	return Vector(X, Y, Z);
+}
+
+Vector Vector::vectoriel(Vector vect) {
+	float X = _Y * vect.z() - _Z * vect.y();
+	float Y = _Z * vect.x() - _X * vect.z();
+	float Z = _X * vect.y() - _Y * vect.x();
+	return Vector(X, Y, Z);
+}
+
+
+>>>>>>> Stashed changes
 
 float Vector::x() {
 	return _X;

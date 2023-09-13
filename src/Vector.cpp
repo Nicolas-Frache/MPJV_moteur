@@ -22,7 +22,6 @@ Vector Vector::operator+(Vector vect) {
 	float X = _X + vect.x();
 	float Y = _Y + vect.y();
 	float Z = _Z + vect.z();
-
 	return Vector(X, Y, Z);
 }
 
@@ -30,6 +29,24 @@ void Vector::operator+=(Vector vect) {
 	_X += vect.x();
 	_Y += vect.y();
 	_Z += vect.z();
+}
+
+Vector Vector::operator-() {
+	return Vector(-_X, -_Y, -_Z);
+}
+
+Vector Vector::operator-(Vector vect)
+{
+	float X = _X - vect.x();
+	float Y = _Y - vect.y();
+	float Z = _Z - vect.z();
+	return Vector(X, Y, Z);
+}
+
+void Vector::operator-=(Vector vect) {
+	_X -= vect.x();
+	_Y -= vect.y();
+	_Z -= vect.z();
 }
 
 

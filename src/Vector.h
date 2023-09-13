@@ -27,8 +27,6 @@ class Vector
 		void operator*=(float mult);
 		friend ostream& operator<<(ostream& os, const Vector vect);
 
-<<<<<<< Updated upstream
-=======
 		float norm();
 		Vector normalize();
 		float norm2();
@@ -36,9 +34,9 @@ class Vector
 		Vector mult_by_component(Vector vect);
 		Vector vectoriel(Vector vect);
 
+		float scalar_product(Vector vect);
 		
 
->>>>>>> Stashed changes
 		// getters
 		float x();
 		float y();

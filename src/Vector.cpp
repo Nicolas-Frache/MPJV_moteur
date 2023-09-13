@@ -7,17 +7,14 @@ Vector::Vector(float X, float Y, float Z) {
 	_Z = Z;
 }
 
-
-// setters
-
 void Vector::set(float X, float Y, float Z) {
 	_X = X;
 	_Y = Y;
 	_Z = Z;
 }
 
-// operators
 
+// operators
 Vector Vector::operator+(Vector vect) {
 	float X = _X + vect.x();
 	float Y = _Y + vect.y();
@@ -70,9 +67,6 @@ ostream& operator<<(ostream& os, Vector vect) {
 	return os;
 }
 
-<<<<<<< Updated upstream
-// getters
-=======
 float Vector::norm() {
 	return sqrt(_X * _X + _Y * _Y + _Z * _Z);
 }
@@ -105,8 +99,10 @@ Vector Vector::vectoriel(Vector vect) {
 	return Vector(X, Y, Z);
 }
 
+float Vector::scalar_product(Vector vect) {
+	return _X * vect.x() + _Y * vect.y() + _Z * vect.z();
+}
 
->>>>>>> Stashed changes
 
 float Vector::x() {
 	return _X;

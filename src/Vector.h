@@ -28,6 +28,10 @@ class Vector
 		Vector normalize();
 		float norm2();
 
+		Vector mult_by_component(Vector vect);
+
+		
+
 		// getters
 		float x();
 		float y();

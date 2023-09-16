@@ -1,5 +1,7 @@
 #include "ofApp.h"
 #include "Vector.h"
+#include "Particle.h"
+#include <list>
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -15,8 +17,27 @@ void ofApp::setup(){
 	// Initialisation position boîte
 	position = Vector(1, 1, 1);
 	size = 10.;
-
 	mouvement = Vector(1, 1, 0);
+
+	// Initialisation liste particules
+	list<Particle> particles;
+
+	// Initialisation particules
+	Particle particle1 = Particle(Vector(1, 1, 1), 1, ofColor(255, 0, 0));
+	Particle particle2 = Particle(Vector(1, 1, 1), 1, ofColor(0, 255, 0));
+	Particle particle3 = Particle(Vector(1, 1, 1), 1, ofColor(0, 0, 255));
+
+	particle1.applyForce(1, 2, 0);
+	particle1.setSize(10);
+	particle2.applyForce(0, 1, 0);
+	particle2.setSize(10);
+	particle3.applyForce(0, 0, 1);
+	particle3.setSize(10);
+
+	// Ajout particules à la liste
+	particles.push_back(particle1);
+	particles.push_back(particle2);
+	particles.push_back(particle3);
 }
 
 //--------------------------------------------------------------
@@ -25,11 +46,22 @@ void ofApp::update(){
 		mouvement *= -1;
 	}
 	position += mouvement;
+
+	// Update particules
+	for (Particle particle : particles) {
+		particle.update();
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofDrawBox(position.v3(), size);
+	//ofDrawBox(position.v3(), size);
+	ofDrawCircle(position.v3(), size);
+
+	// Draw particules
+	for (Particle particle : particles) {
+		particle.draw();
+	}
 }
 
 //--------------------------------------------------------------

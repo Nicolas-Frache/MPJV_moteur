@@ -2,6 +2,8 @@
 
 #include "ofMain.h"
 #include "Vector.h"
+#include "Particle.h"
+#include <list>
 
 class ofApp : public ofBaseApp{
 
@@ -25,4 +27,6 @@ class ofApp : public ofBaseApp{
 		Vector position = Vector(0, 0, 0);
 		float size = 1.;
 		Vector mouvement = Vector(0, 0, 0);
+
+		list<Particle> particles = list<Particle>();
 };

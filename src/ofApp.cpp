@@ -31,13 +31,14 @@ void ofApp::setup(){
 	particle1.setSize(10);
 	particle2.applyForce(0, 1, 0);
 	particle2.setSize(10);
-	particle3.applyForce(0, 0, 1);
+	particle3.applyForce(1, 1, 1);
 	particle3.setSize(10);
 
 	// Ajout particules à la liste
 	particles.push_back(particle1);
 	particles.push_back(particle2);
 	particles.push_back(particle3);
+	
 }
 
 //--------------------------------------------------------------
@@ -50,6 +51,10 @@ void ofApp::update(){
 	// Update particules
 	for (Particle particle : particles) {
 		particle.update();
+
+		if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
+			particle.setVelocity(-particle.getVelocity());
+		}
 	}
 }
 
@@ -62,6 +67,7 @@ void ofApp::draw(){
 	for (Particle particle : particles) {
 		particle.draw();
 	}
+	particle1.draw();
 }
 
 //--------------------------------------------------------------

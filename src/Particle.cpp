@@ -32,6 +32,10 @@ void Particle::setSize(float size) {
 	_size = size;
 }
 
+void Particle::setVelocity(Vector velocity) {
+	_velocity = velocity;
+}
+
 void Particle::setForce(Vector force) {
 	_force = force;
 }

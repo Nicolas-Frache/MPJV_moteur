@@ -24,13 +24,14 @@ class Particle
 		void setColor(ofColor color);
 		void setSize(float size);
 		void setForce(Vector force);
+		void setVelocity(Vector velocity);
 
 		Vector getPos();
 		float getInvMass();
 		ofColor getColor();
 		float getSize();
-		Vector getVelocity();
 		Vector getForce();
+		Vector getVelocity();
 
 		void update();
 		void draw();

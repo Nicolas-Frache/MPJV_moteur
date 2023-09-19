@@ -19,19 +19,24 @@ void ofApp::setup(){
 	size = 10.;
 	mouvement = Vector(1, 1, 0);
 
-	// Initialisation liste particules
-	list<Particle> particles;
-
 	// Initialisation particules
-	Particle particle1 = Particle(Vector(1, 1, 1), 1, ofColor(255, 0, 0));
-	Particle particle2 = Particle(Vector(1, 1, 1), 1, ofColor(0, 255, 0));
-	Particle particle3 = Particle(Vector(1, 1, 1), 1, ofColor(0, 0, 255));
+	particle1.setPos(10, 100, 0);
+	particle1.setMass(1);
+	particle1.setColor(ofColor(255, 255, 255));
+
+	particle2.setPos(1, 1, 0);
+	particle2.setMass(1);
+	particle2.setColor(ofColor(0, 255, 0));
+
+	particle3.setPos(1, 1, 0);
+	particle3.setMass(1);
+	particle3.setColor(ofColor(0, 0, 255));
 
 	particle1.applyForce(1, 2, 0);
 	particle1.setSize(10);
 	particle2.applyForce(0, 1, 0);
 	particle2.setSize(10);
-	particle3.applyForce(1, 1, 1);
+	particle3.applyForce(1, 1, 0);
 	particle3.setSize(10);
 
 	// Ajout particules à la liste
@@ -55,19 +60,20 @@ void ofApp::update(){
 		if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
 			particle.setVelocity(-particle.getVelocity());
 		}
+		particle.setPos(particle.getPos() + particle.getVelocity());
 	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	//ofDrawBox(position.v3(), size);
+	ofSetColor(255, 255, 255);
 	ofDrawCircle(position.v3(), size);
 
 	// Draw particules
 	for (Particle particle : particles) {
 		particle.draw();
 	}
-	particle1.draw();
 }
 
 //--------------------------------------------------------------

@@ -43,7 +43,8 @@ void ofApp::setup(){
 	particles.push_back(particle1);
 	particles.push_back(particle2);
 	particles.push_back(particle3);
-	
+
+	//on affiche la velocité des particules
 }
 
 //--------------------------------------------------------------
@@ -57,10 +58,9 @@ void ofApp::update(){
 	for (Particle particle : particles) {
 		particle.update();
 
-		if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
+		/*if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
 			particle.setVelocity(-particle.getVelocity());
-		}
-		particle.setPos(particle.getPos() + particle.getVelocity());
+		}*/
 	}
 }
 

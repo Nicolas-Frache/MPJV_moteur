@@ -64,12 +64,8 @@ Vector Particle::getForce() {
 }
 
 void Particle::update() {
-	_velocity += _force * _invertedMass; // voir comment faire pour dt dans le update de ofApp
-	//_force = Vector(0, 0, 0); //ça permettrait de pouvoir utiliser integrer(dt)
-	/*cout << "_position: " << _position << " velocity : " << _velocity << ", force : " << _force << endl;*/
-	_position += _velocity;
-	/*cout << "_position: " << _position <<" velocity : " << _velocity << ", force : " << _force << endl;
-	cout << "Adresse de monObjet : " << this << std::endl;*/
+	applyForce(0, 9.8/30, 0);
+	integrer(1.0 / 30);
 }
 
 void Particle::draw() {
@@ -83,8 +79,8 @@ void Particle::applyForce(float forceX, float forceY, float forceZ) {
 
 void Particle::integrer(float dt) {
 	_velocity += _force * _invertedMass * dt;
-	_position += _velocity * dt;
-	_force = Vector(0, 0, 0);
+	_position += (_velocity * dt);
+	//_force = Vector(0, 0, 0);
 }
 
 

@@ -24,7 +24,7 @@ void ofApp::setup(){
 	particle1.setMass(1);
 	particle1.setColor(ofColor_<unsigned short>::yellow);
 
-	particle2.setPos(1, 1, 0);
+	particle2.setPos(1, 0, 0);
 	particle2.setMass(1);
 	particle2.setColor(ofColor(0, 255, 0));
 
@@ -32,7 +32,8 @@ void ofApp::setup(){
 	particle3.setMass(1);
 	particle3.setColor(ofColor(0, 0, 255));
 
-	particle1.applyForce(0.1, 0.2, 0);
+	particle1.applyForce(5, 0, 0);
+
 	particle1.setSize(10);
 	particle2.applyForce(0, 0.1, 0);
 	particle2.setSize(10);

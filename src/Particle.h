@@ -18,26 +18,41 @@ class Particle
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color);
 		Particle(Vector position, float invertedMass, ofColor color);
 
+		// Gestion de la position
 		void setPos(float X, float Y, float Z);
 		void setPos(Vector);
-		void setMass(float invertedMass);
-		void setColor(ofColor color);
-		void setSize(float size);
-		void setForce(Vector force);
-		void setVelocity(Vector velocity);
 
 		Vector getPos();
+
+		// Gestion de la masse
+		void setMass(float mass);
+		void setInvMass(float invertedMass);
+		void setInfinitMass();
+
+		float getMass();
 		float getInvMass();
+
+		// Gestion de l'apparence
+
+		void setColor(ofColor color);
+		void setSize(float size);
+
 		ofColor getColor();
 		float getSize();
-		Vector getForce();
-		Vector getVelocity();
 
-		void update();
 		void draw();
+
+		// Gestion de la physique
+		void setForce(Vector force);
+		Vector getForce();
+
+		void setVelocity(Vector velocity);
+		Vector getVelocity();
 
 		void applyForce(float forceX, float forceY, float forceZ);
 		void integrer(float dt);
+
+		void update();
 
 };
 

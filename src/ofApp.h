@@ -29,7 +29,7 @@ class ofApp : public ofBaseApp{
 		Vector mouvement = Vector(0, 0, 0);
 
 		list<Particle> particles = list<Particle>();
-		Particle particle1 = Particle(0, 0, 0, 1, ofColor(255, 255, 255));
+		Particle particle1 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::maroon));
 		Particle particle2 = Particle(0, 0, 0, 1, ofColor(255, 255, 255));
 		Particle particle3 = Particle(0, 0, 0, 1, ofColor(255, 255, 255));
 };

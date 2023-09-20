@@ -1,15 +1,14 @@
 #include "Particle.h"
 
-Particle::Particle(float X, float Y, float Z, float invertedMass, ofColor color) {
-	_position = Vector(X, Y, Z);
-	_invertedMass = invertedMass;
-	_color = color;
+Particle::Particle(float X, float Y, float Z, float invertedMass, ofColor color):
+	Particle::Particle(Vector(X, Y, Z), invertedMass, color) {
 }
 
 Particle::Particle(Vector position, float invertedMass, ofColor color) {
 	_position = position;
 	_invertedMass = invertedMass;
 	_color = color;
+	_force = Vector(0, 0, 0);
 }
 
 void Particle::setPos(float X, float Y, float Z) {
@@ -66,8 +65,11 @@ Vector Particle::getForce() {
 
 void Particle::update() {
 	_velocity += _force * _invertedMass; // voir comment faire pour dt dans le update de ofApp
-	_force = Vector(0, 0, 0); //ça permettrait de pouvoir utiliser integrer(dt)
+	//_force = Vector(0, 0, 0); //ça permettrait de pouvoir utiliser integrer(dt)
+	cout << "_position: " << _position << " velocity : " << _velocity << ", force : " << _force << endl;
 	_position += _velocity;
+	cout << "_position: " << _position <<" velocity : " << _velocity << ", force : " << _force << endl;
+	cout << "Adresse de monObjet : " << this << std::endl;
 }
 
 void Particle::draw() {

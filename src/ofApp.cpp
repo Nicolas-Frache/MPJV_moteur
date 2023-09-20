@@ -14,7 +14,7 @@ void ofApp::setup(){
 	cout << "Vecteur initiaux " << vectA << ", " << vectB << endl;
 	cout << "Somme des vecteurs " << vectSum << endl;
 
-	// Initialisation position boîte
+	// Initialisation position boï¿½te
 	position = Vector(1, 1, 1);
 	size = 10.;
 	mouvement = Vector(1, 1, 0);
@@ -22,7 +22,7 @@ void ofApp::setup(){
 	// Initialisation particules
 	particle1.setPos(10, 100, 0);
 	particle1.setMass(1);
-	particle1.setColor(ofColor(255, 255, 255));
+	particle1.setColor(ofColor_<unsigned short>::yellow);
 
 	particle2.setPos(1, 1, 0);
 	particle2.setMass(1);
@@ -39,12 +39,12 @@ void ofApp::setup(){
 	particle3.applyForce(1, 1, 0);
 	particle3.setSize(10);
 
-	// Ajout particules à la liste
+	// Ajout particules ï¿½ la liste
 	particles.push_back(particle1);
 	particles.push_back(particle2);
 	particles.push_back(particle3);
 
-	//on affiche la velocité des particules
+	//on affiche la velocitï¿½ des particules
 }
 
 //--------------------------------------------------------------
@@ -55,7 +55,7 @@ void ofApp::update(){
 	position += mouvement;
 
 	// Update particules
-	for (Particle particle : particles) {
+	for (Particle& particle : particles) {
 		particle.update();
 
 		/*if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
@@ -71,7 +71,7 @@ void ofApp::draw(){
 	ofDrawCircle(position.v3(), size);
 
 	// Draw particules
-	for (Particle particle : particles) {
+	for (Particle& particle : particles) {
 		particle.draw();
 	}
 }

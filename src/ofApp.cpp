@@ -2,6 +2,7 @@
 #include "Vector.h"
 #include "Particle.h"
 #include <list>
+#include "../Ball.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -11,6 +12,11 @@ void ofApp::setup(){
 
 	// R�glages de la cam�ra
 	ofEnableDepthTest();
+    
+	// Initialisation position bo�te
+	position = Vector(1, 1, 0);
+	size = 10.;
+	mouvement = Vector(1, 1, 0);
 
 	// Framerate
 	ofSetFrameRate(144);
@@ -65,6 +71,12 @@ void ofApp::update() {
 			}
 		}
 	}
+
+	// Update Ball
+	for (Ball& ball : ball) {
+		ball.update();
+	}
+
 }
 
 //--------------------------------------------------------------
@@ -77,6 +89,12 @@ void ofApp::draw(){
 	for (Particle* particle : particles) {
 		particle->draw();
 	}
+
+	// Draw ball
+	for (Ball& ball : ball) {
+		ball.draw();
+	}
+
 
 	cam.end();  
 }

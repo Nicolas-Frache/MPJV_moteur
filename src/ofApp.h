@@ -39,4 +39,6 @@ class ofApp : public ofBaseApp{
 		ofxSkyBox skybox;
 		ofxFirstPersonCamera cam;
 		ofVec3f sphereCenter;
+		
+        Ball ball = Ball(0, 0, 0, 1, ofColor(255, 255, 255));
 };

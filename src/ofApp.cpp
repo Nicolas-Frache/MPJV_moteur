@@ -2,6 +2,7 @@
 #include "Vector.h"
 #include "Particle.h"
 #include <list>
+#include "../Ball.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -15,7 +16,7 @@ void ofApp::setup(){
 	cout << "Somme des vecteurs " << vectSum << endl;
 
 	// Initialisation position bo�te
-	position = Vector(1, 1, 1);
+	position = Vector(1, 1, 0);
 	size = 10.;
 	mouvement = Vector(1, 1, 0);
 
@@ -38,6 +39,8 @@ void ofApp::setup(){
 	particle2.setSize(10);
 	particle3.applyForce(1, 1, 0);
 	particle3.setSize(10);
+	
+
 
 	// Ajout particules � la liste
 	particles.push_back(particle1);
@@ -62,6 +65,12 @@ void ofApp::update(){
 			particle.setVelocity(-particle.getVelocity());
 		}*/
 	}
+
+	// Update Ball
+	for (Ball& ball : ball) {
+		ball.update();
+	}
+
 }
 
 //--------------------------------------------------------------
@@ -74,6 +83,12 @@ void ofApp::draw(){
 	for (Particle& particle : particles) {
 		particle.draw();
 	}
+
+	// Draw ball
+	for (Ball& ball : ball) {
+		ball.draw();
+	}
+
 }
 
 //--------------------------------------------------------------

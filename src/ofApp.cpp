@@ -5,40 +5,18 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-	// Exemple calcul
-	Vector vectA = Vector(1, 5, -2);
-	Vector vectB = Vector(4, 3, 9);
+	// Framerate
+	ofSetFrameRate(60);
 
-	Vector vectSum = vectA + vectB;
-
-	cout << "Vecteur initiaux " << vectA << ", " << vectB << endl;
-	cout << "Somme des vecteurs " << vectSum << endl;
-
-	// Initialisation position bo�te
-	position = Vector(1, 1, 1);
-	size = 10.;
-	mouvement = Vector(1, 1, 0);
 
 	// Initialisation particules
-	particle1.setPos(10, 100, 0);
-	particle1.setMass(1);
-	particle1.setColor(ofColor_<unsigned short>::yellow);
-
-	particle2.setPos(1, 0, 0);
-	particle2.setMass(1);
-	particle2.setColor(ofColor(0, 255, 0));
-
-	particle3.setPos(1, 1, 0);
-	particle3.setMass(1);
-	particle3.setColor(ofColor(0, 0, 255));
-
-	particle1.applyForce(5, 0, 0);
-
 	particle1.setSize(10);
-	particle2.applyForce(0, 0.1, 0);
 	particle2.setSize(10);
-	particle3.applyForce(0.1, 0.1, 0);
 	particle3.setSize(10);
+
+	particle1.applyForce(20, 0, 0, 2);
+	particle2.applyForce(20, 0, 0, 4);
+	particle3.applyForce(20, 0, 0, 6);
 
 	// Ajout particules dans la liste
 	particles.push_back(particle1);
@@ -48,10 +26,6 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-	if (position.x() > 1000 || position.x() < 0) {
-		mouvement *= -1;
-	}
-	position += mouvement;
 
 	// Update particules
 	for (Particle& particle : particles) {
@@ -65,10 +39,6 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	//ofDrawBox(position.v3(), size);
-	ofSetColor(255, 255, 255);
-	ofDrawCircle(position.v3(), size);
-
 	// Draw particules
 	for (Particle& particle : particles) {
 		particle.draw();

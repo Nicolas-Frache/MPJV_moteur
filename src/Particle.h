@@ -1,18 +1,18 @@
 #pragma once
 #include "ofMain.h"
 #include "Vector.h"
-class Particle
-{
+#include "Force.h"
+class Particle{
 	private :
 	Vector _position = Vector(0, 0, 0);
 	//rotation non utile car particule
 
 	Vector _velocity = Vector(0, 0, 0);
-	Vector _force = Vector(0, 0, 0);
 
 	float _invertedMass = 1.0f; 
 	ofColor _color = ofColor(255, 255, 255); //ça parait être une bonne idée de pouvoir choisir la couleur pour faire des tests plus tard
-	float _size = 1.0f; 
+	float _size = 1.0f;
+	list<Force> _forces = list<Force>();
 
 	public :
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color);
@@ -42,14 +42,10 @@ class Particle
 
 		void draw();
 
-		// Gestion de la physique
-		void setForce(Vector force);
-		Vector getForce();
-
 		void setVelocity(Vector velocity);
 		Vector getVelocity();
 
-		void applyForce(float forceX, float forceY, float forceZ);
+		void applyForce(float forceX, float forceY, float forceZ, float duration);
 		void integrer(float dt);
 
 		void update();

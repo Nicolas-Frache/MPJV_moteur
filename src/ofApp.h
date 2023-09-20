@@ -23,13 +23,10 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-		
-		Vector position = Vector(0, 0, 0);
-		float size = 1.;
-		Vector mouvement = Vector(0, 0, 0);
+
 
 		list<Particle> particles = list<Particle>();
-		Particle particle1 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::maroon));
-		Particle particle2 = Particle(0, 0, 0, 1, ofColor(255, 255, 255));
-		Particle particle3 = Particle(0, 0, 0, 1, ofColor(255, 255, 255));
+		Particle particle1 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::yellow));
+		Particle particle2 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::red));
+		Particle particle3 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::blue));
 };

@@ -32,19 +32,17 @@ void ofApp::setup(){
 	particle3.setMass(1);
 	particle3.setColor(ofColor(0, 0, 255));
 
-	particle1.applyForce(1, 2, 0);
+	particle1.applyForce(0.1, 0.2, 0);
 	particle1.setSize(10);
-	particle2.applyForce(0, 1, 0);
+	particle2.applyForce(0, 0.1, 0);
 	particle2.setSize(10);
-	particle3.applyForce(1, 1, 0);
+	particle3.applyForce(0.1, 0.1, 0);
 	particle3.setSize(10);
 
-	// Ajout particules � la liste
+	// Ajout particules dans la liste
 	particles.push_back(particle1);
 	particles.push_back(particle2);
 	particles.push_back(particle3);
-
-	//on affiche la velocit� des particules
 }
 
 //--------------------------------------------------------------
@@ -58,9 +56,9 @@ void ofApp::update(){
 	for (Particle& particle : particles) {
 		particle.update();
 
-		/*if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
+		if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
 			particle.setVelocity(-particle.getVelocity());
-		}*/
+		}
 	}
 }
 

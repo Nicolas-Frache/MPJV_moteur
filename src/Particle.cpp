@@ -80,7 +80,7 @@ void Particle::applyForce(float forceX, float forceY, float forceZ) {
 void Particle::integrer(float dt) {
 	_velocity += _force * _invertedMass * dt;
 	_position += (_velocity * dt);
-	//_force = Vector(0, 0, 0);
+	_force = Vector(0, 0, 0);
 }
 
 

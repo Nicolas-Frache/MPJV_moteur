@@ -92,6 +92,10 @@ void Particle::setVelocity(Vector velocity) {
 	_velocity = velocity;
 }
 
+void Particle::setVelocity(float X, float Y, float Z) {
+	_velocity.set(X, Y, Z);
+}
+
 Vector Particle::getVelocity() {
 	return _velocity;
 }
@@ -109,12 +113,8 @@ void Particle::integrer(float dt) {
 
 
 void Particle::update() {
-	applyForce(0, 9.8/30, 0);
-	integrer(1.0 / 30);
+	applyForce(0, 9.8, 0);
+	integrer(3.0 / 30);
 }
-
-
-
-
 
 

@@ -47,6 +47,7 @@ class Particle
 		Vector getForce();
 
 		void setVelocity(Vector velocity);
+		void setVelocity(float X, float Y, float Z);
 		Vector getVelocity();
 
 		void applyForce(float forceX, float forceY, float forceZ);

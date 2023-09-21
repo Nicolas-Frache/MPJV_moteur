@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "Vector.h"
 #include "Particle.h"
+#include "Fireball.h"
 #include <list>
 
 class ofApp : public ofBaseApp{
@@ -26,7 +27,7 @@ class ofApp : public ofBaseApp{
 
 
 		list<Particle> particles = list<Particle>();
-		Particle particle1 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::yellow));
-		Particle particle2 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::red));
+		Particle particle1 = Fireball(0, 0, 0, 1, 5);
+		Particle particle2 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::green));
 		Particle particle3 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::blue));
 };

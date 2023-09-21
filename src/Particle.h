@@ -14,6 +14,9 @@ class Particle{
 	float _size = 1.0f;
 	list<Force> _forces = list<Force>();
 
+	float restitution = 1.0f;
+	float friction = 1.0f;
+
 	public :
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color);
 		Particle(Vector position, float invertedMass, ofColor color);
@@ -21,6 +24,9 @@ class Particle{
 		// Gestion de la position
 		void setPos(float X, float Y, float Z);
 		void setPos(Vector);
+
+		void setRestitution(float restitution);
+		void setFriction(float friction);
 
 		Vector getPos();
 
@@ -48,6 +54,8 @@ class Particle{
 
 		void applyForce(float forceX, float forceY, float forceZ, float duration);
 		void integrer(float dt);
+
+		void bounce(Vector normal);
 
 		void update();
 

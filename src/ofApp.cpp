@@ -11,8 +11,6 @@ void ofApp::setup(){
 
 	// Initialisation particules
 	particle1.setPos(10, 100, 0);
-	particle1.setMass(1);
-	particle1.setColor(ofColor_<unsigned short>::yellow);
 
 	particle2.setPos(1, 0, 0);
 	particle2.setMass(1);
@@ -29,6 +27,12 @@ void ofApp::setup(){
 	particle1.applyForce(20, 0, 0, 2);
 	particle2.applyForce(20, 0, 0, 4);
 	particle3.applyForce(20, 0, 0, 6);
+
+	particle2.setRestitution(0.5);
+	particle3.setRestitution(0.5);
+
+	particle2.setFriction(0.99);
+	particle3.setFriction(0.99);
 
 	// Ajout particules dans la liste
 	particles.push_back(particle1);
@@ -47,21 +51,23 @@ void ofApp::update(){
 			float x = particle.getPos().x();
 			if (x > 1000) {
 				particle.setPos(1000, particle.getPos().y(), particle.getPos().z());
+				particle.bounce(Vector(-1, 0, 0));
 			}
 			else {
 				particle.setPos(0, particle.getPos().y(), particle.getPos().z());
+				particle.bounce(Vector(1, 0, 0));
 			}
-			particle.setVelocity(-(particle.getVelocity().x()*0.75), particle.getVelocity().y()*0.999, particle.getVelocity().z());
 		}
 		if(particle.getPos().y() > 1000 || particle.getPos().y() <0){
 			float y = particle.getPos().y();
 			if (y > 1000) {
 				particle.setPos(particle.getPos().x(), 1000, particle.getPos().z());
+				particle.bounce(Vector(0, -1, 0));
 			}
 			else {
 				particle.setPos(particle.getPos().x(), 0, particle.getPos().z());
+				particle.bounce(Vector(0, 1, 0));
 			}
-			particle.setVelocity(particle.getVelocity().x()*0.999, -(particle.getVelocity().y()*0.75), particle.getVelocity().z());
 		}
 	}
 }

@@ -27,6 +27,14 @@ Vector Particle::getPos() {
 	return _position;
 }
 
+void Particle::setRestitution(float restitution) {
+	this->restitution = restitution;
+}
+
+void Particle::setFriction(float friction) {
+	this->friction = friction;
+}
+
 // Gestion de la masse
 
 void Particle::setMass(float mass) {
@@ -88,12 +96,11 @@ void Particle::setVelocity(float X, float Y, float Z) {
 	_velocity.set(X, Y, Z);
 }
 
-}    
     
 void Particle::update() {
 	float dt = ofGetLastFrameTime();
-	integrer(dt);
-	cout << "position: " << _position << ", velocity: " << _velocity << endl;
+	integrer(3*dt);
+	//cout << "position: " << _position << ", velocity: " << _velocity << endl;
 }
 
 Vector Particle::getVelocity() {
@@ -102,6 +109,12 @@ Vector Particle::getVelocity() {
 
 void Particle::applyForce(float forceX, float forceY, float forceZ, float duration) {
 	_forces.push_back(Force(Vector(forceX, forceY, forceZ), duration));
+}
+
+void Particle::bounce(Vector normal) {
+	_velocity = _velocity - (normal * ((1+restitution) * _velocity.scalar_product(normal)));
+	Vector tangent = _velocity - (normal * _velocity.scalar_product(normal));
+	_velocity = tangent * friction + normal * _velocity.scalar_product(normal);
 }
 
 void Particle::integrer(float dt) {

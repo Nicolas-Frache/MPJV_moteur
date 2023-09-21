@@ -15,6 +15,7 @@ class Particle
 	float _size = 1.0f; 
 
 	public :
+		Particle();
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color);
 		Particle(Vector position, float invertedMass, ofColor color);
 

@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "Vector.h"
 #include "Particle.h"
+#include "../Ball.h"
 #include <list>
 
 class ofApp : public ofBaseApp{
@@ -32,7 +33,6 @@ class ofApp : public ofBaseApp{
 		Particle particle1 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::maroon));
 		Particle particle2 = Particle(0, 0, 0, 1, ofColor(255, 255, 255));
 		Particle particle3 = Particle(0, 0, 0, 1, ofColor(255, 255, 255));
-
-		//Ball
-		Ball ball = Ball(0, 0, 0, 1, ofColor(255, 255, 255));
+		Ball ball = Ball(100, 100, 0, 1, ofColor::red);
+	
 };

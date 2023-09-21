@@ -13,9 +13,7 @@
     <ClCompile Include="src\Particle.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="Ball.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
+    <ClCompile Include="Ball.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -32,9 +30,7 @@
     <ClInclude Include="src\Particle.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="Ball.h">
-      <Filter>src</Filter>
-    </ClInclude>
+    <ClInclude Include="Ball.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

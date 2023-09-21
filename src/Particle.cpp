@@ -11,6 +11,16 @@ Particle::Particle(Vector position, float invertedMass, ofColor color) {
 	_force = Vector(0, 0, 0);
 }
 
+Particle::Particle()
+{
+	_position = Vector(0, 0, 0);
+	_velocity = Vector(0, 0, 0);
+	_force = Vector(0, 0, 0);
+	_invertedMass = 1.0f;
+	_color = ofColor(255, 255, 255);
+	_size = 1.0f;
+}
+
 void Particle::setPos(float X, float Y, float Z) {
 	_position.set(X, Y, Z);
 }

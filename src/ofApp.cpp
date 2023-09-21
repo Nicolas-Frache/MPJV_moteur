@@ -20,10 +20,23 @@ void ofApp::setup(){
 	size = 10.;
 	mouvement = Vector(1, 1, 0);
 
+	//Initialisation de la balle
+	ball.setPos(100, 600, 0);
+	ball.setMass(0.01);
+	ball.setColor(ofColor(255, 0, 0));
+
+	ball.applyForce(6, -5, 0);
+	ball.setSize(20);
+
+	// Ajout la balle à la liste particules
+	particles.push_back(ball);
+	
+
 	// Initialisation particules
 	particle1.setPos(10, 100, 0);
 	particle1.setMass(1);
 	particle1.setColor(ofColor_<unsigned short>::yellow);
+
 
 	particle2.setPos(1, 1, 0);
 	particle2.setMass(1);
@@ -39,13 +52,13 @@ void ofApp::setup(){
 	particle2.setSize(10);
 	particle3.applyForce(1, 1, 0);
 	particle3.setSize(10);
-	
 
 
-	// Ajout particules � la liste
+	// Ajout particules à la liste
 	particles.push_back(particle1);
 	particles.push_back(particle2);
 	particles.push_back(particle3);
+
 
 	//on affiche la velocit� des particules
 }
@@ -60,17 +73,8 @@ void ofApp::update(){
 	// Update particules
 	for (Particle& particle : particles) {
 		particle.update();
-
-		/*if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
-			particle.setVelocity(-particle.getVelocity());
-		}*/
-	}
-
-	// Update Ball
-	for (Ball& ball : ball) {
 		ball.update();
 	}
-
 }
 
 //--------------------------------------------------------------
@@ -79,16 +83,11 @@ void ofApp::draw(){
 	ofSetColor(255, 255, 255);
 	ofDrawCircle(position.v3(), size);
 
-	// Draw particules
+	// Draw particules (les particules et la balle)
 	for (Particle& particle : particles) {
 		particle.draw();
-	}
-
-	// Draw ball
-	for (Ball& ball : ball) {
 		ball.draw();
 	}
-
 }
 
 //--------------------------------------------------------------

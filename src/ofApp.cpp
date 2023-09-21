@@ -22,6 +22,18 @@ void ofApp::setup(){
 	ofSetFrameRate(144);
 	cam.setFarClip(200000);
 	
+	//Initialisation de la balle
+	ball.setPos(100, 600, 0);
+	ball.setMass(0.01);
+	ball.setColor(ofColor(255, 0, 0));
+
+	ball.applyForce(6, -5, 0);
+	ball.setSize(20);
+
+	// Ajout la balle à la liste particules
+	particles.push_back(ball);
+	
+
 	// Initialisation particules
 	particle1.applyForce(5, 1, 10, 2);
 	particle2.applyForce(5, 0, 20, 4);
@@ -76,7 +88,6 @@ void ofApp::update() {
 	for (Ball& ball : ball) {
 		ball.update();
 	}
-
 }
 
 //--------------------------------------------------------------
@@ -95,8 +106,6 @@ void ofApp::draw(){
 		ball.draw();
 	}
 
-
-	cam.end();  
 }
 
 //--------------------------------------------------------------

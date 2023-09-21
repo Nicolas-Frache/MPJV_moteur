@@ -13,7 +13,7 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	sphere = ofSpherePrimitive(10, 10);
 	sphere.setRadius(_size);
 
-	// Gravité 
+	// Gravitï¿½ 
 	applyForce(0, 9.8, 0, numeric_limits<float>::max());
 }
 
@@ -118,8 +118,8 @@ void Particle::update() {
 	if (duration != -1.0f) {
 		duration -= dt;
 		if (duration < 0.0f) {
-			//cas doit être géré par les classes contenant des listes de particules,
-			//car si on "delete this", on ne peut plus itérer sur la liste
+			//cas doit ï¿½tre gï¿½rï¿½ par les classes contenant des listes de particules,
+			//car si on "delete this", on ne peut plus itï¿½rer sur la liste
 			//car une particule de la liste n'existera pas (null error je suppose)
 		}
 	}
@@ -140,7 +140,7 @@ void Particle::bounce(Vector normal) {
 }
 
 void Particle::integrer(float dt) {
-	// On itère sur les forces actives
+	// On itï¿½re sur les forces actives
 	auto it = _forces.begin();
 	while (it != _forces.end()) {
 		Force& force = *it;
@@ -149,14 +149,14 @@ void Particle::integrer(float dt) {
 		_velocity += force.direction * _invertedMass * applicationTime;
 
 		if (applicationTime != dt) {
-			it = _forces.erase(it); // Suppression de la force si sa durée est terminée
+			it = _forces.erase(it); // Suppression de la force si sa durï¿½e est terminï¿½e
 		}
 		else {
 			++it; // Element suivant
 		}
 	}
 
-	// On met à jour la position
+	// On met ï¿½ jour la position
 	_position += (_velocity * dt);
 }
 

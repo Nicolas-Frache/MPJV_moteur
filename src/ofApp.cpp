@@ -3,6 +3,7 @@
 #include "Particle.h"
 #include <list>
 #include "../Ball.h"
+#include "../Laser.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -32,6 +33,18 @@ void ofApp::setup(){
 
 	// Ajout la balle à la liste particules
 	particles.push_back(ball);
+
+	//Initialisation du laser
+	laser.setStartPoint(Vector(200, 200, 0)); // Position du point de départ
+	laser.setEndPoint(Vector(300, 300, 0));   // Position du point final
+	laser.setMass(0.01);
+	laser.setColor(ofColor(253, 108, 158)); // Couleur du laser, ici rose
+	laser.setSize(3);
+
+	laser.applyForce(3, 2, 0); // Appliquer une force au laser
+
+	// Ajout du laser à la liste particules
+	particles.push_back(laser);
 	
 
 	// Initialisation particules
@@ -87,6 +100,8 @@ void ofApp::update() {
 	// Update Ball
 	for (Ball& ball : ball) {
 		ball.update();
+		laser.update();
+
 	}
 }
 
@@ -104,6 +119,7 @@ void ofApp::draw(){
 	// Draw ball
 	for (Ball& ball : ball) {
 		ball.draw();
+		laser.draw();
 	}
 
 }

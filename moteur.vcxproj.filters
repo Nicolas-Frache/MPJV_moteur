@@ -15,6 +15,7 @@
     </ClCompile>
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="Cannonball.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -33,6 +34,7 @@
     </ClInclude>
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Laser.h" />
+    <ClInclude Include="Cannonball.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

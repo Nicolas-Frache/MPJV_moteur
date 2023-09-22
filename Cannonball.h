@@ -1,29 +1,26 @@
 #pragma once
-#include "../MPJV_moteur/src/Particle.h"
-#include "../MPJV_moteur/src/Vector.h"
+#include "Ball.h"
 
-
-class Ball : public Particle
+class Cannonball : public Ball
 {
-
 private:
 
-	Vector _position = Vector(0, 0, 0);
-	Vector _velocity = Vector(0, 0, 0);
-	Vector _force = Vector(0, 0, 0);
-	Vector _rotation = Vector(0, 0, 0);
+    Vector _position = Vector(0, 0, 0);
 
-	float _invertedMass = 1.0f;
+    Vector _velocity = Vector(0, 0, 0);
+    Vector _force = Vector(0, 0, 0);
+    Vector _rotation = Vector(0, 0, 0);
+
+    float _invertedMass = 1.0f;
+
 	float _rotationZ;
-	float _size = 1.0f;
 
-	ofColor _color = ofColor(255, 255, 255);
-	
+    ofColor _color = ofColor(255, 255, 255);
+    float _size = 1.0f;
 
 public:
 
-
-	Ball(float X, float Y, float Z, float invertedMass, ofColor color);
+    Cannonball(float X, float Y, float Z, float invertedMass, ofColor color);
 
 	void setPos(float X, float Y, float Z);
 	void setPos(Vector);
@@ -48,4 +45,5 @@ public:
 	void applyForce(float forceX, float forceY, float forceZ);
 	void integrer(float dt);
 
+    
 };

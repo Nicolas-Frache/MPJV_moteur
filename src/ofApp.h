@@ -4,7 +4,9 @@
 #include "Vector.h"
 #include "Particle.h"
 #include "../Ball.h"
+#include "../Cannonball.h"
 #include "../Laser.h"
+
 #include <list>
 
 class ofApp : public ofBaseApp{
@@ -41,4 +43,6 @@ class ofApp : public ofBaseApp{
 		// Ajout d'une instance de Laser
 		Laser laser = Laser(200, 200, 0, 300, 300, 0, 1, ofColor::pink);
 	
+		// Ajout d'une instance de Cannonball
+		Cannonball cannonball = Cannonball(100, 100, 0, 1, ofColor::black);
 };

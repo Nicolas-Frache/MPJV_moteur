@@ -5,25 +5,17 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+
+	skybox.load();
+
+
+	// Réglages de la caméra
+	ofEnableDepthTest();
+
 	// Framerate
-	ofSetFrameRate(60);
-
-
+	ofSetFrameRate(144);
+	
 	// Initialisation particules
-	particle1.setPos(10, 100, 0);
-
-	particle2.setPos(1, 0, 0);
-	particle2.setMass(1);
-	particle2.setColor(ofColor(0, 255, 0));
-
-	particle3.setPos(1, 1, 0);
-	particle3.setMass(1);
-	particle3.setColor(ofColor(0, 0, 255));
-
-	particle1.setSize(10);
-	particle2.setSize(10);
-	particle3.setSize(10);
-
 	particle1.applyForce(20, 0, 0, 2);
 	particle2.applyForce(20, 0, 0, 4);
 	particle3.applyForce(20, 0, 0, 6);
@@ -74,6 +66,11 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	cam.begin();
+	skybox.draw();
+	ofDrawGrid(10.0f, 10, true);
+	cam.end();
+
 	// Draw particules
 	for (Particle& particle : particles) {
 		particle.draw();
@@ -102,7 +99,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+	cam.toggleControl();
 }
 
 //--------------------------------------------------------------

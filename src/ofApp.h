@@ -5,6 +5,10 @@
 #include "Particle.h"
 #include "Fireball.h"
 #include <list>
+// https://github.com/kalwalt/ofxSkyBox
+#include "ofxSkyBox.h"
+// https://github.com/010pe/ofxFirstPersonCamera
+#include "ofxFirstPersonCamera.h"
 
 class ofApp : public ofBaseApp{
 
@@ -27,7 +31,11 @@ class ofApp : public ofBaseApp{
 
 
 		list<Particle> particles = list<Particle>();
-		Particle particle1 = Fireball(0, 0, 0, 1, 5);
-		Particle particle2 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::green));
-		Particle particle3 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::blue));
+		Particle particle1 = Fireball(0, 0, 0, 1, 2);
+		Particle particle2 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::green), 10);
+		Particle particle3 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::blue), 10);
+
+		ofxSkyBox skybox;
+		ofxFirstPersonCamera cam;
+		ofVec3f sphereCenter;
 };

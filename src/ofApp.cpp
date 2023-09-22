@@ -27,12 +27,29 @@ void ofApp::setup(){
 	ball.setPos(100, 600, 0);
 	ball.setMass(0.01);
 	ball.setColor(ofColor(255, 0, 0));
+	ball.setRotationZ(0.0f);
 
 	ball.applyForce(6, -5, 0);
 	ball.setSize(20);
 
 	// Ajout la balle à la liste particules
 	particles.push_back(ball);
+
+
+
+	//Initialisation du boulet ( le cannonball ) 
+	cannonball.setPos(100, 60, 0);
+	cannonball.setMass(5);
+	cannonball.setColor(ofColor(0, 0, 0));
+	cannonball.setRotationZ(0.0f);
+
+	cannonball.applyForce(0.01, -0.001, 0);
+	cannonball.setSize(20);
+
+	// Ajout du boulet à la liste particules
+	particles.push_back(cannonball);
+
+
 
 	//Initialisation du laser
 	laser.setStartPoint(Vector(200, 200, 0)); // Position du point de départ
@@ -46,6 +63,7 @@ void ofApp::setup(){
 	// Ajout du laser à la liste particules
 	particles.push_back(laser);
 	
+
 
 	// Initialisation particules
 	particle1.applyForce(5, 1, 10, 2);
@@ -100,9 +118,13 @@ void ofApp::update() {
 	// Update Ball
 	for (Ball& ball : ball) {
 		ball.update();
+		cannonball.update();
 		laser.update();
 
 	}
+
+	ball.setRotationZ(ball.getRotationZ() + 2);
+	cannonball.setRotationZ(cannonball.getRotationZ() + 1);
 }
 
 //--------------------------------------------------------------
@@ -119,7 +141,12 @@ void ofApp::draw(){
 	// Draw ball
 	for (Ball& ball : ball) {
 		ball.draw();
+
+		//Draw laser
 		laser.draw();
+
+		//Draw le cannonball 
+		cannonball.draw();
 	}
 
 }

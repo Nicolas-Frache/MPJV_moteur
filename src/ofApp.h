@@ -5,7 +5,9 @@
 #include "Particle.h"
 #include "Fireball.h"
 #include "../Ball.h"
+#include "../Cannonball.h"
 #include "../Laser.h"
+
 #include <list>
 // https://github.com/kalwalt/ofxSkyBox
 #include "addons/ofxSkyBox/ofxSkyBox.h"
@@ -45,4 +47,7 @@ class ofApp : public ofBaseApp{
 		Ball ball = Ball(100, 100, 0, 1, ofColor::red);
 		// Ajout d'une instance de Laser
 		Laser laser = Laser(200, 200, 0, 300, 300, 0, 1, ofColor::pink);
+	
+		// Ajout d'une instance de Cannonball
+		Cannonball cannonball = Cannonball(100, 100, 0, 1, ofColor::black);
 };

@@ -25,34 +25,22 @@
     <ClCompile Include="src\ofApp.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\addons\ofxFirstPersonCamera\src\ofxFirstPersonCamera.cpp">
-      <Filter>addons\ofxFirstPersonCamera\src</Filter>
+    <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp">
+      <Filter>src\addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\addons\ofxSkyBox\src\ofxCubeMap.cpp">
-      <Filter>addons\ofxSkyBox\src</Filter>
+    <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp">
+      <Filter>src\addons</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\addons\ofxSkyBox\src\ofxSkyBox.cpp">
-      <Filter>addons\ofxSkyBox\src</Filter>
+    <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp">
+      <Filter>src\addons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
       <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="addons">
-      <UniqueIdentifier>{4170E7A4--73E-0-4B-75-8-2AB-360F97D9BE05}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxFirstPersonCamera">
-      <UniqueIdentifier>{204AE688--6FC-4-46-27-8-8B3-4A18BA790B3C}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxFirstPersonCamera\src">
-      <UniqueIdentifier>{6D1DA506--BA0-9-43-EB-A-BE5-C68557FD9B78}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxSkyBox">
-      <UniqueIdentifier>{CA3754EF--C97-1-44-5E-9-224-9CFCC7DA3ECF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="addons\ofxSkyBox\src">
-      <UniqueIdentifier>{83801F67--1F5-7-44-9F-9-945-6CD5BB50B692}</UniqueIdentifier>
+    <Filter Include="src\addons">
+      <UniqueIdentifier>{b8dec3f4-d079-4b97-bc10-2aa7a9f88de7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -74,22 +62,17 @@
     <ClInclude Include="src\ofApp.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\addons\ofxFirstPersonCamera\src\ofxFirstPersonCamera.h">
-      <Filter>addons\ofxFirstPersonCamera\src</Filter>
+    <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h">
+      <Filter>src\addons</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\addons\ofxSkyBox\src\ofxCubeMap.h">
-      <Filter>addons\ofxSkyBox\src</Filter>
+    <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h">
+      <Filter>src\addons</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\addons\ofxSkyBox\src\ofxSkyBox.h">
-      <Filter>addons\ofxSkyBox\src</Filter>
+    <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h">
+      <Filter>src\addons</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="bin\data\skybox.frag" />
-    <None Include="bin\data\skybox.vert" />
-    <None Include=".gitignore" />
   </ItemGroup>
 </Project>

@@ -61,7 +61,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxFirstPersonCamera\src;..\..\..\addons\ofxSkyBox\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <ObjectFileName>$(IntDir)\Build\%(RelativeDir)\$(Configuration)\</ObjectFileName>
@@ -84,7 +84,7 @@
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src;..\..\..\addons\ofxFirstPersonCamera\src;..\..\..\addons\ofxSkyBox\src</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);src</AdditionalIncludeDirectories>
       <CompileAs>CompileAsCpp</CompileAs>
       <ObjectFileName>$(IntDir)\Build\%(RelativeDir)\$(Configuration)\</ObjectFileName>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -104,25 +104,25 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp" />
+    <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
+    <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\Fireball.cpp" />
     <ClCompile Include="src\Force.cpp" />
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\Vector.cpp" />
-    <ClCompile Include="..\..\..\addons\ofxFirstPersonCamera\src\ofxFirstPersonCamera.cpp" />
-    <ClCompile Include="..\..\..\addons\ofxSkyBox\src\ofxCubeMap.cpp" />
-    <ClCompile Include="..\..\..\addons\ofxSkyBox\src\ofxSkyBox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
+    <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
+    <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\Fireball.h" />
     <ClInclude Include="src\Force.h" />
     <ClInclude Include="src\Particle.h" />
     <ClInclude Include="src\Vector.h" />
-    <ClInclude Include="..\..\..\addons\ofxFirstPersonCamera\src\ofxFirstPersonCamera.h" />
-    <ClInclude Include="..\..\..\addons\ofxSkyBox\src\ofxCubeMap.h" />
-    <ClInclude Include="..\..\..\addons\ofxSkyBox\src\ofxSkyBox.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">
@@ -134,11 +134,6 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".gitignore" />
-    <None Include="bin\data\skybox.frag" />
-    <None Include="bin\data\skybox.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

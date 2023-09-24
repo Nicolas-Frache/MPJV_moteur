@@ -69,7 +69,7 @@ void ofApp::update(){
 void ofApp::draw(){
 	cam.begin();
 	skybox.draw();
-	ofDrawGrid(10.0f, 10, true);
+	ofDrawGrid(20.0f, 50, true);
 
 	// Draw particules
 	for (Particle& particle : particles) {

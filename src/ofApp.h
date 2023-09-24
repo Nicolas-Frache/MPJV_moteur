@@ -6,9 +6,9 @@
 #include "Fireball.h"
 #include <list>
 // https://github.com/kalwalt/ofxSkyBox
-#include "ofxSkyBox.h"
+#include "addons/ofxSkyBox/ofxSkyBox.h"
 // https://github.com/010pe/ofxFirstPersonCamera
-#include "ofxFirstPersonCamera.h"
+#include "addons/ofxFirstPersonCamera/ofxFirstPersonCamera.h"
 
 class ofApp : public ofBaseApp{
 

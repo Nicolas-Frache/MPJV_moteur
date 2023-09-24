@@ -7,9 +7,6 @@
     <ClCompile Include="src\main.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Fireball.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
     <ClCompile Include="src\Force.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -34,6 +31,17 @@
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp">
       <Filter>src\addons</Filter>
     </ClCompile>
+    <ClCompile Include="src\Fireball.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
+    <ClCompile Include="Cannonball.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileMenu.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Laser.cpp" />
+    <ClCompile Include="src\Ball.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -42,12 +50,12 @@
     <Filter Include="src\addons">
       <UniqueIdentifier>{b8dec3f4-d079-4b97-bc10-2aa7a9f88de7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\particles">
+      <UniqueIdentifier>{d8f13a31-f89f-49a1-b1d2-fdf958d167d5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Fireball.h">
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Force.h">
@@ -71,6 +79,17 @@
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h">
       <Filter>src\addons</Filter>
     </ClInclude>
+    <ClInclude Include="src\Fireball.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannonball.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileMenu.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Laser.h" />
+    <ClInclude Include="src\Ball.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

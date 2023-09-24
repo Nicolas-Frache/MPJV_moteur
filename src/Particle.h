@@ -3,7 +3,7 @@
 #include "Vector.h"
 #include "Force.h"
 class Particle{
-	private :
+	public :
 	Vector _position = Vector(0, 0, 0);
 	//rotation non utile car particule
 

@@ -104,9 +104,13 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Cannonball.cpp" />
+    <ClCompile Include="ProjectileMenu.cpp" />
     <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
+    <ClCompile Include="src\Ball.cpp" />
+    <ClCompile Include="src\Laser.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\Fireball.cpp" />
@@ -115,9 +119,13 @@
     <ClCompile Include="src\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cannonball.h" />
+    <ClInclude Include="ProjectileMenu.h" />
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
+    <ClInclude Include="src\Ball.h" />
+    <ClInclude Include="src\Laser.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\Fireball.h" />
     <ClInclude Include="src\Force.h" />

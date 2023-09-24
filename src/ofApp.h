@@ -4,9 +4,9 @@
 #include "Vector.h"
 #include "Particle.h"
 #include "Fireball.h"
-#include "../Ball.h"
-#include "../Cannonball.h"
-#include "../Laser.h"
+#include "Ball.h"
+#include "Cannonball.h"
+#include "Laser.h"
 
 #include <list>
 // https://github.com/kalwalt/ofxSkyBox
@@ -33,20 +33,18 @@ public:
 		void gotMessage(ofMessage msg);
 
 		list<Particle*> particles = list<Particle*>();
-		list<Fireball> fireballs = list<Fireball>();
+
 		Fireball particle1 = Fireball(0, 0, 0, 1);
 		Particle particle2 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::green), 10);
 		Particle particle3 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::blue), 10);
+	
+		Ball ball = Ball(100, 600, 0, .01, ofColor::red, 5);
+		Laser laser = Laser(Vector(2, 0, 0), Vector(1, 1, 1), .01, ofColor::pink, 2);
+		Cannonball cannonball = Cannonball(100, 60, 0, 1, ofColor::black, 20);
 
 		ofxSkyBox skybox;
 		ofxFirstPersonCamera cam;
 		ofVec3f sphereCenter;
 		
-		Ball ball = Ball(100, 100, 0, 1, ofColor::red);
-		// Ajout d'une instance de Laser
-		Laser laser = Laser(200, 200, 0, 300, 300, 0, 1, ofColor::pink);
-	
-		// Ajout d'une instance de Cannonball
-		Cannonball cannonball = Cannonball(100, 100, 0, 1, ofColor::black);
 
 };

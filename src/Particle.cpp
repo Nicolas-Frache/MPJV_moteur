@@ -23,6 +23,7 @@ void Particle::setPos(float X, float Y, float Z) {
 	_position.set(X, Y, Z);
 }
 
+// M�thode pour d�finir la position de la particule en utilisant un objet Vector
 void Particle::setPos(Vector position) {
 	_position = position;
 }
@@ -90,6 +91,7 @@ ofColor Particle::getColor() {
 	return _color;
 }
 
+// M�thode pour obtenir la taille de la particule
 float Particle::getSize() {
 	return _size;
 }
@@ -159,5 +161,3 @@ void Particle::integrer(float dt) {
 	// On met � jour la position
 	_position += (_velocity * dt);
 }
-
-

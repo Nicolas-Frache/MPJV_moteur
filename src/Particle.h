@@ -66,4 +66,3 @@ class Particle{
 		virtual void update();
 
 };
-

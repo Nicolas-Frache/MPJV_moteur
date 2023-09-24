@@ -4,9 +4,19 @@
 #include <list>
 #include "../Ball.h"
 #include "../Laser.h"
+#include "../ProjectileMenu.h"
+
+
+ProjectileMenu menu;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+
+	menu.setup();
+
+	// Exemple calcul
+	Vector vectA = Vector(1, 5, -2);
+	Vector vectB = Vector(4, 3, 9);
 
 	skybox.load();
 
@@ -115,20 +125,35 @@ void ofApp::update() {
 		}
 	}
 
-	// Update Ball
-	for (Ball& ball : ball) {
-		ball.update();
+	// Update particules
+	for (Particle& particle : particles) {
+		particle.update();
 		cannonball.update();
 		laser.update();
 
 	}
 
-	ball.setRotationZ(ball.getRotationZ() + 2);
-	cannonball.setRotationZ(cannonball.getRotationZ() + 1);
+	// Update balls
+	for (Ball& ball : balls) {
+		ball.update();
+		ball.setRotationZ(ball.getRotationZ() + 0.1);// Update la rotation de la balle
+	}
+
+	// Update cannonballs-
+	for (Cannonball& cannonball : cannonballs) {
+		cannonball.update();
+		cannonball.setRotationZ(cannonball.getRotationZ() + 0.1); // Update la rotation du boulet
+	}
+	
+	// Update lasers
+	for (Laser& laser : lasers) {
+		laser.update();
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	menu.draw();
 	cam.begin();
     skybox.draw();
 	ofDrawGrid(20.0f, 50, true);
@@ -141,9 +166,17 @@ void ofApp::draw(){
 	// Draw ball
 	for (Ball& ball : ball) {
 		ball.draw();
+	}
 
-		//Draw laser
+	//Draw les balles boulets
+	for (Cannonball& cannonball : cannonballs) {
+		cannonball.draw();
+	}
+
+	//Draw les lasers
+	for (Laser& laser : lasers) {
 		laser.draw();
+	}
 
 		//Draw le cannonball 
 		cannonball.draw();
@@ -152,9 +185,60 @@ void ofApp::draw(){
 }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
+void ofApp::keyPressed(int key) {
+
+	if (key == '1') {
+
+		// Initialisation de la balle
+		ball.setPos(100, 600, 0);
+		ball.setMass(0.01);
+		ball.setColor(ofColor(255, 0, 0));
+		ball.setRotationZ(0.0f);
+
+		ball.applyForce(6, -5, 0);
+		ball.setSize(20);
+
+		// Ajout la balle à la liste balls
+		balls.push_back(ball);
+
+		// Ajoutez un message pour indiquer que la balle a été créée
+		cout << "Balle creee !" << endl;
+	}
+	else if (key == '2') {
+
+		// Initialisation du boulet
+		cannonball.setPos(100, 60, 0);
+		cannonball.setMass(5);
+		cannonball.setColor(ofColor(0, 0, 0));
+		cannonball.setRotationZ(0.0f);
+
+		cannonball.applyForce(0.01, -0.001, 0);
+		cannonball.setSize(20);
+
+		// Ajout du boulet à la liste cannonballs
+		cannonballs.push_back(cannonball);
+		
+		cout << "Boulet cree !" << endl;
+	}
+	else if (key == '3') {
+
+		// Initialisation du laser
+		laser.setStartPoint(Vector(200, 200, 0)); // Position du point de départ
+		laser.setEndPoint(Vector(300, 300, 0));   // Position du point final
+		laser.setMass(0.01);
+		laser.setColor(ofColor(253, 108, 158)); // Couleur du laser, ici rose
+		laser.setSize(3);
+
+		laser.applyForce(3, 2, 0);
+
+		// Ajout du laser à la liste lasers
+		lasers.push_back(laser);
+
+		cout << "Laser cree !" << endl;
+	}
 
 }
+
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){

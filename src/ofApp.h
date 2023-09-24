@@ -14,12 +14,11 @@
 // https://github.com/010pe/ofxFirstPersonCamera
 #include "addons/ofxFirstPersonCamera/ofxFirstPersonCamera.h"
 
-class ofApp : public ofBaseApp{
+class ofApp : public ofBaseApp {
 
-	public:
-		void setup();
-		void update();
-		void draw();
+public:
+    // M�thode de configuration (appel�e une fois au d�marrage)
+    void setup();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -32,7 +31,6 @@ class ofApp : public ofBaseApp{
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
-
 
 		list<Particle*> particles = list<Particle*>();
 		list<Fireball> fireballs = list<Fireball>();
@@ -50,4 +48,5 @@ class ofApp : public ofBaseApp{
 	
 		// Ajout d'une instance de Cannonball
 		Cannonball cannonball = Cannonball(100, 100, 0, 1, ofColor::black);
+
 };

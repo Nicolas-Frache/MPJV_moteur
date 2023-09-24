@@ -35,6 +35,14 @@ void Particle::setFriction(float friction) {
 	this->friction = friction;
 }
 
+void Particle::setDuration(float duration) {
+	this->duration = duration;
+}
+
+float Particle::getDuration() {
+	return duration;
+}
+
 // Gestion de la masse
 
 void Particle::setMass(float mass) {
@@ -99,8 +107,16 @@ void Particle::setVelocity(float X, float Y, float Z) {
     
 void Particle::update() {
 	float dt = ofGetLastFrameTime();
-	integrer(3*dt);
+	integrer(dt);
 	//cout << "position: " << _position << ", velocity: " << _velocity << endl;
+	if (duration != -1.0f) {
+		duration -= dt;
+		if (duration < 0.0f) {
+			//cas doit être géré par les classes contenant des listes de particules,
+			//car si on "delete this", on ne peut plus itérer sur la liste
+			//car une particule de la liste n'existera pas (null error je suppose)
+		}
+	}
 }
 
 Vector Particle::getVelocity() {

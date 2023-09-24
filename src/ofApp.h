@@ -27,7 +27,8 @@ class ofApp : public ofBaseApp{
 
 
 		list<Particle> particles = list<Particle>();
-		Particle particle1 = Fireball(0, 0, 0, 1, 5);
+		list<Fireball> fireballs = list<Fireball>();
+		Fireball particle1 = Fireball(0, 0, 0, 1);
 		Particle particle2 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::green));
 		Particle particle3 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::blue));
 };

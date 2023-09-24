@@ -17,6 +17,8 @@ class Particle{
 	float restitution = 1.0f;
 	float friction = 1.0f;
 
+	float duration = -1.0f;
+
 	public :
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color);
 		Particle(Vector position, float invertedMass, ofColor color);
@@ -46,7 +48,7 @@ class Particle{
 		ofColor getColor();
 		float getSize();
 
-		void draw();
+		virtual void draw();
 
 		void setVelocity(Vector velocity);
 		void setVelocity(float X, float Y, float Z);
@@ -57,7 +59,10 @@ class Particle{
 
 		void bounce(Vector normal);
 
-		void update();
+		void setDuration(float duration);
+		float getDuration();
+
+		virtual void update();
 
 };
 

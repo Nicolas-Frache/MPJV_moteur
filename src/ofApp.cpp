@@ -35,16 +35,17 @@ void ofApp::setup(){
 	particle3.setFriction(0.99);
 
 	// Ajout particules dans la liste
-	particles.push_back(particle1);
+	//particles.push_back(particle1);
+	fireballs.push_back(particle1); //on range la boule de feu dans une liste faite pour les boules de feu (update override ne fonctionnant pas)
 	particles.push_back(particle2);
 	particles.push_back(particle3);
 }
 
 //--------------------------------------------------------------
-void ofApp::update(){
-
+void ofApp::update() {
 	// Update particules
-	for (Particle& particle : particles) {
+	//for (Particle& particle : particles) {
+	for (Fireball& particle : fireballs) {
 		particle.update();
 
 		if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
@@ -58,7 +59,7 @@ void ofApp::update(){
 				particle.bounce(Vector(1, 0, 0));
 			}
 		}
-		if(particle.getPos().y() > 1000 || particle.getPos().y() <0){
+		if (particle.getPos().y() > 1000 || particle.getPos().y() < 0) {
 			float y = particle.getPos().y();
 			if (y > 1000) {
 				particle.setPos(particle.getPos().x(), 1000, particle.getPos().z());
@@ -76,6 +77,9 @@ void ofApp::update(){
 void ofApp::draw(){
 	// Draw particules
 	for (Particle& particle : particles) {
+		particle.draw();
+	}
+	for (Fireball& particle : fireballs) { //liste de boule de feu, le draw override ne fonctionnant pas
 		particle.draw();
 	}
 }

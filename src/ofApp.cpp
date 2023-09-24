@@ -5,28 +5,21 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
+
+	skybox.load();
+
+
+	// R�glages de la cam�ra
+	ofEnableDepthTest();
+
 	// Framerate
-	ofSetFrameRate(60);
-
-
+	ofSetFrameRate(144);
+	cam.setFarClip(200000);
+	
 	// Initialisation particules
-	particle1.setPos(10, 100, 0);
-
-	particle2.setPos(1, 0, 0);
-	particle2.setMass(1);
-	particle2.setColor(ofColor(0, 255, 0));
-
-	particle3.setPos(1, 1, 0);
-	particle3.setMass(1);
-	particle3.setColor(ofColor(0, 0, 255));
-
-	particle1.setSize(10);
-	particle2.setSize(10);
-	particle3.setSize(10);
-
-	particle1.applyForce(20, 0, 0, 2);
-	particle2.applyForce(20, 0, 0, 4);
-	particle3.applyForce(20, 0, 0, 6);
+	particle1.applyForce(5, 1, 10, 2);
+	particle2.applyForce(5, 0, 20, 4);
+	particle3.applyForce(5, 0, 0, 6);
 
 	particle2.setRestitution(0.5);
 	particle3.setRestitution(0.5);
@@ -36,38 +29,39 @@ void ofApp::setup(){
 
 	// Ajout particules dans la liste
 	//particles.push_back(particle1);
-	fireballs.push_back(particle1); //on range la boule de feu dans une liste faite pour les boules de feu (update override ne fonctionnant pas)
-	particles.push_back(particle2);
-	particles.push_back(particle3);
+	particles.push_back(&particle1); //on range la boule de feu dans une liste faite pour les boules de feu (update override ne fonctionnant pas)
+	particles.push_back(&particle2);
+	particles.push_back(&particle3);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-	// Update particules
-	//for (Particle& particle : particles) {
-	for (Fireball& particle : fireballs) {
-		particle.update();
 
-		if (particle.getPos().x() > 1000 || particle.getPos().x() < 0) {
-			float x = particle.getPos().x();
+	// Update particules
+	for (Particle* particle : particles) {
+	//for (Fireball& particle : fireballs) {
+		particle->update();
+
+		if (particle->getPos().x() > 1000 || particle->getPos().x() < 0) {
+			float x = particle->getPos().x();
 			if (x > 1000) {
-				particle.setPos(1000, particle.getPos().y(), particle.getPos().z());
-				particle.bounce(Vector(-1, 0, 0));
+				particle->setPos(1000, particle->getPos().y(), particle->getPos().z());
+				particle->bounce(Vector(-1, 0, 0));
 			}
 			else {
-				particle.setPos(0, particle.getPos().y(), particle.getPos().z());
-				particle.bounce(Vector(1, 0, 0));
+				particle->setPos(0, particle->getPos().y(), particle->getPos().z());
+				particle->bounce(Vector(1, 0, 0));
 			}
 		}
-		if (particle.getPos().y() > 1000 || particle.getPos().y() < 0) {
-			float y = particle.getPos().y();
+		if (particle->getPos().y() > 1000 || particle->getPos().y() < 0) {
+			float y = particle->getPos().y();
 			if (y > 1000) {
-				particle.setPos(particle.getPos().x(), 1000, particle.getPos().z());
-				particle.bounce(Vector(0, -1, 0));
+				particle->setPos(particle->getPos().x(), 1000, particle->getPos().z());
+				particle->bounce(Vector(0, -1, 0));
 			}
 			else {
-				particle.setPos(particle.getPos().x(), 0, particle.getPos().z());
-				particle.bounce(Vector(0, 1, 0));
+				particle->setPos(particle->getPos().x(), 0, particle->getPos().z());
+				particle->bounce(Vector(0, 1, 0));
 			}
 		}
 	}
@@ -75,13 +69,16 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	cam.begin();
+    skybox.draw();
+	ofDrawGrid(20.0f, 50, true);
+
 	// Draw particules
-	for (Particle& particle : particles) {
-		particle.draw();
+	for (Particle* particle : particles) {
+		particle->draw();
 	}
-	for (Fireball& particle : fireballs) { //liste de boule de feu, le draw override ne fonctionnant pas
-		particle.draw();
-	}
+
+	cam.end();  
 }
 
 //--------------------------------------------------------------
@@ -106,7 +103,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+	cam.toggleControl();
 }
 
 //--------------------------------------------------------------

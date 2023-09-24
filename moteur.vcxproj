@@ -112,7 +112,6 @@
     <ClCompile Include="src\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Fireball.h" />
     <ClInclude Include="src\Fireball.h" />
     <ClInclude Include="src\Force.h" />
     <ClInclude Include="src\ofApp.h" />
@@ -129,6 +128,13 @@
       <AdditionalOptions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">/D_DEBUG %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>$(OF_ROOT)\libs\openFrameworksCompiled\project\vs</AdditionalIncludeDirectories>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon.ico" />
+    <Image Include="ressources\skysphere.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="addons.make" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ProjectExtensions>

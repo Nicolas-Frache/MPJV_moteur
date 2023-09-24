@@ -1,15 +1,19 @@
 #include "Particle.h"
 #include <limits>
 
-Particle::Particle(float X, float Y, float Z, float invertedMass, ofColor color):
-	Particle::Particle(Vector(X, Y, Z), invertedMass, color) {
+Particle::Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size):
+	Particle::Particle(Vector(X, Y, Z), invertedMass, color, size) {
 }
 
-Particle::Particle(Vector position, float invertedMass, ofColor color) {
+Particle::Particle(Vector position, float invertedMass, ofColor color, float size) {
 	_position = position;
 	_invertedMass = invertedMass;
 	_color = color;
+	_size = size;
+	sphere = ofSpherePrimitive(10, 10);
+	sphere.setRadius(_size);
 
+	// Gravité 
 	applyForce(0, 9.8, 0, numeric_limits<float>::max());
 }
 
@@ -91,8 +95,10 @@ float Particle::getSize() {
 }
 
 void Particle::draw() {
+	ofEnableDepthTest();
 	ofSetColor(_color);
-	ofDrawCircle(_position.x(), _position.y(), _position.z(), _size);
+	sphere.setPosition(_position.x(), _position.y(), _position.z());
+	sphere.draw();
 }
 
 

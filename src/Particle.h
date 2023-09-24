@@ -9,17 +9,20 @@ class Particle{
 
 	Vector _velocity = Vector(0, 0, 0);
 
-	float _invertedMass = 1.0f; 
-	ofColor _color = ofColor(255, 255, 255); //ça parait être une bonne idée de pouvoir choisir la couleur pour faire des tests plus tard
-	float _size = 1.0f;
+	float _invertedMass;
+	ofColor _color;
+	float _size;
 	list<Force> _forces = list<Force>();
 
 	float restitution = 1.0f;
 	float friction = 1.0f;
+	ofSpherePrimitive sphere;
+
+	float duration = -1.0f;
 
 	public :
-		Particle(float X, float Y, float Z, float invertedMass, ofColor color);
-		Particle(Vector position, float invertedMass, ofColor color);
+		Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size);
+		Particle(Vector position, float invertedMass, ofColor color, float size);
 
 		// Gestion de la position
 		void setPos(float X, float Y, float Z);
@@ -46,7 +49,7 @@ class Particle{
 		ofColor getColor();
 		float getSize();
 
-		void draw();
+		virtual void draw();
 
 		void setVelocity(Vector velocity);
 		void setVelocity(float X, float Y, float Z);
@@ -57,7 +60,10 @@ class Particle{
 
 		void bounce(Vector normal);
 
-		void update();
+		void setDuration(float duration);
+		float getDuration();
+
+		virtual void update();
 
 };
 

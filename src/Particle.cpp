@@ -1,15 +1,19 @@
 #include "Particle.h"
 #include <limits>
 
-Particle::Particle(float X, float Y, float Z, float invertedMass, ofColor color):
-	Particle::Particle(Vector(X, Y, Z), invertedMass, color) {
+Particle::Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size):
+	Particle::Particle(Vector(X, Y, Z), invertedMass, color, size) {
 }
 
-Particle::Particle(Vector position, float invertedMass, ofColor color) {
+Particle::Particle(Vector position, float invertedMass, ofColor color, float size) {
 	_position = position;
 	_invertedMass = invertedMass;
 	_color = color;
+	_size = size;
+	sphere = ofSpherePrimitive(10, 10);
+	sphere.setRadius(_size);
 
+	// Gravité 
 	applyForce(0, 9.8, 0, numeric_limits<float>::max());
 }
 
@@ -33,6 +37,14 @@ void Particle::setRestitution(float restitution) {
 
 void Particle::setFriction(float friction) {
 	this->friction = friction;
+}
+
+void Particle::setDuration(float duration) {
+	this->duration = duration;
+}
+
+float Particle::getDuration() {
+	return duration;
 }
 
 // Gestion de la masse
@@ -83,8 +95,10 @@ float Particle::getSize() {
 }
 
 void Particle::draw() {
+	ofEnableDepthTest();
 	ofSetColor(_color);
-	ofDrawCircle(_position.x(), _position.y(), _position.z(), _size);
+	sphere.setPosition(_position.x(), _position.y(), _position.z());
+	sphere.draw();
 }
 
 
@@ -99,8 +113,16 @@ void Particle::setVelocity(float X, float Y, float Z) {
     
 void Particle::update() {
 	float dt = ofGetLastFrameTime();
-	integrer(3*dt);
+	integrer(dt);
 	//cout << "position: " << _position << ", velocity: " << _velocity << endl;
+	if (duration != -1.0f) {
+		duration -= dt;
+		if (duration < 0.0f) {
+			//cas doit être géré par les classes contenant des listes de particules,
+			//car si on "delete this", on ne peut plus itérer sur la liste
+			//car une particule de la liste n'existera pas (null error je suppose)
+		}
+	}
 }
 
 Vector Particle::getVelocity() {

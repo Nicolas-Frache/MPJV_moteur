@@ -16,6 +16,7 @@ class Particle{
 
 	float restitution = 1.0f;
 	float friction = 1.0f;
+	ofSpherePrimitive sphere;
 
 	public :
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size);

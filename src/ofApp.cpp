@@ -14,11 +14,12 @@ void ofApp::setup(){
 
 	// Framerate
 	ofSetFrameRate(144);
+	cam.setFarClip(200000);
 	
 	// Initialisation particules
-	particle1.applyForce(20, 0, 0, 2);
-	particle2.applyForce(20, 0, 0, 4);
-	particle3.applyForce(20, 0, 0, 6);
+	particle1.applyForce(5, 1, 0, 2);
+	particle2.applyForce(5, 0, 20, 4);
+	particle3.applyForce(5, 0, 0, 6);
 
 	particle2.setRestitution(0.5);
 	particle3.setRestitution(0.5);
@@ -69,12 +70,16 @@ void ofApp::draw(){
 	cam.begin();
 	skybox.draw();
 	ofDrawGrid(10.0f, 10, true);
-	cam.end();
 
 	// Draw particules
 	for (Particle& particle : particles) {
 		particle.draw();
 	}
+
+
+	cam.end();
+
+
 }
 
 //--------------------------------------------------------------

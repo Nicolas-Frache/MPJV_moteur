@@ -10,6 +10,8 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	_invertedMass = invertedMass;
 	_color = color;
 	_size = size;
+	sphere = ofSpherePrimitive(10, 10);
+	sphere.setRadius(_size);
 
 	// Gravité 
 	applyForce(0, 9.8, 0, numeric_limits<float>::max());
@@ -85,8 +87,10 @@ float Particle::getSize() {
 }
 
 void Particle::draw() {
+	ofEnableDepthTest();
 	ofSetColor(_color);
-	ofDrawCircle(_position.x(), _position.y(), _position.z(), _size);
+	sphere.setPosition(_position.x(), _position.y(), _position.z());
+	sphere.draw();
 }
 
 

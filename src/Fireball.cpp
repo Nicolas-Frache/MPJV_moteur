@@ -19,6 +19,7 @@ void Fireball::update() {
 	Particle* trail = new Particle(getPos(), 0, ofColor(255, 0, 0), 5);
 	trails.push_back(*trail);
 	trail->setDuration(0.5);
+	
 
 	////on supprime les trails qui ont d�pass� leur dur�e de vie
 	//for (Particle trail : trails) {

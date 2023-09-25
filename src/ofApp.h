@@ -32,6 +32,9 @@ public:
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+		void update();
+		void draw();
+
 		list<Particle*> particles = list<Particle*>();
 
 		Fireball particle1 = Fireball(0, 0, 0, 1);

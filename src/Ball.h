@@ -1,6 +1,6 @@
 #pragma once
-#include "../MPJV_moteur/src/Particle.h"
-#include "../MPJV_moteur/src/Vector.h"
+#include "Particle.h"
+#include "Vector.h"
 
 class Ball : public Particle{
 public:

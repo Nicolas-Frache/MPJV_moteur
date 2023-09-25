@@ -1,5 +1,5 @@
 #include "Ball.h"
-#include "../MPJV_moteur/src/Particle.h"
+#include "Particle.h"
 
 // Constructeur de la classe Ball qui initialise la balle avec une position, une masse inversée et une couleur
 Ball::Ball(float X, float Y, float Z, float invertedMass, ofColor color, float size)

@@ -34,14 +34,16 @@
     <ClCompile Include="src\Fireball.cpp">
       <Filter>src\particles</Filter>
     </ClCompile>
-    <ClCompile Include="Cannonball.cpp">
+    <ClCompile Include="src\Laser.cpp">
       <Filter>src\particles</Filter>
     </ClCompile>
-    <ClCompile Include="ProjectileMenu.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\Ball.cpp">
+      <Filter>src\particles</Filter>
     </ClCompile>
-    <ClCompile Include="src\Laser.cpp" />
-    <ClCompile Include="src\Ball.cpp" />
+    <ClCompile Include="src\ProjectileMenu.cpp" />
+    <ClCompile Include="src\Cannonball.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -82,14 +84,16 @@
     <ClInclude Include="src\Fireball.h">
       <Filter>src\particles</Filter>
     </ClInclude>
-    <ClInclude Include="Cannonball.h">
+    <ClInclude Include="src\Laser.h">
       <Filter>src\particles</Filter>
     </ClInclude>
-    <ClInclude Include="ProjectileMenu.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Ball.h">
+      <Filter>src\particles</Filter>
     </ClInclude>
-    <ClInclude Include="src\Laser.h" />
-    <ClInclude Include="src\Ball.h" />
+    <ClInclude Include="src\ProjectileMenu.h" />
+    <ClInclude Include="src\Cannonball.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

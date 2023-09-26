@@ -36,7 +36,7 @@ public:
 		void draw();
 
 		list<Particle*> particles = list<Particle*>();
-		Fireball particle1 = Fireball(0, 0, 0, 1);
+		Fireball particle1 = Fireball(0, 50, 0, 1);
 		Particle particle2 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::green), 10);
 		Particle particle3 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::blue), 10);
 	

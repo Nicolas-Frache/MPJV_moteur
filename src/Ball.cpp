@@ -12,18 +12,18 @@ Ball::Ball(float X, float Y, float Z, float invertedMass, ofColor color, float s
 // Méthode de mise à jour de la balle
 void Ball::update() {
     Particle::update();
-    _rotationZ += _velocity.z() * 0.1; // Mise à jour de la rotation Z
+    _rotationZ += velocity.z() * 0.1; // Mise à jour de la rotation Z
 }
 
 // Méthode pour dessiner la balle
 void Ball::draw() {
-    ofSetColor(getColor());
+    ofSetColor(color);
     ofPushMatrix();
-    ofTranslate(_position.x(), _position.y(), _position.z());
+    ofTranslate(position.x(), position.y(), position.z());
     ofRotateZ(_rotationZ * RAD_TO_DEG);
 
     // Dessiner la balle
-    ofDrawCircle(0, 0, 0, _size);
+    ofDrawCircle(0, 0, 0, size);
 
     // Dessiner un petit cercle coloré au centre de la balle
     ofSetColor(ofColor::green); // Couleur du point

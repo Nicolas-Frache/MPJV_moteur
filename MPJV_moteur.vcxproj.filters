@@ -34,6 +34,9 @@
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp">
       <Filter>src\addons</Filter>
     </ClCompile>
+    <ClCompile Include="ProjectileMenu.cpp" />
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Laser.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -71,6 +74,9 @@
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h">
       <Filter>src\addons</Filter>
     </ClInclude>
+    <ClInclude Include="ProjectileMenu.h" />
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="Laser.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

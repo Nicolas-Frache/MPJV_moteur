@@ -23,6 +23,7 @@ class Particle{
 	public :
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size);
 		Particle(Vector position, float invertedMass, ofColor color, float size);
+		Particle(Vector position, float mass);
 
 		// Gestion de la position
 		void setPos(float X, float Y, float Z);

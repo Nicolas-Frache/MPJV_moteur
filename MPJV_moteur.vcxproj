@@ -104,6 +104,9 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="ProjectileMenu.cpp" />
     <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
@@ -115,6 +118,9 @@
     <ClCompile Include="src\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Ball.h" />
+    <ClInclude Include="Laser.h" />
+    <ClInclude Include="ProjectileMenu.h" />
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />

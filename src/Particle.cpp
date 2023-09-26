@@ -17,6 +17,19 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	applyForce(0, -9.8, 0, numeric_limits<float>::max());
 }
 
+Particle::Particle(Vector position, float mass)
+	: _position(position), _invertedMass(1.0f / mass) {
+	// Initialisez les autres membres ici comme vous le faites dans le constructeur existant.
+	_color = ofColor(255);
+	_size = 1.0f; // Vous pouvez définir la taille par défaut ici.
+	sphere = ofSpherePrimitive(10, 10);
+	sphere.setRadius(_size);
+
+	// Gravité
+	applyForce(0, -9.8, 0, std::numeric_limits<float>::max());
+}
+
+
 // Gestion de la position
 
 void Particle::setPos(float X, float Y, float Z) {
@@ -159,5 +172,4 @@ void Particle::integrer(float dt) {
 	// On met à jour la position
 	_position += (_velocity * dt);
 }
-
 

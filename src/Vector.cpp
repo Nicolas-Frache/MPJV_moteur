@@ -1,6 +1,12 @@
 #include "Vector.h"
 #include <iostream>
 
+Vector::Vector() {
+	_X = 0;
+	_Y = 0;
+	_Z = 0;
+}
+
 Vector::Vector(float X, float Y, float Z) {
 	_X = X;
 	_Y = Y;

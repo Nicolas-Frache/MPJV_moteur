@@ -2,20 +2,40 @@
 #include "Vector.h"
 #include "Particle.h"
 #include <list>
+#include "Ball.h"
+#include "Laser.h"
+#include "ProjectileMenu.h"
+
+
+ProjectileMenu menu;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
 
+	menu.setup();
 	skybox.load();
 
 
 	// R�glages de la cam�ra
 	ofEnableDepthTest();
-
+    
 	// Framerate
 	ofSetFrameRate(144);
 	cam.setFarClip(200000);
 	
+	//Initialisation de la balle
+	ball._rotationZ = 0.0f;
+	ball.applyForce(6, -5, 0, 3);
+	particles.push_back(&ball);
+
+	
+	cannonball.applyForce(0.01, -0.001, 0, 3);
+	particles.push_back(&cannonball);
+
+	particles.push_back(&laser);
+	
+
+
 	// Initialisation particules
 	particle1.applyForce(5, 1, 10, 2);
 	particle2.applyForce(5, 0, 20, 4);
@@ -74,10 +94,16 @@ void ofApp::update() {
 			}
 		}
 	}
+
+	// Update particules
+	for (Particle* particle : particles) {
+		particle->update();
+	}
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	menu.draw();
 	cam.begin();
     skybox.draw();
 	ofDrawGrid(20.0f, 50, true);
@@ -86,14 +112,28 @@ void ofApp::draw(){
 	for (Particle* particle : particles) {
 		particle->draw();
 	}
-
-	cam.end();  
+	cam.end();
 }
 
 //--------------------------------------------------------------
-void ofApp::keyPressed(int key){
+void ofApp::keyPressed(int key) {
+
+	if (key == '1') {
+
+		cout << "Balle creee !" << endl;
+	}
+	else if (key == '2') {
+
+
+		cout << "Boulet cree !" << endl;
+	}
+	else if (key == '3') {
+
+		cout << "Laser cree !" << endl;
+	}
 
 }
+
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
@@ -112,6 +152,7 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
+	// Contrôles de la caméra lors du clic droit
 	cam.toggleControl();
 }
 

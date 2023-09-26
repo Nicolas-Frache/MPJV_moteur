@@ -28,7 +28,6 @@ void ofApp::setup(){
 	particle3.setFriction(0.99);
 
 	// Ajout particules dans la liste
-	//particles.push_back(particle1);
 	particles.push_back(&particle1); //on range la boule de feu dans une liste faite pour les boules de feu (update override ne fonctionnant pas)
 	particles.push_back(&particle2);
 	particles.push_back(&particle3);
@@ -39,29 +38,39 @@ void ofApp::update() {
 
 	// Update particules
 	for (Particle* particle : particles) {
-	//for (Fireball& particle : fireballs) {
 		particle->update();
 
-		if (particle->getPos().x() > 1000 || particle->getPos().x() < 0) {
+		if (particle->getPos().x() > 500 || particle->getPos().x() < -500) {
 			float x = particle->getPos().x();
-			if (x > 1000) {
-				particle->setPos(1000, particle->getPos().y(), particle->getPos().z());
+			if (x > 500) {
+				particle->setPos(500, particle->getPos().y(), particle->getPos().z());
 				particle->bounce(Vector(-1, 0, 0));
 			}
 			else {
-				particle->setPos(0, particle->getPos().y(), particle->getPos().z());
+				particle->setPos(-500, particle->getPos().y(), particle->getPos().z());
 				particle->bounce(Vector(1, 0, 0));
 			}
 		}
-		if (particle->getPos().y() > 1000 || particle->getPos().y() < 0) {
+		if (particle->getPos().y() > 500 || particle->getPos().y() < -500) {
 			float y = particle->getPos().y();
-			if (y > 1000) {
-				particle->setPos(particle->getPos().x(), 1000, particle->getPos().z());
+			if (y > 500) {
+				particle->setPos(particle->getPos().x(), 500, particle->getPos().z());
 				particle->bounce(Vector(0, -1, 0));
 			}
 			else {
-				particle->setPos(particle->getPos().x(), 0, particle->getPos().z());
+				particle->setPos(particle->getPos().x(), -500, particle->getPos().z());
 				particle->bounce(Vector(0, 1, 0));
+			}
+		}
+		if (particle->getPos().z() > 500 || particle->getPos().z() < -500) {
+			float z = particle->getPos().z();
+			if (z > 500) {
+				particle->setPos(particle->getPos().x(), particle->getPos().y(), 500);
+				particle->bounce(Vector(0, 0, -1));
+			}
+			else {
+				particle->setPos(particle->getPos().x(), particle->getPos().y(), -500);
+				particle->bounce(Vector(0, 0, 1));
 			}
 		}
 	}

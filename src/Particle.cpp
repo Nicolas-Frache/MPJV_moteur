@@ -14,7 +14,7 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	sphere.setRadius(_size);
 
 	// Gravité 
-	applyForce(0, 9.8, 0, numeric_limits<float>::max());
+	applyForce(0, -9.8, 0, numeric_limits<float>::max());
 }
 
 // Gestion de la position

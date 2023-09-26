@@ -11,7 +11,7 @@ class Fireball : public Particle{
 
 		void Fireball::update() override;
 		void Fireball::draw() override;
-		list<Particle> trails = list<Particle>();
+		list<Particle*> trails = list<Particle*>();
 };
 
 

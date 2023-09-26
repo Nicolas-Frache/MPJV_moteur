@@ -17,17 +17,23 @@ void Fireball::update() {
 	Particle::integrer(3*dt);
 	//ici on g�n�re une particule de trail derri�re la boule de feu
 	Particle* trail = new Particle(getPos(), 0, ofColor(255, 0, 0), 5);
-	trails.push_back(*trail);
-	trail->setDuration(0.5);
+	trails.push_back(trail);
+	trail->setDuration(1.5);
 
-	////on supprime les trails qui ont d�pass� leur dur�e de vie
-	//for (Particle trail : trails) {
-	//	if (trail.getDuration() < 0) { 
-	//		//on retire la premi�re trail de la liste
-	//		trails.pop_front();
-	//		delete &trail;
-	//	}
-	//}
+	//on supprime les trails qui ont d�pass� leur dur�e de vie
+	auto it = trails.begin();
+
+	while (it != trails.end()) {
+		Particle* trail = *it;
+		trail->update();
+
+		if (trail->getDuration() < 0) {
+			it = trails.erase(it);
+		}
+		else {
+			it++;
+		}
+	}
 };
 
 void Fireball::draw(){
@@ -35,7 +41,7 @@ void Fireball::draw(){
 	Particle::draw();
 
 	//on dessine les trails
-	for (Particle trail : trails) {
-		trail.draw();
+	for (Particle* trail : trails) {
+		trail->draw();
 	}
 }

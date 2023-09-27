@@ -23,7 +23,7 @@ void ProjectileMenu::draw() {
     ofSetColor(255); // Couleur blanche pour le bouton
     ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5); // Dessiner un rectangle arrondi
     ofSetColor(0); // Couleur noire pour le texte
-    ofDrawBitmapString("Appuyer sur 2 pour lancer un boulet", buttonX + 10, buttonY + 20); // Afficher le texte
+    ofDrawBitmapString("Appuyer sur 2 pour lancer une boule de feu", buttonX + 10, buttonY + 20); // Afficher le texte
 
     // Dessiner le troisième bouton (type 3)
     buttonY += buttonHeight + spacing; // Augmenter la position en Y pour le troisième bouton

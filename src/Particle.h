@@ -29,6 +29,7 @@ class Particle{
 		void setPos(float X, float Y, float Z);
 		void setPos(Vector);
 
+		Vector getPos();
 
 
 		// Gestion de la masse

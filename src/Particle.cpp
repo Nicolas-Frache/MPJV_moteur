@@ -55,6 +55,10 @@ float Particle::getMass() {
 	return 1 / invertedMass;
 }
 
+Vector Particle::getPos() {
+	return position;
+}
+
 float Particle::getInvMass() {
 	return invertedMass;
 }

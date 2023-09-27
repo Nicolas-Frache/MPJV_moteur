@@ -2,16 +2,16 @@
 #include "ofMain.h"
 #include "Vector.h"
 #include "Force.h"
-class Particle{
-	public :
-	Vector position = Vector(0, 0, 0);
+class Particle {
+private:
+	Vector _position = Vector(0, 0, 0);
 	//rotation non utile car particule
 
-	Vector velocity = Vector(0, 0, 0);
+	Vector _velocity = Vector(0, 0, 0);
 
-	float invertedMass;
-	ofColor color;
-	float size;
+	float _invertedMass;
+	ofColor _color;
+	float _size;
 	list<Force> _forces = list<Force>();
 
 	float restitution = 1.0f;
@@ -20,34 +20,51 @@ class Particle{
 
 	float duration = -1.0f;
 
-	public :
-		Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size);
-		Particle(Vector position, float invertedMass, ofColor color, float size);
-		Particle(Vector position, float mass);
+public:
+	Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size);
+	Particle(Vector position, float invertedMass, ofColor color, float size);
+	Particle(Vector position, float mass);
 
-		// Gestion de la position
-		void setPos(float X, float Y, float Z);
-		void setPos(Vector);
+	// Gestion de la position
+	void setPos(float X, float Y, float Z);
+	void setPos(Vector);
 
-		Vector getPos();
+	void setRestitution(float restitution);
+	void setFriction(float friction);
 
-		Vector getVelocity();
+	Vector getPos();
 
-		// Gestion de la masse
-		void setMass(float mass);
-		void setInvMass(float invertedMass);
-		void setInfinitMass();
+	// Gestion de la masse
+	void setMass(float mass);
+	void setInvMass(float invertedMass);
+	void setInfinitMass();
 
-		float getMass();
-		float getInvMass();
+	float getMass();
+	float getInvMass();
 
-		// Gestion de l'apparence
+	// Gestion de l'apparence
 
-		void applyForce(float forceX, float forceY, float forceZ, float duration);
-		void integrer(float dt);
+	void setColor(ofColor color);
+	void setSize(float size);
 
-		void bounce(Vector normal);
+	ofColor getColor();
+	float getSize();
 
-		virtual void update();
-		virtual void draw();
+	virtual void draw();
+
+	void setVelocity(Vector velocity);
+	void setVelocity(float X, float Y, float Z);
+	Vector getVelocity();
+
+	void applyForce(float forceX, float forceY, float forceZ, float duration);
+	void integrer(float dt);
+
+	void bounce(Vector normal);
+
+	void setDuration(float duration);
+	float getDuration();
+
+	virtual void update();
+
 };
+

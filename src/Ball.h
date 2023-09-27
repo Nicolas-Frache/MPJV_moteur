@@ -9,10 +9,10 @@ public:
 
     // Constructeur de la classe Ball
     Ball(float X, float Y, float Z, float invertedMass, ofColor color, float size);
+    Ball(Vector position, float invertedMass, ofColor color, float size);
 
 
     // Méthodes pour mettre à jour la balle et la dessiner
     void update() override;
-    void draw() override;
 ;
 };

@@ -14,7 +14,7 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	this->sphere = ofSpherePrimitive(10, 10);
 	this->sphere.setRadius(size);
 
-	// Gravit� 
+	// Gravite
 	applyForce(0, -9.8, 0, numeric_limits<float>::max());
 }
 
@@ -81,6 +81,10 @@ void Particle::update() {
 			//car une particule de la liste n'existera pas (null error je suppose)
 		}
 	}
+}
+
+void Particle::applyForce(Vector force, float duration) {
+	_forces.push_back(Force(force, duration));
 }
 
 void Particle::applyForce(float forceX, float forceY, float forceZ, float duration) {

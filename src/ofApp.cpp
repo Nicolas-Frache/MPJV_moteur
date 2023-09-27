@@ -121,19 +121,31 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
+	Vector camPos;
+	Vector camDir;
+	if (key == '1' || key == '2' || key == '3') {
+		camPos = Vector(cam.getPosition().x, cam.getPosition().y, cam.getPosition().z);
+		auto tmp = cam.getLookAtDir();
+		camDir = Vector(tmp.x, tmp.y, tmp.z);
+	}
+
 
 	if (key == '1') {
-
-		cout << "Balle creee !" << endl;
+		Ball* newBall = new Ball(camPos, 1, ofColor::blue, 10);
+		newBall->applyForce(camDir * 100, 0.5);
+		particles.push_back(newBall);
 	}
-	else if (key == '2') {
 
-
-		cout << "Boulet cree !" << endl;
+	if (key == '2') {
+		Fireball* newFireball = new Fireball(camPos, 1);
+		newFireball->applyForce(camDir * 110, 0.5);
+		particles.push_back(newFireball); 
 	}
-	else if (key == '3') {
 
-		cout << "Laser cree !" << endl;
+	if (key == '3') {
+		Laser* newLaser = new Laser(camPos, camDir, 1, ofColor::black, 3);
+		newLaser->applyForce(camDir * 200, 0.5);
+		particles.push_back(newLaser);
 	}
 
 }

@@ -41,6 +41,8 @@ class Particle{
 		// Gestion de l'apparence
 
 		void applyForce(float forceX, float forceY, float forceZ, float duration);
+		void applyForce(Vector force, float duration);
+		
 		void integrer(float dt);
 
 		void bounce(Vector normal);

@@ -2,6 +2,7 @@
 #include "Vector.h"
 #include "Particle.h"
 #include <list>
+#include "Fireball.h"
 #include "../Ball.h"
 #include "../Laser.h"
 #include "ProjectileMenu.h"
@@ -23,21 +24,6 @@ void ofApp::setup(){
 	ofSetFrameRate(144);
 	cam.setFarClip(200000);
 	
-	// Initialisation particules
-	particle1.applyForce(5, 1, 10, 2);
-	particle2.applyForce(5, 0, 20, 4);
-	particle3.applyForce(5, 0, 0, 6);
-
-	particle2.restitution = 0.5;
-	particle3.restitution = 0.5;
-
-	particle2.friction =0.99;
-	particle3.friction = 0.99;
-
-	// Ajout particules dans la liste
-	particles.push_back(&particle1); //on range la boule de feu dans une liste faite pour les boules de feu (update override ne fonctionnant pas)
-	particles.push_back(&particle2);
-	particles.push_back(&particle3);
 }
 
 //--------------------------------------------------------------

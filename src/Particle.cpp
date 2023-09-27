@@ -6,59 +6,29 @@ Particle::Particle(float X, float Y, float Z, float invertedMass, ofColor color,
 }
 
 Particle::Particle(Vector position, float invertedMass, ofColor color, float size) {
-	_position = position;
-	_invertedMass = invertedMass;
-	_color = color;
-	_size = size;
-	sphere = ofSpherePrimitive(10, 10);
-	sphere.setRadius(_size);
+	this->position = position;
+	this->invertedMass = invertedMass;
+	this->color = color;
+	this->size = size;
 
-	// Gravité 
+	this->sphere = ofSpherePrimitive(10, 10);
+	this->sphere.setRadius(size);
+
+	// Gravitï¿½ 
 	applyForce(0, -9.8, 0, numeric_limits<float>::max());
 }
-
-Particle::Particle(Vector position, float mass)
-	: _position(position), _invertedMass(1.0f / mass) {
-	// Initialisez les autres membres ici comme vous le faites dans le constructeur existant.
-	_color = ofColor(255);
-	_size = 1.0f; // Vous pouvez définir la taille par défaut ici.
-	sphere = ofSpherePrimitive(10, 10);
-	sphere.setRadius(_size);
-
-	// Gravité
-	applyForce(0, -9.8, 0, std::numeric_limits<float>::max());
-}
-
 
 // Gestion de la position
 
 void Particle::setPos(float X, float Y, float Z) {
-	_position.set(X, Y, Z);
+	position.set(X, Y, Z);
 }
 
+// Mï¿½thode pour dï¿½finir la position de la particule en utilisant un objet Vector
 void Particle::setPos(Vector position) {
-	_position = position;
+	position = position;
 }
 
-Vector Particle::getPos() {
-	return _position;
-}
-
-void Particle::setRestitution(float restitution) {
-	this->restitution = restitution;
-}
-
-void Particle::setFriction(float friction) {
-	this->friction = friction;
-}
-
-void Particle::setDuration(float duration) {
-	this->duration = duration;
-}
-
-float Particle::getDuration() {
-	return duration;
-}
 
 // Gestion de la masse
 
@@ -67,63 +37,38 @@ void Particle::setMass(float mass) {
 		Particle::setInfinitMass();
 		return;
 	}
-	_invertedMass = 1 / mass;
+	invertedMass = 1 / mass;
 }
 
 void Particle::setInvMass(float invertedMass) {
-	_invertedMass = invertedMass;
+	invertedMass = invertedMass;
 }
 
 void Particle::setInfinitMass() {
-	_invertedMass = 0;
+	invertedMass = 0;
 }
 
 float Particle::getMass() {
-	if (_invertedMass == 0) {
+	if (invertedMass == 0) {
 		return 0;
 	}
-	return 1 / _invertedMass;
+	return 1 / invertedMass;
 }
 
 float Particle::getInvMass() {
-	return _invertedMass;
+	return invertedMass;
 }
 
 // Gestion de l'apparence
 
-void Particle::setColor(ofColor color) {
-	_color = color;
-}
-
-void Particle::setSize(float size) {
-	_size = size;
-}
-
-ofColor Particle::getColor() {
-	return _color;
-}
-
-float Particle::getSize() {
-	return _size;
-}
-
 void Particle::draw() {
 	ofEnableDepthTest();
-	ofSetColor(_color);
-	sphere.setPosition(_position.x(), _position.y(), _position.z());
+	ofSetColor(color);
+	sphere.setPosition(position.x(), position.y(), position.z());
 	sphere.draw();
 }
 
 
-void Particle::setVelocity(Vector velocity) {
-	_velocity = velocity;
-}
-
-void Particle::setVelocity(float X, float Y, float Z) {
-	_velocity.set(X, Y, Z);
-}
-
-    
 void Particle::update() {
 	float dt = ofGetLastFrameTime();
 	integrer(dt);
@@ -131,15 +76,11 @@ void Particle::update() {
 		//on affiche la duration restante
 		duration -= dt;
 		if (duration < 0.0f) {
-			//cas doit être géré par les classes contenant des listes de particules,
-			//car si on "delete this", on ne peut plus itérer sur la liste
+			//cas doit etre gere par les classes contenant des listes de particules,
+			//car si on "delete this", on ne peut plus itï¿½rer sur la liste
 			//car une particule de la liste n'existera pas (null error je suppose)
 		}
 	}
-}
-
-Vector Particle::getVelocity() {
-	return _velocity;
 }
 
 void Particle::applyForce(float forceX, float forceY, float forceZ, float duration) {
@@ -147,29 +88,28 @@ void Particle::applyForce(float forceX, float forceY, float forceZ, float durati
 }
 
 void Particle::bounce(Vector normal) {
-	_velocity = _velocity - (normal * ((1+restitution) * _velocity.scalar_product(normal)));
-	Vector tangent = _velocity - (normal * _velocity.scalar_product(normal));
-	_velocity = tangent * friction + normal * _velocity.scalar_product(normal);
+	velocity = velocity - (normal * ((1+restitution) * velocity.scalar_product(normal)));
+	Vector tangent = velocity - (normal * velocity.scalar_product(normal));
+	velocity = tangent * friction + normal * velocity.scalar_product(normal);
 }
 
 void Particle::integrer(float dt) {
-	// On itère sur les forces actives
+	// On itere sur les forces actives
 	auto it = _forces.begin();
 	while (it != _forces.end()) {
 		Force& force = *it;
 		float applicationTime = force.updateTimeElapsed(dt);
 
-		_velocity += force.direction * _invertedMass * applicationTime;
+		velocity += force.direction * invertedMass * applicationTime;
 
 		if (applicationTime != dt) {
-			it = _forces.erase(it); // Suppression de la force si sa durée est terminée
+			it = _forces.erase(it); // Suppression de la force si sa duree est terminee
 		}
 		else {
 			++it; // Element suivant
 		}
 	}
 
-	// On met à jour la position
-	_position += (_velocity * dt);
+	// On met a jour la position
+	position += (velocity * dt);
 }
-

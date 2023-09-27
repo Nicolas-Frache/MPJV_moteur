@@ -12,6 +12,7 @@ class Vector
 
 	public:
 
+		Vector();
 		Vector(float X, float Y, float Z);
 
 		// setters

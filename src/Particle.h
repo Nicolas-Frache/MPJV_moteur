@@ -31,6 +31,7 @@ class Particle{
 
 		Vector getPos();
 
+		Vector getVelocity();
 
 		// Gestion de la masse
 		void setMass(float mass);

@@ -117,3 +117,7 @@ void Particle::integrer(float dt) {
 	// On met a jour la position
 	position += (velocity * dt);
 }
+
+Vector Particle::getVelocity() {
+	return velocity;
+}

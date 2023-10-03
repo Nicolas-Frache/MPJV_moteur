@@ -73,7 +73,7 @@ void Particle::update() {
 	float dt = ofGetLastFrameTime();
 	integrer(dt);
 	if (duration != -1.0f) {
-		//on affiche la duration restante
+		//on affiche la durée restante
 		duration -= dt;
 		if (duration < 0.0f) {
 			//cas doit etre gere par les classes contenant des listes de particules,

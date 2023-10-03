@@ -15,12 +15,18 @@ Fireball::Fireball(Vector position_, float mass_)
 
 void Fireball::update() {
 	float dt = ofGetLastFrameTime();
-	Particle::integrer(3*dt);
+	Particle::integrer(dt);
 	
-	//ici on genere une particule de trail derriere la boule de feu
-	Particle* trail = new Particle(position, 0, ofColor(255, 0, 0), 5);
-	trails.push_back(trail);
-	trail->duration = 1.5;
+	//on genere une particule de trail derriere la boule de feu
+	Particle* trail = new Particle(position, 1, ofColor(255, ofRandom(100.f, 200.f), 0), ofRandom(3.f, 10.f));
+	trail->duration = ofRandom(1.f, 4.f);
+
+	Vector hor_vel = velocity * 0.7;
+	float t_x = ofRandom(0.4f, 1.f) * hor_vel.x();
+	float t_z = ofRandom(0.4f, 1.f) * hor_vel.z();
+
+	trail->velocity = Vector(t_x, velocity.y() - ofRandom(10, 25), t_z);
+	trails.push_back(trail);	
 
 	//on supprime les trails qui ont d�pass� leur duree de vie
 	auto it = trails.begin();

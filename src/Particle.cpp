@@ -105,6 +105,7 @@ void Particle::integrer(float dt) {
 		float applicationTime = force.updateTimeElapsed(dt);
 
 		velocity += force.direction * invertedMass * applicationTime;
+		//notes : melange acceleration force
 
 		if (applicationTime != dt) {
 			it = _forces.erase(it); // Suppression de la force si sa duree est terminee

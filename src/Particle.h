@@ -42,6 +42,7 @@ class Particle{
 
 		void applyForce(float forceX, float forceY, float forceZ, float duration);
 		void applyForce(Vector force, float duration);
+
 		
 		void integrer(float dt);
 

@@ -83,6 +83,7 @@ void Particle::update() {
 	}
 }
 
+
 void Particle::applyForce(Vector force, float duration) {
 	_forces.push_back(Force(force, duration));
 }
@@ -104,8 +105,8 @@ void Particle::integrer(float dt) {
 		Force& force = *it;
 		float applicationTime = force.updateTimeElapsed(dt);
 
-		velocity += force.direction * invertedMass * applicationTime;
-		//notes : melange acceleration force
+		velocity += force.value() * invertedMass * applicationTime;
+		//avec force.value on peut utiliser la force pour récup l'accel (Sum(F) = m*a, d'où a = F/m d'où v = F/m * dt)
 
 		if (applicationTime != dt) {
 			it = _forces.erase(it); // Suppression de la force si sa duree est terminee

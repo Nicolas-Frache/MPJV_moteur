@@ -13,3 +13,7 @@ float Force::updateTimeElapsed(float time){
 	}
 	return timeRemaining;
 }
+
+Vector Force::value() { //permettra pour les sous-classes de Force de modifier la valeur de la force
+	return direction;
+}

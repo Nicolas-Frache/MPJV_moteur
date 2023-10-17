@@ -10,5 +10,7 @@ public:
 	Force(Vector direction_, float duration_);
 	
 	float updateTimeElapsed(float time);
+
+	virtual Vector value();
 };
 

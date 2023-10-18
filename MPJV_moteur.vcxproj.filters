@@ -44,6 +44,21 @@
     <ClCompile Include="src\Cannonball.cpp">
       <Filter>src\particles</Filter>
     </ClCompile>
+    <ClCompile Include="src\ConstantForce.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FrictionStat.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CableForce.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ElastForce.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RessortForce.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -93,6 +108,21 @@
     <ClInclude Include="src\ProjectileMenu.h" />
     <ClInclude Include="src\Cannonball.h">
       <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConstantForce.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FrictionStat.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CableForce.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ElastForce.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RessortForce.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

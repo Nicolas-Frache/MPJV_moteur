@@ -44,6 +44,30 @@
     <ClCompile Include="src\Cannonball.cpp">
       <Filter>src\particles</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleExplosionForce.cpp">
+      <Filter>src\forces</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleForceGenerator.cpp">
+      <Filter>src\forces</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleForceRegistry.cpp">
+      <Filter>src\forces</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleGravity.cpp">
+      <Filter>src\forces</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleWaterForce.cpp">
+      <Filter>src\forces</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleSpringForce.cpp">
+      <Filter>src\forces</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleElasticForce.cpp">
+      <Filter>src\forces</Filter>
+    </ClCompile>
+    <ClCompile Include="ParticleCableForce.cpp">
+      <Filter>src\forces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -54,6 +78,9 @@
     </Filter>
     <Filter Include="src\particles">
       <UniqueIdentifier>{d8f13a31-f89f-49a1-b1d2-fdf958d167d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\forces">
+      <UniqueIdentifier>{3cbdff2d-6d1a-4876-a661-1e921bd5c163}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -93,6 +120,30 @@
     <ClInclude Include="src\ProjectileMenu.h" />
     <ClInclude Include="src\Cannonball.h">
       <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleExplosionForce.h">
+      <Filter>src\forces</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleForceGenerator.h">
+      <Filter>src\forces</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleForceRegistry.h">
+      <Filter>src\forces</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleWaterForce.h">
+      <Filter>src\forces</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleGravity.h">
+      <Filter>src\forces</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSpringForce.h">
+      <Filter>src\forces</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleElasticForce.h">
+      <Filter>src\forces</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleCableForce.h">
+      <Filter>src\forces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

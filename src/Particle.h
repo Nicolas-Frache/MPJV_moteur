@@ -27,8 +27,7 @@ class Particle{
 		// Gestion de la position
 		void setPos(float X, float Y, float Z);
 		void setPos(Vector);
-
-
+		Vector getPosition() const {};
 
 		// Gestion de la masse
 		void setMass(float mass);

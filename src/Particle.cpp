@@ -59,6 +59,10 @@ float Particle::getInvMass() {
 	return invertedMass;
 }
 
+Vector Particle::getPosition() const {
+	return position;
+}
+
 // Gestion de l'apparence
 
 void Particle::draw() {

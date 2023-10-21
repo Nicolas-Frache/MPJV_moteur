@@ -15,7 +15,8 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	this->sphere.setRadius(size);
 
 	// Gravite
-	applyForce(0, -9.8, 0, numeric_limits<float>::max());
+	//applyForce(0, -9.8, 0, numeric_limits<float>::max());
+	//TODO: remplacer ça par la force constante gravité
 }
 
 // Gestion de la position
@@ -89,11 +90,15 @@ void Particle::update() {
 
 
 void Particle::applyForce(Vector force, float duration) {
-	_forces.push_back(Force(force, duration));
+	_forces.push_back(Force(this, force, duration));
 }
 
 void Particle::applyForce(float forceX, float forceY, float forceZ, float duration) {
-	_forces.push_back(Force(Vector(forceX, forceY, forceZ), duration));
+	_forces.push_back(Force(this, Vector(forceX, forceY, forceZ), duration));
+}
+
+void Particle::applyForce(Force force) {
+	_forces.push_back(force);
 }
 
 void Particle::bounce(Vector normal) {

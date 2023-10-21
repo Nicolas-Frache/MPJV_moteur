@@ -2,6 +2,9 @@
 #include "ofMain.h"
 #include "Vector.h"
 #include "Force.h"
+
+class Force; //déclaration anticipée de Force
+
 class Particle{
 	public :
 	Vector position = Vector(0, 0, 0);
@@ -27,7 +30,7 @@ class Particle{
 		// Gestion de la position
 		void setPos(float X, float Y, float Z);
 		void setPos(Vector);
-		Vector getPosition() const {};
+		Vector getPosition() const;
 
 		// Gestion de la masse
 		void setMass(float mass);
@@ -36,11 +39,13 @@ class Particle{
 
 		float getMass();
 		float getInvMass();
+		Vector getVelocity() const { return velocity; };
 
 		// Gestion de l'apparence
 
 		void applyForce(float forceX, float forceY, float forceZ, float duration);
 		void applyForce(Vector force, float duration);
+		void applyForce(Force force);
 
 		
 		void integrer(float dt);

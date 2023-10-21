@@ -1,158 +1,97 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\ofApp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Force.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Particle.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Vector.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ofApp.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp">
-      <Filter>src\addons</Filter>
-    </ClCompile>
-    <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp">
-      <Filter>src\addons</Filter>
-    </ClCompile>
-    <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp">
-      <Filter>src\addons</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Fireball.cpp">
-      <Filter>src\particles</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Laser.cpp">
-      <Filter>src\particles</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Ball.cpp">
-      <Filter>src\particles</Filter>
-    </ClCompile>
+    <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp" />
+    <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
+    <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\ProjectileMenu.cpp" />
-    <ClCompile Include="src\Cannonball.cpp">
-      <Filter>src\particles</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ConstantForce.cpp">
-      <Filter>src</Filter>
-    </ClCompile>
-    <ClCompile Include="src\FrictionStat.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="src\Vector.cpp" />
+    <ClCompile Include="src\Ball.cpp">
+      <Filter>Particules</Filter>
     </ClCompile>
     <ClCompile Include="src\CableForce.cpp">
-      <Filter>src</Filter>
+      <Filter>Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Cannonball.cpp">
+      <Filter>Particules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ConstantForce.cpp">
+      <Filter>Forces</Filter>
     </ClCompile>
     <ClCompile Include="src\ElastForce.cpp">
-      <Filter>src</Filter>
+      <Filter>Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Fireball.cpp">
+      <Filter>Particules</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Force.cpp">
+      <Filter>Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FrictionStat.cpp">
+      <Filter>Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Laser.cpp">
+      <Filter>Particules</Filter>
     </ClCompile>
     <ClCompile Include="src\RessortForce.cpp">
-      <Filter>src</Filter>
-    <ClCompile Include="ParticleExplosionForce.cpp">
-      <Filter>src\forces</Filter>
+      <Filter>Forces</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleForceGenerator.cpp">
-      <Filter>src\forces</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleForceRegistry.cpp">
-      <Filter>src\forces</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleGravity.cpp">
-      <Filter>src\forces</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleWaterForce.cpp">
-      <Filter>src\forces</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleSpringForce.cpp">
-      <Filter>src\forces</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleElasticForce.cpp">
-      <Filter>src\forces</Filter>
-    </ClCompile>
-    <ClCompile Include="ParticleCableForce.cpp">
-      <Filter>src\forces</Filter>
-    </ClCompile>
+    <ClCompile Include="src\Particle.cpp">
+      <Filter>Particules</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="src">
-      <UniqueIdentifier>{d8376475-7454-4a24-b08a-aac121d3ad6f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\addons">
-      <UniqueIdentifier>{b8dec3f4-d079-4b97-bc10-2aa7a9f88de7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\particles">
-      <UniqueIdentifier>{d8f13a31-f89f-49a1-b1d2-fdf958d167d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\forces">
-      <UniqueIdentifier>{3cbdff2d-6d1a-4876-a661-1e921bd5c163}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\ofApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Force.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Particle.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Vector.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ofApp.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h">
-      <Filter>src\addons</Filter>
-    </ClInclude>
-    <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h">
-      <Filter>src\addons</Filter>
-    </ClInclude>
-    <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h">
-      <Filter>src\addons</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Fireball.h">
-      <Filter>src\particles</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Laser.h">
-      <Filter>src\particles</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Ball.h">
-      <Filter>src\particles</Filter>
-    </ClInclude>
+    <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
+    <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
+    <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
+    <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ProjectileMenu.h" />
-    <ClInclude Include="src\Cannonball.h">
-      <Filter>src\particles</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ConstantForce.h">
-      <Filter>src</Filter>
-    </ClInclude>
-    <ClInclude Include="src\FrictionStat.h">
-      <Filter>src</Filter>
+    <ClInclude Include="src\Vector.h" />
+    <ClInclude Include="src\Ball.h">
+      <Filter>Particules</Filter>
     </ClInclude>
     <ClInclude Include="src\CableForce.h">
-      <Filter>src</Filter>
+      <Filter>Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Cannonball.h">
+      <Filter>Particules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ConstantForce.h">
+      <Filter>Forces</Filter>
     </ClInclude>
     <ClInclude Include="src\ElastForce.h">
-      <Filter>src</Filter>
+      <Filter>Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Fireball.h">
+      <Filter>Particules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Force.h">
+      <Filter>Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FrictionStat.h">
+      <Filter>Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Laser.h">
+      <Filter>Particules</Filter>
     </ClInclude>
     <ClInclude Include="src\RessortForce.h">
-      <Filter>src</Filter>
+      <Filter>Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Particle.h">
+      <Filter>Particules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Particules">
+      <UniqueIdentifier>{1a86e66e-cff6-4208-8349-b52d92f0ce53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forces">
+      <UniqueIdentifier>{d98b0dc8-1d11-4990-8d17-f550e6d9549a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

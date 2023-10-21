@@ -104,14 +104,6 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ParticleCableForce.cpp" />
-    <ClCompile Include="ParticleElasticForce.cpp" />
-    <ClCompile Include="ParticleExplosionForce.cpp" />
-    <ClCompile Include="ParticleForceGenerator.cpp" />
-    <ClCompile Include="ParticleForceRegistry.cpp" />
-    <ClCompile Include="ParticleGravity.cpp" />
-    <ClCompile Include="ParticleSpringForce.cpp" />
-    <ClCompile Include="ParticleWaterForce.cpp" />
     <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
@@ -132,14 +124,6 @@
     <ClCompile Include="src\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ParticleCableForce.h" />
-    <ClInclude Include="ParticleElasticForce.h" />
-    <ClInclude Include="ParticleExplosionForce.h" />
-    <ClInclude Include="ParticleForceGenerator.h" />
-    <ClInclude Include="ParticleForceRegistry.h" />
-    <ClInclude Include="ParticleGravity.h" />
-    <ClInclude Include="ParticleSpringForce.h" />
-    <ClInclude Include="ParticleWaterForce.h" />
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />

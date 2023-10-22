@@ -1,6 +1,6 @@
 #pragma once
 #include <Particle.h>
-#include <ParticleForceGenerator.h>
+#include <ParticleForceGenerator.cpp>
 
 class ParticleForceRegistry{
 private:
@@ -9,7 +9,7 @@ private:
 		ParticleForceGenerator* fg;
 	};
 
-	typedef std::vector<ParticleForceRegistration> Registry;
+	typedef std::vector<ParticleForceRegistration*> Registry;
 	Registry registrations;
 
 
@@ -18,13 +18,13 @@ public:
 		ParticleForceRegistration pfr;
 		pfr.particle = particle;
 		pfr.fg = pfg;
-		registrations.push_back(pfr);
+		registrations.push_back(&pfr);
 	}
 
 	void remove(Particle* particle, ParticleForceGenerator* pfg) {
 		Registry::iterator i = registrations.begin();
 		for (; i != registrations.end(); i++) {
-			if (i->particle == particle && i->fg == pfg) {
+			if ((*i)->particle == particle && (*i)->fg == pfg) {
 				registrations.erase(i);
 				break;
 			}
@@ -38,7 +38,7 @@ public:
 	void updateForces(float duration) {
 		Registry::iterator i = registrations.begin();
 		for (; i != registrations.end(); i++) {
-			i->fg->updateForce(i->particle, duration);
+			(*i)->fg->updateForce((*i)->particle, duration);
 		}
 	}
 

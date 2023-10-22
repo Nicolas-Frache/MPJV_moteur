@@ -25,7 +25,8 @@ void ofApp::setup(){
 	
 	//Initialisation de la balle
 	particles.push_back(ball);
-	physicsEngine.forceRegistry.add(ball, &Gravity());
+	Gravity gravity = Gravity();
+	physicsEngine.forceRegistry.add(ball, &gravity);
 }
 
 //--------------------------------------------------------------

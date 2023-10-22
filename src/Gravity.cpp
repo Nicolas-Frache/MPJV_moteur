@@ -1,7 +1,7 @@
 #pragma once
-#include "ParticleForceGenerator.h"
+#include "ParticleForceGenerator.cpp"
 class Gravity : public ParticleForceGenerator {
-private:
+public:
 	Vector gravity = Vector(0, -9.8, 0);
 	
 	bool updateForce(Particle* particle, float duration) override {

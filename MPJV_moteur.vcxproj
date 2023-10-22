@@ -129,7 +129,7 @@
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\Fireball.h" />
     <ClInclude Include="src\Particle.h" />
-    <ClInclude Include="src\ParticleForceGenerator.h" />
+    <ClInclude Include="src\ParticleForceGenerator.cpp" />
     <ClInclude Include="src\ParticleForceRegistry.cpp" />
     <ClInclude Include="src\ProjectileMenu.h" />
     <ClInclude Include="src\Vector.h" />

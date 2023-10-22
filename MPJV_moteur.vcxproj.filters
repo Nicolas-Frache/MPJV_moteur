@@ -62,7 +62,7 @@
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h">
       <Filter>addons</Filter>
     </ClInclude>
-    <ClInclude Include="src\ParticleForceGenerator.h">
+    <ClInclude Include="src\ParticleForceGenerator.cpp">
       <Filter>Forces</Filter>
     </ClInclude>
     <ClInclude Include="src\ParticleForceRegistry.cpp">

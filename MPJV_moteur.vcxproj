@@ -108,19 +108,15 @@
     <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
     <ClCompile Include="src\Ball.cpp" />
-    <ClCompile Include="src\CableForce.cpp" />
+    <ClCompile Include="src\Gravity.cpp" />
+    <ClCompile Include="src\PhysicsEngine.cpp" />
     <ClCompile Include="src\Cannonball.cpp" />
-    <ClCompile Include="src\ConstantForce.cpp" />
-    <ClCompile Include="src\ElastForce.cpp" />
-    <ClCompile Include="src\FrictionStat.cpp" />
     <ClCompile Include="src\Laser.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\Fireball.cpp" />
-    <ClCompile Include="src\Force.cpp" />
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\ProjectileMenu.cpp" />
-    <ClCompile Include="src\RessortForce.cpp" />
     <ClCompile Include="src\Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -128,18 +124,14 @@
     <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
     <ClInclude Include="src\Ball.h" />
-    <ClInclude Include="src\CableForce.h" />
     <ClInclude Include="src\Cannonball.h" />
-    <ClInclude Include="src\ConstantForce.h" />
-    <ClInclude Include="src\ElastForce.h" />
-    <ClInclude Include="src\FrictionStat.h" />
     <ClInclude Include="src\Laser.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\Fireball.h" />
-    <ClInclude Include="src\Force.h" />
     <ClInclude Include="src\Particle.h" />
+    <ClInclude Include="src\ParticleForceGenerator.h" />
+    <ClInclude Include="src\ParticleForceRegistry.cpp" />
     <ClInclude Include="src\ProjectileMenu.h" />
-    <ClInclude Include="src\RessortForce.h" />
     <ClInclude Include="src\Vector.h" />
   </ItemGroup>
   <ItemGroup>

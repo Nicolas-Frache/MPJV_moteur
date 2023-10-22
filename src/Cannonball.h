@@ -1,11 +1,10 @@
 #pragma once
 #include "Ball.h"
+#include "Vector.h"
 
 class Cannonball : public Ball{
 
 
 public:
-
-    Cannonball(float X, float Y, float Z, float invertedMass, ofColor color, float size);
-    
+    Cannonball(Vector position, float invertedMass, ofColor color, float size);
 };

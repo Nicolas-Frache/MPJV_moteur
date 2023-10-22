@@ -8,7 +8,6 @@ public:
     Vector rotation;
 
     // Constructeur de la classe Ball
-    Ball(float X, float Y, float Z, float invertedMass, ofColor color, float size);
     Ball(Vector position, float invertedMass, ofColor color, float size);
 
 

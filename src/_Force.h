@@ -16,7 +16,6 @@ public:
 	Force(Particle* particle_, float duration_);
 	
 	virtual float updateTimeElapsed(float time);
-
 	virtual Vector value();
 
 	//on va remplacer updateTimeElapsed et value par updateForce

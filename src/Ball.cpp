@@ -2,17 +2,11 @@
 #include "Particle.h"
 
 // Constructeur de la classe Ball qui initialise la balle avec une position, une masse inversée et une couleur
-Ball::Ball(float X, float Y, float Z, float invertedMass, ofColor color, float size)
-    : Particle(X, Y, Z, invertedMass, color, size) {
 
+Ball::Ball(Vector position, float invertedMass, ofColor color, float size): 
+    Particle::Particle(position, invertedMass, color, size){
     _rotationZ = 0;
     rotation = Vector(0, 0, 0);
-}
-
-Ball::Ball(Vector position, float invertedMass, ofColor color, float size)
-   : Particle(position.x(), position.y(), position.z(), invertedMass, color, size)
-{
-
 }
 
 // Méthode de mise à jour de la balle

@@ -6,7 +6,6 @@
 class Fireball : public Particle{
 
 	public:
-		Fireball(float x_, float y_, float z_, float mass_);
 		Fireball(Vector position_, float mass_);
 
 		void Fireball::update() override;

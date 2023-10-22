@@ -1,4 +1,5 @@
-#include "ConstantForce.h"
+#include "_ConstantForce.h"
+#include <Particle.h>
 //cette sous classe sera principalement les forces genre gravité
 //sinon bah Force(vecteur_force) suffit
 
@@ -6,7 +7,7 @@ ConstantForce::ConstantForce(Particle* particle_, Vector direction_, float mass_
 	mass = mass_;
 }
 
-Vector ConstantForce::value() { //genre une force constante style F = m * g (d'où l'accélération g)
+Vector ConstantForce::value() { //une force constante de forme F = m * g (d'où l'accélération g)
 	return direction * mass;
 }
 

@@ -7,11 +7,8 @@ Force::Force(Particle* particle_, Vector direction_, float duration_){
 	timeRemaining = duration_;
 }
 
-Force::Force(Particle* particle_, float duration_) {
-	particle = particle_;
-	direction = Vector(0,0,0);
-	timeRemaining = duration_;
-
+Force::Force(Particle* particle_, float duration_):
+	Force::Force(particle_, Vector(0,0,0), duration_){
 }
 
 float Force::updateTimeElapsed(float time){

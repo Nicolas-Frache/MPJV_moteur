@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp" />
-    <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
-    <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\ProjectileMenu.cpp" />
@@ -11,76 +8,65 @@
     <ClCompile Include="src\Ball.cpp">
       <Filter>Particules</Filter>
     </ClCompile>
-    <ClCompile Include="src\CableForce.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
     <ClCompile Include="src\Cannonball.cpp">
       <Filter>Particules</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ConstantForce.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ElastForce.cpp">
-      <Filter>Forces</Filter>
     </ClCompile>
     <ClCompile Include="src\Fireball.cpp">
       <Filter>Particules</Filter>
     </ClCompile>
-    <ClCompile Include="src\Force.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\FrictionStat.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
     <ClCompile Include="src\Laser.cpp">
       <Filter>Particules</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RessortForce.cpp">
-      <Filter>Forces</Filter>
     </ClCompile>
     <ClCompile Include="src\Particle.cpp">
       <Filter>Particules</Filter>
     </ClCompile>
+    <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp">
+      <Filter>addons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp">
+      <Filter>addons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp">
+      <Filter>addons</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PhysicsEngine.cpp" />
+    <ClCompile Include="src\Gravity.cpp">
+      <Filter>Forces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
-    <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
-    <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ProjectileMenu.h" />
     <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\Ball.h">
       <Filter>Particules</Filter>
     </ClInclude>
-    <ClInclude Include="src\CableForce.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
     <ClInclude Include="src\Cannonball.h">
       <Filter>Particules</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ConstantForce.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ElastForce.h">
-      <Filter>Forces</Filter>
     </ClInclude>
     <ClInclude Include="src\Fireball.h">
       <Filter>Particules</Filter>
     </ClInclude>
-    <ClInclude Include="src\Force.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\FrictionStat.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
     <ClInclude Include="src\Laser.h">
       <Filter>Particules</Filter>
     </ClInclude>
-    <ClInclude Include="src\RessortForce.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
     <ClInclude Include="src\Particle.h">
       <Filter>Particules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h">
+      <Filter>addons</Filter>
+    </ClInclude>
+    <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h">
+      <Filter>addons</Filter>
+    </ClInclude>
+    <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h">
+      <Filter>addons</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParticleForceGenerator.h">
+      <Filter>Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ParticleForceRegistry.cpp">
+      <Filter>Forces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -92,6 +78,9 @@
     </Filter>
     <Filter Include="Forces">
       <UniqueIdentifier>{d98b0dc8-1d11-4990-8d17-f550e6d9549a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="addons">
+      <UniqueIdentifier>{30f0e771-4262-49b2-93f1-3778a3cbf22b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

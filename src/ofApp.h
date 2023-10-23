@@ -44,4 +44,5 @@ public:
 		
 		Ball* ball = new Ball(Vector(0, 30, 0), 1, ofColor::red, 1);
 		PhysicsEngine physicsEngine =  PhysicsEngine(&particles);
+		Gravity* gravity = new Gravity();
 };

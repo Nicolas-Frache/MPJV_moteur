@@ -15,7 +15,7 @@ public:
 		this->forceRegistry = ParticleForceRegistry();
 		
 		for (Particle* p : *particles) {
-			this->forceRegistry.add(p, &Gravity());
+			this->forceRegistry.addRegister(p, &Gravity());
 		}
 	}
 
@@ -34,6 +34,7 @@ public:
 		for (Particle* p : *particles) {
 			// v' = v + dt * a
 			//			avec  a = F / m
+			cout << p->velocity << "     " << p->forceAccum << "   " << dt << endl;
 			p->velocity += (p->forceAccum * dt) * p->getInvMass();
 			// p' = p + dt * v'
 			p->position += p->velocity * dt;

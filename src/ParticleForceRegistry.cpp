@@ -3,7 +3,7 @@
 #include <ParticleForceGenerator.cpp>
 
 class ParticleForceRegistry{
-private:
+public:
 	struct ParticleForceRegistration {
 		Particle* particle;
 		ParticleForceGenerator* fg;
@@ -14,11 +14,11 @@ private:
 
 
 public: 
-	void add(Particle* particle, ParticleForceGenerator* pfg) {
-		ParticleForceRegistration pfr;
-		pfr.particle = particle;
-		pfr.fg = pfg;
-		registrations.push_back(&pfr);
+	void addRegister(Particle* particle, ParticleForceGenerator* pfg) {
+		ParticleForceRegistration* pfr = new ParticleForceRegistration();
+		pfr->particle = particle;
+		pfr->fg = pfg;
+		registrations.push_back(pfr);
 	}
 
 	void remove(Particle* particle, ParticleForceGenerator* pfg) {

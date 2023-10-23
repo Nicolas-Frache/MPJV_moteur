@@ -24,9 +24,9 @@ void ofApp::setup(){
 	cam.setFarClip(200000);
 	
 	//Initialisation de la balle
-	particles.push_back(ball);
-	Gravity gravity = Gravity();
-	physicsEngine.forceRegistry.add(ball, &gravity);
+	//particles.push_back(ball);
+	//Gravity gravity = Gravity();
+	//physicsEngine.forceRegistry.add(ball, &gravity);
 }
 
 //--------------------------------------------------------------
@@ -37,6 +37,9 @@ void ofApp::update() {
 	float x_size = 250;
 	float y_size = 500;
 	float z_size = 250;
+	if (physicsEngine.forceRegistry.registrations.size() > 0) {
+		cout << "ofApp:update: element   " << physicsEngine.forceRegistry.registrations[0]->fg << endl;
+	}
 
 	physicsEngine.update();
 
@@ -102,18 +105,19 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key) {
 	Vector camPos;
 	Vector camDir;
-	//if (key == '1' || key == '2' || key == '3') {
-	//	camPos = Vector(cam.getPosition().x, cam.getPosition().y, cam.getPosition().z);
-	//	auto tmp = cam.getLookAtDir();
-	//	camDir = Vector(tmp.x, tmp.y, tmp.z);
-	//}
+	if (key == '1' || key == '2' || key == '3') {
+		camPos = Vector(cam.getPosition().x, cam.getPosition().y, cam.getPosition().z);
+		auto tmp = cam.getLookAtDir();
+		camDir = Vector(tmp.x, tmp.y, tmp.z);
+	}
 
 
-	//if (key == '1') {
-	//	Ball* newBall = new Ball(camPos, 1, ofColor::blue, 10);
-	//	//newBall->applyForce(Force(newBall, camDir * 100, 0.5));
-	//	particles.push_back(newBall);
-	//}
+	if (key == '1') {
+		Ball* newBall = new Ball(camPos, 1, ofColor::blue, 10);
+		particles.push_back(newBall);
+		physicsEngine.forceRegistry.addRegister(ball, gravity);
+		gravity->updateForce(newBall, 0.5);
+	}
 
 	//if (key == '2') {
 	//	Fireball* newFireball = new Fireball(camPos, 1);

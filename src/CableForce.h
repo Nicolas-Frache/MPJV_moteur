@@ -4,7 +4,7 @@ class CableForce :
     public Force
 {
 public:
-    float _maxLenght;
+    float _maxLength;
     Particle* _base; //parce qu'on a besoin de la position et de la vélocité du point, même si il est fixe
     CableForce(Particle* A, Particle* B, float maxLength, float duration_);
     CableForce(Particle* A, Vector B, float maxLength, float duration_);

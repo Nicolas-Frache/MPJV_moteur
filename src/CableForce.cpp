@@ -2,13 +2,13 @@
 
 CableForce::CableForce(Particle* A, Particle* B, float maxLength, float duration_) : Force(A,duration_)
 {
-	_maxLenght = maxLength;
+	_maxLength = maxLength;
 	_base = B; //en gros ici la force modifie A selon la distance entre A et B. B non modifié (et B peut être genre fixe par ex)
 }
 
 CableForce::CableForce(Particle* A, Vector B, float maxLength, float duration_) : Force(A, duration_)
 {
-	_maxLenght = maxLength;
+	_maxLength = maxLength;
 	_base = new Particle(B, 0, 0, 0); //ici on crée un point fixe pour accrocher le cable
 }
 
@@ -28,24 +28,22 @@ void CableForce::updateForce(Particle* particle, float duration)
 	float distance = cableVector.norm();
 	Vector opposingForce = Vector(0, 0, 0); //à remplir en dessous
 
-	if (distance > _maxLenght) {
+	if (distance > _maxLength) {
 		Vector blockingForce = cableVector;
 		blockingForce.normalize();
 
 		if (_base->getMass() == 0) {
 			//cas base fixe (masse infinie)
-			opposingForce = blockingForce * (_maxLenght - distance); //voire ptet juste annuler les forces normales?
+			opposingForce = blockingForce * (_maxLength - distance); //voire ptet juste annuler les forces normales?
 		}
 		else {
 			//base non point fixe
-			if (particle->getVelocity().norm() * particle->getMass() > _base->getVelocity().norm() * _base->getMass()){
-				//cas où A est plus rapide que B
-				opposingForce = blockingForce * (_maxLenght - distance);
-			}
-			else {
-				opposingForce = -blockingForce * (_maxLenght - distance);
-			}
+			opposingForce = blockingForce * (particle->getMass() / (particle->getMass() + _base->getMass()));
 		}
+	}
+	else {
+				//cas où le cable n'est pas tendu
+		opposingForce = Vector(0, 0, 0);
 	}
 	direction = opposingForce;
 }

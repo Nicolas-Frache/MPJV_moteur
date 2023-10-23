@@ -47,8 +47,8 @@ void ofApp::setup(){
 
 	//tests forces
 	//particle1.applyForce(ConstantForce(&particle1, Vector(0, +1, 0), 9.8, 100));
-	ElastForce* elast1 = new ElastForce(&particle1, &particle2, 200, 1, 100);
-	ElastForce* elast2 = new ElastForce(&particle2, &particle1, 200, 1, 100);
+	CableForce* elast1 = new CableForce(&particle1, &particle2, 200, 100);
+	CableForce* elast2 = new CableForce(&particle2, &particle1, 200, 100);
 	particle1.applyForce(elast1);
 	particle2.applyForce(elast2);
 	//fin tests forces

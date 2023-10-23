@@ -15,9 +15,9 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	this->sphere.setRadius(size);
 
 	// Gravite
-	ConstantForce* gravity = new ConstantForce(this, Vector(0, 1, 0), -9.8, numeric_limits<float>::max());
-	applyForce(gravity);
-	//TODO: mettre la force constante gravité dans un objet global (genre dans main idk)
+	applyForce(0, -9.8, 0, numeric_limits<float>::max());
+	//TODO: remplacer ça par la force constante gravité
+
 }
 
 // Gestion de la position

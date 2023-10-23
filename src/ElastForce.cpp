@@ -30,6 +30,9 @@ void ElastForce::updateForce(Particle* particle, float duration)
 
 		direction = springForce;
 	}
+	else {
+		direction = Vector(0, 0, 0);
+	}
 }
 
 float ElastForce::updateTimeElapsed(float time)

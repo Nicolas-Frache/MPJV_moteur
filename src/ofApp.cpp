@@ -42,7 +42,7 @@ void ofApp::setup(){
 
 	// Initialisation particules
 	particle1.applyForce(5, 1, 10, 2);
-	particle2.applyForce(5, 0, 20, 4);
+	//particle2.applyForce(5, 0, 20, 4);
 	particle3.applyForce(5, 0, 0, 6);
 
 	//tests forces

@@ -3,6 +3,7 @@
 class RessortForce :
     public Force
 {
+public:
     Particle* _base;
     float restLength;
     float springConstant;

@@ -41,14 +41,14 @@ void ofApp::setup(){
 	
 
 	// Initialisation particules
-	particle1.applyForce(5, 1, 10, 2);
+	particle1.applyForce(5, 1, 10, 1);
 	//particle2.applyForce(5, 0, 20, 4);
 	particle3.applyForce(5, 0, 0, 6);
 
 	//tests forces
 	//particle1.applyForce(ConstantForce(&particle1, Vector(0, +1, 0), 9.8, 100));
-	CableForce* elast1 = new CableForce(&particle1, &particle2, 200, 100);
-	CableForce* elast2 = new CableForce(&particle2, &particle1, 200, 100);
+	RessortForce* elast1 = new RessortForce(&particle1, &particle2, 50, 1, 100);
+	RessortForce* elast2 = new RessortForce(&particle2, &particle1, 50, 1, 100);
 	particle1.applyForce(elast1);
 	particle2.applyForce(elast2);
 	//fin tests forces

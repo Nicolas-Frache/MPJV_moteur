@@ -20,6 +20,6 @@ void RessortForce::updateForce(Particle* particle, float duration)
     Vector springDirection = springVector.normalize();
 
     // Calcul de la force de ressort en utilisant la loi de Hooke
-    Vector springForce = springDirection * (-springConstant * displacement);
+    Vector springForce = springDirection * (springConstant * displacement);
     direction = springForce;
 }

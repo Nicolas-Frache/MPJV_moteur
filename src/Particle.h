@@ -2,6 +2,7 @@
 #include "ofMain.h"
 #include "Vector.h"
 #include "Force.h"
+#include "ConstantForce.h"
 
 class Force; //déclaration anticipée de Force
 

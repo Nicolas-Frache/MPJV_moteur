@@ -15,7 +15,7 @@ class Particle{
 	float invertedMass;
 	ofColor color;
 	float size;
-	list<Force> _forces = list<Force>();
+	list<Force*> _forces = list<Force*>();
 
 	float restitution = 1.0f;
 	float friction = 1.0f;
@@ -45,7 +45,7 @@ class Particle{
 
 		void applyForce(float forceX, float forceY, float forceZ, float duration);
 		void applyForce(Vector force, float duration);
-		void applyForce(Force force);
+		void applyForce(Force* force);
 
 		
 		void integrer(float dt);

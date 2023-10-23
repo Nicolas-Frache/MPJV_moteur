@@ -90,14 +90,16 @@ void Particle::update() {
 
 
 void Particle::applyForce(Vector force, float duration) {
-	_forces.push_back(Force(this, force, duration));
+	Force* f = new Force(this, force, duration);
+	_forces.push_back(f);
 }
 
 void Particle::applyForce(float forceX, float forceY, float forceZ, float duration) {
-	_forces.push_back(Force(this, Vector(forceX, forceY, forceZ), duration));
+	Force* f = new Force(this, Vector(forceX, forceY, forceZ), duration);
+	_forces.push_back(f);
 }
 
-void Particle::applyForce(Force force) {
+void Particle::applyForce(Force* force) {
 	_forces.push_back(force);
 }
 
@@ -109,12 +111,16 @@ void Particle::bounce(Vector normal) {
 
 void Particle::integrer(float dt) {
 	// On itere sur les forces actives
+	//on affiche la taille du tableau de forces
+	cout << "size of forces: " << _forces.size() << endl;
 	auto it = _forces.begin();
 	while (it != _forces.end()) {
-		Force& force = *it;
-		float applicationTime = force.updateTimeElapsed(dt);
+		//Force* force = *it;
+		float applicationTime = (*it)->updateTimeElapsed(dt);
+		//on affiche la valeur de la force afin de tester en affichant son pointeur dans le tableau afin de les différencier
+		cout << "force value: " << (*it)->value() << endl;
 
-		velocity += force.value() * invertedMass * applicationTime;
+		velocity += (*it)->value() * invertedMass * applicationTime;
 		//avec force.value on peut utiliser la force pour récup l'accel (Sum(F) = m*a, d'où a = F/m d'où v = F/m * dt)
 
 		if (applicationTime != dt) {

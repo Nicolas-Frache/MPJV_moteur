@@ -27,13 +27,13 @@ void ofApp::setup(){
 	//Initialisation de la balle
 	ball._rotationZ = 0.0f;
 	ball.applyForce(6, -5, 0, 3);
-	particles.push_back(&ball);
+	//particles.push_back(&ball);
 
 	
 	cannonball.applyForce(0.01, -0.001, 0, 3);
-	particles.push_back(&cannonball);
+	//particles.push_back(&cannonball);
 
-	particles.push_back(&laser);
+	//particles.push_back(&laser);
 	
 
 	// Initialisation particules
@@ -57,29 +57,43 @@ void ofApp::setup(){
 	particle3.friction = 0.99;
 
 	//PARTIE BLOB
-	Particle* blob = new Particle(Vector(0, 0, 0), 1, ofColor::yellow, 10);
-	moveable_Particle = blob;
-	DampingForce* damp = new DampingForce(blob, 0.5);
-	blob->applyForce(damp);
+	//Particle* blob = new Particle(Vector(0, 0, 0), 1, ofColor::yellow, 10);
+	moveable_Particle = &blob;
+	DampingForce* damp = new DampingForce(&blob, 0.5);
+	blob.applyForce(damp);
 
+	
+	blob.addNode(new Ball(100, 0, 30, .5, ofColor::blue, 10));
+	blob.addNode(new Ball(150, 0, -30, .5, ofColor::white, 20));
+	blob.addNode(new Ball(120, 0, 40, .5, ofColor::red, 15));
+	//blob.applyForce(20, 0, 20, 2);
+	
+	particles.push_back(blob.nodes[0]);
+	particles.push_back(blob.nodes[1]);
+	particles.push_back(blob.nodes[2]);
+	
+	particles.push_back(&blob);
 	// Ajout particules dans la liste
-	particles.push_back(&particle1);
-	particles.push_back(&particle2);
-	particles.push_back(&particle3);
-	particles.push_back(blob);
+	//particles.push_back(&particle1);
+	//particles.push_back(&particle2);
+	//particles.push_back(&particle3);
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
 
-	float x_size = 250;
+	float x_size = 1000;
 	float y_size = 50000;
-	float z_size = 250;
+	float z_size = 1000;
 
 	// Update particules
 	for (Particle* particle : particles) {
+
 		particle->update();
+
 		auto pos = particle->position;
+		cout << "POS: " << pos << endl;
+
 		float x = pos.x(), y = pos.y(), z = pos.z();
 
 
@@ -94,7 +108,7 @@ void ofApp::update() {
 			}
 		}
 		if (y > y_size || y < 0) {
-			if (y > 500) {
+			if (y > y_size) {
 				particle->setPos(x, y_size, z);
 				particle->bounce(Vector(0, -1, 0));
 			}
@@ -115,10 +129,10 @@ void ofApp::update() {
 		}
 	}
 
-	// Update particules
-	for (Particle* particle : particles) {
-		particle->update();
-	}
+	//// Update particules
+	//for (Particle* particle : particles) {
+	//	particle->update();
+	//}
 }
 
 //--------------------------------------------------------------

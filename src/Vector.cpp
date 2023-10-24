@@ -19,6 +19,10 @@ void Vector::set(float X, float Y, float Z) {
 	_Z = Z;
 }
 
+void Vector::setY(float Y){
+	_Y = Y;
+}
+
 
 // operators
 Vector Vector::operator+(Vector vect) {

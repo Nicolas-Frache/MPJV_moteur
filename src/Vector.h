@@ -17,6 +17,7 @@ class Vector
 
 		// setters
 		void set(float X, float Y, float Z);
+		void setY(float Y);
 
 		// operators
 		Vector operator+(Vector vect);

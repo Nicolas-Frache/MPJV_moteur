@@ -36,13 +36,13 @@ public:
 		void draw();
 
 		list<Particle*> particles = list<Particle*>();
-		Fireball particle1 = Fireball(0, 50, 0, 1);
-		Particle particle2 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::green), 10);
-		Particle particle3 = Particle(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::blue), 10);
+		Ball particle1 = Ball(0, 50, 0, 1, ofColor_<unsigned char>::red, 20);
+		Ball particle2 = Ball(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::green), 10);
+		Ball particle3 = Ball(100, 100, 0, 1, ofColor(ofColor_<unsigned char>::pink), 10);
 	
 		Ball ball = Ball(100, 600, 0, .01, ofColor::red, 5);
 		Laser laser = Laser(Vector(2, 0, 0), Vector(1, 1, 1), .01, ofColor::pink, 2);
-		Cannonball cannonball = Cannonball(100, 60, 0, 1, ofColor::black, 20);
+		Cannonball cannonball = Cannonball(0, 0, 0, 1, ofColor::black, 20);
 
 		ofxSkyBox skybox;
 		ofxFirstPersonCamera cam;

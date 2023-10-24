@@ -45,7 +45,7 @@ void ofApp::setup(){
 	// Initialisation particules
 	particle1.applyForce(5, 1, 10, 1);
 	//particle2.applyForce(5, 0, 20, 4);
-	particle3.applyForce(5, 0, 0, 6);
+	particle3.applyForce(0, 20, 0, 6);
 
 	//tests forces
 	//particle1.applyForce(ConstantForce(&particle1, Vector(0, +1, 0), 9.8, 100));
@@ -63,7 +63,7 @@ void ofApp::setup(){
 	particle3.friction = 0.99;
 
 	// Ajout particules dans la liste
-	particles.push_back(&particle1); //on range la boule de feu dans une liste faite pour les boules de feu (update override ne fonctionnant pas)
+	particles.push_back(&particle1);
 	particles.push_back(&particle2);
 	particles.push_back(&particle3);
 }
@@ -72,7 +72,7 @@ void ofApp::setup(){
 void ofApp::update() {
 
 	float x_size = 250;
-	float y_size = 500;
+	float y_size = 50000;
 	float z_size = 250;
 
 	// Update particules

@@ -27,20 +27,6 @@ class Particle{
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size);
 		Particle(Vector position, float invertedMass, ofColor color, float size);
 
-		// Gestion de la position
-		void setPos(float X, float Y, float Z);
-		void setPos(Vector);
-		Vector getPosition() const;
-
-		// Gestion de la masse
-		void setMass(float mass);
-		void setInvMass(float invertedMass);
-		void setInfinitMass();
-
-		float getMass();
-		float getInvMass();
-		Vector getVelocity() const { return velocity; };
-
 		// Gestion de l'apparence
 
 		void applyForce(float forceX, float forceY, float forceZ, float duration);
@@ -54,4 +40,54 @@ class Particle{
 
 		virtual void update();
 		virtual void draw();
+
+
+		// POSITION
+		void Particle::setPos(float X, float Y, float Z) {
+			position.set(X, Y, Z);
+		}
+		void Particle::setPos(Vector position) {
+			position = position;
+		}
+		Vector Particle::getPosition() const {
+			return position;
+		}
+
+		// VELOCITY
+		void Particle::setVelocity(float X, float Y, float Z) {
+			velocity.set(X, Y, Z);
+		}
+		// getter
+		Vector Particle::getVelocity() {
+			return velocity;
+		}
+
+
+
+		// MASSE
+		void Particle::setMass(float mass) {
+			if (mass == 0) {
+				Particle::setInfinitMass();
+				return;
+			}
+			invertedMass = 1 / mass;
+		}
+		void Particle::setInvMass(float invertedMass) {
+			invertedMass = invertedMass;
+		}
+		void Particle::setInfinitMass() {
+			invertedMass = 0;
+		}
+		float Particle::getMass() {
+			if (invertedMass == 0) {
+				return 0;
+			}
+			return 1 / invertedMass;
+		}
+		float Particle::getInvMass() {
+			return invertedMass;
+		}
+
+
+
 };

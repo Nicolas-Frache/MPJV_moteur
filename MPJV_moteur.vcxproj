@@ -112,6 +112,7 @@
     <ClCompile Include="src\CableForce.cpp" />
     <ClCompile Include="src\Cannonball.cpp" />
     <ClCompile Include="src\ConstantForce.cpp" />
+    <ClCompile Include="src\DampingForce.cpp" />
     <ClCompile Include="src\ElastForce.cpp" />
     <ClCompile Include="src\ExploForce.cpp" />
     <ClCompile Include="src\FrictionStat.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="src\CableForce.h" />
     <ClInclude Include="src\Cannonball.h" />
     <ClInclude Include="src\ConstantForce.h" />
+    <ClInclude Include="src\DampingForce.h" />
     <ClInclude Include="src\ElastForce.h" />
     <ClInclude Include="src\ExploForce.h" />
     <ClInclude Include="src\FrictionStat.h" />

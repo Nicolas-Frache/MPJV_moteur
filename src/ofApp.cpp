@@ -5,13 +5,7 @@
 #include "Ball.h"
 #include "Laser.h"
 #include "ProjectileMenu.h"
-#include "ConstantForce.h"
-#include "CableForce.h"
-#include "RessortForce.h"
-#include "ElastForce.h"
-#include "FrictionStat.h"
-#include "ExploForce.h"
-#include "WaterForce.h"
+
 
 
 ProjectileMenu menu;
@@ -63,12 +57,16 @@ void ofApp::setup(){
 	particle3.friction = 0.99;
 
 	//PARTIE BLOB
-
+	Particle* blob = new Particle(Vector(0, 0, 0), 1, ofColor::yellow, 10);
+	moveable_Particle = blob;
+	DampingForce* damp = new DampingForce(blob, 0.5);
+	blob->applyForce(damp);
 
 	// Ajout particules dans la liste
 	particles.push_back(&particle1);
 	particles.push_back(&particle2);
 	particles.push_back(&particle3);
+	particles.push_back(blob);
 }
 
 //--------------------------------------------------------------
@@ -166,25 +164,38 @@ void ofApp::keyPressed(int key) {
 		particles.push_back(newLaser);
 	}
 
-	if (key == OF_KEY_UP) {
-
+	if (key == OF_KEY_UP) { //on applique une force vers le haut de durée courte
+		moveable_Particle->applyForce(0, 0, 10, 0.1);
 	}
 	if (key == OF_KEY_DOWN) {
-
+		moveable_Particle->applyForce(0, 0, -10, 0.1);
 	}
 	if (key == OF_KEY_LEFT) {
-
+		moveable_Particle->applyForce(10, 0, 0, 0.1);
 	}
 	if (key == OF_KEY_RIGHT) {
-
+		moveable_Particle->applyForce(-10, 0, 0, 0.1);
 	}
-
+	if (key == 32) { //on applique une force pour sauter de durée courte
+		moveable_Particle->applyForce(0, 100, 0, 0.1);
+	}
 }
 
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+	//if (key == OF_KEY_UP) { //on applique une force contraire pour arrêter la particule
+	//	moveable_Particle->applyForce(0, 0, -10, 0.1);
+	//}
+	//if (key == OF_KEY_DOWN) {
+	//	moveable_Particle->applyForce(0, 0, +10, 0.1);
+	//}
+	//if (key == OF_KEY_LEFT) {
+	//	moveable_Particle->applyForce(-10, 0, 0, 0.1);
+	//}
+	//if (key == OF_KEY_RIGHT) {
+	//	moveable_Particle->applyForce(10, 0, 0, 0.1);
+	//}
 }
 
 //--------------------------------------------------------------

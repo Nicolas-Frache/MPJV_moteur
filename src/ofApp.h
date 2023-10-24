@@ -7,6 +7,14 @@
 #include "Ball.h"
 #include "Cannonball.h"
 #include "Laser.h"
+#include "ConstantForce.h"
+#include "CableForce.h"
+#include "RessortForce.h"
+#include "ElastForce.h"
+#include "FrictionStat.h"
+#include "ExploForce.h"
+#include "WaterForce.h"
+#include "DampingForce.h"
 
 #include <list>
 // https://github.com/kalwalt/ofxSkyBox
@@ -39,6 +47,7 @@ public:
 		Ball particle1 = Ball(0, 50, 0, 1, ofColor_<unsigned char>::red, 20);
 		Ball particle2 = Ball(0, 0, 0, 1, ofColor(ofColor_<unsigned char>::green), 10);
 		Ball particle3 = Ball(100, 100, 0, 1, ofColor(ofColor_<unsigned char>::pink), 10);
+		Particle* moveable_Particle = &particle1;
 	
 		Ball ball = Ball(100, 600, 0, .01, ofColor::red, 5);
 		Laser laser = Laser(Vector(2, 0, 0), Vector(1, 1, 1), .01, ofColor::pink, 2);

@@ -112,6 +112,7 @@
     <ClCompile Include="src\Cannonball.cpp" />
     <ClCompile Include="src\ConstantForce.cpp" />
     <ClCompile Include="src\ElastForce.cpp" />
+    <ClCompile Include="src\ExploForce.cpp" />
     <ClCompile Include="src\FrictionStat.cpp" />
     <ClCompile Include="src\Laser.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -122,6 +123,7 @@
     <ClCompile Include="src\ProjectileMenu.cpp" />
     <ClCompile Include="src\RessortForce.cpp" />
     <ClCompile Include="src\Vector.cpp" />
+    <ClCompile Include="src\WaterForce.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
@@ -132,6 +134,7 @@
     <ClInclude Include="src\Cannonball.h" />
     <ClInclude Include="src\ConstantForce.h" />
     <ClInclude Include="src\ElastForce.h" />
+    <ClInclude Include="src\ExploForce.h" />
     <ClInclude Include="src\FrictionStat.h" />
     <ClInclude Include="src\Laser.h" />
     <ClInclude Include="src\ofApp.h" />
@@ -141,6 +144,7 @@
     <ClInclude Include="src\ProjectileMenu.h" />
     <ClInclude Include="src\RessortForce.h" />
     <ClInclude Include="src\Vector.h" />
+    <ClInclude Include="src\WaterForce.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

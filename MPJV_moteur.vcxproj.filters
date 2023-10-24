@@ -41,6 +41,12 @@
     <ClCompile Include="src\Particle.cpp">
       <Filter>Particules</Filter>
     </ClCompile>
+    <ClCompile Include="src\ExploForce.cpp">
+      <Filter>Forces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WaterForce.cpp">
+      <Filter>Forces</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
@@ -81,6 +87,12 @@
     </ClInclude>
     <ClInclude Include="src\Particle.h">
       <Filter>Particules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ExploForce.h">
+      <Filter>Forces</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WaterForce.h">
+      <Filter>Forces</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

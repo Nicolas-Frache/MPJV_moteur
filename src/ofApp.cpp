@@ -10,6 +10,8 @@
 #include "RessortForce.h"
 #include "ElastForce.h"
 #include "FrictionStat.h"
+#include "ExploForce.h"
+#include "WaterForce.h"
 
 
 ProjectileMenu menu;

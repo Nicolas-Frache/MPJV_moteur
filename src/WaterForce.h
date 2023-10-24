@@ -9,6 +9,6 @@ public:
 
     WaterForce(Particle* A, float waterDensity, float waterDragCoef, float duration);
     Vector WaterForce::value() override;
-    void WaterForce::updateForce(Particle* particle, float duration) override;)
+    void WaterForce::updateForce(Particle* particle, float duration) override;
 };
 

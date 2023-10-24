@@ -62,6 +62,9 @@ void ofApp::setup(){
 	particle2.friction =0.99;
 	particle3.friction = 0.99;
 
+	//PARTIE BLOB
+
+
 	// Ajout particules dans la liste
 	particles.push_back(&particle1);
 	particles.push_back(&particle2);
@@ -161,6 +164,19 @@ void ofApp::keyPressed(int key) {
 		Laser* newLaser = new Laser(camPos, camDir, 1, ofColor::black, 3);
 		newLaser->applyForce(camDir * 200, 0.5);
 		particles.push_back(newLaser);
+	}
+
+	if (key == OF_KEY_UP) {
+
+	}
+	if (key == OF_KEY_DOWN) {
+
+	}
+	if (key == OF_KEY_LEFT) {
+
+	}
+	if (key == OF_KEY_RIGHT) {
+
 	}
 
 }

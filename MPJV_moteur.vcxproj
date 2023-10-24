@@ -108,6 +108,7 @@
     <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
     <ClCompile Include="src\Ball.cpp" />
+    <ClCompile Include="src\Blob.cpp" />
     <ClCompile Include="src\CableForce.cpp" />
     <ClCompile Include="src\Cannonball.cpp" />
     <ClCompile Include="src\ConstantForce.cpp" />
@@ -130,6 +131,7 @@
     <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
     <ClInclude Include="src\Ball.h" />
+    <ClInclude Include="src\Blob.h" />
     <ClInclude Include="src\CableForce.h" />
     <ClInclude Include="src\Cannonball.h" />
     <ClInclude Include="src\ConstantForce.h" />

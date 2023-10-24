@@ -53,6 +53,9 @@
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp">
       <Filter>Addons</Filter>
     </ClCompile>
+    <ClCompile Include="src\Blob.cpp">
+      <Filter>Particules</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h">
       <Filter>Addons</Filter>
+      </ClInclude>
+    <ClInclude Include="src\Blob.h">
+      <Filter>Particules</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

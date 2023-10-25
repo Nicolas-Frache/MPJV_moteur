@@ -62,7 +62,6 @@ void ofApp::setup(){
 	DampingForce* damp = new DampingForce(&blob, 0.5);
 	blob.applyForce(damp);
 
-	
 	blob.addNode(new Ball(100, 0, 30, .5, ofColor::blue, 10));
 	blob.addNode(new Ball(150, 0, -30, .5, ofColor::white, 20));
 	blob.addNode(new Ball(120, 0, 40, .5, ofColor::red, 15));

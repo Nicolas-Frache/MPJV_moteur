@@ -1,5 +1,6 @@
 #include "Blob.h"
 #include <RessortForce.h>
+#include <DampingForce.h>
 
 Blob::Blob(Vector position, float invertedMass, ofColor color, float size)
 : Ball(position, invertedMass, color, size) {
@@ -8,6 +9,7 @@ Blob::Blob(Vector position, float invertedMass, ofColor color, float size)
 
 void Blob::addNode(Ball* ball){
 	ball->applyForce(new RessortForce(ball, this, this->size + ball->size, 2, 100));
+	ball->applyForce(new DampingForce(ball, 0.5));
 	//this->applyForce(new RessortForce(this, ball, 100, 1, 100));
 
 	for (int i = 0; i < this->nodes.size(); i++) {

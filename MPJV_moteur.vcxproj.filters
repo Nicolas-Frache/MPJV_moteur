@@ -66,6 +66,7 @@
     <ClCompile Include="src\ExploImpulse.cpp">
       <Filter>Forces\Impulse</Filter>
     </ClCompile>
+    <ClCompile Include="src\WorldPhysics.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
@@ -132,6 +133,7 @@
     <ClInclude Include="src\ExploImpulse.h">
       <Filter>Forces\Impulse</Filter>
     </ClInclude>
+    <ClInclude Include="src\WorldPhysics.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

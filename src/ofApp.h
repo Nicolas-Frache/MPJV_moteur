@@ -14,6 +14,7 @@
 #include "FrictionStat.h"
 #include "WaterForce.h"
 #include "DampingForce.h"
+#include "WorldPhysics.h"
 
 #include <list>
 // https://github.com/kalwalt/ofxSkyBox
@@ -24,9 +25,9 @@
 
 class ofApp : public ofBaseApp {
 
-public:
-    // Methode de configuration (appelee une fois au demarrage)
-    void setup();
+	public:
+		// Methode de configuration (appelee une fois au demarrage)
+		void setup();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -40,8 +41,12 @@ public:
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
 
+		void createParticle(Particle* particle);
+
 		void update();
 		void draw();
+
+		WorldPhysics world = WorldPhysics(250, 1000, 250);
 
 		list<Particle*> particles = list<Particle*>();
 		Ball particle1 = Ball(0, 50, 0, 1, ofColor_<unsigned char>::red, 20);

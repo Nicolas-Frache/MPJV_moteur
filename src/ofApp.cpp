@@ -67,11 +67,11 @@ void ofApp::setup(){
 	blob.addNode(new Ball(120, 0, 40, .5, ofColor::red, 20));
 	blob.applyForce(20, 10, 20, 1);
 	
-	particles.push_back(blob.nodes[0]);
-	particles.push_back(blob.nodes[1]);
-	particles.push_back(blob.nodes[2]);
+	createParticle(blob.nodes[0]);
+	createParticle(blob.nodes[1]);
+	createParticle(blob.nodes[2]);
 	
-	particles.push_back(&blob);
+	createParticle(&blob);
 	// Ajout particules dans la liste
 	//particles.push_back(&particle1);
 	//particles.push_back(&particle2);
@@ -81,57 +81,8 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update() {
 
-	float x_size = 1000;
-	float y_size = 50000;
-	float z_size = 1000;
+	world.update();
 
-	// Update particules
-	for (Particle* particle : particles) {
-
-		particle->update();
-
-		auto pos = particle->position;
-		//cout << "POS: " << pos << endl;
-
-		float x = pos.x(), y = pos.y(), z = pos.z();
-
-
-		if (x > x_size || x < -x_size) {
-			if (x > x_size) {
-				particle->setPos(x_size, y, z);
-				particle->bounce(Vector(-1, 0, 0));
-			}
-			else {
-				particle->setPos(-x_size, y, z);
-				particle->bounce(Vector(1, 0, 0));
-			}
-		}
-		if (y > y_size || y < 0) {
-			if (y > y_size) {
-				particle->setPos(x, y_size, z);
-				particle->bounce(Vector(0, -1, 0));
-			}
-			else {
-				particle->setPos(x, 0, z);
-				particle->bounce(Vector(0, 1, 0));
-			}
-		}
-		if (z > z_size || z < -z_size) {
-			if (z > z_size) {
-				particle->setPos(x, y, z_size);
-				particle->bounce(Vector(0, 0, -1));
-			}
-			else {
-				particle->setPos(x, y, -z_size);
-				particle->bounce(Vector(0, 0, 1));
-			}
-		}
-	}
-
-	// Update particules
-	for (Particle* particle : particles) {
-		particle->update();
-	}
 }
 
 //--------------------------------------------------------------
@@ -148,6 +99,11 @@ void ofApp::draw(){
 	cam.end();
 }
 
+void ofApp::createParticle(Particle* particle) {
+	particles.push_back(particle);
+	world.addParticle(particle);
+}
+
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
 	Vector camPos;
@@ -161,20 +117,22 @@ void ofApp::keyPressed(int key) {
 
 	if (key == '1') {
 		Ball* newBall = new Ball(camPos, 1, ofColor::blue, 10);
+		newBall->restitution = 0.5;
 		newBall->applyForce(camDir * 100, 0.5);
-		particles.push_back(newBall);
+		createParticle(newBall);
 	}
 
 	if (key == '2') {
 		Fireball* newFireball = new Fireball(camPos, 1);
+		newFireball->restitution = 0.8;
 		newFireball->applyForce(camDir * 110, 0.5);
-		particles.push_back(newFireball); 
+		createParticle(newFireball);
 	}
 
 	if (key == '3') {
 		Laser* newLaser = new Laser(camPos, camDir, 1, ofColor::black, 3);
 		newLaser->applyForce(camDir * 200, 0.5);
-		particles.push_back(newLaser);
+		createParticle(newLaser);
 	}
 
 	float speed = 100;

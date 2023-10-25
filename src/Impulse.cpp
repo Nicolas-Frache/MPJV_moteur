@@ -29,7 +29,6 @@ Impulse::Impulse(Particle *object1, Particle *object2)
 	// On applique l'impulsion
 	object1->setVelocity(velocity1 + normal * impulse1);
 	object2->setVelocity(velocity2 + normal * impulse2);
-
 }
 
 // Créer une impulsion entre deux corps rigides

@@ -114,7 +114,7 @@
     <ClCompile Include="src\ConstantForce.cpp" />
     <ClCompile Include="src\DampingForce.cpp" />
     <ClCompile Include="src\ElastForce.cpp" />
-    <ClCompile Include="src\ExploForce.cpp" />
+    <ClCompile Include="src\ExploImpulse.cpp" />
     <ClCompile Include="src\FrictionStat.cpp" />
     <ClCompile Include="src\Impulse.cpp" />
     <ClCompile Include="src\Laser.cpp" />
@@ -141,7 +141,7 @@
     <ClInclude Include="src\ConstantForce.h" />
     <ClInclude Include="src\DampingForce.h" />
     <ClInclude Include="src\ElastForce.h" />
-    <ClInclude Include="src\ExploForce.h" />
+    <ClInclude Include="src\ExploImpulse.h" />
     <ClInclude Include="src\FrictionStat.h" />
     <ClInclude Include="src\Impulse.h" />
     <ClInclude Include="src\Laser.h" />

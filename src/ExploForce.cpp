@@ -21,7 +21,5 @@ void ExploForce::updateForce(Particle* particle, float duration) {
 	if(distance < _explosionRadius){
 		float force = _explosionForce * (1 - distance / _explosionRadius);
 		direction = explosionToParticle.normalize() * force;
-		cout << "Force:  " << force << endl;
-		cout << "direction:  " << direction << endl;
 	}
 }

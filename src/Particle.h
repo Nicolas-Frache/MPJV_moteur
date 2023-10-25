@@ -57,6 +57,9 @@ class Particle{
 		void Particle::setVelocity(float X, float Y, float Z) {
 			velocity.set(X, Y, Z);
 		}
+		void Particle::setVelocity(Vector velocity) {
+			velocity = velocity;
+		}
 		// getter
 		Vector Particle::getVelocity() {
 			return velocity;

@@ -54,7 +54,7 @@ public:
 		Laser laser = Laser(Vector(2, 0, 0), Vector(1, 1, 1), .01, ofColor::pink, 2);
 		Cannonball cannonball = Cannonball(0, 0, 0, 1, ofColor::black, 20);
 		
-		Blob blob = Blob(Vector(50, 0, 0), 1, ofColor::aquamarine, 25);
+		Blob blob = Blob(Vector(50, 20, 0), 1, ofColor::aquamarine, 25);
 
 		ofxSkyBox skybox;
 		ofxFirstPersonCamera cam;

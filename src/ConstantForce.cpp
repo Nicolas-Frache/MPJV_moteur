@@ -10,11 +10,7 @@ Vector ConstantForce::value() { //une force constante style F = m * g (d'où l'ac
 }
 
 void ConstantForce::updateForce(Particle* particle, float duration) {
-	if (!particle) {
-		return;
-	}
-	Vector force = value();
-	direction = force; //toujours constante donc on modif rien ici
+	 return; // Il n'y a rien à faire, la force est constante
 }
 
 float ConstantForce::updateTimeElapsed(float time) {

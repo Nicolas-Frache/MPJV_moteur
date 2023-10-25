@@ -17,7 +17,7 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	this->sphere.setRadius(size);
 
 	// Gravite
-	//applyForce(new ConstantForce(this, Vector(0, -9.8, 0)));
+	applyForce(new ConstantForce(this, Vector(0, -9.8, 0)));
 }
 
 void Particle::draw() {
@@ -71,8 +71,6 @@ void Particle::integrer(float dt) {
 	while (it != _forces.end()) {
 		//Force* force = *it;
 		float applicationTime = (*it)->updateTimeElapsed(dt);
-		//on affiche la valeur de la force afin de tester en affichant son pointeur dans le tableau afin de les différencier
-		//cout << "force value: " << (*it)->value() << endl;
 
 		velocity += (*it)->value() * invertedMass * applicationTime;
 		//avec force.value on peut utiliser la force pour récup l'accel (Sum(F) = m*a, d'où a = F/m d'où v = F/m * dt)

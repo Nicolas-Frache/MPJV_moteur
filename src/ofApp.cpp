@@ -62,10 +62,10 @@ void ofApp::setup(){
 	DampingForce* damp = new DampingForce(&blob, 0.5);
 	blob.applyForce(damp);
 
-	blob.addNode(new Ball(100, 0, 30, .5, ofColor::blue, 10));
+	blob.addNode(new Ball(100, 0, 30, .5, ofColor::blue, 20));
 	blob.addNode(new Ball(150, 0, -30, .5, ofColor::white, 20));
-	blob.addNode(new Ball(120, 0, 40, .5, ofColor::red, 15));
-	//blob.applyForce(20, 0, 20, 2);
+	blob.addNode(new Ball(120, 0, 40, .5, ofColor::red, 20));
+	blob.applyForce(20, 10, 20, 1);
 	
 	particles.push_back(blob.nodes[0]);
 	particles.push_back(blob.nodes[1]);
@@ -128,10 +128,10 @@ void ofApp::update() {
 		}
 	}
 
-	//// Update particules
-	//for (Particle* particle : particles) {
-	//	particle->update();
-	//}
+	// Update particules
+	for (Particle* particle : particles) {
+		particle->update();
+	}
 }
 
 //--------------------------------------------------------------
@@ -177,17 +177,19 @@ void ofApp::keyPressed(int key) {
 		particles.push_back(newLaser);
 	}
 
+	float speed = 200;
+
 	if (key == OF_KEY_UP) { //on applique une force vers le haut de durée courte
-		moveable_Particle->applyForce(0, 0, 10, 0.1);
+		moveable_Particle->applyForce(0, 0, speed, 0.1);
 	}
 	if (key == OF_KEY_DOWN) {
-		moveable_Particle->applyForce(0, 0, -10, 0.1);
+		moveable_Particle->applyForce(0, 0, -speed, 0.1);
 	}
 	if (key == OF_KEY_LEFT) {
-		moveable_Particle->applyForce(10, 0, 0, 0.1);
+		moveable_Particle->applyForce(speed, 0, 0, 0.1);
 	}
 	if (key == OF_KEY_RIGHT) {
-		moveable_Particle->applyForce(-10, 0, 0, 0.1);
+		moveable_Particle->applyForce(-speed, 0, 0, 0.1);
 	}
 	if (key == 32) { //on applique une force pour sauter de durée courte
 		moveable_Particle->applyForce(0, 100, 0, 0.1);

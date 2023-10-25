@@ -17,6 +17,6 @@ Ball::Ball(Vector position, float invertedMass, ofColor color, float size)
 // Méthode de mise à jour de la balle
 void Ball::update() {
     Particle::update();
-    cout << "BALL " << this->getVelocity() << endl;
+    //cout << "BALL " << this->getVelocity() << endl;
     _rotationZ += velocity.z() * 0.1; // Mise à jour de la rotation Z
 }

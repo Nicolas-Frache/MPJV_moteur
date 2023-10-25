@@ -56,6 +56,10 @@
     <ClCompile Include="src\Blob.cpp">
       <Filter>Particules</Filter>
     </ClCompile>
+    <ClCompile Include="src\DampingForce.cpp" />
+    <ClCompile Include="src\VectorTest.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
@@ -106,9 +110,13 @@
     </ClInclude>
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h">
       <Filter>Addons</Filter>
-      </ClInclude>
+    </ClInclude>
     <ClInclude Include="src\Blob.h">
       <Filter>Particules</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DampingForce.h" />
+    <ClInclude Include="src\VectorTest.h">
+      <Filter>Tests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -123,6 +131,9 @@
     </Filter>
     <Filter Include="Addons">
       <UniqueIdentifier>{abaa366c-12d5-45c8-aa97-bc39aa2d8764}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{19ba9eb5-1da0-4bfd-8c83-a90ffd7cc21a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

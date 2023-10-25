@@ -91,7 +91,7 @@ void ofApp::update() {
 		particle->update();
 
 		auto pos = particle->position;
-		cout << "POS: " << pos << endl;
+		//cout << "POS: " << pos << endl;
 
 		float x = pos.x(), y = pos.y(), z = pos.z();
 

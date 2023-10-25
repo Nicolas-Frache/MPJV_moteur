@@ -27,6 +27,7 @@ class Vector
 		void operator-=(Vector vect);
 		Vector operator*(float mult);
 		void operator*=(float mult);
+		bool operator==(Vector vect);
 		friend ostream& operator<<(ostream& os, const Vector vect);
 
 		float norm();

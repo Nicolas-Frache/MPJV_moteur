@@ -66,12 +66,12 @@ void ofApp::setup(){
 	blob.addNode(new Ball(150, 0, -30, .5, ofColor::white, 20));
 	blob.addNode(new Ball(120, 0, 40, .5, ofColor::red, 20));
 	blob.applyForce(20, 10, 20, 1);
-	
+	createParticle(&blob);
 	createParticle(blob.nodes[0]);
 	createParticle(blob.nodes[1]);
 	createParticle(blob.nodes[2]);
 	
-	createParticle(&blob);
+	
 	// Ajout particules dans la liste
 	//particles.push_back(&particle1);
 	//particles.push_back(&particle2);

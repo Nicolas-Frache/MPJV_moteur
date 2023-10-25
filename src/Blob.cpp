@@ -5,12 +5,12 @@
 
 Blob::Blob(Vector position, float invertedMass, ofColor color, float size)
 : Ball(position, invertedMass, color, size) {
-	restitution = 0.7;
+	restitution = 0.4;
 }
 
 void Blob::addNode(Ball* ball){
-	ball->applyForce(new RessortForce(ball, this, this->size + ball->size, 20, 500));
-	ball->applyForce(new DampingForce(ball, 0.5));
+	ball->applyForce(new RessortForce(ball, this, this->size + ball->size + 10, 10, 500));
+	ball->applyForce(new DampingForce(ball, 0.8));
 
 	for (int i = 0; i < this->nodes.size(); i++) {
 		ball->applyForce(new RessortForce(ball, this->nodes[i], 1.5 * (nodes[i]->size + ball->size), 4, 500));

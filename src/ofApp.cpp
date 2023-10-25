@@ -59,7 +59,7 @@ void ofApp::setup(){
 	//PARTIE BLOB
 	//Particle* blob = new Particle(Vector(0, 0, 0), 1, ofColor::yellow, 10);
 	moveable_Particle = &blob;
-	DampingForce* damp = new DampingForce(&blob, 0.5);
+	DampingForce* damp = new DampingForce(&blob, 0.8);
 	blob.applyForce(damp);
 
 	blob.addNode(new Ball(100, 0, 30, .5, ofColor::blue, 20));

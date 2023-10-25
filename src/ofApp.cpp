@@ -62,9 +62,9 @@ void ofApp::setup(){
 	DampingForce* damp = new DampingForce(&blob, 0.8);
 	blob.applyForce(damp);
 
-	blob.addNode(new Ball(100, 0, 30, .5, ofColor::blue, 20));
-	blob.addNode(new Ball(150, 0, -30, .5, ofColor::white, 20));
-	blob.addNode(new Ball(120, 0, 40, .5, ofColor::red, 20));
+	blob.addNode(new Ball(100, 0, 30, 1, ofColor::blue, 20));
+	blob.addNode(new Ball(150, 0, -30, 1, ofColor::blue, 20));
+	blob.addNode(new Ball(120, 0, 40, 1, ofColor::blue, 20));
 	blob.applyForce(20, 10, 20, 1);
 	createParticle(&blob);
 	createParticle(blob.nodes[0]);
@@ -116,7 +116,7 @@ void ofApp::keyPressed(int key) {
 
 
 	if (key == '1') {
-		Ball* newBall = new Ball(camPos, 1, ofColor::blue, 10);
+		Ball* newBall = new Ball(camPos, 1, ofColor::blue, 20);
 		newBall->restitution = 0.5;
 		newBall->applyForce(camDir * 100, 0.5);
 		createParticle(newBall);

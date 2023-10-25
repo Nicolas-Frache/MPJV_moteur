@@ -17,6 +17,8 @@ public:
 
     vector<Ball*> nodes;
 
+    // Split le blob en envoyant voler la moitié de ses celulles
+    void splitBlob();
 
 
 };

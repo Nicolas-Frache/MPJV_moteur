@@ -194,23 +194,14 @@ void ofApp::keyPressed(int key) {
 	if (key == 32) { //on applique une force pour sauter de durée courte
 		moveable_Particle->applyForce(0, 100, 0, 0.1);
 	}
+	if (key == OF_KEY_RETURN) {
+		blob.splitBlob();
+	}
 }
 
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-	//if (key == OF_KEY_UP) { //on applique une force contraire pour arrêter la particule
-	//	moveable_Particle->applyForce(0, 0, -10, 0.1);
-	//}
-	//if (key == OF_KEY_DOWN) {
-	//	moveable_Particle->applyForce(0, 0, +10, 0.1);
-	//}
-	//if (key == OF_KEY_LEFT) {
-	//	moveable_Particle->applyForce(-10, 0, 0, 0.1);
-	//}
-	//if (key == OF_KEY_RIGHT) {
-	//	moveable_Particle->applyForce(10, 0, 0, 0.1);
-	//}
 }
 
 //--------------------------------------------------------------

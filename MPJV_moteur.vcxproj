@@ -104,6 +104,7 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="RodConstraint.cpp" />
     <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
@@ -126,6 +127,7 @@
     <ClCompile Include="src\WaterForce.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="RodConstraint.h" />
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />

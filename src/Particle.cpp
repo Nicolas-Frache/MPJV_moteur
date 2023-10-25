@@ -67,6 +67,10 @@ Vector Particle::getPosition() const {
 
 // Gestion de l'apparence
 
+float Particle::getSize() const {
+	return size;  // Vous devrez peut-être ajuster cela en fonction de la structure de votre particule
+}
+
 void Particle::draw() {
 	ofEnableDepthTest();
 	ofSetColor(color);
@@ -104,6 +108,11 @@ void Particle::applyForce(Force* force) {
 	_forces.push_back(force);
 }
 
+void Particle::applyForce(const Vector& force) {
+	Force* f = new Force(this, force, 0);
+	_forces.push_back(f);
+}
+
 void Particle::bounce(Vector normal) {
 	velocity = velocity - (normal * ((1+restitution) * velocity.scalar_product(normal)));
 	Vector tangent = velocity - (normal * velocity.scalar_product(normal));
@@ -135,3 +144,50 @@ void Particle::integrer(float dt) {
 	// On met a jour la position
 	position += (velocity * dt);
 }
+
+bool Particle::checkCollisionWith(const Particle& other) const {
+	float minDistance = this->getSize() + other.getSize();
+	Vector offset = other.position - this->position;
+	return offset.norm() < minDistance;
+}
+
+bool Particle::checkRestingContactWith(const Particle& other) const {
+	float minDistance = this->getSize() + other.getSize();
+	Vector offset = other.position - this->position;
+	float distance = offset.norm();
+
+	// Si la distance est inférieure à la somme des rayons, il y a une collision douce
+	return distance < minDistance;
+}
+
+
+bool Particle::resolveInterpenetration(Particle& other) {
+	float minDistance = this->getSize() + other.getSize();
+	Vector offset = other.position - this->position;
+	float distance = offset.norm();
+
+	if (distance < minDistance) {
+		Vector correction = offset.normalize() * (minDistance - distance) * 0.5;
+		this->position -= correction;
+		other.position += correction;
+		return true;
+	}
+	return false;
+}
+
+void Particle::resolveRestingContactWith(Particle& other) {
+	// Calculez le vecteur de collision et la distance de pénétration
+	Vector collisionVector = other.position - this->position;
+	float overlap = collisionVector.norm() - (this->getSize() + other.getSize());
+
+	// Si overlap est positif, il y a une pénétration
+	if (overlap > 0) {
+		// Répartir la collision
+		Vector correction = collisionVector.normalize() * (overlap * 0.5);
+
+		// Appliquez la correction aux deux particules
+		this->position -= correction;
+		other.position += correction;
+	}
+}
+

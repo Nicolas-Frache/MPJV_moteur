@@ -7,6 +7,7 @@
 #include "Ball.h"
 #include "Cannonball.h"
 #include "Laser.h"
+#include "../RodConstraint.h"
 
 #include <list>
 // https://github.com/kalwalt/ofxSkyBox
@@ -48,5 +49,7 @@ public:
 		ofxFirstPersonCamera cam;
 		ofVec3f sphereCenter;
 		
+private:
+	std::vector<RodConstraint> rodConstraints;
 
 };

@@ -23,6 +23,7 @@ class Vector
 		void operator+=(Vector vect);
 		Vector operator-();
 		Vector operator-(Vector vect);
+		Vector operator-(const Vector& other) const;
 		void operator-=(Vector vect);
 		Vector operator*(float mult);
 		void operator*=(float mult);
@@ -36,6 +37,7 @@ class Vector
 		Vector vectoriel(Vector vect);
 
 		float scalar_product(Vector vect);
+		float distance(const Vector& other) const;
 		
 
 		// getters

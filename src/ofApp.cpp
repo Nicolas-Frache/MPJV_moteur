@@ -12,6 +12,7 @@
 #include "FrictionStat.h"
 #include "ExploForce.h"
 #include "WaterForce.h"
+#include "../RodConstraint.h"
 
 
 ProjectileMenu menu;
@@ -21,6 +22,7 @@ void ofApp::setup(){
 
 	menu.setup();
 	skybox.load();
+
 
 
 	// R�glages de la cam�ra
@@ -62,77 +64,153 @@ void ofApp::setup(){
 	particle2.friction =0.99;
 	particle3.friction = 0.99;
 
+	// Exemple de contrainte de tige
+	RodConstraint rod1(&particle1, &particle2, 0);
+	RodConstraint rod2(&particle2, &particle3, 30);
+	// Ajoutez ces contraintes à une liste de contraintes
+	std::vector<RodConstraint> rodConstraints;
+	rodConstraints.push_back(rod1);
+	rodConstraints.push_back(rod2);
+
 	// Ajout particules dans la liste
 	particles.push_back(&particle1); //on range la boule de feu dans une liste faite pour les boules de feu (update override ne fonctionnant pas)
 	particles.push_back(&particle2);
 	particles.push_back(&particle3);
+
+
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-
 	float x_size = 250;
 	float y_size = 500;
 	float z_size = 250;
 
-	// Update particules
+	// Mise à jour des particules et gestion des collisions avec les bords
 	for (Particle* particle : particles) {
+		// Mise à jour de la particule
 		particle->update();
+
+		// Gestion des collisions avec les bords de l'environnement
 		auto pos = particle->position;
 		float x = pos.x(), y = pos.y(), z = pos.z();
 
+		if (x > x_size) {
+			particle->setPos(x_size, y, z);
+			particle->bounce(Vector(-1, 0, 0));
+		}
+		else if (x < -x_size) {
+			particle->setPos(-x_size, y, z);
+			particle->bounce(Vector(1, 0, 0));
+		}
 
-		if (x > x_size || x < -x_size) {
-			if (x > x_size) {
-				particle->setPos(x_size, y, z);
-				particle->bounce(Vector(-1, 0, 0));
-			}
-			else {
-				particle->setPos(-x_size, y, z);
-				particle->bounce(Vector(1, 0, 0));
-			}
+		if (y > y_size) {
+			particle->setPos(x, y_size, z);
+			particle->bounce(Vector(0, -1, 0));
 		}
-		if (y > y_size || y < 0) {
-			if (y > 500) {
-				particle->setPos(x, y_size, z);
-				particle->bounce(Vector(0, -1, 0));
-			}
-			else {
-				particle->setPos(x, 0, z);
-				particle->bounce(Vector(0, 1, 0));
-			}
+		else if (y < 0) {
+			particle->setPos(x, 0, z);
+			particle->bounce(Vector(0, 1, 0));
 		}
-		if (z > z_size || z < -z_size) {
-			if (z > z_size) {
-				particle->setPos(x, y, z_size);
-				particle->bounce(Vector(0, 0, -1));
-			}
-			else {
-				particle->setPos(x, y, -z_size);
-				particle->bounce(Vector(0, 0, 1));
+
+		if (z > z_size) {
+			particle->setPos(x, y, z_size);
+			particle->bounce(Vector(0, 0, -1));
+		}
+		else if (z < -z_size) {
+			particle->setPos(x, y, -z_size);
+			particle->bounce(Vector(0, 0, 1));
+		}
+	}
+
+	// Gestion des collisions entre les particules
+	for (Particle* particleA : particles) {
+		for (Particle* particleB : particles) {
+			if (particleA != particleB) {
+				// Vérifier si une collision se produit entre les deux particules
+				if (particleA->checkCollisionWith(*particleB)) {
+					// Résoudre la collision entre les deux particules
+					particleA->resolveInterpenetration(*particleB);
+				}
+				// Vérifiez s'il y a une collision douce
+				if (particleA->checkRestingContactWith(*particleB)) {
+					// Traite la collision au repos ici
+					particleA->resolveRestingContactWith(*particleB);
+				}
 			}
 		}
 	}
 
-	// Update particules
-	for (Particle* particle : particles) {
-		particle->update();
+	// Mettez à jour les contraintes de tige
+	for (RodConstraint& constraint : rodConstraints) {
+		constraint.satisfyConstraint();
+	}
+
+	// Détection de collision de type "câble"
+	float cableMaxLength = 100.0; // Longueur maximale du câble
+	float cableRestitution = 0.9; // Coefficient de restitution pour le câble
+
+	for (Particle* particleA : particles) {
+		for (Particle* particleB : particles) {
+			if (particleA != particleB) {
+				float distance = particleA->getPosition().distance(particleB->getPosition());
+				if (distance > cableMaxLength) {
+					// Collision de type "câble" détectée
+					// Calculez la force de rappel
+					Vector direction = particleB->getPosition() - particleA->getPosition();
+					direction.normalize();
+					float overlap = distance - cableMaxLength;
+					Vector force = direction * overlap * cableRestitution;
+					// Appliquez la force de rappel aux particules
+					particleA->applyForce(force);
+					particleB->applyForce(-force);
+				}
+			}
+		}
 	}
 }
 
+
 //--------------------------------------------------------------
-void ofApp::draw(){
+void ofApp::draw() {
 	menu.draw();
 	cam.begin();
-    skybox.draw();
+	skybox.draw();
 	ofDrawGrid(50, 5, true, true, true, false);
 
-	// Draw particules
+	// Dessiner les particules et les contraintes de tige
 	for (Particle* particle : particles) {
 		particle->draw();
 	}
+
+	// Dessiner les contraintes de tige
+	for (const RodConstraint& constraint : rodConstraints) {
+		Particle* p1 = constraint.getParticle1();
+		Particle* p2 = constraint.getParticle2();
+		ofSetColor(0, 0, 0);
+		ofSetLineWidth(20); // Épaisseur de la ligne pour représenter la contrainte de tige
+		ofDrawLine(p1->getPosition().x(), p1->getPosition().y(), p1->getPosition().z(),
+			p2->getPosition().x(), p2->getPosition().y(), p2->getPosition().z());
+		ofSetLineWidth(1); // Rétablissez l'épaisseur de la ligne par défaut
+	}
+	float cableMaxLength = 100.0;
+	// Dessiner visuellement la collision de type "câble" (ajout)
+	ofSetColor(255, 0, 0); // Couleur rouge pour le câble (à ajuster)
+	for (Particle* particleA : particles) {
+		for (Particle* particleB : particles) {
+			if (particleA != particleB) {
+				float distance = particleA->getPosition().distance(particleB->getPosition());
+				if (distance > cableMaxLength) {
+					// Dessinez le câble entre les particules
+					ofDrawLine(particleA->getPosition().x(), particleA->getPosition().y(), particleA->getPosition().z(), particleB->getPosition().x(), particleB->getPosition().y(), particleB->getPosition().z());
+				}
+			}
+		}
+	}
+
 	cam.end();
 }
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {

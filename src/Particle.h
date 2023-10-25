@@ -42,10 +42,12 @@ class Particle{
 		Vector getVelocity() const { return velocity; };
 
 		// Gestion de l'apparence
-
+		float getSize() const;
 		void applyForce(float forceX, float forceY, float forceZ, float duration);
 		void applyForce(Vector force, float duration);
 		void applyForce(Force* force);
+		void applyForce(const Vector& force);
+
 
 		
 		void integrer(float dt);
@@ -54,4 +56,12 @@ class Particle{
 
 		virtual void update();
 		virtual void draw();
+
+		// Vérifie si une collision se produit avec une autre particule
+		bool checkCollisionWith(const Particle& other) const;
+		bool checkRestingContactWith(const Particle& other) const;
+
+		// Résout une collision avec une autre particule
+		bool resolveInterpenetration(Particle& other);
+		void resolveRestingContactWith(Particle& other);
 };

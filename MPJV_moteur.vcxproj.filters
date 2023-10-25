@@ -47,6 +47,7 @@
     <ClCompile Include="src\WaterForce.cpp">
       <Filter>Forces</Filter>
     </ClCompile>
+    <ClCompile Include="RodConstraint.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
@@ -94,6 +95,7 @@
     <ClInclude Include="src\WaterForce.h">
       <Filter>Forces</Filter>
     </ClInclude>
+    <ClInclude Include="RodConstraint.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

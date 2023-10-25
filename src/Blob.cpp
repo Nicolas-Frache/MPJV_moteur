@@ -4,7 +4,7 @@
 
 Blob::Blob(Vector position, float invertedMass, ofColor color, float size)
 : Ball(position, invertedMass, color, size) {
-	
+	restitution = 0.7;
 }
 
 void Blob::addNode(Ball* ball){

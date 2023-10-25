@@ -177,7 +177,7 @@ void ofApp::keyPressed(int key) {
 		particles.push_back(newLaser);
 	}
 
-	float speed = 200;
+	float speed = 100;
 
 	if (key == OF_KEY_UP) { //on applique une force vers le haut de durée courte
 		moveable_Particle->applyForce(0, 0, speed, 0.1);

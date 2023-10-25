@@ -7,6 +7,8 @@ Ball::Ball(float X, float Y, float Z, float invertedMass, ofColor color, float s
 
     _rotationZ = 0;
     rotation = Vector(0, 0, 0);
+    restitution = 0.5;
+    friction = 0.5;
 }
 
 Ball::Ball(Vector position, float invertedMass, ofColor color, float size)

@@ -116,6 +116,7 @@
     <ClCompile Include="src\ElastForce.cpp" />
     <ClCompile Include="src\ExploForce.cpp" />
     <ClCompile Include="src\FrictionStat.cpp" />
+    <ClCompile Include="src\Impulse.cpp" />
     <ClCompile Include="src\Laser.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
@@ -124,6 +125,7 @@
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\ProjectileMenu.cpp" />
     <ClCompile Include="src\RessortForce.cpp" />
+    <ClCompile Include="src\RodConstraint.cpp" />
     <ClCompile Include="src\Vector.cpp" />
     <ClCompile Include="src\VectorTest.cpp" />
     <ClCompile Include="src\WaterForce.cpp" />
@@ -141,6 +143,7 @@
     <ClInclude Include="src\ElastForce.h" />
     <ClInclude Include="src\ExploForce.h" />
     <ClInclude Include="src\FrictionStat.h" />
+    <ClInclude Include="src\Impulse.h" />
     <ClInclude Include="src\Laser.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\Fireball.h" />
@@ -148,6 +151,7 @@
     <ClInclude Include="src\Particle.h" />
     <ClInclude Include="src\ProjectileMenu.h" />
     <ClInclude Include="src\RessortForce.h" />
+    <ClInclude Include="src\RodConstraint.h" />
     <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\VectorTest.h" />
     <ClInclude Include="src\WaterForce.h" />

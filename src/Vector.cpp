@@ -50,6 +50,10 @@ Vector Vector::operator-(Vector vect)
 	return Vector(X, Y, Z);
 }
 
+Vector Vector::operator-(const Vector& val) const {
+	return Vector(_X - val._X, _Y - val._Y, _Z - val._Z);
+}
+
 void Vector::operator-=(Vector vect) {
 	_X -= vect.x();
 	_Y -= vect.y();
@@ -115,6 +119,14 @@ Vector Vector::vectoriel(Vector vect) {
 
 float Vector::scalar_product(Vector vect) {
 	return _X * vect.x() + _Y * vect.y() + _Z * vect.z();
+}
+
+
+float Vector::distance(const Vector& other) const {
+	float dx = _X - other._X;
+	float dy = _Y - other._Y;
+	float dz = _Z - other._Z;
+	return sqrt(dx * dx + dy * dy + dz * dz);
 }
 
 

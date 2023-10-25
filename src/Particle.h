@@ -7,21 +7,21 @@ class Force; //déclaration anticipée de Force
 
 class Particle{
 	public :
-	Vector position = Vector(0, 0, 0);
-	//rotation non utile car particule
+		Vector position = Vector(0, 0, 0);
+		//rotation non utile car particule
 
-	Vector velocity = Vector(0, 0, 0);
+		Vector velocity = Vector(0, 0, 0);
 
-	float invertedMass;
-	ofColor color;
-	float size;
-	list<Force*> _forces = list<Force*>();
+		float invertedMass;
+		ofColor color;
+		float size;
+		list<Force*> _forces = list<Force*>();
 
-	float restitution = 1.0f;
-	float friction = 1.0f;
-	ofSpherePrimitive sphere;
+		float restitution = 1.0f;
+		float friction = 1.0f;
+		ofSpherePrimitive sphere;
 
-	float duration = -1.0f;
+		float duration = -1.0f;
 
 	public :
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size);
@@ -57,8 +57,8 @@ class Particle{
 		void Particle::setVelocity(float X, float Y, float Z) {
 			velocity.set(X, Y, Z);
 		}
-		void Particle::setVelocity(Vector velocity) {
-			velocity = velocity;
+		void Particle::setVelocity(Vector new_velocity) {
+			velocity = new_velocity;
 		}
 		// getter
 		Vector Particle::getVelocity() {
@@ -91,6 +91,12 @@ class Particle{
 			return invertedMass;
 		}
 
+		// Vérifie si une collision se produit avec une autre particule
+		bool checkCollisionWith(const Particle& other) const;
+		bool checkRestingContactWith(const Particle& other) const;
 
+		// Résout une collision avec une autre particule
+		bool resolveInterpenetration(Particle& other);
+		void resolveRestingContactWith(Particle& other);
 
 };

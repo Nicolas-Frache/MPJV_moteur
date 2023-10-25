@@ -60,6 +60,8 @@
     <ClCompile Include="src\VectorTest.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="src\RodConstraint.cpp" />
+    <ClCompile Include="src\Impulse.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
@@ -118,6 +120,8 @@
     <ClInclude Include="src\VectorTest.h">
       <Filter>Tests</Filter>
     </ClInclude>
+    <ClInclude Include="src\RodConstraint.h" />
+    <ClInclude Include="src\Impulse.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

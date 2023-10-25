@@ -96,7 +96,7 @@ class Particle{
 		bool checkRestingContactWith(const Particle& other) const;
 
 		// Résout une collision avec une autre particule
-		bool resolveInterpenetration(Particle& other);
-		void resolveRestingContactWith(Particle& other);
+		virtual bool resolveInterpenetration(Particle& other);
+		virtual void resolveRestingContactWith(Particle& other);
 
 };

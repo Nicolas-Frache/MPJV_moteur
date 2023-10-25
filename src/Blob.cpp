@@ -32,3 +32,31 @@ void Blob::splitBlob(){
 		ball->applyForce(&ExploForce(ball, this->getPosition(), 200, .1));
 	}
 }
+
+bool Blob::resolveInterpenetration(Particle& other) {
+	//on vérifie si la particule n'est pas déjà dans la liste du blob
+	bool temp = Particle::resolveInterpenetration(other);
+	for (int i = 0; i < nodes.size(); i++) {
+		if (nodes[i] == &other) {
+			return temp;
+		}
+	}
+	if (temp) {
+		if (dynamic_cast<Ball*>(&other) != nullptr) {
+			addNode(dynamic_cast<Ball*>(&other));
+		}
+		return temp;
+	}
+}
+
+void Blob::resolveRestingContactWith(Particle& other) {
+	Particle::resolveRestingContactWith(other);
+	for (int i = 0; i < nodes.size(); i++) {
+		if (nodes[i] == &other) {
+			return;
+		}
+	}
+	if (dynamic_cast<Ball*>(&other) != nullptr) {
+		addNode(dynamic_cast<Ball*>(&other));
+	}
+}

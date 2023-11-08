@@ -67,6 +67,12 @@
       <Filter>Forces\Impulse</Filter>
     </ClCompile>
     <ClCompile Include="src\WorldPhysics.cpp" />
+    <ClCompile Include="Matrice3x3.cpp">
+      <Filter>Matrice</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrice4x4.cpp">
+      <Filter>Matrice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
@@ -134,6 +140,12 @@
       <Filter>Forces\Impulse</Filter>
     </ClInclude>
     <ClInclude Include="src\WorldPhysics.h" />
+    <ClInclude Include="Matrice3x3.h">
+      <Filter>Matrice</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrice4x4.h">
+      <Filter>Matrice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
@@ -153,6 +165,9 @@
     </Filter>
     <Filter Include="Forces\Impulse">
       <UniqueIdentifier>{d7e79562-e50b-404a-b900-92e9f6918563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Matrice">
+      <UniqueIdentifier>{566b5b6a-1504-4aa2-85ab-4e654889824a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

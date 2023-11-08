@@ -104,6 +104,8 @@
     <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Matrice3x3.cpp" />
+    <ClCompile Include="Matrice4x4.cpp" />
     <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
     <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
@@ -132,6 +134,8 @@
     <ClCompile Include="src\WorldPhysics.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Matrice3x3.h" />
+    <ClInclude Include="Matrice4x4.h" />
     <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />

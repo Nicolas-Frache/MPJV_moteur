@@ -5,6 +5,8 @@
 #include "Ball.h"
 #include "Laser.h"
 #include "ProjectileMenu.h"
+#include "../Matrice3x3.h"
+
 
 
 
@@ -24,58 +26,113 @@ void ofApp::setup(){
 	ofSetFrameRate(144);
 	cam.setFarClip(200000);
 	
-	//Initialisation de la balle
-	ball._rotationZ = 0.0f;
-	ball.applyForce(6, -5, 0, 3);
-	//particles.push_back(&ball);
+	////Initialisation de la balle
+	//ball._rotationZ = 0.0f;
+	//ball.applyForce(6, -5, 0, 3);
+	////particles.push_back(&ball);
 
-	
-	cannonball.applyForce(0.01, -0.001, 0, 3);
-	//particles.push_back(&cannonball);
+	//
+	//cannonball.applyForce(0.01, -0.001, 0, 3);
+	////particles.push_back(&cannonball);
 
-	//particles.push_back(&laser);
-	
+	////particles.push_back(&laser);
+	//
 
-	// Initialisation particules
-	particle1.applyForce(5, 1, 10, 1);
-	//particle2.applyForce(5, 0, 20, 4);
-	particle3.applyForce(0, 20, 0, 6);
+	//// Initialisation particules
+	//particle1.applyForce(5, 1, 10, 1);
+	////particle2.applyForce(5, 0, 20, 4);
+	//particle3.applyForce(0, 20, 0, 6);
 
-	//tests forces
-	//particle1.applyForce(ConstantForce(&particle1, Vector(0, +1, 0), 9.8, 100));
-	RessortForce* elast1 = new RessortForce(&particle1, &particle2, 50, 1, 100);
-	RessortForce* elast2 = new RessortForce(&particle2, &particle1, 50, 1, 100);
-	particle1.applyForce(elast1);
-	particle2.applyForce(elast2);
-	//fin tests forces
+	////tests forces
+	////particle1.applyForce(ConstantForce(&particle1, Vector(0, +1, 0), 9.8, 100));
+	//RessortForce* elast1 = new RessortForce(&particle1, &particle2, 50, 1, 100);
+	//RessortForce* elast2 = new RessortForce(&particle2, &particle1, 50, 1, 100);
+	//particle1.applyForce(elast1);
+	//particle2.applyForce(elast2);
+	////fin tests forces
 
 
-	particle2.restitution = 0.5;
-	particle3.restitution = 0.5;
+	//particle2.restitution = 0.5;
+	//particle3.restitution = 0.5;
 
-	particle2.friction =0.99;
-	particle3.friction = 0.99;
+	//particle2.friction =0.99;
+	//particle3.friction = 0.99;
 
-	//PARTIE BLOB
-	//Particle* blob = new Particle(Vector(0, 0, 0), 1, ofColor::yellow, 10);
-	moveable_Particle = &blob;
-	DampingForce* damp = new DampingForce(&blob, 0.8);
-	blob.applyForce(damp);
+	////PARTIE BLOB
+	////Particle* blob = new Particle(Vector(0, 0, 0), 1, ofColor::yellow, 10);
+	//moveable_Particle = &blob;
+	//DampingForce* damp = new DampingForce(&blob, 0.8);
+	//blob.applyForce(damp);
 
-	blob.addNode(new Ball(100, 0, 30, 1, ofColor::blue, 20));
-	blob.addNode(new Ball(150, 0, -30, 1, ofColor::blue, 20));
-	blob.addNode(new Ball(120, 0, 40, 1, ofColor::blue, 20));
-	blob.applyForce(20, 10, 20, 1);
-	createParticle(&blob);
-	createParticle(blob.nodes[0]);
-	createParticle(blob.nodes[1]);
-	createParticle(blob.nodes[2]);
+	//blob.addNode(new Ball(100, 0, 30, 1, ofColor::blue, 20));
+	//blob.addNode(new Ball(150, 0, -30, 1, ofColor::blue, 20));
+	//blob.addNode(new Ball(120, 0, 40, 1, ofColor::blue, 20));
+	//blob.applyForce(20, 10, 20, 1);
+	//createParticle(&blob);
+	//createParticle(blob.nodes[0]);
+	//createParticle(blob.nodes[1]);
+	//createParticle(blob.nodes[2]);
 	
 	
 	// Ajout particules dans la liste
 	//particles.push_back(&particle1);
 	//particles.push_back(&particle2);
 	//particles.push_back(&particle3);
+
+
+	// Créez une matrice mat1
+	//Matrice3x3 mat1(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0);
+	Matrice3x3 mat1(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
+
+	// Affichez mat1
+	std::cout << "Matrice mat1 :" << std::endl;
+	mat1.afficher();
+
+	// Créez une matrice mat2
+	Matrice3x3 mat2(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
+
+	// Affichez mat2
+	std::cout << "Matrice mat2 :" << std::endl;
+	mat2.afficher();
+
+	// Calculez le produit de mat1 et mat2 et affichez le résultat
+	Matrice3x3 mat3 = mat1.produit(mat2);
+	std::cout << "Produit de mat1 et mat2 (mat3) :" << std::endl;
+	mat3.afficher();
+
+	// Calculez le déterminant de mat1 et affichez-le
+	float determinant = mat1.calculerDeterminant();
+	std::cout << "Determinant de mat1 : " << determinant << std::endl;
+
+	// Vérifiez si mat1 est orthonormée et affichez le résultat
+	if (mat1.estOrthonormee()) {
+		std::cout << "La matrice mat1 est orthonormee." << std::endl;
+	}
+	else {
+		std::cout << "La matrice mat1 n'est pas orthonormee." << std::endl;
+	}
+
+	// Calculez et affichez l'inverse de mat1
+	Matrice3x3 inverseMat1 = mat1.inverse();
+	std::cout << "Inverse de mat1 :" << std::endl;
+	inverseMat1.afficher();
+
+	// Calculez et affichez la transposée de mat1
+	Matrice3x3 transposedMat1 = mat1.transposer();
+	std::cout << "Transposée de mat1 :" << std::endl;
+	transposedMat1.afficher();
+
+	//// Calculez et affichez le mineur de mat1 à l'emplacement (1, 1)
+	//float minor = mat1.calculerMinor(1, 1);
+	//std::cout << "Mineur de mat1 à l'emplacement (1, 1) : " << minor << std::endl;
+
+	if (mat1 == mat2) {
+		std::cout << "Les matrices sont egales." << std::endl;
+	}
+	else {
+		std::cout << "Les matrices ne sont pas egales." << std::endl;
+	}
+
 }
 
 //--------------------------------------------------------------

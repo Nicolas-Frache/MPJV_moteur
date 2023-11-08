@@ -128,7 +128,6 @@
     <ClCompile Include="src\ProjectileMenu.cpp" />
     <ClCompile Include="src\RessortForce.cpp" />
     <ClCompile Include="src\RodConstraint.cpp" />
-    <ClCompile Include="src\test.cpp" />
     <ClCompile Include="src\Vector.cpp" />
     <ClCompile Include="src\VectorTest.cpp" />
     <ClCompile Include="src\WaterForce.cpp" />
@@ -158,7 +157,6 @@
     <ClInclude Include="src\ProjectileMenu.h" />
     <ClInclude Include="src\RessortForce.h" />
     <ClInclude Include="src\RodConstraint.h" />
-    <ClInclude Include="src\test.h" />
     <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\VectorTest.h" />
     <ClInclude Include="src\WaterForce.h" />

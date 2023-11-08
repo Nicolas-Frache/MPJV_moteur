@@ -67,7 +67,6 @@
       <Filter>Forces\Impulse</Filter>
     </ClCompile>
     <ClCompile Include="src\WorldPhysics.cpp" />
-    <ClCompile Include="src\test.cpp" />
     <ClCompile Include="src\Matrice3x3.cpp">
       <Filter>Matrice</Filter>
     </ClCompile>
@@ -141,7 +140,6 @@
       <Filter>Forces\Impulse</Filter>
     </ClInclude>
     <ClInclude Include="src\WorldPhysics.h" />
-    <ClInclude Include="src\test.h" />
     <ClInclude Include="src\Matrice4x4.h">
       <Filter>Matrice</Filter>
     </ClInclude>

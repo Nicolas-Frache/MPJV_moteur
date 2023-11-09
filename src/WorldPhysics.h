@@ -5,6 +5,7 @@
 
 #include "Impulse.h"
 #include "RodConstraint.h"
+#include <ParticleForceRegistry.cpp>
 
 class WorldPhysics
 {
@@ -27,6 +28,8 @@ class WorldPhysics
 
 		void addRodConstraint(Particle* particle1, Particle* particle2, float length);
 		void removeRodConstraint(Particle* particle1, Particle* particle2);
+
+		ParticleForceRegistry forceRegistry = ParticleForceRegistry();
 
 	private:
 		vector<Particle*> particles = vector<Particle*>();

@@ -17,7 +17,7 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	this->sphere.setRadius(size);
 
 	// Gravite
-	applyForce(new ConstantForce(this, Vector(0, -9.8, 0)));
+	//applyForce(new ConstantForce(this, Vector(0, -9.8, 0)));
 }
 
 void Particle::draw() {
@@ -69,20 +69,14 @@ void Particle::integrer(float dt) {
 	//cout << "size of forces: " << _forces.size() << endl;
 	auto it = _forces.begin();
 	while (it != _forces.end()) {
-		//Force* force = *it;
-		float applicationTime = (*it)->updateTimeElapsed(dt);
-
-		velocity += (*it)->value() * invertedMass * applicationTime;
-		//avec force.value on peut utiliser la force pour récup l'accel (Sum(F) = m*a, d'où a = F/m d'où v = F/m * dt)
-
-		if (applicationTime != dt) {
-			it = _forces.erase(it); // Suppression de la force si sa duree est terminee
-		}
-		else {
-			++it; // Element suivant
-		}
+		forceAccum += (*it)->value();
 	}
+	//Force* force = *it;
+	//float applicationTime = (*it)->updateTimeElapsed(dt);
 
+	velocity += forceAccum * invertedMass * dt;
+	//avec force.value on peut utiliser la force pour récup l'accel (Sum(F) = m*a, d'où a = F/m d'où v = F/m * dt)
+	
 	// On met a jour la position
 	position += (velocity * dt);
 }

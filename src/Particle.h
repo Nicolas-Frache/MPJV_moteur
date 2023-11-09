@@ -23,6 +23,18 @@ class Particle{
 
 		float duration = -1.0f;
 
+		// Gestion forces ------------------
+		Vector forceAccum = Vector(0, 0, 0);
+
+		void clearAccumulator() {
+			forceAccum = Vector(0, 0, 0);
+		}
+
+		void addForce(Vector force) {
+			forceAccum += force;
+		}
+
+
 	public :
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size);
 		Particle(Vector position, float invertedMass, ofColor color, float size);

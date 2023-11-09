@@ -1,4 +1,5 @@
 #include "WorldPhysics.h"
+#include "NewGravity.cpp"
 
 WorldPhysics::WorldPhysics()
 {
@@ -14,10 +15,14 @@ WorldPhysics::WorldPhysics(float x_size, float y_size, float z_size)
 void WorldPhysics::update()
 {
 	updateCollisions();
-	updateBoundaries();
+	//updateBoundaries();
 	updateRodConstraints();
 
-	// Update particules
+	for (Particle* particle : particles) {
+		particle->clearAccumulator();
+	}
+	forceRegistry.updateForces(ofGetLastFrameTime());
+	
 	for (Particle* particle : particles) {
 		particle->update();
 	}
@@ -26,6 +31,7 @@ void WorldPhysics::update()
 void WorldPhysics::addParticle(Particle* particle)
 {
 	particles.push_back(particle);
+	forceRegistry.addRegister(particle, new Gravity());
 }
 
 void WorldPhysics::removeParticle(Particle* particle)
@@ -126,3 +132,7 @@ void WorldPhysics::updateRodConstraints()
 		rodConstraint->satisfyConstraint();
 	}
 }
+
+
+
+

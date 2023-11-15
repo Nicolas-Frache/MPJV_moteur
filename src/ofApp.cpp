@@ -1,16 +1,5 @@
 #include "ofApp.h"
-#include "Vector.h"
-#include "Particle.h"
-#include <list>
-#include "Ball.h"
-#include "Laser.h"
-#include "ProjectileMenu.h"
-#include "../Matrice3x3.h"
 
-
-
-
-ProjectileMenu menu;
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -26,37 +15,6 @@ void ofApp::setup(){
 	ofSetFrameRate(144);
 	cam.setFarClip(200000);
 	
-	////Initialisation de la balle
-	//ball._rotationZ = 0.0f;
-	//ball.applyForce(6, -5, 0, 3);
-	////particles.push_back(&ball);
-
-	//
-	//cannonball.applyForce(0.01, -0.001, 0, 3);
-	////particles.push_back(&cannonball);
-
-	////particles.push_back(&laser);
-	//
-
-	//// Initialisation particules
-	//particle1.applyForce(5, 1, 10, 1);
-	////particle2.applyForce(5, 0, 20, 4);
-	//particle3.applyForce(0, 20, 0, 6);
-
-	////tests forces
-	////particle1.applyForce(ConstantForce(&particle1, Vector(0, +1, 0), 9.8, 100));
-	//RessortForce* elast1 = new RessortForce(&particle1, &particle2, 50, 1, 100);
-	//RessortForce* elast2 = new RessortForce(&particle2, &particle1, 50, 1, 100);
-	//particle1.applyForce(elast1);
-	//particle2.applyForce(elast2);
-	////fin tests forces
-
-
-	//particle2.restitution = 0.5;
-	//particle3.restitution = 0.5;
-
-	//particle2.friction =0.99;
-	//particle3.friction = 0.99;
 
 	////PARTIE BLOB
 	////Particle* blob = new Particle(Vector(0, 0, 0), 1, ofColor::yellow, 10);

@@ -15,7 +15,8 @@
 #include "WaterForce.h"
 #include "DampingForce.h"
 #include "WorldPhysics.h"
-#include "../Matrice3x3.h"
+#include "Matrice3x3.h"
+#include "ProjectileMenu.h"
 
 #include "CorpsRigide.h"
 
@@ -71,6 +72,8 @@ class ofApp : public ofBaseApp {
 		ofxSkyBox skybox;
 		ofxFirstPersonCamera cam;
 		ofVec3f sphereCenter;
+
+		ProjectileMenu menu;
 		
 
 };

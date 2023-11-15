@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Particle.h"
+#include "CorpsRigide.h"
 #include <list>
 
 #include "Impulse.h"
@@ -25,11 +26,15 @@ class WorldPhysics
 		void addParticle(Particle* particle);
 		void removeParticle(Particle* particle);
 
+		void addCorps(CorpsRigide* corps);
+		void removeCorps(CorpsRigide* corps);
+
 		void addRodConstraint(Particle* particle1, Particle* particle2, float length);
 		void removeRodConstraint(Particle* particle1, Particle* particle2);
 
 	private:
 		vector<Particle*> particles = vector<Particle*>();
+		vector<CorpsRigide*> corpsRigides = vector<CorpsRigide*>();
 		vector<RodConstraint*> rodConstraints = vector<RodConstraint*>();
 
 		float _x_size = 1000;

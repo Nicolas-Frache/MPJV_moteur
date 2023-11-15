@@ -133,6 +133,10 @@ void ofApp::setup(){
 		std::cout << "Les matrices ne sont pas egales." << std::endl;
 	}
 
+	//PARTIE CORPS RIGIDES
+	cube.applyForce(Vector(1,1,0), 0.1);
+	corpsRigides.push_back(&cube);
+	world.addCorps(&cube); //je sais pas si la liste corpsRigides est utile puisqu'on utilise world
 }
 
 //--------------------------------------------------------------
@@ -152,6 +156,9 @@ void ofApp::draw(){
 	// Draw particules
 	for (Particle* particle : particles) {
 		particle->draw();
+	}
+	for (CorpsRigide* corps : corpsRigides) {
+		corps->draw();
 	}
 	cam.end();
 }

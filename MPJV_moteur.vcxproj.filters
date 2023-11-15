@@ -73,6 +73,7 @@
     <ClCompile Include="src\Matrice4x4.cpp">
       <Filter>Matrice</Filter>
     </ClCompile>
+    <ClCompile Include="src\CorpsRigide.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="src\Matrice3x3.h">
       <Filter>Matrice</Filter>
     </ClInclude>
+    <ClInclude Include="src\CorpsRigide.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

@@ -58,7 +58,7 @@ void ofApp::setup(){
 
 	//PARTIE BLOB
 	//Particle* blob = new Particle(Vector(0, 0, 0), 1, ofColor::yellow, 10);
-	moveable_Particle = &blob;
+	/*moveable_Particle = &blob;
 	DampingForce* damp = new DampingForce(&blob, 0.8);
 	blob.applyForce(damp);
 
@@ -69,13 +69,18 @@ void ofApp::setup(){
 	createParticle(&blob);
 	createParticle(blob.nodes[0]);
 	createParticle(blob.nodes[1]);
-	createParticle(blob.nodes[2]);
+	createParticle(blob.nodes[2]);*/
 	
 	
 	// Ajout particules dans la liste
 	//particles.push_back(&particle1);
 	//particles.push_back(&particle2);
 	//particles.push_back(&particle3);
+
+	//PARTIE CORPS RIGIDES
+	cube.applyForce(Vector(1,1,0), 0.1);
+	corpsRigides.push_back(&cube);
+	world.addCorps(&cube); //je sais pas si la liste corpsRigides est utile puisqu'on utilise world
 }
 
 //--------------------------------------------------------------
@@ -95,6 +100,9 @@ void ofApp::draw(){
 	// Draw particules
 	for (Particle* particle : particles) {
 		particle->draw();
+	}
+	for (CorpsRigide* corps : corpsRigides) {
+		corps->draw();
 	}
 	cam.end();
 }

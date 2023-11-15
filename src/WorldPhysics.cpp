@@ -21,6 +21,9 @@ void WorldPhysics::update()
 	for (Particle* particle : particles) {
 		particle->update();
 	}
+	for (CorpsRigide* corps : corpsRigides) {
+		corps->update();
+	}
 }
 
 void WorldPhysics::addParticle(Particle* particle)
@@ -31,6 +34,16 @@ void WorldPhysics::addParticle(Particle* particle)
 void WorldPhysics::removeParticle(Particle* particle)
 {
 	particles.erase(std::remove(particles.begin(), particles.end(), particle), particles.end());
+}
+
+void WorldPhysics::addCorps(CorpsRigide* corps)
+{
+	corpsRigides.push_back(corps);
+}
+
+void WorldPhysics::removeCorps(CorpsRigide* corps)
+{
+	corpsRigides.erase(std::remove(corpsRigides.begin(), corpsRigides.end(), corps), corpsRigides.end());
 }
 
 void WorldPhysics::addRodConstraint(Particle* particle1, Particle* particle2, float length)
@@ -113,6 +126,48 @@ void WorldPhysics::updateBoundaries()
 			else {
 				particle->setPos(x, y, -_z_size);
 				particle->bounce(Vector(0, 0, 1));
+			}
+		}
+	}
+
+	for (CorpsRigide* corps : corpsRigides) {
+
+		corps->update();
+
+		auto pos = corps->centreMasse->position;
+		//cout << "POS: " << pos << endl;
+
+		float x = pos.x(), y = pos.y(), z = pos.z();
+
+
+		if (x > _x_size || x < -_x_size) {
+			if (x > _x_size) {
+				corps->centreMasse->setPos(_x_size, y, z);
+				corps->centreMasse->bounce(Vector(-1, 0, 0));
+			}
+			else {
+				corps->centreMasse->setPos(-_x_size, y, z);
+				corps->centreMasse->bounce(Vector(1, 0, 0));
+			}
+		}
+		if (y > _y_size || y < 0) {
+			if (y > _y_size) {
+				corps->centreMasse->setPos(x, _y_size, z);
+				corps->centreMasse->bounce(Vector(0, -1, 0));
+			}
+			else {
+				corps->centreMasse->setPos(x, 0, z);
+				corps->centreMasse->bounce(Vector(0, 1, 0));
+			}
+		}
+		if (z > _z_size || z < -_z_size) {
+			if (z > _z_size) {
+				corps->centreMasse->setPos(x, y, _z_size);
+				corps->centreMasse->bounce(Vector(0, 0, -1));
+			}
+			else {
+				corps->centreMasse->setPos(x, y, -_z_size);
+				corps->centreMasse->bounce(Vector(0, 0, 1));
 			}
 		}
 	}

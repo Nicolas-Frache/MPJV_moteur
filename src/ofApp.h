@@ -15,6 +15,7 @@
 #include "WaterForce.h"
 #include "DampingForce.h"
 #include "WorldPhysics.h"
+#include "CorpsRigide.h"
 
 #include <list>
 // https://github.com/kalwalt/ofxSkyBox
@@ -59,6 +60,11 @@ class ofApp : public ofBaseApp {
 		Cannonball cannonball = Cannonball(0, 0, 0, 1, ofColor::black, 20);
 		
 		Blob blob = Blob(Vector(50, 20, 0), 5, ofColor::aquamarine, 25);
+
+		//PARTIE CORPS RIGIDES
+		list<CorpsRigide*> corpsRigides = list<CorpsRigide*>();
+		Particle centerCube = Particle(Vector(0, 10, 0), 1, ofColor::blue, 10);
+		CorpsRigide cube = CorpsRigide(&centerCube, 5, 15, 5, ofColor::blue);
 
 		ofxSkyBox skybox;
 		ofxFirstPersonCamera cam;

@@ -1,4 +1,5 @@
 #pragma once
+#include "Vector.h"
 
 class Matrice4x4 {
 public:
@@ -33,6 +34,9 @@ public:
 
     // Méthode pour afficher la matrice
     void afficher() const;
+
+    // Méthode pour obtenir les angles d'Euler
+    Vector getEuler() const;
 
     // Surcharge de l'opérateur "==" pour comparer deux matrices 4x4
     bool operator==(const Matrice4x4& other) const;

@@ -69,9 +69,21 @@ bool Matrice4x4::estCarree() const {
 }
 
 bool Matrice4x4::estOrthogonale() const {
-    // Implémentez la vérification d'orthogonalité pour une matrice 4x4 ici
+    Matrice4x4 transposed = transposer();
+    Matrice4x4 result = (*this).produit(transposed);
 
-    return false; // Remplacez par la vérification d'orthogonalité
+    // Toutes les entrées diagonales de la multiplication doivent être proches de 1
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            if (i == j && abs(result.mat[i][j] - 1.0) > 0.01) {
+                return false;
+            }
+            else if (i != j && abs(result.mat[i][j]) > 0.01) {
+                return false;
+            }
+        }
+    }
+    return true;
 }
 
 void Matrice4x4::afficher() const {
@@ -81,6 +93,18 @@ void Matrice4x4::afficher() const {
         }
         std::cout << std::endl;
     }
+}
+
+Vector Matrice4x4::getEuler() const {
+    Vector euler;
+
+    euler.set(
+        atan2(mat[2][1], mat[2][2]),
+        atan2(-mat[2][0], sqrt(mat[2][1] * mat[2][1] + mat[2][2] * mat[2][2])),
+        atan2(mat[1][0], mat[0][0])
+    );
+
+	return euler;
 }
 
 bool Matrice4x4::operator==(const Matrice4x4& other) const {

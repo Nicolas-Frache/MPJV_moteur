@@ -15,7 +15,7 @@ WorldPhysics::WorldPhysics(float x_size, float y_size, float z_size)
 void WorldPhysics::update()
 {
 	updateCollisions();
-	//updateBoundaries();
+	updateBoundaries();
 	updateRodConstraints();
 
 	for (Particle* particle : particles) {

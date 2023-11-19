@@ -4,7 +4,6 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\ProjectileMenu.cpp" />
-    <ClCompile Include="src\Vector.cpp" />
     <ClCompile Include="src\Ball.cpp">
       <Filter>Particules</Filter>
     </ClCompile>
@@ -67,24 +66,28 @@
       <Filter>Forces\Impulse</Filter>
     </ClCompile>
     <ClCompile Include="src\WorldPhysics.cpp" />
-    <ClCompile Include="src\Matrice3x3.cpp">
-      <Filter>Matrice</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Matrice4x4.cpp">
-      <Filter>Matrice</Filter>
-    </ClCompile>
     <ClCompile Include="src\ParticleForceRegistry.cpp">
-      <Filter>Forces\GestionForces</Filter>
+      <Filter>Forces\NewForces</Filter>
     </ClCompile>
     <ClCompile Include="src\ParticleForceGenerator.cpp">
-      <Filter>Forces\GestionForces</Filter>
+      <Filter>Forces\NewForces</Filter>
     </ClCompile>
-    <ClCompile Include="src\NewGravity.cpp" />
+    <ClCompile Include="src\NewGravity.cpp">
+      <Filter>Forces\NewForces</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Matrice3x3.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Matrice4x4.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Vector.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ProjectileMenu.h" />
-    <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\Ball.h">
       <Filter>Particules</Filter>
     </ClInclude>
@@ -147,11 +150,14 @@
       <Filter>Forces\Impulse</Filter>
     </ClInclude>
     <ClInclude Include="src\WorldPhysics.h" />
-    <ClInclude Include="src\Matrice4x4.h">
-      <Filter>Matrice</Filter>
-    </ClInclude>
     <ClInclude Include="src\Matrice3x3.h">
-      <Filter>Matrice</Filter>
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Matrice4x4.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vector.h">
+      <Filter>Tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +178,12 @@
     </Filter>
     <Filter Include="Forces\Impulse">
       <UniqueIdentifier>{d7e79562-e50b-404a-b900-92e9f6918563}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forces\NewForces">
+      <UniqueIdentifier>{6b67e29c-ea38-4a0f-be25-af8ac28e926c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{70cf32db-d39f-406b-b14c-8fd4f9d05f2b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

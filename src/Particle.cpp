@@ -70,6 +70,7 @@ void Particle::integrer(float dt) {
 	auto it = _forces.begin();
 	while (it != _forces.end()) {
 		forceAccum += (*it)->value();
+		++it;
 	}
 	//Force* force = *it;
 	//float applicationTime = (*it)->updateTimeElapsed(dt);

@@ -5,7 +5,7 @@
 #include "Ball.h"
 #include "Laser.h"
 #include "ProjectileMenu.h"
-#include "../Matrice3x3.h"
+#include "Matrice3x3.h"
 
 
 
@@ -75,7 +75,7 @@ void ofApp::setup(){
 	
 	
 	// Ajout particules dans la liste
-	//particles.push_back(&particle1);
+	createParticle(&particle1);
 	//particles.push_back(&particle2);
 	//particles.push_back(&particle3);
 

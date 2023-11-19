@@ -15,7 +15,7 @@
 #include "WaterForce.h"
 #include "DampingForce.h"
 #include "WorldPhysics.h"
-#include "../Matrice3x3.h"
+#include "Matrice3x3.h"
 
 
 #include <list>

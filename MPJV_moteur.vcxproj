@@ -113,6 +113,7 @@
     <ClCompile Include="src\Cannonball.cpp" />
     <ClCompile Include="src\ConstantForce.cpp" />
     <ClCompile Include="src\CorpsRigide.cpp" />
+    <ClCompile Include="src\CustomAsserts.cpp" />
     <ClCompile Include="src\DampingForce.cpp" />
     <ClCompile Include="src\ElastForce.cpp" />
     <ClCompile Include="src\ExploImpulse.cpp" />
@@ -121,6 +122,7 @@
     <ClCompile Include="src\Laser.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Matrice3x3.cpp" />
+    <ClCompile Include="src\Matrice3x3Tests.cpp" />
     <ClCompile Include="src\Matrice4x4.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\Fireball.cpp" />
@@ -144,6 +146,7 @@
     <ClInclude Include="src\Cannonball.h" />
     <ClInclude Include="src\ConstantForce.h" />
     <ClInclude Include="src\CorpsRigide.h" />
+    <ClInclude Include="src\CustomAsserts.h" />
     <ClInclude Include="src\DampingForce.h" />
     <ClInclude Include="src\ElastForce.h" />
     <ClInclude Include="src\ExploImpulse.h" />
@@ -160,7 +163,6 @@
     <ClInclude Include="src\RessortForce.h" />
     <ClInclude Include="src\RodConstraint.h" />
     <ClInclude Include="src\Vector.h" />
-    <ClInclude Include="src\VectorTest.h" />
     <ClInclude Include="src\WaterForce.h" />
     <ClInclude Include="src\WorldPhysics.h" />
   </ItemGroup>

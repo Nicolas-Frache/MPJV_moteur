@@ -74,6 +74,12 @@
       <Filter>Matrice</Filter>
     </ClCompile>
     <ClCompile Include="src\CorpsRigide.cpp" />
+    <ClCompile Include="src\CustomAsserts.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Matrice3x3Tests.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
@@ -124,9 +130,6 @@
     <ClInclude Include="src\Blob.h">
       <Filter>Particules</Filter>
     </ClInclude>
-    <ClInclude Include="src\VectorTest.h">
-      <Filter>Tests</Filter>
-    </ClInclude>
     <ClInclude Include="src\RodConstraint.h" />
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h">
       <Filter>Addons</Filter>
@@ -148,6 +151,9 @@
       <Filter>Matrice</Filter>
     </ClInclude>
     <ClInclude Include="src\CorpsRigide.h" />
+    <ClInclude Include="src\CustomAsserts.h">
+      <Filter>Tests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

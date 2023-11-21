@@ -38,58 +38,77 @@ void ofApp::setup(){
 	//particles.push_back(&particle3);
 
 
+
+
+	//MATRICE 4X4
 	// Créez une matrice mat1
-	//Matrice3x3 mat1(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0);
-	Matrice3x3 mat1(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
+	Matrice4x4 matInversible(
+		2.0, 1.0, 0.0, 3.0,
+		0.0, 3.0, -1.0, 1.0,
+		1.0, 0.0, 3.0, -1.0,
+		-2.0, 1.0, 3.0, 0.0
+	);
+
+	Matrice4x4 matInversibleTranspose(
+		2.0, 0.0, 1.0, -2.0,
+		1.0, 3.0, 0.0, 1.0,
+		0.0, -1.0, 3.0, 3.0,
+		3.0, 1.0, -1.0, 0.0
+	);
 
 	// Affichez mat1
 	std::cout << "Matrice mat1 :" << std::endl;
-	mat1.afficher();
+	matInversible.afficher();
 
 	// Créez une matrice mat2
-	Matrice3x3 mat2(1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0);
+	Matrice4x4 mat2(1.0, 2.0, 3.0, 4.0,
+		5.0, 6.0, 7.0, 8.0,
+		9.0, 10.0, 11.0, 12.0,
+		13.0, 14.0, 15.0, 16.0);
 
 	// Affichez mat2
 	std::cout << "Matrice mat2 :" << std::endl;
 	mat2.afficher();
 
 	// Calculez le produit de mat1 et mat2 et affichez le résultat
-	Matrice3x3 mat3 = mat1.produit(mat2);
+	Matrice4x4 mat3 = matInversible.produit(mat2);
 	std::cout << "Produit de mat1 et mat2 (mat3) :" << std::endl;
 	mat3.afficher();
 
 	// Calculez le déterminant de mat1 et affichez-le
-	float determinant = mat1.calculerDeterminant();
+	float determinant = matInversible.calculerDeterminant();
 	std::cout << "Determinant de mat1 : " << determinant << std::endl;
 
 	// Vérifiez si mat1 est orthonormée et affichez le résultat
-	if (mat1.estOrthonormee()) {
-		std::cout << "La matrice mat1 est orthonormee." << std::endl;
+	if (matInversible.estOrthogonale()) {
+		std::cout << "La matrice matInversible est orthogonale." << std::endl;
 	}
 	else {
-		std::cout << "La matrice mat1 n'est pas orthonormee." << std::endl;
+		std::cout << "La matrice matInversible n'est pas orthogonale." << std::endl;
 	}
 
 	// Calculez et affichez l'inverse de mat1
-	Matrice3x3 inverseMat1 = mat1.inverse();
+	Matrice4x4 inverseMat1 = matInversible.inverse();
 	std::cout << "Inverse de mat1 :" << std::endl;
 	inverseMat1.afficher();
 
 	// Calculez et affichez la transposée de mat1
-	Matrice3x3 transposedMat1 = mat1.transposer();
-	std::cout << "Transposée de mat1 :" << std::endl;
-	transposedMat1.afficher();
+	Matrice4x4 transposedMatInversible = matInversible.transposer();
+	std::cout << "Transposee de mat1 :" << std::endl;
+	transposedMatInversible.afficher();
 
-	//// Calculez et affichez le mineur de mat1 à l'emplacement (1, 1)
-	//float minor = mat1.calculerMinor(1, 1);
-	//std::cout << "Mineur de mat1 à l'emplacement (1, 1) : " << minor << std::endl;
+	// Calculez et affichez le mineur de mat1 à l'emplacement (1, 1)
+	float minor = matInversible.calculerMinor(1, 1);
+	std::cout << "Mineur de mat1 à l'emplacement (1, 1) : " << minor << std::endl;
 
-	if (mat1 == mat2) {
+	if (matInversible == mat2) {
 		std::cout << "Les matrices sont egales." << std::endl;
 	}
 	else {
-		std::cout << "Les matrices ne sont pas egales." << std::endl;
+		std::cout << "Les matrices ne sont pas égales." << std::endl;
 	}
+
+
 
 	//PARTIE CORPS RIGIDES
 	//cube.applyForce(Vector(0,1,0), 0.1);

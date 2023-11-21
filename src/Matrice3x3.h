@@ -14,11 +14,11 @@ public:
     bool estOrthonormee() const;
     bool estOrthogonale() const;
     bool estCarree() const;
+    float calculerMinor(int i, int j) const;
 
     void afficher() const;
 
 
 private:
     float mat[3][3];
-    float calculerMinor(int i, int j) const;
 };

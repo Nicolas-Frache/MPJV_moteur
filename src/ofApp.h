@@ -16,6 +16,7 @@
 #include "DampingForce.h"
 #include "WorldPhysics.h"
 #include "Matrice3x3.h"
+#include "Matrice4x4.h"
 #include "ProjectileMenu.h"
 
 #include "CorpsRigide.h"

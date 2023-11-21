@@ -125,6 +125,7 @@
     <ClCompile Include="src\Matrice3x3.cpp" />
     <ClCompile Include="src\Matrice3x3Tests.cpp" />
     <ClCompile Include="src\Matrice4x4.cpp" />
+    <ClCompile Include="src\Matrice4x4Tests.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\Fireball.cpp" />
     <ClCompile Include="src\Force.cpp" />

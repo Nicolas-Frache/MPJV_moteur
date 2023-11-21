@@ -4,6 +4,8 @@
 #include "CustomAsserts.h"
 
 #include "Matrice3x3Tests.cpp"
+#include "Matrice4x4Tests.cpp"
+
 
 //========================================================================
 int main( ){
@@ -16,6 +18,8 @@ int main( ){
 	vectorTestLaunch(ca);
 	ca.beginTestClass("Tests de la classe Matrice3x3");
 	matrice3LaunchTest(ca);
+	ca.beginTestClass("Tests de la classe Matrice4x4");
+	matrice4LaunchTest(ca);
 
 	ca.endTestSession();
 

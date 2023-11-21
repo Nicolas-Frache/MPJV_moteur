@@ -1,4 +1,5 @@
 #include "Matrice4x4.h"
+#include "Matrice3x3.h"
 #include <iostream>
 #include <cmath>
 
@@ -64,10 +65,17 @@ Matrice4x4 Matrice4x4::transposer() const {
 }
 
 float Matrice4x4::calculerDeterminant() const {
-    // Implémentez le calcul du déterminant pour une matrice 4x4 ici
+    // Formule du déterminant pour une matrice 4x4
+    float det =
+        mat[0][0] * (mat[1][1] * (mat[2][2] * mat[3][3] - mat[2][3] * mat[3][2]) - mat[1][2] * (mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1]) + mat[1][3] * (mat[2][1] * mat[3][2] - mat[2][2] * mat[3][1])) -
+        mat[0][1] * (mat[1][0] * (mat[2][2] * mat[3][3] - mat[2][3] * mat[3][2]) - mat[1][2] * (mat[2][0] * mat[3][3] - mat[2][3] * mat[3][0]) + mat[1][3] * (mat[2][0] * mat[3][2] - mat[2][2] * mat[3][0])) +
+        mat[0][2] * (mat[1][0] * (mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1]) - mat[1][1] * (mat[2][0] * mat[3][3] - mat[2][3] * mat[3][0]) + mat[1][3] * (mat[2][0] * mat[3][1] - mat[2][1] * mat[3][0])) -
+        mat[0][3] * (mat[1][0] * (mat[2][1] * mat[3][2] - mat[2][2] * mat[3][1]) - mat[1][1] * (mat[2][0] * mat[3][2] - mat[2][2] * mat[3][0]) + mat[1][2] * (mat[2][0] * mat[3][1] - mat[2][1] * mat[3][0]));
 
-    return 0.0; // Remplacez par la valeur du déterminant
+    return det;
 }
+
+
 
 bool Matrice4x4::estCarree() const {
     return (mat[0][0] != 0.0 && mat[0][1] != 0.0 && mat[0][2] != 0.0 && mat[0][3] != 0.0 &&
@@ -173,4 +181,98 @@ float Matrice4x4::normalizeAngle(float angle) const {
         angle += 2.0 * PI;
     }
     return angle;
+}
+
+float Matrice4x4::calculerMinor(int row, int col) const {
+    // Vérifier si les indices sont valides
+    if (row < 0 || row >= 4 || col < 0 || col >= 4) {
+        std::cerr << "Indices de mineur non valides." << std::endl;
+        return 0.0f;
+    }
+
+    // Créer une matrice 3x3 en excluant la ligne et la colonne spécifiées
+    float minorMatrix[3][3];
+    int minorRow, minorCol;
+    for (int i = 0; i < 4; ++i) {
+        if (i == row) continue;
+        for (int j = 0; j < 4; ++j) {
+            if (j == col) continue;
+            minorRow = (i < row) ? i : i - 1;
+            minorCol = (j < col) ? j : j - 1;
+            minorMatrix[minorRow][minorCol] = mat[i][j];
+        }
+    }
+
+    // Calculer le déterminant de la matrice 3x3 résultante
+    Matrice3x3 minorMat3x3(
+        minorMatrix[0][0], minorMatrix[0][1], minorMatrix[0][2],
+        minorMatrix[1][0], minorMatrix[1][1], minorMatrix[1][2],
+        minorMatrix[2][0], minorMatrix[2][1], minorMatrix[2][2]
+    );
+
+    return minorMat3x3.calculerDeterminant();
+}
+
+Matrice4x4 Matrice4x4::inverse() const {
+    Matrice4x4 result;
+
+    float determinant = calculerDeterminant();
+    
+
+    result[0][0] = (mat[1][1] * (mat[2][2] * mat[3][3] - mat[2][3] * mat[3][2]) - mat[1][2] * (mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1]) + mat[1][3] * (mat[2][1] * mat[3][2] - mat[2][2] * mat[3][1])) / determinant;
+    result[0][1] = -(mat[0][1] * (mat[2][2] * mat[3][3] - mat[2][3] * mat[3][2]) - mat[0][2] * (mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1]) + mat[0][3] * (mat[2][1] * mat[3][2] - mat[2][2] * mat[3][1])) / determinant;
+    result[0][2] = (mat[0][1] * (mat[1][2] * mat[3][3] - mat[1][3] * mat[3][2]) - mat[0][2] * (mat[1][1] * mat[3][3] - mat[1][3] * mat[3][1]) + mat[0][3] * (mat[1][1] * mat[3][2] - mat[1][2] * mat[3][1])) / determinant;
+    result[0][3] = -(mat[0][1] * (mat[1][2] * mat[2][3] - mat[1][3] * mat[2][2]) - mat[0][2] * (mat[1][1] * mat[2][3] - mat[1][3] * mat[2][1]) + mat[0][3] * (mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1])) / determinant;
+
+    result[1][0] = -(mat[1][0] * (mat[2][2] * mat[3][3] - mat[2][3] * mat[3][2]) - mat[1][2] * (mat[2][0] * mat[3][3] - mat[2][3] * mat[3][0]) + mat[1][3] * (mat[2][0] * mat[3][2] - mat[2][2] * mat[3][0])) / determinant;
+    result[1][1] = (mat[0][0] * (mat[2][2] * mat[3][3] - mat[2][3] * mat[3][2]) - mat[0][2] * (mat[2][0] * mat[3][3] - mat[2][3] * mat[3][0]) + mat[0][3] * (mat[2][0] * mat[3][2] - mat[2][2] * mat[3][0])) / determinant;
+    result[1][2] = -(mat[0][0] * (mat[1][2] * mat[3][3] - mat[1][3] * mat[3][2]) - mat[0][2] * (mat[1][0] * mat[3][3] - mat[1][3] * mat[3][0]) + mat[0][3] * (mat[1][0] * mat[3][2] - mat[1][2] * mat[3][0])) / determinant;
+    result[1][3] = (mat[0][0] * (mat[1][2] * mat[2][3] - mat[1][3] * mat[2][2]) - mat[0][2] * (mat[1][0] * mat[2][3] - mat[1][3] * mat[2][0]) + mat[0][3] * (mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0])) / determinant;
+
+    result[2][0] = (mat[1][0] * (mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1]) - mat[1][1] * (mat[2][0] * mat[3][3] - mat[2][3] * mat[3][0]) + mat[1][3] * (mat[2][0] * mat[3][1] - mat[2][1] * mat[3][0])) / determinant;
+    result[2][1] = -(mat[0][0] * (mat[2][1] * mat[3][3] - mat[2][3] * mat[3][1]) - mat[0][1] * (mat[2][0] * mat[3][3] - mat[2][3] * mat[3][0]) + mat[0][3] * (mat[2][0] * mat[3][1] - mat[2][1] * mat[3][0])) / determinant;
+    result[2][2] = (mat[0][0] * (mat[1][1] * mat[3][3] - mat[1][3] * mat[3][1]) - mat[0][1] * (mat[1][0] * mat[3][3] - mat[1][3] * mat[3][0]) + mat[0][3] * (mat[1][0] * mat[3][1] - mat[1][1] * mat[3][0])) / determinant;
+    result[2][3] = -(mat[0][0] * (mat[1][1] * mat[2][3] - mat[1][3] * mat[2][1]) - mat[0][1] * (mat[1][0] * mat[2][3] - mat[1][3] * mat[2][0]) + mat[0][3] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0])) / determinant;
+
+    result[3][0] = -(mat[1][0] * (mat[2][1] * mat[3][2] - mat[2][2] * mat[3][1]) - mat[1][1] * (mat[2][0] * mat[3][2] - mat[2][2] * mat[3][0]) + mat[1][2] * (mat[2][0] * mat[3][1] - mat[2][1] * mat[3][0])) / determinant;
+    result[3][1] = (mat[0][0] * (mat[2][1] * mat[3][2] - mat[2][2] * mat[3][1]) - mat[0][1] * (mat[2][0] * mat[3][2] - mat[2][2] * mat[3][0]) + mat[0][2] * (mat[2][0] * mat[3][1] - mat[2][1] * mat[3][0])) / determinant;
+    result[3][2] = -(mat[0][0] * (mat[1][1] * mat[3][2] - mat[1][2] * mat[3][1]) - mat[0][1] * (mat[1][0] * mat[3][2] - mat[1][2] * mat[3][0]) + mat[0][2] * (mat[1][0] * mat[3][1] - mat[1][1] * mat[3][0])) / determinant;
+    result[3][3] = (mat[0][0] * (mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1]) - mat[0][1] * (mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0]) + mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0])) / determinant;
+
+    return result;
+}
+
+
+
+bool Matrice4x4::isInversible() const {
+    float det = calculerDeterminant();
+    if (det == 0.0) {
+        return false;
+    }
+    return true;
+}
+
+
+bool Matrice4x4::isIdentite() const {
+    Matrice4x4 matriceIdentite;
+    matriceIdentite.setIdentity();
+
+    float tolerance = 1e-6;
+    for (int i = 0; i < 4; ++i) {
+        for (int j = 0; j < 4; ++j) {
+            if (abs(mat[i][j] - matriceIdentite[i][j]) >= tolerance) {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
+float* Matrice4x4::operator[](int index) {
+    return mat[index];
+}
+
+const float* Matrice4x4::operator[](int index) const {
+    return mat[index];
 }

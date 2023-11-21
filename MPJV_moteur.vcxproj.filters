@@ -1,190 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\ofApp.cpp" />
-    <ClCompile Include="src\ProjectileMenu.cpp" />
-    <ClCompile Include="src\Vector.cpp" />
-    <ClCompile Include="src\Ball.cpp">
-      <Filter>Particules</Filter>
-    </ClCompile>
-    <ClCompile Include="src\CableForce.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Cannonball.cpp">
-      <Filter>Particules</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ConstantForce.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ElastForce.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Fireball.cpp">
-      <Filter>Particules</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Force.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\FrictionStat.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Laser.cpp">
-      <Filter>Particules</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RessortForce.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Particle.cpp">
-      <Filter>Particules</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WaterForce.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp">
-      <Filter>Addons</Filter>
-    </ClCompile>
-    <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp">
-      <Filter>Addons</Filter>
-    </ClCompile>
-    <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp">
-      <Filter>Addons</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Blob.cpp">
-      <Filter>Particules</Filter>
-    </ClCompile>
-    <ClCompile Include="src\VectorTest.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RodConstraint.cpp" />
-    <ClCompile Include="src\DampingForce.cpp">
-      <Filter>Forces</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Impulse.cpp">
-      <Filter>Forces\Impulse</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ExploImpulse.cpp">
-      <Filter>Forces\Impulse</Filter>
-    </ClCompile>
-    <ClCompile Include="src\WorldPhysics.cpp" />
-    <ClCompile Include="src\Matrice3x3.cpp">
-      <Filter>Matrice</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Matrice4x4.cpp">
-      <Filter>Matrice</Filter>
-    </ClCompile>
+    <ClCompile Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.cpp" />
+    <ClCompile Include="src\addons\ofxSkyBox\ofxCubeMap.cpp" />
+    <ClCompile Include="src\addons\ofxSkyBox\ofxSkyBox.cpp" />
+    <ClCompile Include="src\Ball.cpp" />
+    <ClCompile Include="src\Blob.cpp" />
+    <ClCompile Include="src\CableForce.cpp" />
+    <ClCompile Include="src\Cannonball.cpp" />
+    <ClCompile Include="src\ConstantForce.cpp" />
     <ClCompile Include="src\CorpsRigide.cpp" />
-    <ClCompile Include="src\CustomAsserts.cpp">
-      <Filter>Tests</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Matrice3x3Tests.cpp">
-      <Filter>Tests</Filter>
-    <ClCompile Include="src\ForceRotationnelle.cpp">
-      <Filter>Forces\Rotationnel</Filter>
-    </ClCompile>
-    </ClCompile>
+    <ClCompile Include="src\CustomAsserts.cpp" />
+    <ClCompile Include="src\DampingForce.cpp" />
+    <ClCompile Include="src\ElastForce.cpp" />
+    <ClCompile Include="src\ExploImpulse.cpp" />
+    <ClCompile Include="src\ForceRotationnelle.cpp" />
+    <ClCompile Include="src\FrictionStat.cpp" />
+    <ClCompile Include="src\Impulse.cpp" />
+    <ClCompile Include="src\Laser.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Matrice3x3.cpp" />
+    <ClCompile Include="src\Matrice3x3Tests.cpp" />
+    <ClCompile Include="src\Matrice4x4.cpp" />
+    <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\Fireball.cpp" />
+    <ClCompile Include="src\Force.cpp" />
+    <ClCompile Include="src\Particle.cpp" />
+    <ClCompile Include="src\ProjectileMenu.cpp" />
+    <ClCompile Include="src\RessortForce.cpp" />
+    <ClCompile Include="src\RodConstraint.cpp" />
+    <ClCompile Include="src\Vector.cpp" />
+    <ClCompile Include="src\VectorTest.cpp" />
+    <ClCompile Include="src\WaterForce.cpp" />
+    <ClCompile Include="src\WorldPhysics.cpp" />
+    <ClCompile Include="src\Matrice4x4Tests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ofApp.h" />
-    <ClInclude Include="src\ProjectileMenu.h" />
-    <ClInclude Include="src\Vector.h" />
-    <ClInclude Include="src\Ball.h">
-      <Filter>Particules</Filter>
-    </ClInclude>
-    <ClInclude Include="src\CableForce.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Cannonball.h">
-      <Filter>Particules</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ConstantForce.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ElastForce.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Fireball.h">
-      <Filter>Particules</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Force.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\FrictionStat.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Laser.h">
-      <Filter>Particules</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RessortForce.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Particle.h">
-      <Filter>Particules</Filter>
-    </ClInclude>
-    <ClInclude Include="src\WaterForce.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h">
-      <Filter>Addons</Filter>
-    </ClInclude>
-    <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h">
-      <Filter>Addons</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Blob.h">
-      <Filter>Particules</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RodConstraint.h" />
-    <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h">
-      <Filter>Addons</Filter>
-    </ClInclude>
-    <ClInclude Include="src\DampingForce.h">
-      <Filter>Forces</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Impulse.h">
-      <Filter>Forces\Impulse</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ExploImpulse.h">
-      <Filter>Forces\Impulse</Filter>
-    </ClInclude>
-    <ClInclude Include="src\WorldPhysics.h" />
-    <ClInclude Include="src\Matrice4x4.h">
-      <Filter>Matrice</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Matrice3x3.h">
-      <Filter>Matrice</Filter>
-    </ClInclude>
+    <ClInclude Include="src\addons\ofxFirstPersonCamera\ofxFirstPersonCamera.h" />
+    <ClInclude Include="src\addons\ofxSkyBox\ofxCubeMap.h" />
+    <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h" />
+    <ClInclude Include="src\Ball.h" />
+    <ClInclude Include="src\Blob.h" />
+    <ClInclude Include="src\CableForce.h" />
+    <ClInclude Include="src\Cannonball.h" />
+    <ClInclude Include="src\ConstantForce.h" />
     <ClInclude Include="src\CorpsRigide.h" />
-    <ClInclude Include="src\CustomAsserts.h">
-      <Filter>Tests</Filter>
-    <ClInclude Include="src\ForceRotationnelle.h">
-      <Filter>Forces\Rotationnel</Filter>
-    </ClInclude>
-    </ClInclude>
+    <ClInclude Include="src\CustomAsserts.h" />
+    <ClInclude Include="src\DampingForce.h" />
+    <ClInclude Include="src\ElastForce.h" />
+    <ClInclude Include="src\ExploImpulse.h" />
+    <ClInclude Include="src\ForceRotationnelle.h" />
+    <ClInclude Include="src\FrictionStat.h" />
+    <ClInclude Include="src\Impulse.h" />
+    <ClInclude Include="src\Laser.h" />
+    <ClInclude Include="src\Matrice3x3.h" />
+    <ClInclude Include="src\Matrice4x4.h" />
+    <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\Fireball.h" />
+    <ClInclude Include="src\Force.h" />
+    <ClInclude Include="src\Particle.h" />
+    <ClInclude Include="src\ProjectileMenu.h" />
+    <ClInclude Include="src\RessortForce.h" />
+    <ClInclude Include="src\RodConstraint.h" />
+    <ClInclude Include="src\Vector.h" />
+    <ClInclude Include="src\WaterForce.h" />
+    <ClInclude Include="src\WorldPhysics.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Particules">
-      <UniqueIdentifier>{1a86e66e-cff6-4208-8349-b52d92f0ce53}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Forces">
-      <UniqueIdentifier>{d98b0dc8-1d11-4990-8d17-f550e6d9549a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Addons">
-      <UniqueIdentifier>{abaa366c-12d5-45c8-aa97-bc39aa2d8764}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Tests">
-      <UniqueIdentifier>{19ba9eb5-1da0-4bfd-8c83-a90ffd7cc21a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Forces\Impulse">
-      <UniqueIdentifier>{d7e79562-e50b-404a-b900-92e9f6918563}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Matrice">
-      <UniqueIdentifier>{566b5b6a-1504-4aa2-85ab-4e654889824a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Forces\Rotationnel">
-      <UniqueIdentifier>{26421988-d77d-404c-947b-e8aa3434dd29}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>

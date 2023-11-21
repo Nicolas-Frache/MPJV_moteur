@@ -50,6 +50,26 @@ public:
 
     float normalizeAngle(float angle) const;
 
+    float calculerMinor(int row, int col) const;
+
+    int getNbLignes() const {
+        return 4;
+    }
+
+    int getNbColonnes() const {
+        return 4;
+    }
+
+    bool isInversible() const;
+
+    bool isIdentite() const;
+
+    // Surcharge de l'opérateur [] pour permettre l'accès aux éléments de la matrice
+    float* operator[](int index);
+
+    // Surcharge constante de l'opérateur [] pour permettre l'accès aux éléments de la matrice constante
+    const float* operator[](int index) const;
+
 private:
     float mat[4][4];
 };

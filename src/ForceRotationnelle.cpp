@@ -7,9 +7,9 @@ ForceRotationnelle::ForceRotationnelle(CorpsRigide* corpsRigide, Vector torque, 
 
 float ForceRotationnelle::updateTimeElapsed(float dt) {
     elapsedTime += dt;
-    if (duration > 0.0f && elapsedTime >= duration) {
-        // La force a dépassé sa durée d'application, vous pouvez la supprimer ou la désactiver
-        corpsRigide->removeTorque(this);
-    }
     return elapsedTime;
+}
+
+void ForceRotationnelle::applyTorque() {
+    corpsRigide->applyRotation(torque * elapsedTime);
 }

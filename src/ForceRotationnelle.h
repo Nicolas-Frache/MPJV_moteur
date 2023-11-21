@@ -8,6 +8,7 @@ public:
     ForceRotationnelle(CorpsRigide* corpsRigide, Vector torque, float duration);
 
     float updateTimeElapsed(float dt);
+    void applyTorque();
 
     // D'autres méthodes ou membres si nécessaire...
 

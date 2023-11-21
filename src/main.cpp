@@ -27,7 +27,7 @@ int main( ){
 
 
 
-//	ofRunMainLoop();
+	ofRunMainLoop();
 
 
 

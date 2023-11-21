@@ -41,11 +41,13 @@ public:
 	void applyTorque(float torqueX, float torqueY, float torqueZ, float duration);
 	void removeTorque(ForceRotationnelle* torque);
 
+	void applyRotation(Vector rotationChange);
+
 	void integrer(float dt);
 
 	void setRotationMatrix(Matrice4x4 matrix);
 	//void setRotationMatrix(Quaternion quaternion);
 
-	void applyRotation();
+	void ofApplyRotation();
 };
 

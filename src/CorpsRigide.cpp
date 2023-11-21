@@ -75,36 +75,50 @@ void CorpsRigide::update() {
 	rotationMatrixChange.rotateDeg(rotationChange.y(), 0, 1, 0);
 	rotationMatrixChange.rotateDeg(rotationChange.z(), 0, 0, 1);
 
-	rotationMatrix = rotationMatrixChange.produit(rotationMatrix);
+	auto it = _torques.begin();
+	while (it != _torques.end()) {
+		float applicationTime = (*it)->updateTimeElapsed(dt);
+
+		(*it)->applyTorque();
+
+		// Suppression de la force rotationnelle si sa durée est terminée
+		if (applicationTime >= (*it)->duration) {
+			it = _torques.erase(it);
+		}
+		else {
+			++it;
+		}
+	}
 
 	centreMasse->update();
 }
 
 void CorpsRigide::draw() {
 	ofPushMatrix();
-	applyRotation();
+	ofApplyRotation();
 	ofSetColor(color);
 	ofDrawBox(centreMasse->position.x(), centreMasse->position.y(), centreMasse->position.z(), demiAxes.x(), demiAxes.y(), demiAxes.z());
 	ofPopMatrix();
 }
 
 void CorpsRigide::integrer(float dt) {
+	// Intégration des forces translationnelles sur le centre de masse
 	centreMasse->integrer(dt);
 
+	// Intégration des torques sur le moment d'inertie
 	auto it = _torques.begin();
 	while (it != _torques.end()) {
 		float applicationTime = (*it)->updateTimeElapsed(dt);
 
-		cout << "torque: " << (*it)->torque << endl;
-		cout << "inverse moment of inertia: " << inverseMomentOfInertia << endl;
+		// Application du torque pour mettre à jour la vitesse angulaire
 		angularVelocity += (*it)->torque.mult_by_component(inverseMomentOfInertia) * applicationTime;
-		cout << "angular velocity: " << angularVelocity << endl;
-		
-		if (applicationTime != dt) {
+
+		// Suppression de la force rotationnelle si sa durée est terminée
+		if (applicationTime >= (*it)->duration) {
 			it = _torques.erase(it);
 		}
 		else {
-			it++;
+			++it;
 		}
 	}
 }
@@ -117,7 +131,7 @@ void CorpsRigide::setRotationMatrix(Matrice4x4 matrix) {
 //	this->rotationMatrix = quaternion.toMatrix();
 //}
 
-void CorpsRigide::applyRotation() {
+void CorpsRigide::ofApplyRotation() {
 	Vector pos = centreMasse->position;
 	Vector rotation = rotationMatrix.getEuler();
 	ofTranslate(pos.x(), pos.y(), pos.z());
@@ -125,4 +139,10 @@ void CorpsRigide::applyRotation() {
 	ofRotateYDeg(rotation.y());
 	ofRotateZDeg(rotation.z());
 	ofTranslate(-pos.x(), -pos.y(), -pos.z());
+}
+
+void CorpsRigide::applyRotation(Vector rotationChange) {
+	rotationMatrix.rotateDeg(rotationChange.x(), 1, 0, 0);
+	rotationMatrix.rotateDeg(rotationChange.y(), 0, 1, 0);
+	rotationMatrix.rotateDeg(rotationChange.z(), 0, 0, 1);
 }

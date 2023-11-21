@@ -141,9 +141,9 @@ void CorpsRigide::setRotationMatrix(Matrice4x4 matrix) {
 void CorpsRigide::ofApplyRotation() {
 	Vector rotation = rotationMatrix.getEuler();
 	cout << "rotation euler: " << rotation << endl;
-	ofRotateXDeg((rotation.x()));
-	ofRotateYDeg((rotation.y()));
-	ofRotateZDeg((rotation.z()));
+	ofRotateXDeg(ofRadToDeg(rotation.x()));
+	ofRotateYDeg(ofRadToDeg(rotation.y()));
+	ofRotateZDeg(ofRadToDeg(rotation.z()));
 }
 
 void CorpsRigide::applyRotation(Vector rotationChange) {

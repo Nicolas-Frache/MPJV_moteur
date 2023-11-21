@@ -1,5 +1,6 @@
 #include "Matrice4x4.h"
 #include <iostream>
+#include <cmath>
 
 Matrice4x4::Matrice4x4() {
     // Initialisation de la matrice à zéro
@@ -18,6 +19,13 @@ Matrice4x4::Matrice4x4(float m00, float m01, float m02, float m03,
     mat[1][0] = m10; mat[1][1] = m11; mat[1][2] = m12; mat[1][3] = m13;
     mat[2][0] = m20; mat[2][1] = m21; mat[2][2] = m22; mat[2][3] = m23;
     mat[3][0] = m30; mat[3][1] = m31; mat[3][2] = m32; mat[3][3] = m33;
+}
+
+Matrice4x4::Matrice4x4(const float matrix[16]) {
+	mat[0][0] = matrix[0]; mat[0][1] = matrix[1]; mat[0][2] = matrix[2]; mat[0][3] = matrix[3];
+	mat[1][0] = matrix[4]; mat[1][1] = matrix[5]; mat[1][2] = matrix[6]; mat[1][3] = matrix[7];
+	mat[2][0] = matrix[8]; mat[2][1] = matrix[9]; mat[2][2] = matrix[10]; mat[2][3] = matrix[11];
+	mat[3][0] = matrix[12]; mat[3][1] = matrix[13]; mat[3][2] = matrix[14]; mat[3][3] = matrix[15];
 }
 
 Matrice4x4 Matrice4x4::produit(const Matrice4x4& other) const {
@@ -116,4 +124,36 @@ bool Matrice4x4::operator==(const Matrice4x4& other) const {
         }
     }
     return true;
+}
+
+void Matrice4x4::rotateDeg(float angle, float axisX, float axisY, float axisZ) {
+    float angleRad = ofDegToRad(angle);
+
+    // Calcul des composantes sin et cos de l'angle
+    float cosA = cos(angleRad);
+    float sinA = sin(angleRad);
+
+    // Normalisation de l'axe de rotation
+    float length = sqrt(axisX * axisX + axisY * axisY + axisZ * axisZ);
+    if (length != 0.0f) {
+        axisX /= length;
+        axisY /= length;
+        axisZ /= length;
+    }
+
+    // Calcul des éléments de la matrice de rotation
+    float oneMinusCosA = 1.0f - cosA;
+    float xy = axisX * axisY;
+    float yz = axisY * axisZ;
+    float xz = axisX * axisZ;
+
+    float rotationMatrix[16] = {
+        cosA + axisX * axisX * oneMinusCosA, xy * oneMinusCosA - axisZ * sinA, xz * oneMinusCosA + axisY * sinA, 0.0f,
+        xy * oneMinusCosA + axisZ * sinA, cosA + axisY * axisY * oneMinusCosA, yz * oneMinusCosA - axisX * sinA, 0.0f,
+        xz * oneMinusCosA - axisY * sinA, yz * oneMinusCosA + axisX * sinA, cosA + axisZ * axisZ * oneMinusCosA, 0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    };
+
+    // On applique la rotation en multipliant la matrice actuelle par la matrice de rotation
+    *this = this->produit(Matrice4x4(rotationMatrix));
 }

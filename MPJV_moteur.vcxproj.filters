@@ -74,6 +74,9 @@
       <Filter>Matrice</Filter>
     </ClCompile>
     <ClCompile Include="src\CorpsRigide.cpp" />
+    <ClCompile Include="src\ForceRotationnelle.cpp">
+      <Filter>Forces\Rotationnel</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
@@ -148,6 +151,9 @@
       <Filter>Matrice</Filter>
     </ClInclude>
     <ClInclude Include="src\CorpsRigide.h" />
+    <ClInclude Include="src\ForceRotationnelle.h">
+      <Filter>Forces\Rotationnel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
@@ -170,6 +176,9 @@
     </Filter>
     <Filter Include="Matrice">
       <UniqueIdentifier>{566b5b6a-1504-4aa2-85ab-4e654889824a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Forces\Rotationnel">
+      <UniqueIdentifier>{26421988-d77d-404c-947b-e8aa3434dd29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

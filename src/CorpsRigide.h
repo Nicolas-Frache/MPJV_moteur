@@ -4,6 +4,7 @@
 #include "Particle.h"
 //#include "Quaternion.h"
 #include "Matrice4x4.h"
+#include "ForceRotationnelle.h"
 class CorpsRigide
 {
 public:
@@ -12,7 +13,12 @@ public:
 
 	ofColor color;
 
-	Matrice4x4 rotationMatrix; 
+	Matrice4x4 rotationMatrix = Matrice4x4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); //matrice identité
+	Vector angularVelocity = Vector(0, 0, 0);
+
+	Vector inverseMomentOfInertia = Vector(0,0,0);
+
+	list<ForceRotationnelle*> _torques = list<ForceRotationnelle*>();
 
 	//il faudra utiliser la physique rotationnelle sur les demi axes
 	//pour calculer la rotation du cube
@@ -30,6 +36,10 @@ public:
 	void applyForce(Vector force, float duration);
 	void applyForce(float forceX, float forceY, float forceZ, float duration);
 	void applyForce(Force* force);
+
+	void applyTorque(Vector torque, float duration);
+	void applyTorque(float torqueX, float torqueY, float torqueZ, float duration);
+	void removeTorque(ForceRotationnelle* torque);
 
 	void integrer(float dt);
 

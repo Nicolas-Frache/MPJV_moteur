@@ -11,6 +11,8 @@ public:
         float m20, float m21, float m22, float m23,
         float m30, float m31, float m32, float m33);
 
+    Matrice4x4(const float matrix[16]);
+
     // Méthode pour calculer le produit de deux matrices 4x4
     Matrice4x4 produit(const Matrice4x4& other) const;
 
@@ -40,6 +42,9 @@ public:
 
     // Surcharge de l'opérateur "==" pour comparer deux matrices 4x4
     bool operator==(const Matrice4x4& other) const;
+
+    // Méthode pour faire une rotation en degrés autour de l'axe voulu :
+    void rotateDeg(float angle, float axisX, float axisY, float axisZ);
 
 private:
     float mat[4][4];

@@ -79,9 +79,6 @@
     </ClCompile>
     <ClCompile Include="src\Matrice3x3Tests.cpp">
       <Filter>Tests</Filter>
-    <ClCompile Include="src\ForceRotationnelle.cpp">
-      <Filter>Forces\Rotationnel</Filter>
-    </ClCompile>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -156,9 +153,6 @@
     <ClInclude Include="src\CorpsRigide.h" />
     <ClInclude Include="src\CustomAsserts.h">
       <Filter>Tests</Filter>
-    <ClInclude Include="src\ForceRotationnelle.h">
-      <Filter>Forces\Rotationnel</Filter>
-    </ClInclude>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -182,9 +176,6 @@
     </Filter>
     <Filter Include="Matrice">
       <UniqueIdentifier>{566b5b6a-1504-4aa2-85ab-4e654889824a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Forces\Rotationnel">
-      <UniqueIdentifier>{26421988-d77d-404c-947b-e8aa3434dd29}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

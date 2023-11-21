@@ -49,5 +49,7 @@ public:
 	//void setRotationMatrix(Quaternion quaternion);
 
 	void ofApplyRotation();
+
+	float normalizeAngle(float angle);
 };
 

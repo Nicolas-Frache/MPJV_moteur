@@ -3,11 +3,13 @@
 #include "Particle.h"
 #include "ofMain.h"
 #include "Force.h"
+#include <cmath>
 
 CorpsRigide::CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color) {
 	this->centreMasse = centreMasse;
 	this->demiAxes = demiAxes;
 	this->color = color;
+	this->rotationMatrix.setIdentity();
 
 	float m = centreMasse->getMass();
 	inverseMomentOfInertia = Vector(
@@ -21,6 +23,7 @@ CorpsRigide::CorpsRigide(Particle* centreMasse, float height, float width, float
 	this->centreMasse = centreMasse;
 	this->demiAxes = Vector(height / 2, width / 2, depth / 2);
 	this->color = color;
+	this->rotationMatrix.setIdentity();
 
 	float m = centreMasse->getInvMass();
 	inverseMomentOfInertia = Vector(
@@ -64,16 +67,10 @@ void CorpsRigide::update() {
 	float dt = ofGetLastFrameTime();
 
 	integrer(dt);
-	//on affiche la matrice de rotation :
-	rotationMatrix.afficher();
+	// on affiche la matrice de rotation :
+	//rotationMatrix.afficher();
 
 	Vector rotationChange = angularVelocity * dt;
-	//on affiche rotationchange
-	cout << "rotation change: " << rotationChange << endl;
-	Matrice4x4 rotationMatrixChange;
-	rotationMatrixChange.rotateDeg(rotationChange.x(), 1, 0, 0);
-	rotationMatrixChange.rotateDeg(rotationChange.y(), 0, 1, 0);
-	rotationMatrixChange.rotateDeg(rotationChange.z(), 0, 0, 1);
 
 	auto it = _torques.begin();
 	while (it != _torques.end()) {
@@ -90,15 +87,25 @@ void CorpsRigide::update() {
 		}
 	}
 
+	// Utilisez la matrice modifiée ici
+	Matrice4x4 rotationMatrixChange;
+	rotationMatrixChange.setIdentity();
+	rotationMatrixChange.rotateDeg(rotationChange.x(), 1, 0, 0);
+	rotationMatrixChange.rotateDeg(rotationChange.y(), 0, 1, 0);
+	rotationMatrixChange.rotateDeg(rotationChange.z(), 0, 0, 1);
+
+	// Accumulez la rotation en multipliant la matrice actuelle par la matrice de rotation
+	rotationMatrix = rotationMatrixChange.produit(rotationMatrix);
+
 	centreMasse->update();
 }
 
 void CorpsRigide::draw() {
-	ofPushMatrix();
-	ofApplyRotation();
+	ofPushMatrix();  // Sauvegarde la matrice courante
+	ofApplyRotation();  // Applique la rotation
 	ofSetColor(color);
 	ofDrawBox(centreMasse->position.x(), centreMasse->position.y(), centreMasse->position.z(), demiAxes.x(), demiAxes.y(), demiAxes.z());
-	ofPopMatrix();
+	ofPopMatrix();  // Restaure la matrice précédente
 }
 
 void CorpsRigide::integrer(float dt) {
@@ -132,17 +139,30 @@ void CorpsRigide::setRotationMatrix(Matrice4x4 matrix) {
 //}
 
 void CorpsRigide::ofApplyRotation() {
-	Vector pos = centreMasse->position;
 	Vector rotation = rotationMatrix.getEuler();
-	ofTranslate(pos.x(), pos.y(), pos.z());
-	ofRotateXDeg(rotation.x());
-	ofRotateYDeg(rotation.y());
-	ofRotateZDeg(rotation.z());
-	ofTranslate(-pos.x(), -pos.y(), -pos.z());
+	cout << "rotation euler: " << rotation << endl;
+	ofRotateXDeg((rotation.x()));
+	ofRotateYDeg((rotation.y()));
+	ofRotateZDeg((rotation.z()));
 }
 
 void CorpsRigide::applyRotation(Vector rotationChange) {
-	rotationMatrix.rotateDeg(rotationChange.x(), 1, 0, 0);
-	rotationMatrix.rotateDeg(rotationChange.y(), 0, 1, 0);
-	rotationMatrix.rotateDeg(rotationChange.z(), 0, 0, 1);
+	Matrice4x4 rotationMatrixChange;
+	rotationMatrixChange.setIdentity();
+	rotationMatrixChange.rotateDeg((rotationChange.x()), 1, 0, 0);
+	rotationMatrixChange.rotateDeg((rotationChange.y()), 0, 1, 0);
+	rotationMatrixChange.rotateDeg((rotationChange.z()), 0, 0, 1);
+
+	// Multipliez la matrice actuelle par la nouvelle matrice de rotation
+	rotationMatrix = rotationMatrixChange.produit(rotationMatrix);
+}
+
+float CorpsRigide::normalizeAngle(float angle) {
+	while (angle > PI) {
+		angle -= 2.0 * PI;
+	}
+	while (angle <= -PI) {
+		angle += 2.0 * PI;
+	}
+	return angle;
 }

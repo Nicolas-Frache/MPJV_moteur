@@ -107,9 +107,9 @@ Vector Matrice4x4::getEuler() const {
     Vector euler;
 
     euler.set(
-        atan2(mat[2][1], mat[2][2]),
-        atan2(-mat[2][0], sqrt(mat[2][1] * mat[2][1] + mat[2][2] * mat[2][2])),
-        atan2(mat[1][0], mat[0][0])
+        normalizeAngle(atan2(mat[2][1], mat[2][2])),
+        normalizeAngle(atan2(-mat[2][0], sqrt(mat[2][1] * mat[2][1] + mat[2][2] * mat[2][2]))),
+        normalizeAngle(atan2(mat[1][0], mat[0][0]))
     );
 
 	return euler;
@@ -156,4 +156,21 @@ void Matrice4x4::rotateDeg(float angle, float axisX, float axisY, float axisZ) {
 
     // On applique la rotation en multipliant la matrice actuelle par la matrice de rotation
     *this = this->produit(Matrice4x4(rotationMatrix));
+}
+
+void Matrice4x4::setIdentity() {
+    mat[0][0] = 1; mat[0][1] = 0; mat[0][2] = 0; mat[0][3] = 0;
+	mat[1][0] = 0; mat[1][1] = 1; mat[1][2] = 0; mat[1][3] = 0;
+	mat[2][0] = 0; mat[2][1] = 0; mat[2][2] = 1; mat[2][3] = 0;
+	mat[3][0] = 0; mat[3][1] = 0; mat[3][2] = 0; mat[3][3] = 1;
+}
+
+float Matrice4x4::normalizeAngle(float angle) const {
+    while (angle > PI) {
+        angle -= 2.0 * PI;
+    }
+    while (angle <= -PI) {
+        angle += 2.0 * PI;
+    }
+    return angle;
 }

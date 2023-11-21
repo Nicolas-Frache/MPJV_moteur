@@ -17,7 +17,7 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	this->sphere.setRadius(size);
 
 	// Gravite
-	applyForce(new ConstantForce(this, Vector(0, -9.8, 0)));
+	//TODO: applyForce(new ConstantForce(this, Vector(0, -9.8, 0))); //temporaire
 }
 
 void Particle::draw() {

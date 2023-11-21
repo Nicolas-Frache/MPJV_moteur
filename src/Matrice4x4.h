@@ -46,6 +46,10 @@ public:
     // Méthode pour faire une rotation en degrés autour de l'axe voulu :
     void rotateDeg(float angle, float axisX, float axisY, float axisZ);
 
+    void setIdentity();
+
+    float normalizeAngle(float angle) const;
+
 private:
     float mat[4][4];
 };

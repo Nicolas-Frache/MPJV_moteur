@@ -34,6 +34,8 @@ public:
 
 	void integrer(float dt);
 
+	Quaternion computeNewRotation(Quaternion q, Vector w, float dt);
+
 	void setRotation(Quaternion quaternion);
 
 	void ofApplyRotation();

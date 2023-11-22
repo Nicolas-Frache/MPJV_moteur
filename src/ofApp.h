@@ -69,6 +69,8 @@ class ofApp : public ofBaseApp {
 
 		//PARTIE CORPS RIGIDES
 		list<CorpsRigide*> corpsRigides = list<CorpsRigide*>();
+		Particle centerCube = Particle(Vector(0, 0, 0), 1000, ofColor::blue, 10);
+		CorpsRigide cube = CorpsRigide(&centerCube, 5, 15, 5, ofColor::blue);
 
 		ofxSkyBox skybox;
 		ofxFirstPersonCamera cam;

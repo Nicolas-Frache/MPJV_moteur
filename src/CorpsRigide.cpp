@@ -15,15 +15,22 @@ CorpsRigide::CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color) 
 
 	float m = centreMasse->getMass();
 	inverseMomentOfInertia = Matrice3x3(
-		0, 0, 1 / (1 / 12.0f * m * (2 * demiAxes.y()) * (2 * demiAxes.y()) + (2 * demiAxes.z()) * (2 * demiAxes.z())),
-		0, 1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z())), 0,
-		1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y())), 0, 0
+		0, 0, m * (2 * demiAxes.y()) * (2 * demiAxes.y()) + (2 * demiAxes.z()) * (2 * demiAxes.z()) / 12.0f,
+		0, m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z()) / 12.0f, 0,
+		m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y()) / 12.0f, 0, 0
 	);
 }
 
 CorpsRigide::CorpsRigide(Particle* centreMasse, float height, float width, float depth, ofColor color)
 	: CorpsRigide(centreMasse, Vector(height / 2, width / 2, depth / 2), color){}
 
+	float m = centreMasse->getInvMass();
+	inverseMomentOfInertia = Matrice3x3(
+		0, 0, m * (2 * demiAxes.y()) * (2 * demiAxes.y()) + (2 * demiAxes.z()) * (2 * demiAxes.z()) / 12.0f,
+		0, m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z()) / 12.0f, 0,
+		m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y()) / 12.0f, 0, 0
+	);
+}
 
 
 
@@ -77,11 +84,15 @@ void CorpsRigide::integrer(float dt) {
 
 	// Int�gration de la vitesse angulaire sur la rotation
 	Quaternion rotationChange = Quaternion(0, angularVelocity.x(), angularVelocity.y(), angularVelocity.z()) * rotation;
-	rotationChange = rotationChange / 2.0f * dt;
-	rotation = rotation + rotationChange;
 
 	// Mise � jour de la matrice de rotation
 	rotationMatrix = rotation.getRotationMatrix();
+}
+
+Quaternion CorpsRigide::computeNewRotation(Quaternion q, Vector w, float dt) {
+	Quaternion rotationChange = Quaternion(0, w.x(), w.y(), w.z()) * q;
+	rotationChange = rotationChange / 2.0f * dt;
+	return q + rotationChange;
 }
 
 void CorpsRigide::setRotation(Quaternion quaternion) {

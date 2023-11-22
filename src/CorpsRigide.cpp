@@ -76,9 +76,10 @@ void CorpsRigide::update() {
 
 void CorpsRigide::draw() {
 	ofPushMatrix();  // Sauvegarde la matrice courante
+	ofTranslate(centreMasse->position.x(), centreMasse->position.y(), centreMasse->position.z());  // Translate au centre de masse
 	ofApplyVisualRotation();  // Applique la rotation
 	ofSetColor(color);
-	ofDrawBox(centreMasse->position.x(), centreMasse->position.y(), centreMasse->position.z(), demiAxes.x(), demiAxes.y(), demiAxes.z());
+	ofDrawBox(0, 0, 0, demiAxes.x(), demiAxes.y(), demiAxes.z());
 	ofPopMatrix();  // Restaure la matrice précédente
 }
 

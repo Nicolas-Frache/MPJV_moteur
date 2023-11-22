@@ -82,7 +82,7 @@
     <ClCompile Include="src\RessortForce.cpp">
       <Filter>Forces\Liens</Filter>
     </ClCompile>
-    <ClCompile Include="src\ForceRotationnelle.cpp">
+    <ClCompile Include="src\Torque.cpp">
       <Filter>Forces</Filter>
     </ClCompile>
     <ClCompile Include="src\RodConstraint.cpp">
@@ -167,7 +167,7 @@
     <ClInclude Include="src\RessortForce.h">
       <Filter>Forces\Liens</Filter>
     </ClInclude>
-    <ClInclude Include="src\ForceRotationnelle.h">
+    <ClInclude Include="src\Torque.h">
       <Filter>Forces</Filter>
     </ClInclude>
     <ClInclude Include="src\RodConstraint.h">

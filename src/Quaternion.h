@@ -10,6 +10,7 @@ class Quaternion {
 public:
   Quaternion();
   Quaternion(double w, double x, double y, double z);
+  Quaternion(double w, Vector v) : w(w), x(v.x()), y(v.y()), z(v.z()) {}
 
   void print() const;
   double norm() const;
@@ -17,7 +18,9 @@ public:
   Quaternion conjugate() const;
   Quaternion inverse() const;
   
+  Quaternion operator+(const Quaternion& other) const;
   Quaternion operator*(const Quaternion& other) const;
+  Quaternion operator*(double scalar) const;
   bool Quaternion::operator==(Quaternion other);
   bool Quaternion::operator!=(Quaternion other);
   Quaternion Quaternion::operator/(double scalar) const;

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Vector.h"
+
 class Matrice3x3 {
 public:
     Matrice3x3();
@@ -15,6 +17,8 @@ public:
     bool estOrthogonale() const;
     bool estCarree() const;
     float calculerMinor(int i, int j) const;
+
+    Vector getEuler() const;
 
     void afficher() const;
 

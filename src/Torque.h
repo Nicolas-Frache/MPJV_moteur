@@ -3,14 +3,11 @@
 
 class CorpsRigide; // Déclaration anticipée de la classe CorpsRigide
 
-class ForceRotationnelle {
+class Torque {
 public:
-    ForceRotationnelle(CorpsRigide* corpsRigide, Vector torque, float duration);
+    Torque(CorpsRigide* corpsRigide, Vector torque, float duration);
 
     float updateTimeElapsed(float dt);
-    void applyTorque();
-
-    // D'autres méthodes ou membres si nécessaire...
 
     // Propriétés publiques pour simplifier l'accès (peut être modifié en fonction de vos besoins)
     Vector torque; // Torsion appliquée par la force

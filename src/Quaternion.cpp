@@ -10,6 +10,7 @@
   // Constructeur avec initialisation explicite
   Quaternion::Quaternion(double w, double x, double y, double z) : w(w), x(x), y(y), z(z) {}
 
+
   // Méthode pour afficher le quaternion
   void Quaternion::print() const {
     std::cout << "(" << w << ", " << x << ", " << y << ", " << z << ")" << std::endl;
@@ -28,6 +29,11 @@
     }
   }
 
+  // Somme de deux quaternions
+  Quaternion Quaternion::operator+(const Quaternion& other) const {
+	return Quaternion(w + other.w, x + other.x, y + other.y, z + other.z);
+  }
+
   // Produit Hamiltonien
   Quaternion Quaternion::operator*(const Quaternion& other) const {
     // Produit Hamiltonien correspondant à la conjugaison de deux roations
@@ -37,6 +43,11 @@
     result.z = w * other.z + x * other.y - y * other.x + z * other.w;
     result.w = w * other.w - x * other.x - y * other.y - z * other.z;
     return result;
+  }
+
+  // Produit par un scalaire
+  Quaternion Quaternion::operator*(double scalar) const {
+	return Quaternion(w * scalar, x * scalar, y * scalar, z * scalar);
   }
 
   bool Quaternion::operator==(Quaternion q2) {

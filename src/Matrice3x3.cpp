@@ -174,6 +174,32 @@ bool Matrice3x3::estOrthogonale() const {
     }
 }
 
+// Méthode pour calculer les angles d'Euler de la matrice
+Vector Matrice3x3::getEuler() const {
+
+    double x = 0.0, y = 0.0, z = 0.0;
+
+    double sy = sqrt(mat[0][0] * mat[0][0] + mat[1][0] * mat[1][0]);
+
+    // Vérifiez si sy est suffisamment proche de 0
+    bool singular = sy < 1e-6;
+
+    if (!singular) {
+		x = atan2(mat[2][1], mat[2][2]);
+		y = atan2(-mat[2][0], sy);
+		z = atan2(mat[1][0], mat[0][0]);
+	}
+    else {
+		x = atan2(-mat[1][2], mat[1][1]);
+		y = atan2(-mat[2][0], sy);
+		z = 0;
+	}
+
+    Vector euler = Vector(x, y, z);
+
+	return euler;
+}
+
 
 void Matrice3x3::afficher() const {
     for (int i = 0; i < 3; i++) {

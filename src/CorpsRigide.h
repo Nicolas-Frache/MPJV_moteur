@@ -2,9 +2,11 @@
 #include "ofMain.h"
 #include "Vector.h"
 #include "Particle.h"
-//#include "Quaternion.h"
+#include "Quaternion.h"
+#include "Matrice3x3.h"
 #include "Matrice4x4.h"
-#include "ForceRotationnelle.h"
+#include "Torque.h"
+
 class CorpsRigide
 {
 public:
@@ -13,16 +15,13 @@ public:
 
 	ofColor color;
 
-	Matrice4x4 rotationMatrix = Matrice4x4(1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1); //matrice identité
+	Quaternion rotation = Quaternion(1, 0, 0, 0);
 	Vector angularVelocity = Vector(0, 0, 0);
+	Matrice3x3 rotationMatrix = Matrice3x3();
 
 	Vector inverseMomentOfInertia = Vector(0,0,0);
 
-	list<ForceRotationnelle*> _torques = list<ForceRotationnelle*>();
-
-	//il faudra utiliser la physique rotationnelle sur les demi axes
-	//pour calculer la rotation du cube
-	//Matrix4 rotations; //ou un quaternion? //et genre derrière on l'applique à chaque vertex du cube
+	list<Torque*> _torques = list<Torque*>();
 
 	CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color);
 	CorpsRigide(Particle* centreMasse, float height, float width, float depth, ofColor color);
@@ -39,14 +38,11 @@ public:
 
 	void applyTorque(Vector torque, float duration);
 	void applyTorque(float torqueX, float torqueY, float torqueZ, float duration);
-	void removeTorque(ForceRotationnelle* torque);
-
-	void applyRotation(Vector rotationChange);
+	void removeTorque(Torque* torque);
 
 	void integrer(float dt);
 
-	void setRotationMatrix(Matrice4x4 matrix);
-	//void setRotationMatrix(Quaternion quaternion);
+	void setRotation(Quaternion quaternion);
 
 	void ofApplyRotation();
 

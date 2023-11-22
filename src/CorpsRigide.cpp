@@ -9,7 +9,9 @@ CorpsRigide::CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color) 
 	this->centreMasse = centreMasse;
 	this->demiAxes = demiAxes;
 	this->color = color;
-	this->rotationMatrix.setIdentity();
+	this->angularVelocity = Vector(0, 0, 0);
+	this->rotation = Quaternion(1, 0, 0, 0);
+	this->rotationMatrix = rotation.getRotationMatrix();
 
 	float m = centreMasse->getMass();
 	inverseMomentOfInertia = Vector(
@@ -23,7 +25,9 @@ CorpsRigide::CorpsRigide(Particle* centreMasse, float height, float width, float
 	this->centreMasse = centreMasse;
 	this->demiAxes = Vector(height / 2, width / 2, depth / 2);
 	this->color = color;
-	this->rotationMatrix.setIdentity();
+	this->angularVelocity = Vector(0, 0, 0);
+	this->rotation = Quaternion(1, 0, 0, 0);
+	this->rotationMatrix = rotation.getRotationMatrix();
 
 	float m = centreMasse->getInvMass();
 	inverseMomentOfInertia = Vector(
@@ -46,7 +50,7 @@ void CorpsRigide::applyForce(Force* force) {
 }
 
 void CorpsRigide::applyTorque(Vector torque, float duration) {
-	ForceRotationnelle* torqueForce = new ForceRotationnelle(this, torque, duration);
+	Torque* torqueForce = new Torque(this, torque, duration);
 	_torques.push_back(torqueForce);
 }
 
@@ -54,7 +58,7 @@ void CorpsRigide::applyTorque(float torqueX, float torqueY, float torqueZ, float
 	applyTorque(Vector(torqueX, torqueY, torqueZ), duration);
 }
 
-void CorpsRigide::removeTorque(ForceRotationnelle* torque) {
+void CorpsRigide::removeTorque(Torque* torque) {
 	_torques.remove(torque);
 }
 
@@ -67,37 +71,7 @@ void CorpsRigide::update() {
 	float dt = ofGetLastFrameTime();
 
 	integrer(dt);
-	// on affiche la matrice de rotation :
-	//rotationMatrix.afficher();
 
-	Vector rotationChange = angularVelocity * dt;
-
-	auto it = _torques.begin();
-	while (it != _torques.end()) {
-		float applicationTime = (*it)->updateTimeElapsed(dt);
-
-		(*it)->applyTorque();
-
-		// Suppression de la force rotationnelle si sa durée est terminée
-		if (applicationTime >= (*it)->duration) {
-			it = _torques.erase(it);
-		}
-		else {
-			++it;
-		}
-	}
-
-	// Utilisez la matrice modifiée ici
-	Matrice4x4 rotationMatrixChange;
-	rotationMatrixChange.setIdentity();
-	rotationMatrixChange.rotateDeg(rotationChange.x(), 1, 0, 0);
-	rotationMatrixChange.rotateDeg(rotationChange.y(), 0, 1, 0);
-	rotationMatrixChange.rotateDeg(rotationChange.z(), 0, 0, 1);
-
-	// Accumulez la rotation en multipliant la matrice actuelle par la matrice de rotation
-	rotationMatrix = rotationMatrixChange.produit(rotationMatrix);
-
-	centreMasse->update();
 }
 
 void CorpsRigide::draw() {
@@ -128,34 +102,33 @@ void CorpsRigide::integrer(float dt) {
 			++it;
 		}
 	}
+
+	// Intégration de la vitesse angulaire sur la rotation
+	Quaternion rotationChange = Quaternion(0, angularVelocity.x(), angularVelocity.y(), angularVelocity.z()) * rotation;
+	rotationChange = rotationChange / 2.0f * dt;
+	rotation = rotation + rotationChange;
+
+	// Normalisation de la rotation
+	rotation.normalize();
+
+	// Mise à jour de la matrice de rotation
+	rotationMatrix = rotation.getRotationMatrix();
 }
 
-void CorpsRigide::setRotationMatrix(Matrice4x4 matrix) {
-	this->rotationMatrix = matrix;
+void CorpsRigide::setRotation(Quaternion quaternion) {
+	this->rotation = quaternion;
 }
 
-//void CorpsRigide::setRotationMatrix(Quaternion quaternion) {
-//	this->rotationMatrix = quaternion.toMatrix();
-//}
 
 void CorpsRigide::ofApplyRotation() {
-	Vector rotation = rotationMatrix.getEuler();
+	Vector rotation = this->rotationMatrix.getEuler();
 	cout << "rotation euler: " << rotation << endl;
-	ofRotateXDeg(ofRadToDeg(rotation.x()));
-	ofRotateYDeg(ofRadToDeg(rotation.y()));
-	ofRotateZDeg(ofRadToDeg(rotation.z()));
+
+	ofRotateZRad(normalizeAngle(rotation.z()));
+	ofRotateYRad(normalizeAngle(rotation.y()));
+	ofRotateXRad(normalizeAngle(rotation.x()));
 }
 
-void CorpsRigide::applyRotation(Vector rotationChange) {
-	Matrice4x4 rotationMatrixChange;
-	rotationMatrixChange.setIdentity();
-	rotationMatrixChange.rotateDeg((rotationChange.x()), 1, 0, 0);
-	rotationMatrixChange.rotateDeg((rotationChange.y()), 0, 1, 0);
-	rotationMatrixChange.rotateDeg((rotationChange.z()), 0, 0, 1);
-
-	// Multipliez la matrice actuelle par la nouvelle matrice de rotation
-	rotationMatrix = rotationMatrixChange.produit(rotationMatrix);
-}
 
 float CorpsRigide::normalizeAngle(float angle) {
 	while (angle > PI) {

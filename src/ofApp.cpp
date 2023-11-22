@@ -18,7 +18,8 @@ void ofApp::setup(){
 
 	//PARTIE CORPS RIGIDES
 	//cube.applyForce(Vector(0,1,0), 0.1);
-	cube.applyTorque(Vector(0, 100, 100), 1);
+	//cube.applyTorque(Vector(0, 100, 100), 1);
+	cube.angularVelocity = Vector(0, 1, 1);
 	corpsRigides.push_back(&cube);
 	world.addCorps(&cube); //je sais pas si la liste corpsRigides est utile puisqu'on utilise world
 }
@@ -27,6 +28,8 @@ void ofApp::setup(){
 void ofApp::update() {
 
 	world.update();
+
+	ofDrawBox(10, 10, 10, 2, 4, 2);
 
 }
 

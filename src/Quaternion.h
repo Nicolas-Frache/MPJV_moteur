@@ -4,6 +4,7 @@
 #define QUATERNION_H
 
 #include <iostream>
+#include <Matrice3x3.h>
 
 class Quaternion {
 public:
@@ -24,6 +25,7 @@ public:
   double dotProduct(Quaternion q2) const;
   Quaternion power(double scalar) const;
   Quaternion slerp(Quaternion q2, double t) const;
+  Matrice3x3 getRotationMatrix() const;
 
 
 public:

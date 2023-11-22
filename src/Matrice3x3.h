@@ -19,6 +19,6 @@ public:
     void afficher() const;
 
 
-private:
+public:
     float mat[3][3];
 };

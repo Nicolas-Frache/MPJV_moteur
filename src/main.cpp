@@ -5,6 +5,7 @@
 
 #include "Matrice3x3Tests.cpp"
 #include "Matrice4x4Tests.cpp"
+#include "QuaternionTest.cpp"
 
 
 //========================================================================
@@ -20,6 +21,8 @@ int main( ){
 	matrice3LaunchTest(ca);
 	ca.beginTestClass("Tests de la classe Matrice4x4");
 	matrice4LaunchTest(ca);
+	ca.beginTestClass("Tests de la classe Quaternion");
+	quaternionLaunchTest(ca);
 
 	ca.endTestSession();
 

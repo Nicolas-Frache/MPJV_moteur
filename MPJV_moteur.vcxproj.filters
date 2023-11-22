@@ -88,6 +88,12 @@
     <ClCompile Include="src\RodConstraint.cpp">
       <Filter>Forces\Liens</Filter>
     </ClCompile>
+    <ClCompile Include="src\Quaternion.cpp">
+      <Filter>Matrice</Filter>
+    </ClCompile>
+    <ClCompile Include="src\QuaternionTest.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
@@ -166,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="src\RodConstraint.h">
       <Filter>Forces\Liens</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Quaternion.h">
+      <Filter>Matrice</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

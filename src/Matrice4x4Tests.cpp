@@ -114,7 +114,7 @@ void matrice4LaunchTest(CustomAsserts ca) {
     Matrice4x4 matInverse = matOrtho.inverse();
     bool resultatOrthogonale = (matOrtho == matTransposed) && (matOrtho == matInverse);
     ca.assertTrue(matOrtho.estOrthogonale() == resultatOrthogonale, "EstOrthogonale");
-    matTransposed.afficher();
-    matInverse.afficher();
-    matOrtho.afficher();
+    //matTransposed.afficher();
+    //matInverse.afficher();
+    //matOrtho.afficher();
 }

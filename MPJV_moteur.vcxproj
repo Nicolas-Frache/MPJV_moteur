@@ -131,6 +131,8 @@
     <ClCompile Include="src\Force.cpp" />
     <ClCompile Include="src\Particle.cpp" />
     <ClCompile Include="src\ProjectileMenu.cpp" />
+    <ClCompile Include="src\Quaternion.cpp" />
+    <ClCompile Include="src\QuaternionTest.cpp" />
     <ClCompile Include="src\RessortForce.cpp" />
     <ClCompile Include="src\RodConstraint.cpp" />
     <ClCompile Include="src\Vector.cpp" />
@@ -163,6 +165,7 @@
     <ClInclude Include="src\Force.h" />
     <ClInclude Include="src\Particle.h" />
     <ClInclude Include="src\ProjectileMenu.h" />
+    <ClInclude Include="src\Quaternion.h" />
     <ClInclude Include="src\RessortForce.h" />
     <ClInclude Include="src\RodConstraint.h" />
     <ClInclude Include="src\Vector.h" />

@@ -24,15 +24,6 @@ CorpsRigide::CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color) 
 CorpsRigide::CorpsRigide(Particle* centreMasse, float height, float width, float depth, ofColor color)
 	: CorpsRigide(centreMasse, Vector(height / 2, width / 2, depth / 2), color){}
 
-	float m = centreMasse->getInvMass();
-	inverseMomentOfInertia = Matrice3x3(
-		0, 0, m * (2 * demiAxes.y()) * (2 * demiAxes.y()) + (2 * demiAxes.z()) * (2 * demiAxes.z()) / 12.0f,
-		0, m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z()) / 12.0f, 0,
-		m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y()) / 12.0f, 0, 0
-	);
-}
-
-
 
 void CorpsRigide::bounce(Vector normal) {
 	//on peut ajuster ici
@@ -83,7 +74,7 @@ void CorpsRigide::integrer(float dt) {
 	}
 
 	// Int�gration de la vitesse angulaire sur la rotation
-	Quaternion rotationChange = Quaternion(0, angularVelocity.x(), angularVelocity.y(), angularVelocity.z()) * rotation;
+	rotation = computeNewRotation(rotation, angularVelocity, dt);
 
 	// Mise � jour de la matrice de rotation
 	rotationMatrix = rotation.getRotationMatrix();

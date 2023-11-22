@@ -1,13 +1,14 @@
 #include "CustomAsserts.h"
 #include <CorpsRigide.h>
 
-bool approxEqual(float a, float b) {
+
+bool approxEqualCR(float a, float b) {
 	return ceil(a * 1000) == ceil(b * 1000);
 }
 
-bool approxEqual(Quaternion a, Quaternion b) {
-	return approxEqual(a.w, b.w) && approxEqual(a.x, b.x)
-		&& approxEqual(a.y, b.y) && approxEqual(a.z, b.z);
+bool approxEqualCR(Quaternion a, Quaternion b) {
+	return approxEqualCR(a.w, b.w) && approxEqualCR(a.x, b.x)
+		&& approxEqualCR(a.y, b.y) && approxEqualCR(a.z, b.z);
 }
 
 void corpsRigideLaunchTest(CustomAsserts ca) {
@@ -24,6 +25,6 @@ void corpsRigideLaunchTest(CustomAsserts ca) {
 
 	std::string msg = "result = " + std::to_string(res.w) + ", " + std::to_string(res.x) + ", " + std::to_string(res.y) + ", " + std::to_string(res.z);
 
-	ca.assertTrue(approxEqual(res, excpected), "test computeNewRotation");
+	ca.assertTrue(approxEqualCR(res, excpected), "test computeNewRotation");
 
 }

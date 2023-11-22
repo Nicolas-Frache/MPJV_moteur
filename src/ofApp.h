@@ -47,6 +47,8 @@ class ofApp : public ofBaseApp {
 		void gotMessage(ofMessage msg);
 
 		void createParticle(Particle* particle);
+		void ofApp::createCorpsRigide(CorpsRigide* corpsRigide);
+
 
 		void update();
 		void draw();
@@ -67,8 +69,6 @@ class ofApp : public ofBaseApp {
 
 		//PARTIE CORPS RIGIDES
 		list<CorpsRigide*> corpsRigides = list<CorpsRigide*>();
-		Particle centerCube = Particle(Vector(0, 0, 0), 10, ofColor::blue, 10);
-		CorpsRigide cube = CorpsRigide(&centerCube, 5, 15, 5, ofColor::blue);
 
 		ofxSkyBox skybox;
 		ofxFirstPersonCamera cam;

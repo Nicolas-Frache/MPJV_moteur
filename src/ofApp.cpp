@@ -17,11 +17,36 @@ void ofApp::setup(){
 	
 
 	//PARTIE CORPS RIGIDES
-	//cube.applyForce(Vector(0,1,0), 0.1);
-	cube.applyTorque(Vector(0, 100, 50), 1);
-	//cube.angularVelocity = Vector(0, 1, 1);
-	corpsRigides.push_back(&cube);
-	world.addCorps(&cube); //je sais pas si la liste corpsRigides est utile puisqu'on utilise world
+
+	CorpsRigide* c = new CorpsRigide(new Particle(Vector(30, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::red);
+	c->angularVelocity = Vector(1, 0, 0);
+	createCorpsRigide(c);
+
+	c = new CorpsRigide(new Particle(Vector(60, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::yellow);
+	c->angularVelocity = Vector(0, 1, 0);
+	createCorpsRigide(c);
+
+	c = new CorpsRigide(new Particle(Vector(90, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::green);
+	c->angularVelocity = Vector(0, 0, 1);
+	createCorpsRigide(c);
+	
+	c = new CorpsRigide(new Particle(Vector(120, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::red);
+	c->angularVelocity = Vector(1, 1, 0);
+	createCorpsRigide(c);
+
+	c = new CorpsRigide(new Particle(Vector(150, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::blue);
+	c->angularVelocity = Vector(0, 1, 1);
+	createCorpsRigide(c);
+
+	c = new CorpsRigide(new Particle(Vector(180, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::purple);
+	c->angularVelocity = Vector(1, 0, 1);
+	createCorpsRigide(c);
+
+	c = new CorpsRigide(new Particle(Vector(210, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::limeGreen);
+	c->angularVelocity = Vector(1, 1, 1);
+	createCorpsRigide(c);
+
+
 }
 
 //--------------------------------------------------------------
@@ -53,6 +78,11 @@ void ofApp::draw(){
 void ofApp::createParticle(Particle* particle) {
 	particles.push_back(particle);
 	world.addParticle(particle);
+}
+
+void ofApp::createCorpsRigide(CorpsRigide* corpsRigide) {
+	corpsRigides.push_back(corpsRigide);
+	world.addCorps(corpsRigide);
 }
 
 //--------------------------------------------------------------

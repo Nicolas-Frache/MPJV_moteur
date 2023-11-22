@@ -9,6 +9,7 @@
 class Quaternion {
 public:
   Quaternion();
+  // Quaternion de la forme w + xi + yj + zk
   Quaternion(double w, double x, double y, double z);
   Quaternion(double w, Vector v) : w(w), x(v.x()), y(v.y()), z(v.z()) {}
 
@@ -32,6 +33,7 @@ public:
 
 
 public:
+  // Quaternion de la forme w + xi + yj + zk
   double w, x, y, z;
 };
 

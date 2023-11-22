@@ -21,46 +21,11 @@ CorpsRigide::CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color) 
 	);
 }
 
-CorpsRigide::CorpsRigide(Particle* centreMasse, float height, float width, float depth, ofColor color) {
-	this->centreMasse = centreMasse;
-	this->demiAxes = Vector(height / 2, width / 2, depth / 2);
-	this->color = color;
-	this->angularVelocity = Vector(0, 0, 0);
-	this->rotation = Quaternion(1, 0, 0, 0);
-	this->rotationMatrix = rotation.getRotationMatrix();
+CorpsRigide::CorpsRigide(Particle* centreMasse, float height, float width, float depth, ofColor color)
+	: CorpsRigide(centreMasse, Vector(height / 2, width / 2, depth / 2), color){}
 
-	float m = centreMasse->getInvMass();
-	inverseMomentOfInertia = Matrice3x3(
-		0, 0, 1 / (1 / 12.0f * m * (2 * demiAxes.y()) * (2 * demiAxes.y()) + (2 * demiAxes.z()) * (2 * demiAxes.z())),
-		0, 1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z())), 0,
-		1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y())), 0, 0
-	);
-}
 
-void CorpsRigide::applyForce(Vector force, float duration) {
-	centreMasse->applyForce(force, duration);
-}
 
-void CorpsRigide::applyForce(float forceX, float forceY, float forceZ, float duration) {
-	centreMasse->applyForce(forceX, forceY, forceZ, duration);
-}
-
-void CorpsRigide::applyForce(Force* force) {
-	centreMasse->applyForce(force);
-}
-
-void CorpsRigide::applyTorque(Vector torque, float duration) {
-	Torque* torqueForce = new Torque(this, torque, duration);
-	_torques.push_back(torqueForce);
-}
-
-void CorpsRigide::applyTorque(float torqueX, float torqueY, float torqueZ, float duration) {
-	applyTorque(Vector(torqueX, torqueY, torqueZ), duration);
-}
-
-void CorpsRigide::removeTorque(Torque* torque) {
-	_torques.remove(torque);
-}
 
 void CorpsRigide::bounce(Vector normal) {
 	//on peut ajuster ici
@@ -80,25 +45,25 @@ void CorpsRigide::draw() {
 	ofApplyVisualRotation();  // Applique la rotation
 	ofSetColor(color);
 	ofDrawBox(0, 0, 0, demiAxes.x(), demiAxes.y(), demiAxes.z());
-	ofPopMatrix();  // Restaure la matrice précédente
+	ofPopMatrix();  // Restaure la matrice prï¿½cï¿½dente
 }
 
 void CorpsRigide::integrer(float dt) {
-	// Intégration des forces translationnelles sur le centre de masse
+	// Intï¿½gration des forces translationnelles sur le centre de masse
 	centreMasse->integrer(dt);
 
 	// Aligner le moment d'inertie avec la rotation
 	inverseMomentOfInertia = rotationMatrix.produit(inverseMomentOfInertia).produit(rotationMatrix.transposer());
 
-	// Intégration des torques sur le moment d'inertie
+	// Intï¿½gration des torques sur le moment d'inertie
 	auto it = _torques.begin();
 	while (it != _torques.end()) {
 		float applicationTime = (*it)->updateTimeElapsed(dt);
 
-		// Application du torque pour mettre à jour la vitesse angulaire
+		// Application du torque pour mettre ï¿½ jour la vitesse angulaire
 		angularVelocity += (*it)->torque * inverseMomentOfInertia * dt;
 
-		// Suppression de la force rotationnelle si sa durée est terminée
+		// Suppression de la force rotationnelle si sa durï¿½e est terminï¿½e
 		if (applicationTime >= (*it)->duration) {
 			it = _torques.erase(it);
 		}
@@ -107,12 +72,12 @@ void CorpsRigide::integrer(float dt) {
 		}
 	}
 
-	// Intégration de la vitesse angulaire sur la rotation
+	// Intï¿½gration de la vitesse angulaire sur la rotation
 	Quaternion rotationChange = Quaternion(0, angularVelocity.x(), angularVelocity.y(), angularVelocity.z()) * rotation;
 	rotationChange = rotationChange / 2.0f * dt;
 	rotation = rotation + rotationChange;
 
-	// Mise à jour de la matrice de rotation
+	// Mise ï¿½ jour de la matrice de rotation
 	rotationMatrix = rotation.getRotationMatrix();
 }
 

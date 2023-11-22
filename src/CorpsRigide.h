@@ -32,17 +32,41 @@ public:
 
 	void bounce(Vector normal); //pour le bounce on utilise la resti et friction de la particule
 
-	void applyForce(Vector force, float duration);
-	void applyForce(float forceX, float forceY, float forceZ, float duration);
-	void applyForce(Force* force);
-
-	void applyTorque(Vector torque, float duration);
-	void applyTorque(float torqueX, float torqueY, float torqueZ, float duration);
-	void removeTorque(Torque* torque);
-
 	void integrer(float dt);
 
 	void setRotation(Quaternion quaternion);
+
+	void ofApplyRotation();
+
+	float normalizeAngle(float angle);
+
+
+	// ------ FONCTIONS DE FORCES SIMPLES ------
+
+	void CorpsRigide::applyForce(Vector force, float duration) {
+		centreMasse->applyForce(force, duration);
+	}
+
+	void CorpsRigide::applyForce(float forceX, float forceY, float forceZ, float duration) {
+		centreMasse->applyForce(forceX, forceY, forceZ, duration);
+	}
+
+	void CorpsRigide::applyForce(Force* force) {
+		centreMasse->applyForce(force);
+	}
+
+	void CorpsRigide::applyTorque(Vector torque, float duration) {
+		Torque* torqueForce = new Torque(this, torque, duration);
+		_torques.push_back(torqueForce);
+	}
+
+	void CorpsRigide::applyTorque(float torqueX, float torqueY, float torqueZ, float duration) {
+		applyTorque(Vector(torqueX, torqueY, torqueZ), duration);
+	}
+
+	void CorpsRigide::removeTorque(Torque* torque) {
+		_torques.remove(torque);
+	}
 
 	void ofApplyVisualRotation();
 };

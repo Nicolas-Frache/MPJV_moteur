@@ -125,7 +125,7 @@ void ofApp::keyPressed(int key) {
 
 		CorpsRigide* c = new CorpsRigide(new Ball(camPos, .3, ofColor::red, .1), h, w, h, ofColor(r,g,b));
 		c->angularVelocity = Vector(ofRandom(0, 1), ofRandom(0, 1), ofRandom(0, 1));
-		c->applyTorque(Vector(0, 0, 1), 2);
+		c->applyTorque(Vector(0, 0, .0001), .1);
 		c->applyForce(camDir * 200, 0.5);
 		createCorpsRigide(c);
 	}

@@ -44,7 +44,10 @@ void CorpsRigide::draw() {
 	ofTranslate(centreMasse->position.x(), centreMasse->position.y(), centreMasse->position.z());  // Translate au centre de masse
 	ofApplyVisualRotation();  // Applique la rotation
 	ofSetColor(color);
+	ofNoFill();
+	ofSetLineWidth(10);
 	ofDrawBox(0, 0, 0, demiAxes.x(), demiAxes.y(), demiAxes.z());
+	ofFill();
 	ofPopMatrix();  // Restaure la matrice pr�c�dente
 }
 

@@ -89,7 +89,7 @@ void ofApp::createCorpsRigide(CorpsRigide* corpsRigide) {
 void ofApp::keyPressed(int key) {
 	Vector camPos;
 	Vector camDir;
-	if (key == '1' || key == '2' || key == '3') {
+	if (key == '1' || key == '2' || key == '3' || key == '4') {
 		camPos = Vector(cam.getPosition().x, cam.getPosition().y, cam.getPosition().z);
 		auto tmp = cam.getLookAtDir();
 		camDir = Vector(tmp.x, tmp.y, tmp.z);
@@ -114,6 +114,20 @@ void ofApp::keyPressed(int key) {
 		Laser* newLaser = new Laser(camPos, camDir, 1, ofColor::black, 3);
 		newLaser->applyForce(camDir * 200, 0.5);
 		createParticle(newLaser);
+	}
+
+	if (key == '4') {
+		int r = ofRandom(0, 255);
+		int g = ofRandom(0, 255);
+		int b = ofRandom(0, 255);
+		int h = ofRandom(10, 30);
+		int w = ofRandom(30, 50);
+
+		CorpsRigide* c = new CorpsRigide(new Ball(camPos, .3, ofColor::red, .1), h, w, h, ofColor(r,g,b));
+		c->angularVelocity = Vector(ofRandom(0, 1), ofRandom(0, 1), ofRandom(0, 1));
+		c->applyTorque(Vector(0, 0, 1), 2);
+		c->applyForce(camDir * 200, 0.5);
+		createCorpsRigide(c);
 	}
 
 	float speed = 100;

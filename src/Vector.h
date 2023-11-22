@@ -1,6 +1,11 @@
 #pragma once
 
+#ifndef vector_h
+#define vector_h
+
 #include "ofMain.h"
+
+class Matrice3x3;
 
 class Vector
 {
@@ -28,6 +33,7 @@ class Vector
 		void operator-=(Vector vect);
 		Vector operator*(float mult);
 		void operator*=(float mult);
+		Vector operator*(const Matrice3x3& mat);
 		bool operator==(Vector vect);
 		friend ostream& operator<<(ostream& os, const Vector vect);
 
@@ -52,3 +58,4 @@ class Vector
 
 };
 
+#endif // !vector_h

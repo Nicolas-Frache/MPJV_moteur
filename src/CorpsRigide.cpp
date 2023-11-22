@@ -14,10 +14,10 @@ CorpsRigide::CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color) 
 	this->rotationMatrix = rotation.getRotationMatrix();
 
 	float m = centreMasse->getMass();
-	inverseMomentOfInertia = Vector(
-		1 / (1 / 12.0f * m * (2 * demiAxes.y()) * (2 * demiAxes.y()) + (2 * demiAxes.z()) * (2 * demiAxes.z())),
-		1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z())),
-		1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y()))
+	inverseMomentOfInertia = Matrice3x3(
+		0, 0, 1 / (1 / 12.0f * m * (2 * demiAxes.y()) * (2 * demiAxes.y()) + (2 * demiAxes.z()) * (2 * demiAxes.z())),
+		0, 1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z())), 0,
+		1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y())), 0, 0
 	);
 }
 
@@ -30,10 +30,10 @@ CorpsRigide::CorpsRigide(Particle* centreMasse, float height, float width, float
 	this->rotationMatrix = rotation.getRotationMatrix();
 
 	float m = centreMasse->getInvMass();
-	inverseMomentOfInertia = Vector(
-		1 / (1 / 12.0f * m * (2 * demiAxes.y()) * (2 * demiAxes.y()) + (2 * demiAxes.z()) * (2 * demiAxes.z())),
-		1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z())),
-		1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y()))
+	inverseMomentOfInertia = Matrice3x3(
+		0, 0, 1 / (1 / 12.0f * m * (2 * demiAxes.y()) * (2 * demiAxes.y()) + (2 * demiAxes.z()) * (2 * demiAxes.z())),
+		0, 1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z())), 0,
+		1 / (1 / 12.0f * m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y())), 0, 0
 	);
 }
 
@@ -76,7 +76,7 @@ void CorpsRigide::update() {
 
 void CorpsRigide::draw() {
 	ofPushMatrix();  // Sauvegarde la matrice courante
-	ofApplyRotation();  // Applique la rotation
+	ofApplyVisualRotation();  // Applique la rotation
 	ofSetColor(color);
 	ofDrawBox(centreMasse->position.x(), centreMasse->position.y(), centreMasse->position.z(), demiAxes.x(), demiAxes.y(), demiAxes.z());
 	ofPopMatrix();  // Restaure la matrice précédente
@@ -86,13 +86,16 @@ void CorpsRigide::integrer(float dt) {
 	// Intégration des forces translationnelles sur le centre de masse
 	centreMasse->integrer(dt);
 
+	// Aligner le moment d'inertie avec la rotation
+	inverseMomentOfInertia = rotationMatrix.produit(inverseMomentOfInertia).produit(rotationMatrix.transposer());
+
 	// Intégration des torques sur le moment d'inertie
 	auto it = _torques.begin();
 	while (it != _torques.end()) {
 		float applicationTime = (*it)->updateTimeElapsed(dt);
 
 		// Application du torque pour mettre à jour la vitesse angulaire
-		angularVelocity += (*it)->torque.mult_by_component(inverseMomentOfInertia) * applicationTime;
+		angularVelocity += (*it)->torque * inverseMomentOfInertia * dt;
 
 		// Suppression de la force rotationnelle si sa durée est terminée
 		if (applicationTime >= (*it)->duration) {
@@ -108,9 +111,6 @@ void CorpsRigide::integrer(float dt) {
 	rotationChange = rotationChange / 2.0f * dt;
 	rotation = rotation + rotationChange;
 
-	// Normalisation de la rotation
-	rotation.normalize();
-
 	// Mise à jour de la matrice de rotation
 	rotationMatrix = rotation.getRotationMatrix();
 }
@@ -120,22 +120,10 @@ void CorpsRigide::setRotation(Quaternion quaternion) {
 }
 
 
-void CorpsRigide::ofApplyRotation() {
+void CorpsRigide::ofApplyVisualRotation() {
 	Vector rotation = this->rotationMatrix.getEuler();
-	cout << "rotation euler: " << rotation << endl;
 
-	ofRotateZRad(normalizeAngle(rotation.z()));
-	ofRotateYRad(normalizeAngle(rotation.y()));
-	ofRotateXRad(normalizeAngle(rotation.x()));
-}
-
-
-float CorpsRigide::normalizeAngle(float angle) {
-	while (angle > PI) {
-		angle -= 2.0 * PI;
-	}
-	while (angle <= -PI) {
-		angle += 2.0 * PI;
-	}
-	return angle;
+	ofRotateZRad(rotation.z());
+	ofRotateYRad(rotation.y());
+	ofRotateXRad(rotation.x());
 }

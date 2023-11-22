@@ -1,4 +1,5 @@
 #include "Vector.h"
+#include "Matrice3x3.h"
 #include <iostream>
 
 Vector::Vector() { //faire un fichier test
@@ -74,6 +75,14 @@ void Vector::operator*=(float mult) {
 	_X *= mult;
 	_Y *= mult;
 	_Z *= mult;
+}
+
+Vector Vector::operator*(const Matrice3x3& mat) {
+	float X = _X * mat.mat[0][0] + _Y * mat.mat[0][1] + _Z * mat.mat[0][2];
+	float Y = _X * mat.mat[1][0] + _Y * mat.mat[1][1] + _Z * mat.mat[1][2];
+	float Z = _X * mat.mat[2][0] + _Y * mat.mat[2][1] + _Z * mat.mat[2][2];
+
+	return Vector(X, Y, Z);
 }
 
 bool Vector::operator==(Vector vect) {

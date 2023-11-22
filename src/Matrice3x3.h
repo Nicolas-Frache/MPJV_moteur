@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef matrice3_h
+#define matrice3_h
+
 #include "Vector.h"
 
 class Matrice3x3 {
@@ -26,3 +29,6 @@ public:
 public:
     float mat[3][3];
 };
+
+
+#endif // !matrice3_h

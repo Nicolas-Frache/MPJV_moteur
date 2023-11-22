@@ -19,7 +19,7 @@ public:
 	Vector angularVelocity = Vector(0, 0, 0);
 	Matrice3x3 rotationMatrix = Matrice3x3();
 
-	Vector inverseMomentOfInertia = Vector(0,0,0);
+	Matrice3x3 inverseMomentOfInertia = Matrice3x3();
 
 	list<Torque*> _torques = list<Torque*>();
 
@@ -44,8 +44,6 @@ public:
 
 	void setRotation(Quaternion quaternion);
 
-	void ofApplyRotation();
-
-	float normalizeAngle(float angle);
+	void ofApplyVisualRotation();
 };
 

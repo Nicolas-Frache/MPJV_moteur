@@ -1,4 +1,5 @@
 #include "Matrice3x3.h"
+#include "Vector.h"
 #include <iostream>
 
 // Constructeur par défaut

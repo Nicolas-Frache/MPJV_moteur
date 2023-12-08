@@ -13,36 +13,40 @@ void ofApp::setup(){
     
 	// Framerate
 	ofSetFrameRate(144);
+
+	// Camera settings
+	cam.movespeed = .2f;
 	cam.setFarClip(200000);
+	cam.setNearClip(0.1);
 	
 
 	//PARTIE CORPS RIGIDES
 
-	CorpsRigide* c = new CorpsRigide(new Particle(Vector(30, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::red);
+	CorpsRigide* c = new CorpsRigide(new Particle(Vector(3, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::red);
 	c->angularVelocity = Vector(1, 0, 0);
 	createCorpsRigide(c);
 
-	c = new CorpsRigide(new Particle(Vector(60, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::yellow);
+	c = new CorpsRigide(new Particle(Vector(6, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::yellow);
 	c->angularVelocity = Vector(0, 1, 0);
 	createCorpsRigide(c);
 
-	c = new CorpsRigide(new Particle(Vector(90, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::green);
+	c = new CorpsRigide(new Particle(Vector(9, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::green);
 	c->angularVelocity = Vector(0, 0, 1);
 	createCorpsRigide(c);
 	
-	c = new CorpsRigide(new Particle(Vector(120, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::red);
+	c = new CorpsRigide(new Particle(Vector(12, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::red);
 	c->angularVelocity = Vector(1, 1, 0);
 	createCorpsRigide(c);
 
-	c = new CorpsRigide(new Particle(Vector(150, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::blue);
+	c = new CorpsRigide(new Particle(Vector(15, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::blue);
 	c->angularVelocity = Vector(0, 1, 1);
 	createCorpsRigide(c);
 
-	c = new CorpsRigide(new Particle(Vector(180, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::purple);
+	c = new CorpsRigide(new Particle(Vector(18, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::purple);
 	c->angularVelocity = Vector(1, 0, 1);
 	createCorpsRigide(c);
 
-	c = new CorpsRigide(new Particle(Vector(210, 0, 0), 10, ofColor::red, 10), 15, 45, 15, ofColor::limeGreen);
+	c = new CorpsRigide(new Particle(Vector(21, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::limeGreen);
 	c->angularVelocity = Vector(1, 1, 1);
 	createCorpsRigide(c);
 
@@ -63,7 +67,7 @@ void ofApp::draw(){
 	menu.draw();
 	cam.begin();
     skybox.draw();
-	ofDrawGrid(50, 5, true, true, true, false);
+	ofDrawGrid(5, 5, true, true, true, false);
 
 	// Draw particules
 	for (Particle* particle : particles) {
@@ -97,7 +101,7 @@ void ofApp::keyPressed(int key) {
 
 
 	if (key == '1') {
-		Ball* newBall = new Ball(camPos, 1, ofColor::blue, 20);
+		Ball* newBall = new Ball(camPos, 1, ofColor::blue, 2);
 		newBall->restitution = 0.5;
 		newBall->applyForce(camDir * 100, 0.5);
 		createParticle(newBall);
@@ -111,7 +115,7 @@ void ofApp::keyPressed(int key) {
 	}
 
 	if (key == '3') {
-		Laser* newLaser = new Laser(camPos, camDir, 1, ofColor::black, 3);
+		Laser* newLaser = new Laser(camPos, camDir, 1, ofColor::black, .3);
 		newLaser->applyForce(camDir * 200, 0.5);
 		createParticle(newLaser);
 	}
@@ -120,17 +124,15 @@ void ofApp::keyPressed(int key) {
 		int r = ofRandom(0, 255);
 		int g = ofRandom(0, 255);
 		int b = ofRandom(0, 255);
-		int h = ofRandom(10, 30);
-		int w = ofRandom(30, 50);
+		int h = ofRandom(1, 3);
+		int w = ofRandom(3, 5);
 
-		CorpsRigide* c = new CorpsRigide(new Ball(camPos, .3, ofColor::red, .1), h, w, h, ofColor(r,g,b));
-		c->angularVelocity = Vector(ofRandom(0, 1), ofRandom(0, 1), ofRandom(0, 1));
-		c->applyTorque(Vector(0, 0, .0001), .1);
-		c->applyForce(camDir * 200, 0.5);
+		CorpsRigide* c = new CorpsRigide(new Ball(camPos, 1, ofColor::red, .1), h, w, h, ofColor(r,g,b));
+		c->applyForceAtPosition(camDir * 50, camPos, .1);
 		createCorpsRigide(c);
 	}
 
-	float speed = 100;
+	float speed = 10;
 
 	if (key == OF_KEY_UP) { //on applique une force vers le haut de durée courte
 		moveable_Particle->applyForce(0, 0, speed, 0.1);

@@ -6,16 +6,16 @@
     <ClCompile Include="src\ProjectileMenu.cpp" />
     <ClCompile Include="src\Vector.cpp" />
     <ClCompile Include="src\Ball.cpp">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClCompile>
     <ClCompile Include="src\Cannonball.cpp">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClCompile>
     <ClCompile Include="src\ConstantForce.cpp">
       <Filter>Forces</Filter>
     </ClCompile>
     <ClCompile Include="src\Fireball.cpp">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClCompile>
     <ClCompile Include="src\Force.cpp">
       <Filter>Forces</Filter>
@@ -24,10 +24,10 @@
       <Filter>Forces</Filter>
     </ClCompile>
     <ClCompile Include="src\Laser.cpp">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClCompile>
     <ClCompile Include="src\Particle.cpp">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClCompile>
     <ClCompile Include="src\WaterForce.cpp">
       <Filter>Forces</Filter>
@@ -42,7 +42,7 @@
       <Filter>Addons</Filter>
     </ClCompile>
     <ClCompile Include="src\Blob.cpp">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClCompile>
     <ClCompile Include="src\VectorTest.cpp">
       <Filter>Tests</Filter>
@@ -63,7 +63,6 @@
     <ClCompile Include="src\Matrice4x4.cpp">
       <Filter>Matrice</Filter>
     </ClCompile>
-    <ClCompile Include="src\CorpsRigide.cpp" />
     <ClCompile Include="src\CustomAsserts.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
@@ -97,22 +96,25 @@
     <ClCompile Include="src\CorpsRigideTests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="src\CorpsRigide.cpp">
+      <Filter>Objets physiques</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ProjectileMenu.h" />
     <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\Ball.h">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClInclude>
     <ClInclude Include="src\Cannonball.h">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClInclude>
     <ClInclude Include="src\ConstantForce.h">
       <Filter>Forces</Filter>
     </ClInclude>
     <ClInclude Include="src\Fireball.h">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClInclude>
     <ClInclude Include="src\Force.h">
       <Filter>Forces</Filter>
@@ -121,10 +123,10 @@
       <Filter>Forces</Filter>
     </ClInclude>
     <ClInclude Include="src\Laser.h">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClInclude>
     <ClInclude Include="src\Particle.h">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClInclude>
     <ClInclude Include="src\WaterForce.h">
       <Filter>Forces</Filter>
@@ -136,7 +138,7 @@
       <Filter>Addons</Filter>
     </ClInclude>
     <ClInclude Include="src\Blob.h">
-      <Filter>Particules</Filter>
+      <Filter>Objets physiques</Filter>
     </ClInclude>
     <ClInclude Include="src\addons\ofxSkyBox\ofxSkyBox.h">
       <Filter>Addons</Filter>
@@ -157,7 +159,6 @@
     <ClInclude Include="src\Matrice3x3.h">
       <Filter>Matrice</Filter>
     </ClInclude>
-    <ClInclude Include="src\CorpsRigide.h" />
     <ClInclude Include="src\CustomAsserts.h">
       <Filter>Tests</Filter>
     </ClInclude>
@@ -179,14 +180,14 @@
     <ClInclude Include="src\Quaternion.h">
       <Filter>Matrice</Filter>
     </ClInclude>
+    <ClInclude Include="src\CorpsRigide.h">
+      <Filter>Objets physiques</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Particules">
-      <UniqueIdentifier>{1a86e66e-cff6-4208-8349-b52d92f0ce53}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Forces">
       <UniqueIdentifier>{d98b0dc8-1d11-4990-8d17-f550e6d9549a}</UniqueIdentifier>
     </Filter>
@@ -204,6 +205,9 @@
     </Filter>
     <Filter Include="Forces\Liens">
       <UniqueIdentifier>{ee2b508b-783b-49b1-a8fe-5f818efbb5f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objets physiques">
+      <UniqueIdentifier>{1a86e66e-cff6-4208-8349-b52d92f0ce53}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -7,6 +7,17 @@
 #include "Matrice4x4.h"
 #include "Torque.h"
 
+class ForceAtPosition {
+	public:
+		Force* force;
+		Vector position = Vector(0, 0, 0);
+
+		ForceAtPosition(Force* force, Vector position) {
+			this->force = force;
+			this->position = position;
+		}
+};
+
 class CorpsRigide
 {
 public:
@@ -21,6 +32,7 @@ public:
 
 	Matrice3x3 inverseMomentOfInertia = Matrice3x3();
 
+	list<ForceAtPosition*> _forcesAtPosition = list<ForceAtPosition*>();
 	list<Torque*> _torques = list<Torque*>();
 
 	CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color);
@@ -55,6 +67,17 @@ public:
 
 	void CorpsRigide::applyForce(Force* force) {
 		centreMasse->applyForce(force);
+	}
+
+	void CorpsRigide::applyForceAtPosition(Force* force, Vector position);
+
+	void CorpsRigide::applyForceAtPosition(Vector force, Vector position, float duration) {
+		CorpsRigide::applyForceAtPosition(new Force(centreMasse, force, duration), position);
+	}
+
+	void CorpsRigide::applyForceAtPosition(float forceX, float forceY, float forceZ, float positionX, float positionY, float positionZ, float duration) {
+		CorpsRigide::applyForceAtPosition(new Force(centreMasse, Vector(forceX, forceY, forceZ), duration),
+			Vector(positionX, positionY, positionZ));
 	}
 
 	void CorpsRigide::applyTorque(Vector torque, float duration) {

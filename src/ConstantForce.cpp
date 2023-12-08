@@ -1,12 +1,11 @@
 #include "ConstantForce.h"
-//cette sous classe sera principalement les forces genre gravité
 
-ConstantForce::ConstantForce(Particle* particle_, Vector direction_) : Force(particle_, direction_, 0) {
-	mass = particle_->getMass();
-}
+//cette sous classe servira à appliquer une force constante à une particule, comme la gravité
+
+ConstantForce::ConstantForce(Particle* particle_, Vector direction_) : Force(particle_, direction_, 0) {}
 
 Vector ConstantForce::value() { //une force constante style F = m * g (d'où l'accélération g)
-	return direction * mass;
+	return direction * particle->getMass();
 }
 
 void ConstantForce::updateForce(Particle* particle, float duration) {

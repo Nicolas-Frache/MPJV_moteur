@@ -7,7 +7,7 @@ Fireball::Fireball(float x_, float y_, float z_, float mass_)
 	: Fireball(Vector(x_,y_,z_), mass_) { }
 
 Fireball::Fireball(Vector position_, float mass_) 
-	: Particle(position_, mass_, ofColor_<unsigned char>::red, 17) { //on g�n�re une boule de feu avec une position et une masse
+	: Particle(position_, mass_, ofColor_<unsigned char>::red, 1.7) { //on g�n�re une boule de feu avec une position et une masse
 	
 	restitution = 1;
 	friction = 1;
@@ -18,7 +18,7 @@ void Fireball::update() {
 	Particle::integrer(dt);
 	
 	//on genere une particule de trail derriere la boule de feu
-	Particle* trail = new Particle(position, 1, ofColor(255, ofRandom(100.f, 200.f), 0), ofRandom(3.f, 10.f));
+	Particle* trail = new Particle(position, 1, ofColor(255, ofRandom(100.f, 200.f), 0), ofRandom(.3f, 1.f));
 	trail->duration = ofRandom(1.f, 4.f);
 
 	Vector hor_vel = velocity * 0.7;

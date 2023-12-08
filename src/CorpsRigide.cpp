@@ -49,35 +49,70 @@ void CorpsRigide::draw() {
 	ofPopMatrix();  // Restaure la matrice pr�c�dente
 }
 
+void CorpsRigide::applyForceAtPosition(Force* force, Vector position) {
+	centreMasse->applyForce(force);
+
+	_forcesAtPosition.push_back(new ForceAtPosition(force, position));
+}
+
 void CorpsRigide::integrer(float dt) {
-	// Int�gration des forces translationnelles sur le centre de masse
+	// Liste temporaire des torques
+	list<Torque*> tempTorques = list<Torque*>();
+	tempTorques.assign(_torques.begin(), _torques.end());
+
+	// Ajout des torques correspondant aux forces ponctuelles
+	auto it0 = _forcesAtPosition.begin();
+	while (it0 != _forcesAtPosition.end()) {
+		float applicationTime = (*it0)->force->updateTimeElapsed(dt);
+
+		// Calcul du torque
+		Vector l = (*it0)->position - centreMasse->position;
+		Vector f = (*it0)->force->value();
+		Vector torque = l.vectoriel(f);
+
+		// Ajout du torque a la liste temporaire des torques
+		tempTorques.push_back(new Torque(this, torque, applicationTime));
+
+		// Suppression de la force ponctuelle si sa duree est terminee
+		if (applicationTime >= (*it0)->force->timeRemaining) {
+			it0 = _forcesAtPosition.erase(it0);
+		}
+		else {
+			++it0;
+		}
+	}
+
+	// Integration des forces translationnelles sur le centre de masse
 	centreMasse->integrer(dt);
 
 	// Aligner le moment d'inertie avec la rotation
 	inverseMomentOfInertia = rotationMatrix.produit(inverseMomentOfInertia).produit(rotationMatrix.transposer());
 
-	// Int�gration des torques sur le moment d'inertie
-	auto it = _torques.begin();
-	while (it != _torques.end()) {
-		float applicationTime = (*it)->updateTimeElapsed(dt);
+	// Integration des torques sur le moment d'inertie
+	auto it1 = tempTorques.begin();
+	while (it1 != tempTorques.end()) {
+		float applicationTime = (*it1)->updateTimeElapsed(dt);
 
-		// Application du torque pour mettre � jour la vitesse angulaire
-		angularVelocity += (*it)->torque * inverseMomentOfInertia * dt;
+		// Application du torque pour mettre a jour la vitesse angulaire
+		angularVelocity += (*it1)->torque * inverseMomentOfInertia * dt;
 
-		// Suppression de la force rotationnelle si sa dur�e est termin�e
-		if (applicationTime >= (*it)->duration) {
-			it = _torques.erase(it);
+		// Suppression de la force rotationnelle si sa duree est terminee
+		if (applicationTime >= (*it1)->duration) {
+			it1 = tempTorques.erase(it1);
 		}
 		else {
-			++it;
+			++it1;
 		}
 	}
 
 	// Int�gration de la vitesse angulaire sur la rotation
 	rotation = computeNewRotation(rotation, angularVelocity, dt);
+	rotation.normalize();
 
 	// Mise � jour de la matrice de rotation
 	rotationMatrix = rotation.getRotationMatrix();
+
+		
 }
 
 Quaternion CorpsRigide::computeNewRotation(Quaternion q, Vector w, float dt) {

@@ -53,7 +53,7 @@ class ofApp : public ofBaseApp {
 		void update();
 		void draw();
 
-		WorldPhysics world = WorldPhysics(250, 1000, 250);
+		WorldPhysics world = WorldPhysics(25, 100, 25);
 
 		list<Particle*> particles = list<Particle*>();
 		Ball particle1 = Ball(0, 50, 0, 1, ofColor_<unsigned char>::red, 20);

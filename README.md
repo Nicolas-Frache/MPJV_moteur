@@ -34,6 +34,10 @@ Vous pouvez lancer trois types de projectiles différents, chacun ayant ses prop
    - Projectile laser qui part en ligne droite sans être affecté par la gravité.
    - Touche de lancement : `SHIFT + 3`
 
+4. **Corps Rigide** :
+   - Corps rigide avec une forme et une rotation initiale aléatoire.
+   - Touche de lancement : `SHIFT + 4`
+
 ## Le blob
 
 Le blob est un regroupement de particules qui sont liées par plusieurs forces, la particularité du blob c'est qu'il est capable de se diviser en plusieur petit blob et de se regrouper pour former un seul et grand blob

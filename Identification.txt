@@ -5,4 +5,4 @@ Membre de l'équipe :
     - Maxime BOURGEOIS		-> BOUM01010100
     - Julien DE TOFFOLI		-> DETJ21080000
     - Nicolas FRACHE		-> FRAN29060100
-    - Guillaume IMHOFF
+    - Guillaume IMHOFF		-> IMHG18060100

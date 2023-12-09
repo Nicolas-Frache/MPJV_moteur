@@ -20,6 +20,7 @@
 #include "ProjectileMenu.h"
 
 #include "CorpsRigide.h"
+#include <cmath>
 
 #include <list>
 // https://github.com/kalwalt/ofxSkyBox

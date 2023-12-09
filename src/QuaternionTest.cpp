@@ -42,5 +42,8 @@ void quaternionLaunchTest(CustomAsserts ca) {
   ca.assertTrue(approxEqual(qy.power(.5), Quaternion(sqrt(.5), 0, sqrt(.5), 0)), "Exponentation, t= 1/2");
   ca.assertTrue(approxEqual(qy.power(0), qw), "Exponentation, t= 0");
 
+  //Quaternion q4 = Quaternion();
+  //ca.assertTrue(approxEqual)
+
 }
 

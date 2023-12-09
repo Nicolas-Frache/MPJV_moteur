@@ -8,28 +8,28 @@ Vector::Vector() { //faire un fichier test
 	_Z = 0;
 }
 
-Vector::Vector(float X, float Y, float Z) {
+Vector::Vector(double X, double Y, double Z) {
 	_X = X;
 	_Y = Y;
 	_Z = Z;
 }
 
-void Vector::set(float X, float Y, float Z) {
+void Vector::set(double X, double Y, double Z) {
 	_X = X;
 	_Y = Y;
 	_Z = Z;
 }
 
-void Vector::setY(float Y){
+void Vector::setY(double Y){
 	_Y = Y;
 }
 
 
 // operators
 Vector Vector::operator+(Vector vect) {
-	float X = _X + vect.x();
-	float Y = _Y + vect.y();
-	float Z = _Z + vect.z();
+	double X = _X + vect.x();
+	double Y = _Y + vect.y();
+	double Z = _Z + vect.z();
 	return Vector(X, Y, Z);
 }
 
@@ -45,9 +45,9 @@ Vector Vector::operator-() {
 
 Vector Vector::operator-(Vector vect)
 {
-	float X = _X - vect.x();
-	float Y = _Y - vect.y();
-	float Z = _Z - vect.z();
+	double X = _X - vect.x();
+	double Y = _Y - vect.y();
+	double Z = _Z - vect.z();
 	return Vector(X, Y, Z);
 }
 
@@ -62,25 +62,25 @@ void Vector::operator-=(Vector vect) {
 }
 
 
-Vector Vector::operator*(float mult) {
-	float X = _X * mult;
-	float Y = _Y * mult;
-	float Z = _Z * mult;
+Vector Vector::operator*(double mult) {
+	double X = _X * mult;
+	double Y = _Y * mult;
+	double Z = _Z * mult;
 
 	return Vector(X, Y, Z);
 }
 
 
-void Vector::operator*=(float mult) {
+void Vector::operator*=(double mult) {
 	_X *= mult;
 	_Y *= mult;
 	_Z *= mult;
 }
 
 Vector Vector::operator*(const Matrice3x3& mat) {
-	float X = _X * mat.mat[0][0] + _Y * mat.mat[0][1] + _Z * mat.mat[0][2];
-	float Y = _X * mat.mat[1][0] + _Y * mat.mat[1][1] + _Z * mat.mat[1][2];
-	float Z = _X * mat.mat[2][0] + _Y * mat.mat[2][1] + _Z * mat.mat[2][2];
+	double X = _X * mat.mat[0][0] + _Y * mat.mat[0][1] + _Z * mat.mat[0][2];
+	double Y = _X * mat.mat[1][0] + _Y * mat.mat[1][1] + _Z * mat.mat[1][2];
+	double Z = _X * mat.mat[2][0] + _Y * mat.mat[2][1] + _Z * mat.mat[2][2];
 
 	return Vector(X, Y, Z);
 }
@@ -94,59 +94,59 @@ ostream& operator<<(ostream& os, Vector vect) {
 	return os;
 }
 
-float Vector::norm() {
+double Vector::norm() {
 	return sqrt(_X * _X + _Y * _Y + _Z * _Z);
 }
 
 Vector Vector::normalize() {
-	float norm = this->norm();
-	float X = _X / norm;
-	float Y = _Y / norm;
-	float Z = _Z / norm;
+	double norm = this->norm();
+	double X = _X / norm;
+	double Y = _Y / norm;
+	double Z = _Z / norm;
 
 	return Vector(X, Y, Z);
 }
 
-float Vector::norm2() {
+double Vector::norm2() {
 	return _X * _X + _Y * _Y + _Z * _Z;
 }
 
 Vector Vector::mult_by_component(Vector vect) {
-	float X = _X * vect.x();
-	float Y = _Y * vect.y();
-	float Z = _Z * vect.z();
+	double X = _X * vect.x();
+	double Y = _Y * vect.y();
+	double Z = _Z * vect.z();
 
 	return Vector(X, Y, Z);
 }
 
 Vector Vector::vectoriel(Vector vect) {
-	float X = _Y * vect.z() - _Z * vect.y();
-	float Y = _Z * vect.x() - _X * vect.z();
-	float Z = _X * vect.y() - _Y * vect.x();
+	double X = _Y * vect.z() - _Z * vect.y();
+	double Y = _Z * vect.x() - _X * vect.z();
+	double Z = _X * vect.y() - _Y * vect.x();
 	return Vector(X, Y, Z);
 }
 
-float Vector::scalar_product(Vector vect) {
+double Vector::scalar_product(Vector vect) {
 	return _X * vect.x() + _Y * vect.y() + _Z * vect.z();
 }
 
 
-float Vector::distance(const Vector& other) const {
-	float dx = _X - other._X;
-	float dy = _Y - other._Y;
-	float dz = _Z - other._Z;
+double Vector::distance(const Vector& other) const {
+	double dx = _X - other._X;
+	double dy = _Y - other._Y;
+	double dz = _Z - other._Z;
 	return sqrt(dx * dx + dy * dy + dz * dz);
 }
 
 
-float Vector::x() {
+double Vector::x() {
 	return _X;
 }
 
-float Vector::y() {
+double Vector::y() {
 	return _Y;
 }
 
-float Vector::z() {
+double Vector::z() {
 	return _Z;
 }

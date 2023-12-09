@@ -1,6 +1,8 @@
 #include "ofApp.h"
 
 
+CorpsRigide* refCorps;
+
 //--------------------------------------------------------------
 void ofApp::setup(){
 
@@ -21,6 +23,12 @@ void ofApp::setup(){
 	
 
 	//PARTIE CORPS RIGIDES
+
+	double pi = 2 * acos(0.0);
+
+	CorpsRigide* cube = new CorpsRigide(new Particle(Vector(0, 0, 0), 10, ofColor::blue, 1), 1, 1, 1, ofColor::blue);
+	cube->rotation = Quaternion(cos(pi/8), Vector(0, 0, 1) * sin(pi / 8));
+	createCorpsRigide(cube);
 
 	CorpsRigide* c = new CorpsRigide(new Particle(Vector(3, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::red);
 	c->angularVelocity = Vector(1, 0, 0);
@@ -50,6 +58,7 @@ void ofApp::setup(){
 	c->angularVelocity = Vector(1, 1, 1);
 	createCorpsRigide(c);
 
+	refCorps = c;
 
 }
 

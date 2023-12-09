@@ -10,19 +10,19 @@ class Matrice3x3;
 class Vector
 {
 	private:
-		float _X = 0.0f;
-		float _Y = 0.0f;
-		float _Z = 0.0f;
+		double _X = 0.0f;
+		double _Y = 0.0f;
+		double _Z = 0.0f;
 
 
 	public:
 
 		Vector();
-		Vector(float X, float Y, float Z);
+		Vector(double X, double Y, double Z);
 
 		// setters
-		void set(float X, float Y, float Z);
-		void setY(float Y);
+		void set(double X, double Y, double Z);
+		void setY(double Y);
 
 		// operators
 		Vector operator+(Vector vect);
@@ -31,27 +31,27 @@ class Vector
 		Vector operator-(Vector vect);
 		Vector operator-(const Vector& val) const;
 		void operator-=(Vector vect);
-		Vector operator*(float mult);
-		void operator*=(float mult);
+		Vector operator*(double mult);
+		void operator*=(double mult);
 		Vector operator*(const Matrice3x3& mat);
 		bool operator==(Vector vect);
 		friend ostream& operator<<(ostream& os, const Vector vect);
 
-		float norm();
+		double norm();
 		Vector normalize();
-		float norm2();
+		double norm2();
 
 		Vector mult_by_component(Vector vect);
 		Vector vectoriel(Vector vect);
 
-		float scalar_product(Vector vect);
-		float distance(const Vector& other) const;
+		double scalar_product(Vector vect);
+		double distance(const Vector& other) const;
 		
 
 		// getters
-		float x();
-		float y();
-		float z();
+		double x();
+		double y();
+		double z();
 
 		glm::vec2 v2() { return glm::vec2(_X, _Y); }
 		glm::vec3 v3() { return glm::vec3(_X, _Y, _Z); }

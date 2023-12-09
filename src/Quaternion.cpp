@@ -36,12 +36,20 @@
 
   // Produit Hamiltonien
   Quaternion Quaternion::operator*(const Quaternion& other) const {
-    // Produit Hamiltonien correspondant à la conjugaison de deux roations
+
+    Vector v1 = Vector(x, y, z);
+    Vector v2 = Vector(other.x, other.y, other.z);
+
     Quaternion result;
-    result.x = w * other.x + x * other.w + y * other.z - z * other.y;
-    result.y = w * other.y - x * other.z + y * other.w + z * other.x;
-    result.z = w * other.z + x * other.y - y * other.x + z * other.w;
-    result.w = w * other.w - x * other.x - y * other.y - z * other.z;
+    result.w = w * other.w - v1.scalar_product(v2);
+
+    Vector v3 = v1.vectoriel(v2);
+    Vector v_result = v1 * other.w + v2 * w + v3;
+
+    result.x = v_result.x();
+    result.y = v_result.y();
+    result.z = v_result.z();
+
     return result;
   }
 
@@ -95,15 +103,17 @@
   // Matrice de rotation associée au quaternion
   Matrice3x3 Quaternion::getRotationMatrix() const{
     Matrice3x3 result;
-    result.mat[0][0] = 1 - 2*y*y - 2*z*z;
-    result.mat[0][1] = 2*x*y - 2*z*w;
-    result.mat[0][2] = 2*x*z + 2*y*w;
-    result.mat[1][0] = 2*x*y + 2*z*w;
-    result.mat[1][1] = 1 - 2*x*x - 2*z*z;
-    result.mat[1][2] = 2*y*z - 2*x*w;
-    result.mat[2][0] = 2*x*z - 2*y*w;
-    result.mat[2][1] = 2*y*z + 2*x*w;
-    result.mat[2][2] = 1 - 2*x*x - 2*y*y;
+    result.mat[0][0] = 1 - 2 * (y*y + z*z);
+    result.mat[0][1] = 2 * (x * y - z * w);
+    result.mat[0][2] = 2 * (x * z + y * w);
+    result.mat[1][0] = 2 * (x * y + z * w); 
+    result.mat[1][1] = 1 - 2 * (x*x + z*z);
+    result.mat[1][2] = 2 * (y * z - x * w);
+    result.mat[2][0] = 2 * (x * z - y * w);
+    result.mat[2][1] = 2 * (y * z + x * w);
+    result.mat[2][2] = 1 - 2 * (x*x + y*y);
+
+
     return result;
   }
 

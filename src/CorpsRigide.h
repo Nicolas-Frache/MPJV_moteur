@@ -36,7 +36,7 @@ public:
 	list<Torque*> _torques = list<Torque*>();
 
 	CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color);
-	CorpsRigide(Particle* centreMasse, float height, float width, float depth, ofColor color);
+	CorpsRigide(Particle* centreMasse, double height, double width, double depth, ofColor color);
 
 	void update();
 
@@ -44,24 +44,24 @@ public:
 
 	void bounce(Vector normal); //pour le bounce on utilise la resti et friction de la particule
 
-	void integrer(float dt);
+	void integrer(double dt);
 
-	Quaternion computeNewRotation(Quaternion q, Vector w, float dt);
+	Quaternion computeNewRotation(Quaternion q, Vector w, double dt);
 
 	void setRotation(Quaternion quaternion);
 
 	void ofApplyRotation();
 
-	float normalizeAngle(float angle);
+	double normalizeAngle(double angle);
 
 
 	// ------ FONCTIONS DE FORCES SIMPLES ------
 
-	void CorpsRigide::applyForce(Vector force, float duration) {
+	void CorpsRigide::applyForce(Vector force, double duration) {
 		centreMasse->applyForce(force, duration);
 	}
 
-	void CorpsRigide::applyForce(float forceX, float forceY, float forceZ, float duration) {
+	void CorpsRigide::applyForce(double forceX, double forceY, double forceZ, double duration) {
 		centreMasse->applyForce(forceX, forceY, forceZ, duration);
 	}
 
@@ -71,21 +71,21 @@ public:
 
 	void CorpsRigide::applyForceAtPosition(Force* force, Vector position);
 
-	void CorpsRigide::applyForceAtPosition(Vector force, Vector position, float duration) {
+	void CorpsRigide::applyForceAtPosition(Vector force, Vector position, double duration) {
 		CorpsRigide::applyForceAtPosition(new Force(centreMasse, force, duration), position);
 	}
 
-	void CorpsRigide::applyForceAtPosition(float forceX, float forceY, float forceZ, float positionX, float positionY, float positionZ, float duration) {
+	void CorpsRigide::applyForceAtPosition(double forceX, double forceY, double forceZ, double positionX, double positionY, double positionZ, double duration) {
 		CorpsRigide::applyForceAtPosition(new Force(centreMasse, Vector(forceX, forceY, forceZ), duration),
 			Vector(positionX, positionY, positionZ));
 	}
 
-	void CorpsRigide::applyTorque(Vector torque, float duration) {
+	void CorpsRigide::applyTorque(Vector torque, double duration) {
 		Torque* torqueForce = new Torque(this, torque, duration);
 		_torques.push_back(torqueForce);
 	}
 
-	void CorpsRigide::applyTorque(float torqueX, float torqueY, float torqueZ, float duration) {
+	void CorpsRigide::applyTorque(double torqueX, double torqueY, double torqueZ, double duration) {
 		applyTorque(Vector(torqueX, torqueY, torqueZ), duration);
 	}
 

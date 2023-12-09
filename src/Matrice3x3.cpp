@@ -13,7 +13,7 @@ Matrice3x3::Matrice3x3() {
 }
 
 // Constructeur avec des valeurs fournies
-Matrice3x3::Matrice3x3(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22) {
+Matrice3x3::Matrice3x3(double m00, double m01, double m02, double m10, double m11, double m12, double m20, double m21, double m22) {
     // Initialisation de la matrice avec des valeurs
     mat[0][0] = m00;
     mat[0][1] = m01;
@@ -55,17 +55,17 @@ Matrice3x3 Matrice3x3::somme(const Matrice3x3& other) const {
 Matrice3x3 Matrice3x3::inverse() const {
     Matrice3x3 result;
 
-    float a = mat[0][0];
-    float b = mat[0][1];
-    float c = mat[0][2];
-    float d = mat[1][0];
-    float e = mat[1][1];
-    float f = mat[1][2];
-    float g = mat[2][0];
-    float h = mat[2][1];
-    float i = mat[2][2];
+    double a = mat[0][0];
+    double b = mat[0][1];
+    double c = mat[0][2];
+    double d = mat[1][0];
+    double e = mat[1][1];
+    double f = mat[1][2];
+    double g = mat[2][0];
+    double h = mat[2][1];
+    double i = mat[2][2];
 
-    float determinant = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+    double determinant = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
 
     if (determinant == 0.0) {
         std::cout << "Inverse non defini. Le determinant est nul." << std::endl;
@@ -97,26 +97,26 @@ Matrice3x3 Matrice3x3::transposer() const {
 }
 
 // Méthode pour calculer le déterminant de la matrice
-float Matrice3x3::calculerDeterminant() const {
-    float a = mat[0][0];
-    float b = mat[0][1];
-    float c = mat[0][2];
-    float d = mat[1][0];
-    float e = mat[1][1];
-    float f = mat[1][2];
-    float g = mat[2][0];
-    float h = mat[2][1];
-    float i = mat[2][2];
+double Matrice3x3::calculerDeterminant() const {
+    double a = mat[0][0];
+    double b = mat[0][1];
+    double c = mat[0][2];
+    double d = mat[1][0];
+    double e = mat[1][1];
+    double f = mat[1][2];
+    double g = mat[2][0];
+    double h = mat[2][1];
+    double i = mat[2][2];
 
-    float determinant = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+    double determinant = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
 
     return determinant;
 }
 
 // Méthode pour calculer le mineur de la matrice
-float Matrice3x3::calculerMinor(int i, int j) const {
+double Matrice3x3::calculerMinor(int i, int j) const {
     // Calculez le mineur en supprimant la ligne i et la colonne j
-    float minor = 0.0;
+    double minor = 0.0;
     int row, col;
     for (int row = 0; row < 3; row++) {
         for (int col = 0; col < 3; col++) {
@@ -133,12 +133,12 @@ float Matrice3x3::calculerMinor(int i, int j) const {
 // Méthode pour vérifier si la matrice est une matrice orthonormée
 bool Matrice3x3::estOrthonormee() const {
     // Vérifie que les vecteurs de base sont orthogonaux et de longueur 1
-    float tolerance = 0.0001; // Tolérance pour la comparaison de nombres flottants
+    double tolerance = 0.0001; // Tolérance pour la comparaison de nombres flottants
 
     // Vérifie que les vecteurs de base sont orthogonaux
-    float dot01 = mat[0][0] * mat[1][0] + mat[0][1] * mat[1][1] + mat[0][2] * mat[1][2];
-    float dot02 = mat[0][0] * mat[2][0] + mat[0][1] * mat[2][1] + mat[0][2] * mat[2][2];
-    float dot12 = mat[1][0] * mat[2][0] + mat[1][1] * mat[2][1] + mat[1][2] * mat[2][2];
+    double dot01 = mat[0][0] * mat[1][0] + mat[0][1] * mat[1][1] + mat[0][2] * mat[1][2];
+    double dot02 = mat[0][0] * mat[2][0] + mat[0][1] * mat[2][1] + mat[0][2] * mat[2][2];
+    double dot12 = mat[1][0] * mat[2][0] + mat[1][1] * mat[2][1] + mat[1][2] * mat[2][2];
 
     if (std::abs(dot01) > tolerance || std::abs(dot02) > tolerance || std::abs(dot12) > tolerance) {
         // Les vecteurs de base ne sont pas orthogonaux
@@ -146,9 +146,9 @@ bool Matrice3x3::estOrthonormee() const {
     }
 
     // Vérifie que les vecteurs de base ont une longueur de 1
-    float norm0 = mat[0][0] * mat[0][0] + mat[0][1] * mat[0][1] + mat[0][2] * mat[0][2];
-    float norm1 = mat[1][0] * mat[1][0] + mat[1][1] * mat[1][1] + mat[1][2] * mat[1][2];
-    float norm2 = mat[2][0] * mat[2][0] + mat[2][1] * mat[2][1] + mat[2][2] * mat[2][2];
+    double norm0 = mat[0][0] * mat[0][0] + mat[0][1] * mat[0][1] + mat[0][2] * mat[0][2];
+    double norm1 = mat[1][0] * mat[1][0] + mat[1][1] * mat[1][1] + mat[1][2] * mat[1][2];
+    double norm2 = mat[2][0] * mat[2][0] + mat[2][1] * mat[2][1] + mat[2][2] * mat[2][2];
 
     if (std::abs(norm0 - 1.0) > tolerance || std::abs(norm1 - 1.0) > tolerance || std::abs(norm2 - 1.0) > tolerance) {
         // Les vecteurs de base n'ont pas de longueur 1
@@ -175,25 +175,33 @@ bool Matrice3x3::estOrthogonale() const {
     }
 }
 
-// Méthode pour calculer les angles d'Euler de la matrice
+// Méthode qui calcule les angles d'Euler de la matrice
 Vector Matrice3x3::getEuler() const {
 
     double x = 0.0, y = 0.0, z = 0.0;
+    double pi = 2 * acos(0.0);
 
-    double sy = sqrt(mat[0][0] * mat[0][0] + mat[1][0] * mat[1][0]);
+    if (mat[2][0] < 1 && mat[2][0] > -1) {
+        y = -asin(mat[2][0]);
 
-    // Vérifiez si sy est suffisamment proche de 0
-    bool singular = sy < 1e-6;
+        double cos_y = cos(y);
 
-    if (!singular) {
-		x = atan2(mat[2][1], mat[2][2]);
-		y = atan2(-mat[2][0], sy);
-		z = atan2(mat[1][0], mat[0][0]);
-	}
+        x = atan2(mat[2][1] / cos_y, mat[2][2] / cos_y);
+
+        z = atan2(mat[1][0] / cos_y, mat[0][0] / cos_y);
+    }
     else {
-		x = atan2(-mat[1][2], mat[1][1]);
-		y = atan2(-mat[2][0], sy);
-		z = 0;
+        z = 0;
+        
+        if (mat[2][0] < 0) {
+			y = pi / 2.0;
+			x = atan2(mat[0][1], mat[0][2]);
+		}
+        else {
+			y = -pi / 2.0;
+			x = atan2(-mat[0][1], -mat[0][2]);
+		}
+
 	}
 
     Vector euler = Vector(x, y, z);

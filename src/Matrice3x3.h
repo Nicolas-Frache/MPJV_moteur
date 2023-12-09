@@ -8,18 +8,18 @@
 class Matrice3x3 {
 public:
     Matrice3x3();
-    Matrice3x3(float m00, float m01, float m02, float m10, float m11, float m12, float m20, float m21, float m22);
+    Matrice3x3(double m00, double m01, double m02, double m10, double m11, double m12, double m20, double m21, double m22);
 
     Matrice3x3 produit(const Matrice3x3& other) const;
     Matrice3x3 somme(const Matrice3x3& other) const;
     bool operator==(const Matrice3x3& other) const;
     Matrice3x3 inverse() const;
     Matrice3x3 transposer() const;
-    float calculerDeterminant() const;
+    double calculerDeterminant() const;
     bool estOrthonormee() const;
     bool estOrthogonale() const;
     bool estCarree() const;
-    float calculerMinor(int i, int j) const;
+    double calculerMinor(int i, int j) const;
 
     Vector getEuler() const;
 
@@ -27,7 +27,7 @@ public:
 
 
 public:
-    float mat[3][3];
+    double mat[3][3];
 };
 
 

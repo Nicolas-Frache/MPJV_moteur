@@ -26,9 +26,14 @@ void ofApp::setup(){
 
 	double pi = 2 * acos(0.0);
 
+	CorpsRigide* cube0 = new CorpsRigide(new Particle(Vector(-1, 0, 0), 10, ofColor::blue, 1), 1, 1, 1, ofColor::red);
+	createCorpsRigide(cube0);
+	cube0->angularVelocity = Vector(-1, 0, 0);
+
 	CorpsRigide* cube = new CorpsRigide(new Particle(Vector(0, 0, 0), 10, ofColor::blue, 1), 1, 1, 1, ofColor::blue);
-	cube->rotation = Quaternion(cos(pi/8), Vector(0, 0, 1) * sin(pi / 8));
 	createCorpsRigide(cube);
+	//cube->applyForceAtPosition(new Force(cube->centreMasse, Vector(0, 0, -1.f), .1f), Vector(0, 10, 0));
+	cube->applyTorque(Vector(-100.f, 0, 0), .1f);
 
 	CorpsRigide* c = new CorpsRigide(new Particle(Vector(3, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::red);
 	c->angularVelocity = Vector(1, 0, 0);

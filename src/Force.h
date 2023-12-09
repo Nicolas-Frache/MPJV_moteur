@@ -9,7 +9,7 @@ public:
 	Vector direction = Vector(0, 0, 0);
 
 	// Durée de l'application de la force en s
-	float timeRemaining;
+	float remainingTime;
 	Particle* particle;
 
 	Force(Particle* particle_, Vector direction_, float duration_);

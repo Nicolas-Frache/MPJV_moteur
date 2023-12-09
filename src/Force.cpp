@@ -4,23 +4,23 @@
 Force::Force(Particle* particle_, Vector direction_, float duration_){
 	particle = particle_;
 	direction = direction_;
-	timeRemaining = duration_;
+	remainingTime = duration_;
 }
 
 Force::Force(Particle* particle_, float duration_) {
 	particle = particle_;
 	direction = Vector(0,0,0);
-	timeRemaining = duration_;
+	remainingTime = duration_;
 
 }
 
 float Force::updateTimeElapsed(float time){
 	updateForce(particle, time);
-	if (timeRemaining - time > 0) {
-		timeRemaining -= time;
+	if (remainingTime - time > 0) {
+		remainingTime -= time;
 		return time;
 	}
-	return timeRemaining;
+	return remainingTime;
 }
 
 Vector Force::value() { //permettra pour les sous-classes de Force de modifier la valeur de la force

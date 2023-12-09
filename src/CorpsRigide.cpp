@@ -56,52 +56,47 @@ void CorpsRigide::applyForceAtPosition(Force* force, Vector position) {
 }
 
 void CorpsRigide::integrer(double dt) {
-	// Liste temporaire des torques
-	list<Torque*> tempTorques = list<Torque*>();
-	tempTorques.assign(_torques.begin(), _torques.end());
-
-	// Ajout des torques correspondant aux forces ponctuelles
-	auto it0 = _forcesAtPosition.begin();
-	while (it0 != _forcesAtPosition.end()) {
-		double applicationTime = (*it0)->force->updateTimeElapsed(dt);
-
-		// Calcul du torque
-		Vector l = (*it0)->position - centreMasse->position;
-		Vector f = (*it0)->force->value();
-		Vector torque = l.vectoriel(f);
-
-		// Ajout du torque a la liste temporaire des torques
-		tempTorques.push_back(new Torque(this, torque, applicationTime));
-
-		// Suppression de la force ponctuelle si sa duree est terminee
-		if (applicationTime >= (*it0)->force->timeRemaining) {
-			it0 = _forcesAtPosition.erase(it0);
-		}
-		else {
-			++it0;
-		}
-	}
-
 	// Integration des forces translationnelles sur le centre de masse
 	centreMasse->integrer(dt);
 
 	// Aligner le moment d'inertie avec la rotation
 	inverseMomentOfInertia = rotationMatrix.produit(inverseMomentOfInertia).produit(rotationMatrix.transposer());
 
-	// Integration des torques sur le moment d'inertie
-	auto it1 = tempTorques.begin();
-	while (it1 != tempTorques.end()) {
+	// Integration des torques absolus
+	auto it1 = _torques.begin();
+	while (it1 != _torques.end()) {
 		double applicationTime = (*it1)->updateTimeElapsed(dt);
 
-		// Application du torque pour mettre a jour la vitesse angulaire
-		angularVelocity += (*it1)->torque * inverseMomentOfInertia * dt;
+		integrerTorque(**it1, dt);
 
-		// Suppression de la force rotationnelle si sa duree est terminee
-		if (applicationTime >= (*it1)->duration) {
-			it1 = tempTorques.erase(it1);
+		if (applicationTime >= (*it1)->remainingTime) {
+			it1 = _torques.erase(it1);
 		}
 		else {
 			++it1;
+		}
+	}
+
+
+	// calcul et integration des torques correspondant aux forces ponctuelles
+	auto it2 = _forcesAtPosition.begin();
+	while (it2 != _forcesAtPosition.end()) {
+		double applicationTime = (*it2)->force->updateTimeElapsed(dt);
+
+		// Calcul du torque
+		Vector l = (*it2)->position - centreMasse->position;
+		Vector f = (*it2)->force->value();
+		Vector torque = l.vectoriel(f);
+
+		// Ajout du torque a la liste temporaire des torques
+		integrerTorque(Torque(this, torque, (*it2)->force->remainingTime), dt);
+
+		// Suppression de la force ponctuelle si sa duree est terminee
+		if (applicationTime >= (*it2)->force->remainingTime) {
+			it2 = _forcesAtPosition.erase(it2);
+		}
+		else {
+			++it2;
 		}
 	}
 
@@ -113,6 +108,11 @@ void CorpsRigide::integrer(double dt) {
 	rotationMatrix = rotation.getRotationMatrix();
 
 		
+}
+
+void CorpsRigide::integrerTorque(Torque torque, double dt) {
+	// Application du torque pour mettre a jour la vitesse angulaire
+	angularVelocity += torque.torque * inverseMomentOfInertia * min(dt, torque.remainingTime);
 }
 
 Quaternion CorpsRigide::computeNewRotation(Quaternion q, Vector w, double dt) {

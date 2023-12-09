@@ -78,9 +78,9 @@ void Vector::operator*=(double mult) {
 }
 
 Vector Vector::operator*(const Matrice3x3& mat) {
-	double X = _X * mat.mat[0][0] + _Y * mat.mat[0][1] + _Z * mat.mat[0][2];
-	double Y = _X * mat.mat[1][0] + _Y * mat.mat[1][1] + _Z * mat.mat[1][2];
-	double Z = _X * mat.mat[2][0] + _Y * mat.mat[2][1] + _Z * mat.mat[2][2];
+	double X = _X * mat.mat[0][0] + _X * mat.mat[0][1] + _X * mat.mat[0][2];
+	double Y = _Y * mat.mat[1][0] + _Y * mat.mat[1][1] + _Y * mat.mat[1][2];
+	double Z = _Z * mat.mat[2][0] + _Z * mat.mat[2][1] + _Z * mat.mat[2][2];
 
 	return Vector(X, Y, Z);
 }

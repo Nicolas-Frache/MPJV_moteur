@@ -4,7 +4,6 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\ProjectileMenu.cpp" />
-    <ClCompile Include="src\Vector.cpp" />
     <ClCompile Include="src\Ball.cpp">
       <Filter>Objets physiques</Filter>
     </ClCompile>
@@ -58,10 +57,10 @@
     </ClCompile>
     <ClCompile Include="src\WorldPhysics.cpp" />
     <ClCompile Include="src\Matrice3x3.cpp">
-      <Filter>Matrice</Filter>
+      <Filter>Objets mathématiques</Filter>
     </ClCompile>
     <ClCompile Include="src\Matrice4x4.cpp">
-      <Filter>Matrice</Filter>
+      <Filter>Objets mathématiques</Filter>
     </ClCompile>
     <ClCompile Include="src\CustomAsserts.cpp">
       <Filter>Tests</Filter>
@@ -88,7 +87,7 @@
       <Filter>Forces\Liens</Filter>
     </ClCompile>
     <ClCompile Include="src\Quaternion.cpp">
-      <Filter>Matrice</Filter>
+      <Filter>Objets mathématiques</Filter>
     </ClCompile>
     <ClCompile Include="src\QuaternionTest.cpp">
       <Filter>Tests</Filter>
@@ -99,11 +98,13 @@
     <ClCompile Include="src\CorpsRigide.cpp">
       <Filter>Objets physiques</Filter>
     </ClCompile>
+    <ClCompile Include="src\Vector.cpp">
+      <Filter>Objets mathématiques</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\ProjectileMenu.h" />
-    <ClInclude Include="src\Vector.h" />
     <ClInclude Include="src\Ball.h">
       <Filter>Objets physiques</Filter>
     </ClInclude>
@@ -154,10 +155,10 @@
     </ClInclude>
     <ClInclude Include="src\WorldPhysics.h" />
     <ClInclude Include="src\Matrice4x4.h">
-      <Filter>Matrice</Filter>
+      <Filter>Objets mathématiques</Filter>
     </ClInclude>
     <ClInclude Include="src\Matrice3x3.h">
-      <Filter>Matrice</Filter>
+      <Filter>Objets mathématiques</Filter>
     </ClInclude>
     <ClInclude Include="src\CustomAsserts.h">
       <Filter>Tests</Filter>
@@ -178,10 +179,13 @@
       <Filter>Forces\Liens</Filter>
     </ClInclude>
     <ClInclude Include="src\Quaternion.h">
-      <Filter>Matrice</Filter>
+      <Filter>Objets mathématiques</Filter>
     </ClInclude>
     <ClInclude Include="src\CorpsRigide.h">
       <Filter>Objets physiques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vector.h">
+      <Filter>Objets mathématiques</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -200,14 +204,14 @@
     <Filter Include="Forces\Impulse">
       <UniqueIdentifier>{d7e79562-e50b-404a-b900-92e9f6918563}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Matrice">
-      <UniqueIdentifier>{566b5b6a-1504-4aa2-85ab-4e654889824a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Forces\Liens">
       <UniqueIdentifier>{ee2b508b-783b-49b1-a8fe-5f818efbb5f5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Objets physiques">
       <UniqueIdentifier>{1a86e66e-cff6-4208-8349-b52d92f0ce53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Objets mathématiques">
+      <UniqueIdentifier>{566b5b6a-1504-4aa2-85ab-4e654889824a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

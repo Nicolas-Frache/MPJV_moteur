@@ -2,10 +2,10 @@
 #include "Torque.h"
 #include "CorpsRigide.h"
 
-Torque::Torque(CorpsRigide* corpsRigide, Vector torque, float duration)
-    : corpsRigide(corpsRigide), torque(torque), duration(duration), elapsedTime(0.0f) {}
+Torque::Torque(CorpsRigide* corpsRigide, Vector torque, double duration)
+    : corpsRigide(corpsRigide), torque(torque), remainingTime(duration), elapsedTime(0.0f) {}
 
-float Torque::updateTimeElapsed(float dt) {
+double Torque::updateTimeElapsed(double dt) {
     elapsedTime += dt;
     return elapsedTime;
 }

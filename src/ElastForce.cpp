@@ -38,9 +38,9 @@ void ElastForce::updateForce(Particle* particle, float duration)
 float ElastForce::updateTimeElapsed(float time)
 {
 	updateForce(particle, time);
-	if (timeRemaining - time > 0) {
-		timeRemaining -= time;
+	if (remainingTime - time > 0) {
+		remainingTime -= time;
 		return time;
 	}
-	return timeRemaining;
+	return remainingTime;
 }

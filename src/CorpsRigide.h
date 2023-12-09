@@ -46,6 +46,8 @@ public:
 
 	void integrer(double dt);
 
+	void integrerTorque(Torque torque, double dt);
+
 	Quaternion computeNewRotation(Quaternion q, Vector w, double dt);
 
 	void setRotation(Quaternion quaternion);

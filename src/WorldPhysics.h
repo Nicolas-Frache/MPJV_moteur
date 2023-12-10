@@ -7,6 +7,8 @@
 #include "Impulse.h"
 #include "RodConstraint.h"
 
+#include "OcTree.h"
+
 class WorldPhysics
 {
 	public:
@@ -32,6 +34,8 @@ class WorldPhysics
 		void addRodConstraint(Particle* particle1, Particle* particle2, float length);
 		void removeRodConstraint(Particle* particle1, Particle* particle2);
 
+		void debugDraw();
+
 	private:
 		vector<Particle*> particles = vector<Particle*>();
 		vector<CorpsRigide*> corpsRigides = vector<CorpsRigide*>();
@@ -47,6 +51,7 @@ class WorldPhysics
 
 		void updateRodConstraints();
 
+		OcTree* ocTree;
 		
 };
 

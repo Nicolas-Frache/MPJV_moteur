@@ -55,7 +55,6 @@
     <ClCompile Include="src\ExploImpulse.cpp">
       <Filter>Forces\Impulse</Filter>
     </ClCompile>
-    <ClCompile Include="src\WorldPhysics.cpp" />
     <ClCompile Include="src\Matrice3x3.cpp">
       <Filter>Objets mathématiques</Filter>
     </ClCompile>
@@ -100,6 +99,12 @@
     </ClCompile>
     <ClCompile Include="src\Vector.cpp">
       <Filter>Objets mathématiques</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WorldPhysics.cpp">
+      <Filter>Gestion physique</Filter>
+    </ClCompile>
+    <ClCompile Include="src\OcTree.cpp">
+      <Filter>Gestion physique</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +158,6 @@
     <ClInclude Include="src\ExploImpulse.h">
       <Filter>Forces\Impulse</Filter>
     </ClInclude>
-    <ClInclude Include="src\WorldPhysics.h" />
     <ClInclude Include="src\Matrice4x4.h">
       <Filter>Objets mathématiques</Filter>
     </ClInclude>
@@ -187,6 +191,12 @@
     <ClInclude Include="src\Vector.h">
       <Filter>Objets mathématiques</Filter>
     </ClInclude>
+    <ClInclude Include="src\WorldPhysics.h">
+      <Filter>Gestion physique</Filter>
+    </ClInclude>
+    <ClInclude Include="src\OcTree.h">
+      <Filter>Gestion physique</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />
@@ -212,6 +222,9 @@
     </Filter>
     <Filter Include="Objets mathématiques">
       <UniqueIdentifier>{566b5b6a-1504-4aa2-85ab-4e654889824a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gestion physique">
+      <UniqueIdentifier>{e54c8c77-4450-4d57-a564-859005812cb8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

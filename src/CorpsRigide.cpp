@@ -19,6 +19,8 @@ CorpsRigide::CorpsRigide(Particle* centreMasse, Vector demiAxes, ofColor color) 
 		0, m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.z()) * (2 * demiAxes.z()) / 12.0f, 0,
 		m * (2 * demiAxes.x()) * (2 * demiAxes.x()) + (2 * demiAxes.y()) * (2 * demiAxes.y()) / 12.0f, 0, 0
 	);
+
+	boundingSphereRadius = sqrt(demiAxes.x() * demiAxes.x() + demiAxes.y() * demiAxes.y() + demiAxes.z() * demiAxes.z());
 }
 
 CorpsRigide::CorpsRigide(Particle* centreMasse, double height, double width, double depth, ofColor color)

@@ -9,7 +9,7 @@ Blob::Blob(Vector position, float invertedMass, ofColor color, float size)
 }
 
 void Blob::addNode(Ball* ball){
-	ball->applyForce(new RessortForce(ball, this, this->size + ball->size + 10, 10, 500));
+	ball->applyForce(new RessortForce(ball, this, this->radius + ball->radius + 10, 10, 500));
 	ball->applyForce(new DampingForce(ball, 0.8));
 
 	/*for (int i = 0; i < this->nodes.size(); i++) {

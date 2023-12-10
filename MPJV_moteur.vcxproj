@@ -118,6 +118,7 @@
     <ClCompile Include="src\DampingForce.cpp" />
     <ClCompile Include="src\ElastForce.cpp" />
     <ClCompile Include="src\ExploImpulse.cpp" />
+    <ClCompile Include="src\OcTree.cpp" />
     <ClCompile Include="src\Torque.cpp" />
     <ClCompile Include="src\FrictionStat.cpp" />
     <ClCompile Include="src\Impulse.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="src\DampingForce.h" />
     <ClInclude Include="src\ElastForce.h" />
     <ClInclude Include="src\ExploImpulse.h" />
+    <ClInclude Include="src\OcTree.h" />
     <ClInclude Include="src\Torque.h" />
     <ClInclude Include="src\FrictionStat.h" />
     <ClInclude Include="src\Impulse.h" />

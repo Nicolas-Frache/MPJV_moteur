@@ -90,6 +90,10 @@ void ofApp::draw(){
 	for (CorpsRigide* corps : corpsRigides) {
 		corps->draw();
 	}
+
+	// Debug
+	world.debugDraw();
+
 	cam.end();
 }
 

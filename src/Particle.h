@@ -14,7 +14,7 @@ class Particle{
 
 		float invertedMass;
 		ofColor color;
-		float size;
+		float radius;
 		list<Force*> _forces = list<Force*>();
 
 		float restitution = 1.0f;

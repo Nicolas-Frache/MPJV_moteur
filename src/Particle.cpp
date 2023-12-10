@@ -11,7 +11,7 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 	this->position = position;
 	this->invertedMass = invertedMass;
 	this->color = color;
-	this->size = size;
+	this->radius = size;
 
 	this->sphere = ofSpherePrimitive(10, 10);
 	this->sphere.setRadius(size);
@@ -90,13 +90,13 @@ void Particle::integrer(float dt) {
 
 
 bool Particle::checkCollisionWith(const Particle& other) const {
-	float minDistance = this->size + other.size;
+	float minDistance = this->radius + other.radius;
 	Vector offset = other.position - this->position;
 	return offset.norm() < minDistance;
 }
 
 bool Particle::checkRestingContactWith(const Particle& other) const {
-	float minDistance = this->size + other.size;
+	float minDistance = this->radius + other.radius;
 	Vector offset = other.position - this->position;
 	float distance = offset.norm();
 
@@ -106,7 +106,7 @@ bool Particle::checkRestingContactWith(const Particle& other) const {
 
 
 bool Particle::resolveInterpenetration(Particle& other) {
-	float minDistance = this->size + other.size;
+	float minDistance = this->radius + other.radius;
 	Vector offset = other.position - this->position;
 	float distance = offset.norm();
 
@@ -122,7 +122,7 @@ bool Particle::resolveInterpenetration(Particle& other) {
 void Particle::resolveRestingContactWith(Particle& other) {
 	// Calculez le vecteur de collision et la distance de pénétration
 	Vector collisionVector = other.position - this->position;
-	float overlap = collisionVector.norm() - (this->size + other.size);
+	float overlap = collisionVector.norm() - (this->radius + other.radius);
 
 	// Si overlap est positif, il y a une pénétration
 	if (overlap > 0) {

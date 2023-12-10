@@ -24,6 +24,8 @@ public:
 	Particle* centreMasse;
 	Vector demiAxes; //distances du centre de masse aux faces du cube
 
+	double boundingSphereRadius;
+
 	ofColor color;
 
 	Quaternion rotation = Quaternion(1, 0, 0, 0);

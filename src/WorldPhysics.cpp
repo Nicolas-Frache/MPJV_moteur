@@ -66,6 +66,7 @@ void WorldPhysics::removeRodConstraint(Particle* particle1, Particle* particle2)
 
 void WorldPhysics::updateCollisions()
 {
+	/* Legacy
 	for (int i = 0; i < particles.size(); i++) {
 		Particle* particle1 = particles[i];
 		for (int j = i + 1; j < particles.size(); j++) {
@@ -82,7 +83,23 @@ void WorldPhysics::updateCollisions()
 				particle1->resolveRestingContactWith(*particle2);
 			}
 		}
+	} */
+
+	// OcTree
+	vector<PhysicsObject*> physicsObjects = vector<PhysicsObject*>();
+	for (Particle* particle : particles) {
+		physicsObjects.push_back(new PhysicsObject(particle));
 	}
+	for (CorpsRigide* corps : corpsRigides) {
+		physicsObjects.push_back(new PhysicsObject(corps));
+	}
+
+	ocTree = new OcTree(&physicsObjects, 1, 6);
+
+	vector<vector<PhysicsObject*>> collisions = ocTree->getPossibleCollisions();
+
+	std::cout << "Collisions: " << collisions.size() << std::endl;
+
 }
 
 void WorldPhysics::updateBoundaries()
@@ -180,4 +197,9 @@ void WorldPhysics::updateRodConstraints()
 	for (RodConstraint* rodConstraint : rodConstraints) {
 		rodConstraint->satisfyConstraint();
 	}
+}
+
+void WorldPhysics::debugDraw()
+{
+	ocTree->draw();
 }

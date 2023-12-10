@@ -22,10 +22,13 @@ void Fireball::update() {
 	trail->duration = ofRandom(1.f, 4.f);
 
 	Vector hor_vel = velocity * 0.7;
-	float t_x = ofRandom(0.4f, 1.f) * hor_vel.x();
-	float t_z = ofRandom(0.4f, 1.f) * hor_vel.z();
+	float mult = 2.f;
+	float t_x = ofRandom(-1.f, 1.f) * mult + hor_vel.x();
+	float t_y = ofRandom(-1.f, 1.f) * mult + hor_vel.y();
+	float t_z = ofRandom(-1.f, 1.f) * mult + hor_vel.z();
 
-	trail->velocity = Vector(t_x, velocity.y() - ofRandom(10, 25), t_z);
+	trail->velocity = Vector(t_x, t_y, t_z);
+	trail->applyForce(new Force(trail, Vector(0, 15, 0), 40.f));
 	trails.push_back(trail);	
 
 	//on supprime les trails qui ont d�pass� leur duree de vie

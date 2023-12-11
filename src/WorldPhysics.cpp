@@ -66,25 +66,6 @@ void WorldPhysics::removeRodConstraint(Particle* particle1, Particle* particle2)
 
 void WorldPhysics::updateCollisions()
 {
-	/* Legacy
-	for (int i = 0; i < particles.size(); i++) {
-		Particle* particle1 = particles[i];
-		for (int j = i + 1; j < particles.size(); j++) {
-			Particle* particle2 = particles[j];
-			// Vérifier si une collision se produit entre les deux particules
-			if (particle1->checkCollisionWith(*particle2)) {
-				// Résoudre la collision entre les deux particules
-				particle1->resolveInterpenetration(*particle2);
-				Impulse(particle1, particle2);
-			}
-			// Vérifiez s'il y a une collision douce
-			if (particle1->checkRestingContactWith(*particle2)) {
-				// Traite la collision au repos ici
-				particle1->resolveRestingContactWith(*particle2);
-			}
-		}
-	} */
-
 	// OcTree
 	PhysicsObject::resetId();
 	vector<PhysicsObject*> physicsObjects = vector<PhysicsObject*>();
@@ -95,19 +76,77 @@ void WorldPhysics::updateCollisions()
 		physicsObjects.push_back(new PhysicsObject(corps));
 	}
 
+	if (PhysicsObject::getLastId() < 1) {
+		return;
+	}
+
 	vector<set<int>> potentialCollisionList = vector<set<int>>(PhysicsObject::getLastId(), set<int>());
 
 	ocTree = new OcTree(&physicsObjects, 1, 6, &potentialCollisionList);
 
 	ocTree->getPossibleCollisions();
 
+
 	int totalCollisions = 0;
-	for (set<int> collision : potentialCollisionList) {
-		totalCollisions += collision.size();
+	for (set<int> collisions : potentialCollisionList) {
+		totalCollisions += collisions.size();
 	}
 	cout << "Total collisions a tester: " << totalCollisions << endl;
 
+
+	detectCollisions(&potentialCollisionList);
 }
+
+
+void WorldPhysics::detectCollisions(vector<set<int>>* potentialCollisions)
+{
+	for (int i = 0; i < potentialCollisions->size(); i++) {
+		set<int> collisions = (*potentialCollisions)[i];
+		for (int j : collisions) {
+			PhysicsObject* object1 = PhysicsObject::getObjectById(i);
+			PhysicsObject* object2 = PhysicsObject::getObjectById(j);
+
+			if (object1->getType() == 0 && object2->getType() == 0) {
+				detectParticleCollisions(object1, *object2);
+				continue;
+			}
+
+			if (object1->getType() == 1 && object2->getType() == 1) {
+				detectCorpsRigideCollisions(object1, *object2);
+				continue;
+			}
+
+			if (object1->getType() == 0 && object2->getType() == 1) {
+				detectParticleCorpsRigideCollisions(object1, *object2);
+				continue;
+			}
+
+			if (object1->getType() == 1 && object2->getType() == 0) {
+				detectParticleCorpsRigideCollisions(object2, *object1);
+				continue;
+			}
+		}
+	}
+}
+
+void WorldPhysics::detectParticleCollisions(PhysicsObject* particle1, PhysicsObject particle2)
+{
+	// Vérifier si une collision se produit entre les deux particules
+	Particle *p1 = particle1->getParticle(), *p2 = particle2.getParticle();
+	if (p1->checkCollisionWith(*p2)) {
+		p1->resolveInterpenetration(*p2);
+		Impulse(p1, p2);
+	}
+}
+
+void WorldPhysics::detectCorpsRigideCollisions(PhysicsObject* corpsRigide1, PhysicsObject corpsRigide2)
+{
+}
+
+void WorldPhysics::detectParticleCorpsRigideCollisions(PhysicsObject* particle, PhysicsObject corpsRigide)
+{
+}
+
 
 void WorldPhysics::updateBoundaries()
 {
@@ -206,7 +245,9 @@ void WorldPhysics::updateRodConstraints()
 	}
 }
 
+
 void WorldPhysics::debugDraw()
 {
-	ocTree->draw();
+	if (ocTree != nullptr)
+		ocTree->draw();
 }

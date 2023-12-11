@@ -1,6 +1,5 @@
 ﻿#include "OcTree.h"
 
-int PhysicsObject::nextId = -1;
 
 OcTree::OcTree(vector<PhysicsObject*>* objects, int maxObjects, int maxDepth, vector<set<int>>* potentialCollisionList)
 {

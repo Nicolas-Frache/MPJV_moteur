@@ -105,7 +105,7 @@ void WorldPhysics::updateCollisions()
 	for (set<int> collision : potentialCollisionList) {
 		totalCollisions += collision.size();
 	}
-	cout << "Total collisions à tester: " << totalCollisions << endl;
+	cout << "Total collisions a tester: " << totalCollisions << endl;
 
 }
 

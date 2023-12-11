@@ -8,6 +8,7 @@
 #include "RodConstraint.h"
 
 #include "OcTree.h"
+#include "PhysicsObject.h"
 
 class WorldPhysics
 {

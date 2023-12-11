@@ -72,14 +72,12 @@ void ofApp::update() {
 
 	world.update();
 
-	ofDrawBox(10, 10, 10, 2, 4, 2);
-
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
 	menu.draw();
-	cam.begin();
+	cam.begin(); 
     skybox.draw();
 	ofDrawGrid(5, 5, true, true, true, false);
 

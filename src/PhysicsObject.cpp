@@ -2,6 +2,8 @@
 
 int PhysicsObject::_nextId = -1;
 vector<PhysicsObject*> PhysicsObject::_objects = vector<PhysicsObject*>();
+Particle PhysicsObject::defaultPart = Particle(Vector(0, 0, 0), 0, ofColor::black, 0);
+CorpsRigide PhysicsObject::defaultCorps = CorpsRigide(&Particle(Vector(0, 0, 0), 0, ofColor::black, 0), Vector(0, 0, 0), ofColor::black);
 
 PhysicsObject::PhysicsObject(Particle* particle)
 {
@@ -11,7 +13,7 @@ PhysicsObject::PhysicsObject(Particle* particle)
 	_objects.push_back(this);
 
 	// Sert uniquement à initialiser la variable _corpsRigide, n'est pas utilisé
-	_corpsRigide = new CorpsRigide(&Particle(Vector(0, 0, 0), 0, ofColor::black, 0), Vector(0, 0, 0), ofColor::black);
+	_corpsRigide = &defaultCorps;
 }
 
 PhysicsObject::PhysicsObject(CorpsRigide* corpsRigide)
@@ -22,7 +24,7 @@ PhysicsObject::PhysicsObject(CorpsRigide* corpsRigide)
 	_objects.push_back(this);
 
 	// Sert uniquement à initialiser la variable _particle, n'est pas utilisé
-	_particle = new Particle(Vector(0, 0, 0), 0, ofColor::black, 0);
+	_particle = &defaultPart;
 }
 
 

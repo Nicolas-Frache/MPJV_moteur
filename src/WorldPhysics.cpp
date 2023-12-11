@@ -68,12 +68,11 @@ void WorldPhysics::updateCollisions()
 {
 	// OcTree
 	PhysicsObject::resetId();
-	vector<PhysicsObject*> physicsObjects = vector<PhysicsObject*>();
 	for (Particle* particle : particles) {
-		physicsObjects.push_back(new PhysicsObject(particle));
+		new PhysicsObject(particle);
 	}
 	for (CorpsRigide* corps : corpsRigides) {
-		physicsObjects.push_back(new PhysicsObject(corps));
+		new PhysicsObject(corps);
 	}
 
 	if (PhysicsObject::getLastId() < 1) {
@@ -82,16 +81,16 @@ void WorldPhysics::updateCollisions()
 
 	vector<set<int>> potentialCollisionList = vector<set<int>>(PhysicsObject::getLastId(), set<int>());
 
-	ocTree = new OcTree(&physicsObjects, 1, 6, &potentialCollisionList);
+	ocTree = new OcTree(PhysicsObject::getObjectsVector(), 1, 6, &potentialCollisionList);
 
 	ocTree->getPossibleCollisions();
 
 
-	int totalCollisions = 0;
-	for (set<int> collisions : potentialCollisionList) {
-		totalCollisions += collisions.size();
-	}
-	cout << "Total collisions a tester: " << totalCollisions << endl;
+	//int totalCollisions = 0;
+	//for (set<int> collisions : potentialCollisionList) {
+	//	totalCollisions += collisions.size();
+	//}
+	//cout << "Total collisions a tester: " << totalCollisions << endl;
 
 
 	detectCollisions(&potentialCollisionList);

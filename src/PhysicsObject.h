@@ -19,6 +19,7 @@ public:
 	int getId() { return _id; }
 	static int getLastId() { return _nextId; }
 	static PhysicsObject* getObjectById(int id) { return _objects[id]; }
+	static vector<PhysicsObject*>* getObjectsVector() { return &_objects; }
 
 private:
 	static vector<PhysicsObject*> _objects;
@@ -27,5 +28,7 @@ private:
 	int _type; // 0 = particle, 1 = corpsRigide
 	Particle* _particle;
 	CorpsRigide* _corpsRigide;
+	static Particle defaultPart;
+	static CorpsRigide defaultCorps;
 };
 

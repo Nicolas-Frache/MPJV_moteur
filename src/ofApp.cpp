@@ -70,7 +70,8 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update() {
 
-	world.update();
+	if (!pause)
+		world.update();
 
 }
 
@@ -90,7 +91,9 @@ void ofApp::draw(){
 	}
 
 	// Debug
-	world.debugDraw();
+	if (debug) {
+		world.debugDraw();
+	}
 
 	cam.end();
 }
@@ -167,6 +170,13 @@ void ofApp::keyPressed(int key) {
 	}
 	if (key == OF_KEY_RETURN) {
 		blob.splitBlob();
+	}
+
+	if (key == '!') {
+		debug = !debug;
+	}
+	if (key == 'p') {
+		pause = !pause;
 	}
 }
 

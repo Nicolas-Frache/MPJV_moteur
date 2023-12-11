@@ -79,5 +79,7 @@ class ofApp : public ofBaseApp {
 
 		ProjectileMenu menu;
 		
-
+		// Debugging
+		bool debug = false;
+		bool pause = false;
 };

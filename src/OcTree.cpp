@@ -1,16 +1,17 @@
 ﻿#include "OcTree.h"
 
+int PhysicsObject::nextId = -1;
 
-OcTree::OcTree(vector<PhysicsObject*>* objects, int maxObjects, int maxDepth)
+OcTree::OcTree(vector<PhysicsObject*>* objects, int maxObjects, int maxDepth, vector<set<int>>* potentialCollisionList)
 {
-	this->objects = vector<PhysicsObject*>(); // Copy objects
+	_objects = vector<PhysicsObject*>(); // Copy objects
 	for (PhysicsObject* object : *objects) {
-		this->objects.push_back(object);
-		if (object->getRadius() < minRadius) minRadius = object->getRadius();
+		_objects.push_back(object);
+		if (object->getRadius() < _minRadius) _minRadius = object->getRadius();
 	}
 
-	this->maxObjects = maxObjects;
-	this->maxDepth = maxDepth;
+	_maxObjects = maxObjects;
+	_maxDepth = maxDepth;
 
 	// Find centre and size
 	double minX = 0;
@@ -20,7 +21,7 @@ OcTree::OcTree(vector<PhysicsObject*>* objects, int maxObjects, int maxDepth)
 	double minZ = 0;
 	double maxZ = 0;
 
-	for (PhysicsObject* object : this->objects) {
+	for (PhysicsObject* object : this->_objects) {
 		Vector pos = object->getPos();
 		if (pos.x() < minX) minX = pos.x() - 1;
 		if (pos.x() > maxX) maxX = pos.x() + 1;
@@ -40,26 +41,28 @@ OcTree::OcTree(vector<PhysicsObject*>* objects, int maxObjects, int maxDepth)
 
 	double size = max(sizeX, max(sizeY, sizeZ));
 
-	this->centre = Vector(x, y, z);
-	this->size = size;
+	_centre = Vector(x, y, z);
+	_size = size;
+	_potentialCollisionList = potentialCollisionList;
 
 	computeMinMax();
 	checkSplitNeeded();
 }
 
-OcTree::OcTree(vector<PhysicsObject*>* objects, Vector centre, double size, int maxObjects, int maxDepth)
+OcTree::OcTree(vector<PhysicsObject*>* objects, Vector centre, double size, int maxObjects, int maxDepth, vector<set<int>>* potentialCollisionList)
 {
-	this->centre = centre;
-	this->size = size;
-	this->maxObjects = maxObjects;
-	this->maxDepth = maxDepth;
+	_centre = centre;
+	_size = size;
+	_maxObjects = maxObjects;
+	_maxDepth = maxDepth;
+	_potentialCollisionList = potentialCollisionList;
 	computeMinMax();
 
-	this->objects = vector<PhysicsObject*>(); // Copy objects
+	_objects = vector<PhysicsObject*>(); // Copy objects
 	for (PhysicsObject* object : *objects) {
 		if (objectInBound(object)) {
-			this->objects.push_back(object);
-			if (object->getRadius() < minRadius) minRadius = object->getRadius();
+			_objects.push_back(object);
+			if (object->getRadius() < _minRadius) _minRadius = object->getRadius();
 		}
 	}
 
@@ -68,14 +71,14 @@ OcTree::OcTree(vector<PhysicsObject*>* objects, Vector centre, double size, int 
 
 void OcTree::computeMinMax()
 {
-	double x = centre.x();
-	double y = centre.y();
-	double z = centre.z();
+	double x = _centre.x();
+	double y = _centre.y();
+	double z = _centre.z();
 
-	double demiSize = this->size / 2;
+	double demiSize = this->_size / 2;
 
-	minCoord = Vector(x - demiSize, y - demiSize, z - demiSize);
-	maxCoord = Vector(x + demiSize, y + demiSize, z + demiSize);
+	_minCoord = Vector(x - demiSize, y - demiSize, z - demiSize);
+	_maxCoord = Vector(x + demiSize, y + demiSize, z + demiSize);
 }
 
 bool OcTree::objectInBound(PhysicsObject* object)
@@ -83,57 +86,57 @@ bool OcTree::objectInBound(PhysicsObject* object)
 	Vector pos = object->getPos();
 	double radius = object->getRadius();
 
-	if (pos.x() + radius < minCoord.x()) return false;
-	if (pos.x() - radius > maxCoord.x()) return false;
-	if (pos.y() + radius < minCoord.y()) return false;
-	if (pos.y() - radius > maxCoord.y()) return false;
-	if (pos.z() + radius < minCoord.z()) return false;
-	if (pos.z() - radius > maxCoord.z()) return false;
+	if (pos.x() + radius < _minCoord.x()) return false;
+	if (pos.x() - radius > _maxCoord.x()) return false;
+	if (pos.y() + radius < _minCoord.y()) return false;
+	if (pos.y() - radius > _maxCoord.y()) return false;
+	if (pos.z() + radius < _minCoord.z()) return false;
+	if (pos.z() - radius > _maxCoord.z()) return false;
 
 	return true;
 }
 
 void OcTree::checkSplitNeeded()
 {
-	if (objects.size() <= maxObjects) return;
-	if (maxDepth == 0) return;
-	if (size < minRadius * 2) return;
+	if (_objects.size() <= _maxObjects) return;
+	if (_maxDepth == 0) return;
+	if (_size < _minRadius * 2) return;		// Inutile de subdiviser si tous les objets sont plus grands que la taille de la cellule
 
 	split();
 }
 
 void OcTree::split()
 {
-	double semiSize = this->size / 2;
-	double quarterSize = this->size / 4;
+	double semiSize = this->_size / 2;
+	double quarterSize = this->_size / 4;
 
-	Vector centre0 = Vector(centre.x() - quarterSize, centre.y() - quarterSize, centre.z() - quarterSize);
-	Vector centre1 = Vector(centre.x() + quarterSize, centre.y() - quarterSize, centre.z() - quarterSize);
-	Vector centre2 = Vector(centre.x() - quarterSize, centre.y() + quarterSize, centre.z() - quarterSize);
-	Vector centre3 = Vector(centre.x() + quarterSize, centre.y() + quarterSize, centre.z() - quarterSize);
-	Vector centre4 = Vector(centre.x() - quarterSize, centre.y() - quarterSize, centre.z() + quarterSize);
-	Vector centre5 = Vector(centre.x() + quarterSize, centre.y() - quarterSize, centre.z() + quarterSize);
-	Vector centre6 = Vector(centre.x() - quarterSize, centre.y() + quarterSize, centre.z() + quarterSize);
-	Vector centre7 = Vector(centre.x() + quarterSize, centre.y() + quarterSize, centre.z() + quarterSize);
+	Vector centre0 = Vector(_centre.x() - quarterSize, _centre.y() - quarterSize, _centre.z() - quarterSize);
+	Vector centre1 = Vector(_centre.x() + quarterSize, _centre.y() - quarterSize, _centre.z() - quarterSize);
+	Vector centre2 = Vector(_centre.x() - quarterSize, _centre.y() + quarterSize, _centre.z() - quarterSize);
+	Vector centre3 = Vector(_centre.x() + quarterSize, _centre.y() + quarterSize, _centre.z() - quarterSize);
+	Vector centre4 = Vector(_centre.x() - quarterSize, _centre.y() - quarterSize, _centre.z() + quarterSize);
+	Vector centre5 = Vector(_centre.x() + quarterSize, _centre.y() - quarterSize, _centre.z() + quarterSize);
+	Vector centre6 = Vector(_centre.x() - quarterSize, _centre.y() + quarterSize, _centre.z() + quarterSize);
+	Vector centre7 = Vector(_centre.x() + quarterSize, _centre.y() + quarterSize, _centre.z() + quarterSize);
 
-	children[0] = new OcTree(&objects, centre0, semiSize, maxObjects, maxDepth - 1);
-	children[1] = new OcTree(&objects, centre1, semiSize, maxObjects, maxDepth - 1);
-	children[2] = new OcTree(&objects, centre2, semiSize, maxObjects, maxDepth - 1);
-	children[3] = new OcTree(&objects, centre3, semiSize, maxObjects, maxDepth - 1);
-	children[4] = new OcTree(&objects, centre4, semiSize, maxObjects, maxDepth - 1);
-	children[5] = new OcTree(&objects, centre5, semiSize, maxObjects, maxDepth - 1);
-	children[6] = new OcTree(&objects, centre6, semiSize, maxObjects, maxDepth - 1);
-	children[7] = new OcTree(&objects, centre7, semiSize, maxObjects, maxDepth - 1);
+	_children[0] = new OcTree(&_objects, centre0, semiSize, _maxObjects, _maxDepth - 1, _potentialCollisionList);
+	_children[1] = new OcTree(&_objects, centre1, semiSize, _maxObjects, _maxDepth - 1, _potentialCollisionList);
+	_children[2] = new OcTree(&_objects, centre2, semiSize, _maxObjects, _maxDepth - 1, _potentialCollisionList);
+	_children[3] = new OcTree(&_objects, centre3, semiSize, _maxObjects, _maxDepth - 1, _potentialCollisionList);
+	_children[4] = new OcTree(&_objects, centre4, semiSize, _maxObjects, _maxDepth - 1, _potentialCollisionList);
+	_children[5] = new OcTree(&_objects, centre5, semiSize, _maxObjects, _maxDepth - 1, _potentialCollisionList);
+	_children[6] = new OcTree(&_objects, centre6, semiSize, _maxObjects, _maxDepth - 1, _potentialCollisionList);
+	_children[7] = new OcTree(&_objects, centre7, semiSize, _maxObjects, _maxDepth - 1, _potentialCollisionList);
 
-	hasChildren = true;
+	_hasChildren = true;
 }
 
 int OcTree::getDepth()
 {
-	if (hasChildren) {
+	if (_hasChildren) {
 		int maxDepth = 0;
 		for (int i = 0; i < 8; ++i) {
-			int depth = children[i]->getDepth();
+			int depth = _children[i]->getDepth();
 			if (depth > maxDepth) maxDepth = depth;
 		}
 		return maxDepth + 1;
@@ -143,43 +146,34 @@ int OcTree::getDepth()
 	}
 }
 
-vector<vector<PhysicsObject*>> OcTree::getPossibleCollisions()
+void OcTree::getPossibleCollisions()
 {
 	vector<vector<PhysicsObject*>> collisions = vector<vector<PhysicsObject*>>();
 
-	if (hasChildren) {
-		for (int i = 0; i < 8; i++) {
-			vector<vector<PhysicsObject*>> childCollisions = children[i]->getPossibleCollisions();
-			for (vector<PhysicsObject*> collision : childCollisions) {
-				collisions.push_back(collision);
-			}
-			// Cas problematique, deux objets sur la meme frontiere
+	if (_hasChildren) {
+		for (int i = 0; i < 8; ++i) {
+			_children[i]->getPossibleCollisions();
 		}
 	}
 	else {
-		for (int i = 0; i < objects.size(); i++) {
-			for (int j = i + 1; j < objects.size(); j++) {
-				vector<PhysicsObject*> collision = vector<PhysicsObject*>();
-				collision.push_back(objects[i]);
-				collision.push_back(objects[j]);
-				collisions.push_back(collision);
+		for (int i = 0; i < _objects.size(); ++i) {
+			for (int j = i + 1; j < _objects.size(); ++j) {
+				_potentialCollisionList->at(_objects[i]->getId()).insert(_objects[j]->getId());
 			}
 		}
 	}
-
-	return collisions;
 }
 
 string OcTree::toString()
 {
 	string str = "";
-	if (hasChildren) {
-		for (int i = 0; i < 8; i++) {
-			str += "(" + children[i]->toString() + ")";
+	if (_hasChildren) {
+		for (int i = 0; i < 8; ++i) {
+			str += "(" + _children[i]->toString() + ")";
 		}
 	}
 	else {
-		str += to_string(objects.size());
+		str += to_string(_objects.size());
 	}
 	return str;
 }
@@ -189,12 +183,12 @@ void OcTree::draw()
 	ofSetColor(ofColor::red);
 	ofNoFill();
 	ofSetLineWidth(1);
-	ofDrawBox(centre.x(), centre.y(), centre.z(), size, size, size);
+	ofDrawBox(_centre.x(), _centre.y(), _centre.z(), _size, _size, _size);
 	ofFill();
 
-	if (hasChildren) {
-		for (int i = 0; i < 8; i++) {
-			children[i]->draw();
+	if (_hasChildren) {
+		for (int i = 0; i < 8; ++i) {
+			_children[i]->draw();
 		}
 	}
 }

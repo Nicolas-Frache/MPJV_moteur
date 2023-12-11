@@ -52,6 +52,13 @@ class WorldPhysics
 
 		void updateRodConstraints();
 
+		void detectCollisions(vector<set<int>>* potentialCollisions);
+
+		void detectParticleCollisions(PhysicsObject* particle1, PhysicsObject particle2);
+		void detectCorpsRigideCollisions(PhysicsObject* corpsRigide1, PhysicsObject corpsRigide2);
+		void detectParticleCorpsRigideCollisions(PhysicsObject* particle, PhysicsObject corpsRigide);
+
+
 		OcTree* ocTree;
 		
 };

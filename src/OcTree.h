@@ -2,33 +2,7 @@
 
 #include <math.h>
 
-#include "Particle.h"
-#include "CorpsRigide.h"
-
-class PhysicsObject
-{
-	public:
-		PhysicsObject(Particle* particle) { this->particle = particle; this->type = 0; id = ++nextId; }
-		PhysicsObject(CorpsRigide* corpsRigide) { this->corpsRigide = corpsRigide; this->type = 1; id = ++nextId; }
-
-		Vector getPos() { if (type == 0) return particle->position; else return corpsRigide->centreMasse->position; }
-		int getType() const { return type; }
-		Particle* getParticle() { return particle; }
-		CorpsRigide* getCorpsRigide() { return corpsRigide; }
-		double getRadius() { if (type == 0) return particle->radius; else return corpsRigide->boundingSphereRadius; }
-
-		static void resetId() { nextId = -1; }
-		int getId() { return id; }
-		static int getLastId() { return nextId; }
-
-	private:
-		static int nextId;
-		int id;
-		int type; // 0 = particle, 1 = corpsRigide
-		Particle* particle;
-		CorpsRigide* corpsRigide;
-};
-
+#include "PhysicsObject.h"
 
 class OcTree
 {

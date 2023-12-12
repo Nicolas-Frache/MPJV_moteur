@@ -35,6 +35,25 @@ void ProjectileMenu::draw() {
     ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
     ofSetColor(0);
     ofDrawBitmapString("Appuyer sur 4 pour lancer un CorpsRigide en rotation", buttonX + 10, buttonY + 20);
+
+    buttonY += buttonHeight + spacing;
+    ofSetColor(255);
+	ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
+	ofSetColor(0);
+	ofDrawBitmapString("Appuyer sur ! pour afficher le debugging visuel", buttonX + 10, buttonY + 20);
+
+	buttonY += buttonHeight + spacing;
+    ofSetColor(255);
+	ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
+	ofSetColor(0);
+	ofDrawBitmapString("Appuyer sur p pour mettre le jeu en pause", buttonX + 10, buttonY + 20);
+
+	buttonY += buttonHeight + spacing;
+	ofSetColor(255);
+    ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
+    ofSetColor(0);
+    ofDrawBitmapString("Appuyer sur r pour afficher le repere", buttonX + 10, buttonY + 20);
+
 }
 
 

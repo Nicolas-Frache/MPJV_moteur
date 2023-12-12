@@ -82,4 +82,5 @@ class ofApp : public ofBaseApp {
 		// Debugging
 		bool debug = false;
 		bool pause = false;
+		bool repere = true;
 };

@@ -99,7 +99,7 @@ void OcTree::checkSplitNeeded()
 {
 	if (_objects.size() <= _maxObjects) return;
 	if (_maxDepth == 0) return;
-	if (_size < _minRadius * 2) return;		// Inutile de subdiviser si tous les objets sont plus grands que la taille de la cellule
+	if (_size < _minRadius) return;		// Généralement peu utile de subdiviser si tous les objets sont plus grands que la moitié de la taille de la cellule
 
 	split();
 }

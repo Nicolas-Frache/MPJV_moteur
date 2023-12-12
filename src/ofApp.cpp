@@ -80,7 +80,9 @@ void ofApp::draw(){
 	menu.draw();
 	cam.begin(); 
     skybox.draw();
-	ofDrawGrid(5, 5, true, true, true, false);
+
+	if (repere)
+		ofDrawGrid(5, 5, true, true, true, false);
 
 	// Draw particules
 	for (Particle* particle : particles) {
@@ -177,6 +179,9 @@ void ofApp::keyPressed(int key) {
 	}
 	if (key == 'p') {
 		pause = !pause;
+	}
+	if (key == 'r') {
+		repere = !repere;
 	}
 }
 

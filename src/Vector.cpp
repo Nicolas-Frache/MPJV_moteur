@@ -20,11 +20,6 @@ void Vector::set(double X, double Y, double Z) {
 	_Z = Z;
 }
 
-void Vector::setY(double Y){
-	_Y = Y;
-}
-
-
 // operators
 Vector Vector::operator+(Vector vect) {
 	double X = _X + vect.x();
@@ -83,6 +78,17 @@ Vector Vector::operator*(const Matrice3x3& mat) {
 	double Z = _Z * mat.mat[2][0] + _Z * mat.mat[2][1] + _Z * mat.mat[2][2];
 
 	return Vector(X, Y, Z);
+}
+
+Vector Vector::operator/(double div)
+{
+	return Vector(_X / div, _Y / div, _Z / div);
+}
+
+void Vector::operator/=(double div) {
+	_X /= div;
+	_Y /= div;
+	_Z /= div;
 }
 
 bool Vector::operator==(Vector vect) {

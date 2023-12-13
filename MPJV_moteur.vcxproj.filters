@@ -109,6 +109,12 @@
     <ClCompile Include="src\PhysicsObject.cpp">
       <Filter>Objets physiques</Filter>
     </ClCompile>
+    <ClCompile Include="src\Collision.cpp">
+      <Filter>Gestion physique</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GeometricForms.cpp">
+      <Filter>Objets mathématiques</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
@@ -202,6 +208,12 @@
     </ClInclude>
     <ClInclude Include="src\PhysicsObject.h">
       <Filter>Objets physiques</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Collision.h">
+      <Filter>Gestion physique</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GeometricForms.h">
+      <Filter>Objets mathématiques</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

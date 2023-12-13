@@ -6,6 +6,7 @@
 #include "Matrice3x3.h"
 #include "Matrice4x4.h"
 #include "Torque.h"
+#include "GeometricForms.h"
 
 class ForceAtPosition {
 	public:
@@ -58,6 +59,9 @@ public:
 
 	double normalizeAngle(double angle);
 
+	array<Face, 6>* getFaces();
+	array<Edge, 12>* getEdges();
+
 
 	// ------ FONCTIONS DE FORCES SIMPLES ------
 
@@ -98,5 +102,13 @@ public:
 	}
 
 	void ofApplyVisualRotation();
+
+	Vector applyCorpsRotationToVector(Vector vector);
+	
+	array<Vector, 8> vertices = array<Vector, 8>();
+	array<Vector, 8> normals = array<Vector, 8>();
+	void updateVertices();
+	bool verticesUpdated = false;
+
 };
 

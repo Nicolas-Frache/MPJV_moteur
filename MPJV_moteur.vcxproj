@@ -111,6 +111,7 @@
     <ClCompile Include="src\Blob.cpp" />
     <ClCompile Include="src\CableForce.cpp" />
     <ClCompile Include="src\Cannonball.cpp" />
+    <ClCompile Include="src\Collision.cpp" />
     <ClCompile Include="src\ConstantForce.cpp" />
     <ClCompile Include="src\CorpsRigide.cpp" />
     <ClCompile Include="src\CorpsRigideTests.cpp" />
@@ -118,6 +119,7 @@
     <ClCompile Include="src\DampingForce.cpp" />
     <ClCompile Include="src\ElastForce.cpp" />
     <ClCompile Include="src\ExploImpulse.cpp" />
+    <ClCompile Include="src\GeometricForms.cpp" />
     <ClCompile Include="src\OcTree.cpp" />
     <ClCompile Include="src\PhysicsObject.cpp" />
     <ClCompile Include="src\Torque.cpp" />
@@ -151,12 +153,14 @@
     <ClInclude Include="src\Blob.h" />
     <ClInclude Include="src\CableForce.h" />
     <ClInclude Include="src\Cannonball.h" />
+    <ClInclude Include="src\Collision.h" />
     <ClInclude Include="src\ConstantForce.h" />
     <ClInclude Include="src\CorpsRigide.h" />
     <ClInclude Include="src\CustomAsserts.h" />
     <ClInclude Include="src\DampingForce.h" />
     <ClInclude Include="src\ElastForce.h" />
     <ClInclude Include="src\ExploImpulse.h" />
+    <ClInclude Include="src\GeometricForms.h" />
     <ClInclude Include="src\OcTree.h" />
     <ClInclude Include="src\PhysicsObject.h" />
     <ClInclude Include="src\Torque.h" />

@@ -30,9 +30,9 @@ PhysicsObject::PhysicsObject(CorpsRigide* corpsRigide)
 
 Vector PhysicsObject::getPos() {
 	if (_type == 0)
-		return _particle->position;
+		return _particle->_position;
 	else
-		return _corpsRigide->centreMasse->position;
+		return _corpsRigide->centreMasse->_position;
 }
 
 double PhysicsObject::getRadius() {

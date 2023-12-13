@@ -99,6 +99,9 @@ void WorldPhysics::updateCollisions()
 
 void WorldPhysics::detectCollisions(vector<set<int>>* potentialCollisions)
 {
+	debugCollisions.clear();
+	debugCollisionsNormals.clear();
+
 	for (int i = 0; i < potentialCollisions->size(); i++) {
 		set<int> collisions = (*potentialCollisions)[i];
 		for (int j : collisions) {
@@ -110,19 +113,14 @@ void WorldPhysics::detectCollisions(vector<set<int>>* potentialCollisions)
 				continue;
 			}
 
-			if (object1->getType() == 1 && object2->getType() == 1) {
-				detectCorpsRigideCollisions(object1, *object2);
-				continue;
-			}
+			Collision collision = Collision(object1, object2);
 
-			if (object1->getType() == 0 && object2->getType() == 1) {
-				detectParticleCorpsRigideCollisions(object1, *object2);
-				continue;
-			}
+			collision.detect();
 
-			if (object1->getType() == 1 && object2->getType() == 0) {
-				detectParticleCorpsRigideCollisions(object2, *object1);
-				continue;
+			if (collision.collisionData().normal().x() != INFINITY) {
+				debugCollisions.push_back(collision.collisionData().point());
+				debugCollisionsNormals.push_back(collision.collisionData().normal());
+				collision.resolve();
 			}
 		}
 	}
@@ -138,14 +136,6 @@ void WorldPhysics::detectParticleCollisions(PhysicsObject* particle1, PhysicsObj
 	}
 }
 
-void WorldPhysics::detectCorpsRigideCollisions(PhysicsObject* corpsRigide1, PhysicsObject corpsRigide2)
-{
-}
-
-void WorldPhysics::detectParticleCorpsRigideCollisions(PhysicsObject* particle, PhysicsObject corpsRigide)
-{
-}
-
 
 void WorldPhysics::updateBoundaries()
 {
@@ -154,7 +144,7 @@ void WorldPhysics::updateBoundaries()
 
 		particle->update();
 
-		auto pos = particle->position;
+		auto pos = particle->_position;
 		//cout << "POS: " << pos << endl;
 
 		float x = pos.x(), y = pos.y(), z = pos.z();
@@ -196,7 +186,7 @@ void WorldPhysics::updateBoundaries()
 
 		corps->update();
 
-		auto pos = corps->centreMasse->position;
+		auto pos = corps->centreMasse->_position;
 		//cout << "POS: " << pos << endl;
 
 		float x = pos.x(), y = pos.y(), z = pos.z();
@@ -247,6 +237,21 @@ void WorldPhysics::updateRodConstraints()
 
 void WorldPhysics::debugDraw()
 {
+	ofSetLineWidth(1);
 	if (ocTree != nullptr)
 		ocTree->draw();
+
+	for (int i = 0; i < debugCollisions.size(); i++) {
+		Vector collision = debugCollisions[i];
+		Vector normal = debugCollisionsNormals[i];
+
+		ofSetColor(255, 0, 0);
+		ofDrawSphere(collision.x(), collision.y(), collision.z(), 0.1);
+
+		ofSetColor(0, 255, 0);
+		ofDrawLine(collision.x(), collision.y(), collision.z(), collision.x() + normal.x(), collision.y() + normal.y(), collision.z() + normal.z());
+	}
+
+	cout << "Collisions: " << debugCollisions.size() << endl;
+	cout << "Collisions normals: " << debugCollisionsNormals.size() << endl;
 }

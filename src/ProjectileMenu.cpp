@@ -1,10 +1,20 @@
 #include "ProjectileMenu.h"
 
+ProjectileMenu::ProjectileMenu() {
+    // Constructeur par défaut
+}
+
 void ProjectileMenu::setup() {
     selectedType = 0; // Initialisation avec le premier type de projectile sélectionné
+    showMenu = true; // Afficher le menu par défaut
 }
 
 void ProjectileMenu::draw() {
+
+    if (!showMenu) {
+		return;
+	}
+
     float buttonX = 20;
     float buttonY = 20;
     float buttonWidth = 300;
@@ -34,26 +44,36 @@ void ProjectileMenu::draw() {
     ofSetColor(255);
     ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
     ofSetColor(0);
-    ofDrawBitmapString("Appuyer sur 4 pour lancer un CorpsRigide en rotation", buttonX + 10, buttonY + 20);
+    ofDrawBitmapString("Appuyer sur 4 pour lancer", buttonX + 10, buttonY + 20);
+    ofDrawBitmapString("un CorpsRigide en rotation", buttonX + 10, buttonY + 30);
 
     buttonY += buttonHeight + spacing;
     ofSetColor(255);
 	ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
 	ofSetColor(0);
-	ofDrawBitmapString("Appuyer sur ! pour afficher le debugging visuel", buttonX + 10, buttonY + 20);
+	ofDrawBitmapString("Appuyer sur ! pour afficher", buttonX + 10, buttonY + 20);
+    ofDrawBitmapString("le debugging visuel", buttonX + 10, buttonY + 30);
 
 	buttonY += buttonHeight + spacing;
     ofSetColor(255);
 	ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
 	ofSetColor(0);
-	ofDrawBitmapString("Appuyer sur p pour mettre le jeu en pause", buttonX + 10, buttonY + 20);
+	ofDrawBitmapString("Appuyer sur p pour mettre", buttonX + 10, buttonY + 20);
+    ofDrawBitmapString("le jeu en pause", buttonX + 10, buttonY + 30);
 
 	buttonY += buttonHeight + spacing;
 	ofSetColor(255);
     ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
     ofSetColor(0);
-    ofDrawBitmapString("Appuyer sur r pour afficher le repere", buttonX + 10, buttonY + 20);
+    ofDrawBitmapString("Appuyer sur r pour afficher", buttonX + 10, buttonY + 20);
+    ofDrawBitmapString("le repere", buttonX + 10, buttonY + 30);
 
+    buttonY += buttonHeight + spacing;
+    ofSetColor(255);
+    ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
+    ofSetColor(0);
+    ofDrawBitmapString("Appuyer sur m pour masquer", buttonX + 10, buttonY + 20);
+    ofDrawBitmapString("le menu", buttonX + 10, buttonY + 30);
 }
 
 
@@ -66,4 +86,8 @@ void ProjectileMenu::setSelectedType(int type) {
 
 int ProjectileMenu::getSelectedType() {
     return selectedType;
+}
+
+void ProjectileMenu::setShowMenu(bool show) {
+    showMenu = show;
 }

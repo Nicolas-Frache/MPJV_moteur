@@ -77,7 +77,6 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	menu.draw();
 	cam.begin(); 
     skybox.draw();
 
@@ -98,6 +97,7 @@ void ofApp::draw(){
 	}
 
 	cam.end();
+	menu.draw();
 }
 
 void ofApp::createParticle(Particle* particle) {
@@ -150,6 +150,13 @@ void ofApp::keyPressed(int key) {
 
 		CorpsRigide* c = new CorpsRigide(new Ball(camPos, 1, ofColor::red, .1), h, w, h, ofColor(r,g,b));
 		c->applyForceAtPosition(camDir * 50, camPos, .1);
+
+		Vector randomForce = Vector(ofRandom(-10, 10), ofRandom(-10, 10), ofRandom(-10, 10));
+
+		// Applique la force aléatoire à une position aléatoire sur le corps rigide
+		Vector randomPosition = Vector(ofRandom(-w / 2, w / 2), ofRandom(-h / 2, h / 2), ofRandom(-h / 2, h / 2));
+		c->applyForceAtPosition(randomForce, randomPosition, 1.0);
+
 		createCorpsRigide(c);
 	}
 
@@ -182,6 +189,9 @@ void ofApp::keyPressed(int key) {
 	}
 	if (key == 'r') {
 		repere = !repere;
+	}
+	if (key == 'm') {
+		menu.setShowMenu(!menu.showMenu);
 	}
 }
 

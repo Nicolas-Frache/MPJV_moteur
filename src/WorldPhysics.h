@@ -39,6 +39,14 @@ class WorldPhysics
 
 		void debugDraw();
 
+
+		void clearAll() {
+			particles.clear();
+			corpsRigides.clear();
+			rodConstraints.clear();
+		}
+
+
 	private:
 		vector<Particle*> particles = vector<Particle*>();
 		vector<CorpsRigide*> corpsRigides = vector<CorpsRigide*>();

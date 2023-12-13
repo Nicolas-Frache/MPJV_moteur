@@ -1,3 +1,4 @@
+#pragma once
 #include "ofApp.h"
 
 
@@ -66,9 +67,12 @@ void ofApp::setup(){
 //--------------------------------------------------------------
 void ofApp::update() {
 
-	if (!pause)
+	if (!pause){
 		world.update();
-
+	}
+	if (inShootGame) {
+		shooterUpdate();
+  }
 }
 
 //--------------------------------------------------------------
@@ -94,7 +98,20 @@ void ofApp::draw(){
 
 	cam.end();
 	menu.draw();
+
+	if(inShootGame){
+		menu.drawButton(ofGetWindowWidth()-150, 10, 100, 30, "Score: 0");
+		ofSetColor(ofColor::green);
+		ofSetLineWidth(2);
+		float x0 = ofGetWindowWidth() / 2;
+		float y0 = ofGetWindowHeight() / 2;
+		ofDrawLine(x0, y0-6, x0, y0+6);
+		ofDrawLine(x0-6, y0, x0+6, y0);
+		ofSetColor(0);
+	}
 }
+
+
 
 void ofApp::createParticle(Particle* particle) {
 	particles.push_back(particle);
@@ -157,6 +174,15 @@ void ofApp::keyPressed(int key) {
 		createCorpsRigide(c);
 	}
 
+	// INIT GAME
+	if (key == '5') {
+		particles.clear();
+		world.clearAll();
+		corpsRigides.clear();
+
+		inShootGame = !inShootGame;
+	}
+
 	float speed = 10;
 
 	if (key == OF_KEY_UP) { //on applique une force vers le haut de durée courte
@@ -210,7 +236,11 @@ void ofApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
 	// Contrôles de la caméra lors du clic droit
-	cam.toggleControl();
+	if(button == 2)
+		cam.toggleControl();
+	if(button == 0 && inShootGame)
+		keyPressed('3');
+
 }
 
 //--------------------------------------------------------------
@@ -241,4 +271,16 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){ 
 
+}
+
+void ofApp::shooterUpdate() {
+	time += ofGetLastFrameTime();
+	if (time > 2.5) {
+		time -= 2.5;
+
+		Ball* newBall = new Ball(Vector(ofRandom(0,10), 0, ofRandom(0, 10)), 1, ofColor::blue, ofRandom(1, 3));
+		newBall->restitution = 0.5;
+		newBall->applyForce(Vector(0, ofRandom(40, 100), 0), 0.5);
+		createParticle(newBall);
+	}
 }

@@ -27,7 +27,9 @@
 #include "addons/ofxSkyBox/ofxSkyBox.h"
 // https://github.com/010pe/ofxFirstPersonCamera
 #include "addons/ofxFirstPersonCamera/ofxFirstPersonCamera.h"
+
 #include <Blob.h>
+
 
 class ofApp : public ofBaseApp {
 
@@ -49,7 +51,6 @@ class ofApp : public ofBaseApp {
 
 		void createParticle(Particle* particle);
 		void ofApp::createCorpsRigide(CorpsRigide* corpsRigide);
-
 
 		void update();
 		void draw();
@@ -83,4 +84,9 @@ class ofApp : public ofBaseApp {
 		bool debug = false;
 		bool pause = false;
 		bool repere = true;
+		bool inShootGame = false;
+		float time = 0;
+
+
+		void shooterUpdate();
 };

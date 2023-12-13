@@ -38,6 +38,9 @@ Vous pouvez lancer trois types de projectiles différents, chacun ayant ses prop
    - Corps rigide avec une forme et une rotation initiale aléatoire.
    - Touche de lancement : `SHIFT + 4`
 
+5. **Jeu de tir** :
+	- Dans ce mode le joueur doit viser des cibles mouvante et tirer avec clic gauche pour engendrer des points.
+
 ## Le blob
 
 Le blob est un regroupement de particules qui sont liées par plusieurs forces, la particularité du blob c'est qu'il est capable de se diviser en plusieur petit blob et de se regrouper pour former un seul et grand blob

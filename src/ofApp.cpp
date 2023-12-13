@@ -180,9 +180,9 @@ void ofApp::keyPressed(int key) {
 		int w = ofRandom(3, 5);
 
 		CorpsRigide* c = new CorpsRigide(new Ball(camPos, 1, ofColor::red, .1), h, w, h, ofColor(r,g,b));
-		c->applyForceAtPosition(camDir * 50, camPos, .1);
+		c->applyForceAtPosition(camDir * 80, camPos, .1);
 
-		float f = 1;
+		float f = .5;
 		Vector randomForce = Vector(ofRandom(-f, f), ofRandom(-f, f), ofRandom(-f, f));
 
 		// Applique la force aléatoire à une position aléatoire sur le corps rigide

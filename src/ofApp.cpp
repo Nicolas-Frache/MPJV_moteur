@@ -26,20 +26,12 @@ void ofApp::setup(){
 
 	double pi = 2 * acos(0.0);
 
-	//CorpsRigide* cube = new CorpsRigide(new Particle(Vector(0, 0, 0), 10, ofColor::blue, 1), 5, 5, 5, ofColor::blue);
-	//createCorpsRigide(cube);
-
-	//CorpsRigide* cube2 = new CorpsRigide(new Particle(Vector(2, 0, 0), 10, ofColor::blue, 1), 5, 2, 2, ofColor::red);
-	////cube2->setRotation(Quaternion(cos(pi / 4), 0, sin(pi / 4), 0));
-	//createCorpsRigide(cube2);
-
 	CorpsRigide* cube0 = new CorpsRigide(new Particle(Vector(-1, 0, 0), 10, ofColor::blue, 1), 1, 1, 1, ofColor::red);
 	createCorpsRigide(cube0);
 	cube0->angularVelocity = Vector(-1, 0, 0);
 
 	CorpsRigide* cube = new CorpsRigide(new Particle(Vector(0, 0, 0), 10, ofColor::blue, 1), 1, 1, 1, ofColor::blue);
 	createCorpsRigide(cube);
-	//cube->applyForceAtPosition(new Force(cube->centreMasse, Vector(0, 0, -1.f), .1f), Vector(0, 10, 0));
 	cube->applyTorque(Vector(-100.f, 0, 0), .1f);
 
 	CorpsRigide* c = new CorpsRigide(new Particle(Vector(3, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::red);
@@ -69,9 +61,6 @@ void ofApp::setup(){
 	c = new CorpsRigide(new Particle(Vector(21, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::limeGreen);
 	c->angularVelocity = Vector(1, 1, 1);
 	createCorpsRigide(c);
-
-	//refCorps = c;
-
 }
 
 //--------------------------------------------------------------
@@ -131,20 +120,20 @@ void ofApp::keyPressed(int key) {
 	if (key == '1') {
 		Ball* newBall = new Ball(camPos, 1, ofColor::blue, 2);
 		newBall->restitution = 0.5;
-		newBall->applyForce(camDir * 100, 0.5);
+		newBall->applyForce(camDir * 40, 0.5);
 		createParticle(newBall);
 	}
 
 	if (key == '2') {
 		Fireball* newFireball = new Fireball(camPos, 1);
 		newFireball->restitution = 0.8;
-		newFireball->applyForce(camDir * 110, 0.5);
+		newFireball->applyForce(camDir * 40, 0.5);
 		createParticle(newFireball);
 	}
 
 	if (key == '3') {
 		Laser* newLaser = new Laser(camPos, camDir, 1, ofColor::black, .3);
-		newLaser->applyForce(camDir * 200, 0.5);
+		newLaser->applyForce(camDir * 60, 0.5);
 		createParticle(newLaser);
 	}
 
@@ -158,11 +147,12 @@ void ofApp::keyPressed(int key) {
 		CorpsRigide* c = new CorpsRigide(new Ball(camPos, 1, ofColor::red, .1), h, w, h, ofColor(r,g,b));
 		c->applyForceAtPosition(camDir * 50, camPos, .1);
 
-		Vector randomForce = Vector(ofRandom(-10, 10), ofRandom(-10, 10), ofRandom(-10, 10));
+		float f = 1;
+		Vector randomForce = Vector(ofRandom(-f, f), ofRandom(-f, f), ofRandom(-f, f));
 
 		// Applique la force aléatoire à une position aléatoire sur le corps rigide
 		Vector randomPosition = Vector(ofRandom(-w / 2, w / 2), ofRandom(-h / 2, h / 2), ofRandom(-h / 2, h / 2));
-		c->applyForceAtPosition(randomForce, randomPosition, 1.0);
+		c->applyForceAtPosition(randomForce, randomPosition, .1);
 
 		createCorpsRigide(c);
 	}

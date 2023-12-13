@@ -21,59 +21,13 @@ void ProjectileMenu::draw() {
     float buttonHeight = 40;
     float spacing = 10;
 
-    // Premier bouton
-    ofSetColor(255); // Couleur blanche
-    ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5); // rectangle arrondi
-    ofSetColor(0); // Couleur noire
-    ofDrawBitmapString("Appuyer sur 1 pour lancer une balle", buttonX + 10, buttonY + 20);
-
-
-    buttonY += buttonHeight + spacing;
-    ofSetColor(255); 
-    ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
-    ofSetColor(0);
-    ofDrawBitmapString("Appuyer sur 2 pour lancer un boulet", buttonX + 10, buttonY + 20);
-
-    buttonY += buttonHeight + spacing;
-    ofSetColor(255);
-    ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
-    ofSetColor(0);
-    ofDrawBitmapString("Appuyer sur 3 pour lancer un laser", buttonX + 10, buttonY + 20);
-
-    buttonY += buttonHeight + spacing;
-    ofSetColor(255);
-    ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
-    ofSetColor(0);
-    ofDrawBitmapString("Appuyer sur 4 pour lancer", buttonX + 10, buttonY + 20);
-    ofDrawBitmapString("un CorpsRigide en rotation", buttonX + 10, buttonY + 30);
-
-    buttonY += buttonHeight + spacing;
-    ofSetColor(255);
-	ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
-	ofSetColor(0);
-	ofDrawBitmapString("Appuyer sur ! pour afficher", buttonX + 10, buttonY + 20);
-    ofDrawBitmapString("le debugging visuel", buttonX + 10, buttonY + 30);
-
-	buttonY += buttonHeight + spacing;
-    ofSetColor(255);
-	ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
-	ofSetColor(0);
-	ofDrawBitmapString("Appuyer sur p pour mettre", buttonX + 10, buttonY + 20);
-    ofDrawBitmapString("le jeu en pause", buttonX + 10, buttonY + 30);
-
-	buttonY += buttonHeight + spacing;
-	ofSetColor(255);
-    ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
-    ofSetColor(0);
-    ofDrawBitmapString("Appuyer sur r pour afficher", buttonX + 10, buttonY + 20);
-    ofDrawBitmapString("le repere", buttonX + 10, buttonY + 30);
-
-    buttonY += buttonHeight + spacing;
-    ofSetColor(255);
-    ofDrawRectRounded(buttonX, buttonY, buttonWidth, buttonHeight, 5);
-    ofSetColor(0);
-    ofDrawBitmapString("Appuyer sur m pour masquer", buttonX + 10, buttonY + 20);
-    ofDrawBitmapString("le menu", buttonX + 10, buttonY + 30);
+    ProjectileMenu::drawButton(buttonX, buttonY, buttonWidth, buttonHeight, "Appuyer sur 1 pour lancer une balle");
+    ProjectileMenu::drawButton(buttonX, 1*(spacing+ buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur 2 pour lancer un boulet");
+    ProjectileMenu::drawButton(buttonX, 2*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur 3 pour lancer un laser");
+    ProjectileMenu::drawButton(buttonX, 3*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur 4 pour lancer\nun CorpsRigide en rotation");
+    ProjectileMenu::drawButton(buttonX, 4*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur p pour mettre\nle jeu en pause");
+    ProjectileMenu::drawButton(buttonX, 5*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur r pour afficher\nle repere");
+    ProjectileMenu::drawButton(buttonX, 6*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur m pour masquer\nle menu");
 }
 
 
@@ -82,6 +36,13 @@ void ProjectileMenu::setSelectedType(int type) {
     if (type >= 1 && type <= 4) {
         selectedType = type;
     }
+}
+
+void ProjectileMenu::drawButton(int x, int y, int w, int h, char* text){
+  ofSetColor(255);
+  ofDrawRectRounded(x, y, w, h, 5);
+  ofSetColor(0);
+  ofDrawBitmapString(text, x + 10, y + 20);
 }
 
 int ProjectileMenu::getSelectedType() {

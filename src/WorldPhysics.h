@@ -11,12 +11,13 @@
 #include "PhysicsObject.h"
 
 #include "Collision.h"
+#include <Messager.cpp>
 
 class WorldPhysics
 {
 	public:
 		WorldPhysics();
-		WorldPhysics(float x_size, float y_size, float z_size);
+		WorldPhysics(float x_size, float y_size, float z_size, Messager* messager);
 
 		void update();
 
@@ -71,6 +72,7 @@ class WorldPhysics
 
 		vector<Vector> debugCollisions = vector<Vector>();
 		vector<Vector> debugCollisionsNormals = vector<Vector>();
+		Messager* messager;
 		
 };
 

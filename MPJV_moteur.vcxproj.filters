@@ -115,6 +115,7 @@
     <ClCompile Include="src\GeometricForms.cpp">
       <Filter>Objets mathématiques</Filter>
     </ClCompile>
+    <ClCompile Include="src\Messager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ofApp.h" />
@@ -215,6 +216,7 @@
     <ClInclude Include="src\GeometricForms.h">
       <Filter>Objets mathématiques</Filter>
     </ClInclude>
+    <ClInclude Include="src\Messager.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

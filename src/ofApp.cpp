@@ -100,7 +100,10 @@ void ofApp::draw(){
 	menu.draw();
 
 	if(inShootGame){
-		menu.drawButton(ofGetWindowWidth()-150, 10, 100, 30, "Score: 0");
+		// construction du charù avec le score :
+		char scoreString[20];
+		sprintf(scoreString, "Score : %d", score);
+		menu.drawButton(ofGetWindowWidth()-150, 10, 100, 30,  scoreString);
 		ofSetColor(ofColor::green);
 		ofSetLineWidth(2);
 		float x0 = ofGetWindowWidth() / 2;
@@ -181,6 +184,8 @@ void ofApp::keyPressed(int key) {
 		corpsRigides.clear();
 
 		inShootGame = !inShootGame;
+		menu.setShowMenu(false);
+		score = 0;
 	}
 
 	float speed = 10;
@@ -235,12 +240,18 @@ void ofApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-	// Contrôles de la caméra lors du clic droit
-	if(button == 2)
-		cam.toggleControl();
-	if(button == 0 && inShootGame)
-		keyPressed('3');
+		// Contrôles de la caméra lors du clic droit
+		if(button == 2)
+				cam.toggleControl();
+		if(button == 0 && inShootGame){
+				Vector camPos = Vector(cam.getPosition().x, cam.getPosition().y, cam.getPosition().z);
+				auto tmp = cam.getLookAtDir();
+				Vector camDir = Vector(tmp.x, tmp.y, tmp.z);
 
+				Laser* newLaser = new Laser(camPos, camDir, 1, ofColor::black, .3);
+				newLaser->applyForce(camDir * 1000, 0.1);
+				createParticle(newLaser);
+		}
 }
 
 //--------------------------------------------------------------
@@ -274,13 +285,23 @@ void ofApp::dragEvent(ofDragInfo dragInfo){
 }
 
 void ofApp::shooterUpdate() {
+	cam.setPosition(-23, 5, 0);
 	time += ofGetLastFrameTime();
-	if (time > 2.5) {
-		time -= 2.5;
+	if(messager.consumeCollisionMessage()){
+    score++;
+		time = 2.7;
+  }
 
-		Ball* newBall = new Ball(Vector(ofRandom(0,10), 0, ofRandom(0, 10)), 1, ofColor::blue, ofRandom(1, 3));
+	if (time > 3.5) {
+		time = 0;
+
+		Ball* newBall = new Ball(Vector(20, 0, -20), 1, ofColor::blue, ofRandom(1, 3));
 		newBall->restitution = 0.5;
-		newBall->applyForce(Vector(0, ofRandom(40, 100), 0), 0.5);
+		newBall->applyForce(Vector(0, ofRandom(20, 50), ofRandom(5,30)), 0.5);
 		createParticle(newBall);
+	} else if (time > 3){
+		particles.clear();
+		world.clearAll();
+		corpsRigides.clear();
 	}
 }

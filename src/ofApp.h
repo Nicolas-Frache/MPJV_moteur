@@ -55,7 +55,8 @@ class ofApp : public ofBaseApp {
 		void update();
 		void draw();
 
-		WorldPhysics world = WorldPhysics(25, 100, 25);
+		Messager messager = Messager();
+		WorldPhysics world = WorldPhysics(25, 100, 25, &messager);
 
 		list<Particle*> particles = list<Particle*>();
 		Ball particle1 = Ball(0, 50, 0, 1, ofColor_<unsigned char>::red, 20);
@@ -86,6 +87,7 @@ class ofApp : public ofBaseApp {
 		bool repere = true;
 		bool inShootGame = false;
 		float time = 0;
+		int score = 0;
 
 
 		void shooterUpdate();

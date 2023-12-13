@@ -4,11 +4,13 @@ WorldPhysics::WorldPhysics()
 {
 }
 
-WorldPhysics::WorldPhysics(float x_size, float y_size, float z_size)
+WorldPhysics::WorldPhysics(float x_size, float y_size, float z_size, Messager* messager)
 {
 	this->_x_size = x_size;
 	this->_y_size = y_size;
 	this->_z_size = z_size;
+	this->messager = messager;
+
 }
 
 void WorldPhysics::update()
@@ -133,6 +135,8 @@ void WorldPhysics::detectParticleCollisions(PhysicsObject* particle1, PhysicsObj
 	if (p1->checkCollisionWith(*p2)) {
 		p1->resolveInterpenetration(*p2);
 		Impulse(p1, p2);
+		this->messager->sendCollisionMessage();
+		cout << "Collision" << endl;
 	}
 }
 

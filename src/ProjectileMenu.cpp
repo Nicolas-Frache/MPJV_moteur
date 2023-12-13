@@ -25,9 +25,11 @@ void ProjectileMenu::draw() {
     ProjectileMenu::drawButton(buttonX, 1*(spacing+ buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur 2 pour lancer un boulet");
     ProjectileMenu::drawButton(buttonX, 2*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur 3 pour lancer un laser");
     ProjectileMenu::drawButton(buttonX, 3*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur 4 pour lancer\nun CorpsRigide en rotation");
-    ProjectileMenu::drawButton(buttonX, 4*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur p pour mettre\nle jeu en pause");
-    ProjectileMenu::drawButton(buttonX, 5*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur r pour afficher\nle repere");
-    ProjectileMenu::drawButton(buttonX, 6*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur m pour masquer\nle menu");
+    ProjectileMenu::drawButton(buttonX, 4*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur 5 pour demarrer\nle jeu de tir");
+    ProjectileMenu::drawButton(buttonX, 5*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur p pour mettre\nle jeu en pause");
+    ProjectileMenu::drawButton(buttonX, 6*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur r pour afficher\nle repere");
+    ProjectileMenu::drawButton(buttonX, 7*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur m pour masquer\nle menu");
+    ProjectileMenu::drawButton(buttonX, 8*(spacing + buttonHeight) + buttonY, buttonWidth, buttonHeight, "Appuyer sur ! pour afficher\nle debug visuel");
 }
 
 

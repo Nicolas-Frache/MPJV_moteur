@@ -95,6 +95,11 @@ bool Vector::operator==(Vector vect) {
 	return _X == vect.x() && _Y == vect.y() && _Z == vect.z();
 }
 
+bool Vector::operator!=(Vector vect)
+{
+	return _X != vect.x() || _Y != vect.y() || _Z != vect.z();
+}
+
 ostream& operator<<(ostream& os, Vector vect) {
 	os << "(" << vect.x() << "; " << vect.y() << "; " << vect.z() << ")";
 	return os;

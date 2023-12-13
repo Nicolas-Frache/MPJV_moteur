@@ -26,10 +26,12 @@ void ofApp::setup(){
 
 	double pi = 2 * acos(0.0);
 
-	//CorpsRigide* cube = new CorpsRigide(new Particle(Vector(0, 0, 0), 10, ofColor::blue, 1), 5, 5, 5, ofColor::blue);
+	//CorpsRigide* cube = new CorpsRigide(new Particle(Vector(-5, 0, 0), 10, ofColor::blue, 1), 5, 5, 5, ofColor::blue);
+	//cube->centreMasse->velocity = Vector(1, 0, 0);
 	//createCorpsRigide(cube);
 
-	//CorpsRigide* cube2 = new CorpsRigide(new Particle(Vector(2, 0, 0), 10, ofColor::blue, 1), 5, 2, 2, ofColor::red);
+	//CorpsRigide* cube2 = new CorpsRigide(new Particle(Vector(5, 0, 0), 10, ofColor::blue, 1), 5, 3, 2, ofColor::red);
+	//cube2->centreMasse->velocity = Vector(-1, 0, 0);
 	////cube2->setRotation(Quaternion(cos(pi / 4), 0, sin(pi / 4), 0));
 	//createCorpsRigide(cube2);
 

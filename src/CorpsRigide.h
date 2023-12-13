@@ -55,13 +55,10 @@ public:
 
 	void setRotation(Quaternion quaternion);
 
-	void ofApplyRotation();
-
-	double normalizeAngle(double angle);
-
 	array<Face, 6>* getFaces();
 	array<Edge, 12>* getEdges();
 
+	Vector getPunctualVelocity(Vector point);
 
 	// ------ FONCTIONS DE FORCES SIMPLES ------
 

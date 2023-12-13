@@ -46,7 +46,7 @@ class Particle{
 			_position.set(X, Y, Z);
 		}
 		void Particle::setPos(Vector position) {
-			position = position;
+			_position = position;
 		}
 		Vector Particle::getPosition() const {
 			return _position;

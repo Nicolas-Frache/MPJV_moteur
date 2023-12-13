@@ -61,14 +61,14 @@ void CorpsRigide::draw() {
 	//	ofSetLineWidth(10);
 	//}
 
-	// DEBUG POUR VOIR LES FACES
-	//for (Face face : *getFaces()) {
-	//	Vector position = face.position();
-	//	Vector position2 = face.position() + face.right() * face.length() + face.up() * face.height();
-	//	ofSetLineWidth(4);
-	//	ofDrawLine(position.x(), position.y(), position.z(), position2.x(), position2.y(), position2.z());
-	//	ofSetLineWidth(10);
-	//}
+	 //DEBUG POUR VOIR LES FACES
+	for (Face face : *getFaces()) {
+		Vector position = face.position();
+		Vector position2 = face.position() + face.right() * face.length() + face.up() * face.height();
+		ofSetLineWidth(4);
+		ofDrawLine(position.x(), position.y(), position.z(), position2.x(), position2.y(), position2.z());
+		ofSetLineWidth(10);
+	}
 }
 
 void CorpsRigide::applyForceAtPosition(Force* force, Vector position) {
@@ -155,8 +155,8 @@ array<Face, 6>* CorpsRigide::getFaces()
 	array<Face, 6> faces = {
 		Face(vertices[4], normals[0], normals[3], demiAxes.y() * 2, demiAxes.z() * 2),
 		Face(vertices[1], normals[1], normals[3], demiAxes.y() * 2, demiAxes.z() * 2),
-		Face(vertices[0], normals[2], normals[1], demiAxes.z() * 2, demiAxes.x() * 2),
-		Face(vertices[2], normals[3], normals[0], demiAxes.z() * 2, demiAxes.x() * 2),
+		Face(vertices[0], normals[2], normals[1], demiAxes.x() * 2, demiAxes.z() * 2),
+		Face(vertices[2], normals[3], normals[0], demiAxes.x() * 2, demiAxes.z() * 2),
 		Face(vertices[0], normals[4], normals[3], demiAxes.y() * 2, demiAxes.x() * 2),
 		Face(vertices[5], normals[5], normals[3], demiAxes.y() * 2, demiAxes.x() * 2),
 	};
@@ -188,6 +188,11 @@ array<Edge, 12>* CorpsRigide::getEdges()
 	};
 
 	return &edges;
+}
+
+Vector CorpsRigide::getPunctualVelocity(Vector point)
+{
+	return centreMasse->getVelocity() + angularVelocity.vectoriel(point - centreMasse->_position);
 }
 
 Vector CorpsRigide::applyCorpsRotationToVector(Vector vector)

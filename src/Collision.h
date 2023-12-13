@@ -10,7 +10,7 @@ class CollisionData {
 		CollisionData() :
 			_object1(NULL), _object2(NULL), _normal(Vector(NULL, NULL, NULL)), _point(Vector(NULL, NULL, NULL)), _penetration(NULL) {}
 		CollisionData(PhysicsObject *object1, PhysicsObject *object2, Vector normal, Vector point, float penetration) :
-			_object1(object1), _object2(object2), _normal(normal), _point(point), _penetration(penetration) {}
+			_object1(object1), _object2(object2), _normal(normal), _point(point), _penetration(penetration), _isColliding(true) {}
 
 		PhysicsObject* object1() const { return _object1; }
 		PhysicsObject* object2() const { return _object2; }
@@ -19,12 +19,16 @@ class CollisionData {
 		Vector point() const { return _point; }
 		double penetration() const { return _penetration; }
 
+		void setColliding() { _isColliding = true; }
+		bool isColliding() const { return _isColliding; }
+
 	private:
 		PhysicsObject* _object1;
 		PhysicsObject* _object2;
 		Vector _normal;
 		Vector _point;
 		double _penetration;
+		bool _isColliding = false;
 };
 
 class Collision
@@ -36,6 +40,9 @@ class Collision
 
 		void detect();
 		void resolve();
+
+		vector<Vector> getDebugCollisions() const { return debugCollisions; }
+		vector<Vector> getDebugCollisionsNormals() const { return debugCollisionsNormals; }
 
 	private:
 		PhysicsObject *_object1;
@@ -50,14 +57,15 @@ class Collision
 		CollisionData detectEdgesToFacesCollisions(vector<Edge> edges, vector<Face> faces);
 
 		void detectParticleToParticleCollisions(Particle* particle1, Particle* particle2);
-		void resolveParticleToParticleCollisions(Particle* particle1, Particle* particle2, CollisionData collisionData);
+		void resolveParticleToParticleCollisions(Particle* particle1, Particle* particle2);
 
 		void detectCorpsRigideToCorpsRigideCollisions(CorpsRigide* corpsRigide1, CorpsRigide* corpsRigide2);
-		void resolveCorpsRigideToCorpsRigideCollisions(CorpsRigide* corpsRigide1, CorpsRigide* corpsRigide2, CollisionData collisionData);
+		void resolveCorpsRigideToCorpsRigideCollisions(CorpsRigide* corpsRigide1, CorpsRigide* corpsRigide2);
 
 		void detectParticleToCorpsRigideCollisions(Particle* particle, CorpsRigide* corpsRigide);
-		void resolveParticleToCorpsRigideCollisions(Particle* particle, CorpsRigide* corpsRigide, CollisionData collisionData);
+		void resolveParticleToCorpsRigideCollisions(Particle* particle, CorpsRigide* corpsRigide);
 
-
+		vector<Vector> debugCollisions;
+		vector<Vector> debugCollisionsNormals;
 };
 

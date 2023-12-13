@@ -72,6 +72,8 @@ class WorldPhysics
 
 		vector<Vector> debugCollisions = vector<Vector>();
 		vector<Vector> debugCollisionsNormals = vector<Vector>();
+		vector<Vector> debugCollisionsPoints = vector<Vector>();
+		vector<Vector> debugCollisionsPointsNormals= vector<Vector>();
 		Messager* messager;
 		
 };

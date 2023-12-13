@@ -103,6 +103,8 @@ void WorldPhysics::detectCollisions(vector<set<int>>* potentialCollisions)
 {
 	debugCollisions.clear();
 	debugCollisionsNormals.clear();
+	debugCollisionsPoints.clear();
+	debugCollisionsPointsNormals.clear();
 
 	for (int i = 0; i < potentialCollisions->size(); i++) {
 		set<int> collisions = (*potentialCollisions)[i];
@@ -119,9 +121,17 @@ void WorldPhysics::detectCollisions(vector<set<int>>* potentialCollisions)
 
 			collision.detect();
 
-			if (collision.collisionData().normal().x() != INFINITY) {
+			if (collision.collisionData().isColliding()) {
 				debugCollisions.push_back(collision.collisionData().point());
 				debugCollisionsNormals.push_back(collision.collisionData().normal());
+
+				for (const Vector &v : collision.getDebugCollisions()) {
+					debugCollisionsPoints.push_back(v);
+				}
+				for (const Vector &v : collision.getDebugCollisionsNormals()) {
+					debugCollisionsPointsNormals.push_back(v);
+				}
+
 				collision.resolve();
 			}
 		}
@@ -256,6 +266,14 @@ void WorldPhysics::debugDraw()
 		ofDrawLine(collision.x(), collision.y(), collision.z(), collision.x() + normal.x(), collision.y() + normal.y(), collision.z() + normal.z());
 	}
 
-	cout << "Collisions: " << debugCollisions.size() << endl;
-	cout << "Collisions normals: " << debugCollisionsNormals.size() << endl;
+	for (int i = 0; i < debugCollisionsPoints.size(); i++) {
+		Vector collision = debugCollisionsPoints[i];
+		Vector normal = debugCollisionsPointsNormals[i] / 2;
+
+		ofSetColor(255, 0, 0);
+		ofDrawSphere(collision.x(), collision.y(), collision.z(), 0.02);
+
+		ofSetColor(144, 255, 0);
+		ofDrawLine(collision.x(), collision.y(), collision.z(), collision.x() + normal.x(), collision.y() + normal.y(), collision.z() + normal.z());
+	}
 }

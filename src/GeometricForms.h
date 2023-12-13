@@ -59,6 +59,16 @@ class Edge {
 			
 			Vector intersection = _position + _normal * t;
 
+			float sens = face.normal().scalar_product(_normal);
+
+			double penetration = 0;
+			if (sens > 0) {
+				penetration = t;
+			}
+			else {
+				penetration = _length - t;
+			}
+
 			double relativeX = (intersection - face.position()).scalar_product(face.up());
 			double relativeY = (intersection - face.position()).scalar_product(face.right());
 
@@ -67,7 +77,7 @@ class Edge {
 			if (face.length() != INFINITY && (relativeY < 0 || relativeY > face.length())) return PositionAndPenetration(Vector(INFINITY, INFINITY, INFINITY), INFINITY);
 
 
-			return PositionAndPenetration(intersection, _length - t);
+			return PositionAndPenetration(intersection, penetration);
 		}
 
 	private:

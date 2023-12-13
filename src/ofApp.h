@@ -83,7 +83,7 @@ class ofApp : public ofBaseApp {
 		
 		// Debugging
 		bool debug = false;
-		bool pause = false;
+		bool pause = true;
 		bool repere = true;
 		bool inShootGame = false;
 		float time = 0;

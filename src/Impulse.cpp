@@ -23,8 +23,8 @@ Impulse::Impulse(Particle *object1, Particle *object2)
 	float magnitude = (1.0f + restitution) * relativeVelocityNorm / (object1->invertedMass + object2->invertedMass);
 
 	// On répartit l'impulsion sur les deux objets
-	float impulse1 = -magnitude / object1->invertedMass;
-	float impulse2 = magnitude / object2->invertedMass;
+	float impulse1 = -magnitude * object1->invertedMass;
+	float impulse2 = magnitude * object2->invertedMass;
 
 	// On applique l'impulsion
 	object1->setVelocity(velocity1 + normal * impulse1);

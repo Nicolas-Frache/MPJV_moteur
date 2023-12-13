@@ -40,6 +40,7 @@ class Vector
 		Vector operator/(double div);
 		void operator/=(double div);
 		bool operator==(Vector vect);
+		bool operator!=(Vector vect);
 		friend ostream& operator<<(ostream& os, const Vector vect);
 
 		double norm();

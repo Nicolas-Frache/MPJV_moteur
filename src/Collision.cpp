@@ -101,15 +101,14 @@ CollisionData Collision::detectEdgesToFacesCollisions(vector<Edge> edges, vector
 	}
 	normal = normal.normalize();
 
-	// Calcul de la pénétration (moyenne des pénétrations, imprécis)
+	// Calcul de la pénétration (minimum des pénétrations non nulles, imprécis)
 
 	double penetration = 0;
 
 	for (double p : penetrations) {
-		penetration += p;
+		if (penetration != 0)
+			penetration = min(penetration, p);
 	}
-
-	penetration /= penetrations.size();
 
 	// Création de la collision
 
@@ -169,7 +168,7 @@ void Collision::detectCorpsRigideToCorpsRigideCollisions(CorpsRigide* corpsRigid
 		return;
 	}
 
-	// Association des deux collisions
+	// Association des deux intersections
 
 	Vector meanPosition = (collisionData1.point() + collisionData2.point()) / 2;
 	Vector meanNormal = collisionData1.normal();
@@ -193,6 +192,17 @@ void Collision::resolveCorpsRigideToCorpsRigideCollisions(CorpsRigide* corpsRigi
 		return;
 	}
 
+	// Offset en fonction de la masse
+	double totalMass = corpsRigide1->centreMasse->getMass() + corpsRigide2->centreMasse->getMass();
+	double offset1 = corpsRigide2->centreMasse->getMass() / totalMass;
+	double offset2 = corpsRigide1->centreMasse->getMass() / totalMass;
+
+	Vector penetrationVector = _collisionData.normal() * _collisionData.penetration();
+
+	corpsRigide1->centreMasse->setPos(corpsRigide1->centreMasse->getPosition() + penetrationVector * offset1);
+	corpsRigide2->centreMasse->setPos(corpsRigide2->centreMasse->getPosition() - penetrationVector * offset2);
+
+
 	// Calcul de la vitesse relative au point de collision
 	Vector relativeVelocity = corpsRigide1->getPunctualVelocity(_collisionData.point()) - corpsRigide2->getPunctualVelocity(_collisionData.point());
 
@@ -206,37 +216,45 @@ void Collision::resolveCorpsRigideToCorpsRigideCollisions(CorpsRigide* corpsRigi
 	// Coefficient de restitution
 	double restitution = corpsRigide1->centreMasse->restitution * corpsRigide2->centreMasse->restitution;
 
+	// Calcul de la masse inverse incluant le moment d'inertie
+	double momentInv1 = _collisionData.normal().scalar_product(
+		corpsRigide1->inverseMomentOfInertia.produit(_collisionData.point()
+		- corpsRigide1->centreMasse->getPosition()).vectoriel(_collisionData.normal()));
+
+	double massInv1 = corpsRigide1->centreMasse->invertedMass + momentInv1;
+
+	double momentInv2 = _collisionData.normal().scalar_product(
+		corpsRigide2->inverseMomentOfInertia.produit(_collisionData.point()
+		- corpsRigide2->centreMasse->getPosition()).vectoriel(_collisionData.normal()));
+
+
+	double massInv2 = corpsRigide2->centreMasse->invertedMass + momentInv2;
+
 	// Calcul de la magnitude de l'impulsion
-	double magnitude = (1.0f + restitution) * relativeVelocityNormal / (corpsRigide1->centreMasse->getMass() + corpsRigide2->centreMasse->getMass());
+	double magnitude = (1.0f + restitution) * relativeVelocityNormal / (massInv1 + massInv2);
 
 	// Répartition de l'impulsion sur les deux objets
-	double impulse1 = -magnitude / corpsRigide1->centreMasse->invertedMass;
-	double impulse2 = magnitude / corpsRigide2->centreMasse->invertedMass;
+	double impulse1 = -magnitude;
+	double impulse2 = magnitude;
 
-	// Offset en fonction de la masse
-	double totalMass = corpsRigide1->centreMasse->getMass() + corpsRigide2->centreMasse->getMass();
-	double offset1 = corpsRigide2->centreMasse->getMass() / totalMass;
-	double offset2 = corpsRigide1->centreMasse->getMass() / totalMass;
-
-	Vector penetrationVector = _collisionData.normal() * _collisionData.penetration();
-
-	corpsRigide1->centreMasse->setPos(corpsRigide1->centreMasse->getPosition() + penetrationVector * offset1);
-	corpsRigide2->centreMasse->setPos(corpsRigide2->centreMasse->getPosition() - penetrationVector * offset2);
+	// Debug
+	//corpsRigide1->centreMasse->setVelocity(Vector());
+	//corpsRigide2->centreMasse->setVelocity(Vector());
 
 	// Application de l'impulsion
-	corpsRigide1->centreMasse->setVelocity(corpsRigide1->centreMasse->getVelocity() + _collisionData.normal() * impulse1);
-	corpsRigide2->centreMasse->setVelocity(corpsRigide2->centreMasse->getVelocity() + _collisionData.normal() * impulse2);
+	corpsRigide1->centreMasse->setVelocity(corpsRigide1->centreMasse->getVelocity() + _collisionData.normal() * impulse1 * massInv1);
+	corpsRigide2->centreMasse->setVelocity(corpsRigide2->centreMasse->getVelocity() + _collisionData.normal() * impulse2 * massInv2);
 
 	// Calcul du torque
 	Vector l1 = _collisionData.point() - corpsRigide1->centreMasse->getPosition();
 	Vector l2 = _collisionData.point() - corpsRigide2->centreMasse->getPosition();
 
-	Vector torque1 = l1.vectoriel(_collisionData.normal() * impulse1);
-	Vector torque2 = l2.vectoriel(_collisionData.normal() * impulse2);
+	Vector torque1 = l1.vectoriel(_collisionData.normal() * impulse1 * corpsRigide1->centreMasse->invertedMass);
+	Vector torque2 = l2.vectoriel(_collisionData.normal() * impulse2 * corpsRigide2->centreMasse->invertedMass);
 
 	// Application du torque pour mettre a jour la vitesse angulaire
-	corpsRigide1->angularVelocity += torque1 * corpsRigide1->inverseMomentOfInertia;
-	corpsRigide2->angularVelocity += torque2 * corpsRigide2->inverseMomentOfInertia;
+	corpsRigide1->angularVelocity += torque1 * massInv1;
+	corpsRigide2->angularVelocity += torque2 * massInv2;
 }
 
 // Particle to CorpsRigide

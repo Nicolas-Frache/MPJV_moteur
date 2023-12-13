@@ -18,7 +18,7 @@ void Fireball::update() {
 	Particle::integrer(dt);
 	
 	//on genere une particule de trail derriere la boule de feu
-	Particle* trail = new Particle(position, 1, ofColor(255, ofRandom(100.f, 200.f), 0), ofRandom(.3f, 1.f));
+	Particle* trail = new Particle(_position, 1, ofColor(255, ofRandom(100.f, 200.f), 0), ofRandom(.3f, 1.f));
 	trail->duration = ofRandom(1.f, 4.f);
 
 	Vector hor_vel = velocity * 0.7;

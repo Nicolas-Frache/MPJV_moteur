@@ -22,7 +22,10 @@ class Vector
 
 		// setters
 		void set(double X, double Y, double Z);
-		void setY(double Y);
+		void setX(double X) { _X = X;}
+		void setY(double Y) { _Y = Y;}
+		void setZ(double Z) { _Z = Z;}
+
 
 		// operators
 		Vector operator+(Vector vect);
@@ -34,6 +37,8 @@ class Vector
 		Vector operator*(double mult);
 		void operator*=(double mult);
 		Vector operator*(const Matrice3x3& mat);
+		Vector operator/(double div);
+		void operator/=(double div);
 		bool operator==(Vector vect);
 		friend ostream& operator<<(ostream& os, const Vector vect);
 

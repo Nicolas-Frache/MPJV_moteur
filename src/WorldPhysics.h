@@ -10,6 +10,8 @@
 #include "OcTree.h"
 #include "PhysicsObject.h"
 
+#include "Collision.h"
+
 class WorldPhysics
 {
 	public:
@@ -54,12 +56,13 @@ class WorldPhysics
 
 		void detectCollisions(vector<set<int>>* potentialCollisions);
 
-		void detectParticleCollisions(PhysicsObject* particle1, PhysicsObject particle2);
-		void detectCorpsRigideCollisions(PhysicsObject* corpsRigide1, PhysicsObject corpsRigide2);
-		void detectParticleCorpsRigideCollisions(PhysicsObject* particle, PhysicsObject corpsRigide);
+		void detectParticleCollisions(PhysicsObject* particle1, PhysicsObject particle2);	//TEMPORAIRE
 
 
 		OcTree* ocTree;
+
+		vector<Vector> debugCollisions = vector<Vector>();
+		vector<Vector> debugCollisionsNormals = vector<Vector>();
 		
 };
 

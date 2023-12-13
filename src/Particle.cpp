@@ -8,7 +8,7 @@ Particle::Particle(float X, float Y, float Z, float invertedMass, ofColor color,
 }
 
 Particle::Particle(Vector position, float invertedMass, ofColor color, float size) {
-	this->position = position;
+	this->_position = position;
 	this->invertedMass = invertedMass;
 	this->color = color;
 	this->radius = size;
@@ -23,7 +23,7 @@ Particle::Particle(Vector position, float invertedMass, ofColor color, float siz
 void Particle::draw() {
 	ofEnableDepthTest();
 	ofSetColor(color);
-	sphere.setPosition(position.x(), position.y(), position.z());
+	sphere.setPosition(_position.x(), _position.y(), _position.z());
 	sphere.draw();
 }
 
@@ -84,20 +84,20 @@ void Particle::integrer(float dt) {
 	}
 
 	// On met a jour la position
-	position += (velocity * dt);
+	_position += (velocity * dt);
 }
 
 
 
 bool Particle::checkCollisionWith(const Particle& other) const {
 	float minDistance = this->radius + other.radius;
-	Vector offset = other.position - this->position;
+	Vector offset = other._position - this->_position;
 	return offset.norm() < minDistance;
 }
 
 bool Particle::checkRestingContactWith(const Particle& other) const {
 	float minDistance = this->radius + other.radius;
-	Vector offset = other.position - this->position;
+	Vector offset = other._position - this->_position;
 	float distance = offset.norm();
 
 	// Si la distance est inférieure à la somme des rayons, il y a une collision douce
@@ -107,13 +107,13 @@ bool Particle::checkRestingContactWith(const Particle& other) const {
 
 bool Particle::resolveInterpenetration(Particle& other) {
 	float minDistance = this->radius + other.radius;
-	Vector offset = other.position - this->position;
+	Vector offset = other._position - this->_position;
 	float distance = offset.norm();
 
 	if (distance < minDistance) {
 		Vector correction = offset.normalize() * (minDistance - distance) * 0.5;
-		this->position -= correction;
-		other.position += correction;
+		this->_position -= correction;
+		other._position += correction;
 		return true;
 	}
 	return false;
@@ -121,7 +121,7 @@ bool Particle::resolveInterpenetration(Particle& other) {
 
 void Particle::resolveRestingContactWith(Particle& other) {
 	// Calculez le vecteur de collision et la distance de pénétration
-	Vector collisionVector = other.position - this->position;
+	Vector collisionVector = other._position - this->_position;
 	float overlap = collisionVector.norm() - (this->radius + other.radius);
 
 	// Si overlap est positif, il y a une pénétration
@@ -130,7 +130,7 @@ void Particle::resolveRestingContactWith(Particle& other) {
 		Vector correction = collisionVector.normalize() * (overlap * 0.5);
 
 		// Appliquez la correction aux deux particules
-		this->position -= correction;
-		other.position += correction;
+		this->_position -= correction;
+		other._position += correction;
 	}
 }

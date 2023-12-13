@@ -36,19 +36,39 @@ void CorpsRigide::update() {
 	double dt = ofGetLastFrameTime();
 
 	integrer(dt);
-
+	verticesUpdated = false;
 }
 
 void CorpsRigide::draw() {
 	ofPushMatrix();  // Sauvegarde la matrice courante
-	ofTranslate(centreMasse->position.x(), centreMasse->position.y(), centreMasse->position.z());  // Translate au centre de masse
+	ofTranslate(centreMasse->_position.x(), centreMasse->_position.y(), centreMasse->_position.z());  // Translate au centre de masse
 	ofApplyVisualRotation();  // Applique la rotation
 	ofSetColor(color);
 	ofNoFill();
 	ofSetLineWidth(10);
-	ofDrawBox(0, 0, 0, demiAxes.x(), demiAxes.y(), demiAxes.z());
+	ofDrawBox(0, 0, 0, demiAxes.x() * 2, demiAxes.y() * 2, demiAxes.z() * 2);
 	ofFill();
 	ofPopMatrix();  // Restaure la matrice precedente
+
+
+	// DEBUG POUR VOIR LES EDGES
+	//array<Face, 6>* faces = getFaces();
+	//for (Edge edge : *getEdges()) {
+	//	Vector position = edge.position();
+	//	Vector position2 = edge.position() + edge.normal() * edge.length();
+	//	ofSetLineWidth(4);
+	//	ofDrawLine(position.x(), position.y(), position.z(), position2.x(), position2.y(), position2.z());
+	//	ofSetLineWidth(10);
+	//}
+
+	// DEBUG POUR VOIR LES FACES
+	//for (Face face : *getFaces()) {
+	//	Vector position = face.position();
+	//	Vector position2 = face.position() + face.right() * face.length() + face.up() * face.height();
+	//	ofSetLineWidth(4);
+	//	ofDrawLine(position.x(), position.y(), position.z(), position2.x(), position2.y(), position2.z());
+	//	ofSetLineWidth(10);
+	//}
 }
 
 void CorpsRigide::applyForceAtPosition(Force* force, Vector position) {
@@ -86,7 +106,7 @@ void CorpsRigide::integrer(double dt) {
 		double applicationTime = (*it2)->force->updateTimeElapsed(dt);
 
 		// Calcul du torque
-		Vector l = (*it2)->position - centreMasse->position;
+		Vector l = (*it2)->position - centreMasse->_position;
 		Vector f = (*it2)->force->value();
 		Vector torque = l.vectoriel(f);
 
@@ -127,6 +147,77 @@ void CorpsRigide::setRotation(Quaternion quaternion) {
 	this->rotation = quaternion;
 }
 
+array<Face, 6>* CorpsRigide::getFaces()
+{
+	if (!verticesUpdated)
+		updateVertices();
+
+	array<Face, 6> faces = {
+		Face(vertices[4], normals[0], normals[3], demiAxes.y() * 2, demiAxes.z() * 2),
+		Face(vertices[1], normals[1], normals[3], demiAxes.y() * 2, demiAxes.z() * 2),
+		Face(vertices[0], normals[2], normals[1], demiAxes.z() * 2, demiAxes.x() * 2),
+		Face(vertices[2], normals[3], normals[0], demiAxes.z() * 2, demiAxes.x() * 2),
+		Face(vertices[0], normals[4], normals[3], demiAxes.y() * 2, demiAxes.x() * 2),
+		Face(vertices[5], normals[5], normals[3], demiAxes.y() * 2, demiAxes.x() * 2),
+	};
+
+	return &faces;
+}
+
+array<Edge, 12>* CorpsRigide::getEdges()
+{
+	if (!verticesUpdated)
+		updateVertices();
+
+	array<Edge, 12> edges = {
+		Edge(vertices[0], normals[1], demiAxes.x() * 2),
+		Edge(vertices[0], normals[3], demiAxes.y() * 2),
+		Edge(vertices[0], normals[5], demiAxes.z() * 2),
+
+		Edge(vertices[2], normals[0], demiAxes.x() * 2),
+		Edge(vertices[2], normals[2], demiAxes.y() * 2),
+		Edge(vertices[2], normals[5], demiAxes.z() * 2),
+
+		Edge(vertices[5], normals[0], demiAxes.x() * 2),
+		Edge(vertices[5], normals[3], demiAxes.y() * 2),
+		Edge(vertices[5], normals[4], demiAxes.z() * 2),
+
+		Edge(vertices[7], normals[1], demiAxes.x() * 2),
+		Edge(vertices[7], normals[2], demiAxes.y() * 2),
+		Edge(vertices[7], normals[4], demiAxes.z() * 2)
+	};
+
+	return &edges;
+}
+
+Vector CorpsRigide::applyCorpsRotationToVector(Vector vector)
+{
+	return rotationMatrix.produit(vector);
+}
+
+void CorpsRigide::updateVertices()
+{
+	Vector position = centreMasse->getPosition();
+
+	vertices[0] = position + applyCorpsRotationToVector(Vector(-demiAxes.x(), -demiAxes.y(), -demiAxes.z()));
+	vertices[1] = position + applyCorpsRotationToVector(Vector(demiAxes.x(), -demiAxes.y(), -demiAxes.z()));
+	vertices[2] = position + applyCorpsRotationToVector(Vector(demiAxes.x(), demiAxes.y(), -demiAxes.z()));
+	vertices[3] = position + applyCorpsRotationToVector(Vector(-demiAxes.x(), demiAxes.y(), -demiAxes.z()));
+	vertices[4] = position + applyCorpsRotationToVector(Vector(-demiAxes.x(), -demiAxes.y(), demiAxes.z()));
+	vertices[5] = position + applyCorpsRotationToVector(Vector(demiAxes.x(), -demiAxes.y(), demiAxes.z()));
+	vertices[6] = position + applyCorpsRotationToVector(Vector(demiAxes.x(), demiAxes.y(), demiAxes.z()));
+	vertices[7] = position + applyCorpsRotationToVector(Vector(-demiAxes.x(), demiAxes.y(), demiAxes.z()));
+
+	normals[0] = applyCorpsRotationToVector(Vector(-1, 0, 0));
+	normals[1] = applyCorpsRotationToVector(Vector(1, 0, 0));
+	normals[2] = applyCorpsRotationToVector(Vector(0, -1, 0));
+	normals[3] = applyCorpsRotationToVector(Vector(0, 1, 0));
+	normals[4] = applyCorpsRotationToVector(Vector(0, 0, -1));
+	normals[5] = applyCorpsRotationToVector(Vector(0, 0, 1));
+
+	verticesUpdated = true;
+}
+
 void CorpsRigide::ofApplyVisualRotation() {
 	Vector visualRotation = this->rotationMatrix.getEuler();
 
@@ -134,3 +225,4 @@ void CorpsRigide::ofApplyVisualRotation() {
 	ofRotateYRad(visualRotation.y());
 	ofRotateXRad(visualRotation.x());
 }
+

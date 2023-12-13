@@ -26,6 +26,13 @@ void ofApp::setup(){
 
 	double pi = 2 * acos(0.0);
 
+	//CorpsRigide* cube = new CorpsRigide(new Particle(Vector(0, 0, 0), 10, ofColor::blue, 1), 5, 5, 5, ofColor::blue);
+	//createCorpsRigide(cube);
+
+	//CorpsRigide* cube2 = new CorpsRigide(new Particle(Vector(2, 0, 0), 10, ofColor::blue, 1), 5, 2, 2, ofColor::red);
+	////cube2->setRotation(Quaternion(cos(pi / 4), 0, sin(pi / 4), 0));
+	//createCorpsRigide(cube2);
+
 	CorpsRigide* cube0 = new CorpsRigide(new Particle(Vector(-1, 0, 0), 10, ofColor::blue, 1), 1, 1, 1, ofColor::red);
 	createCorpsRigide(cube0);
 	cube0->angularVelocity = Vector(-1, 0, 0);
@@ -39,11 +46,11 @@ void ofApp::setup(){
 	c->angularVelocity = Vector(1, 0, 0);
 	createCorpsRigide(c);
 
-	c = new CorpsRigide(new Particle(Vector(6, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::yellow);
+	c = new CorpsRigide(new Particle(Vector(7, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::yellow);
 	c->angularVelocity = Vector(0, 1, 0);
 	createCorpsRigide(c);
 
-	c = new CorpsRigide(new Particle(Vector(9, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::green);
+	c = new CorpsRigide(new Particle(Vector(8, 0, 0), 10, ofColor::red, 10), 1.5, 4.5, 1.5, ofColor::green);
 	c->angularVelocity = Vector(0, 0, 1);
 	createCorpsRigide(c);
 	
@@ -63,7 +70,7 @@ void ofApp::setup(){
 	c->angularVelocity = Vector(1, 1, 1);
 	createCorpsRigide(c);
 
-	refCorps = c;
+	//refCorps = c;
 
 }
 

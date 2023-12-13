@@ -7,7 +7,7 @@ class Force; //déclaration anticipée de Force
 
 class Particle{
 	public :
-		Vector position = Vector(0, 0, 0);
+		Vector _position = Vector(0, 0, 0);
 		//rotation non utile car particule
 
 		Vector velocity = Vector(0, 0, 0);
@@ -23,7 +23,6 @@ class Particle{
 
 		float duration = -1.0f;
 
-	public :
 		Particle(float X, float Y, float Z, float invertedMass, ofColor color, float size);
 		Particle(Vector position, float invertedMass, ofColor color, float size);
 
@@ -44,13 +43,13 @@ class Particle{
 
 		// POSITION
 		void Particle::setPos(float X, float Y, float Z) {
-			position.set(X, Y, Z);
+			_position.set(X, Y, Z);
 		}
 		void Particle::setPos(Vector position) {
 			position = position;
 		}
 		Vector Particle::getPosition() const {
-			return position;
+			return _position;
 		}
 
 		// VELOCITY

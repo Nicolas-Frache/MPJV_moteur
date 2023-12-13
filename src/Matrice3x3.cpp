@@ -40,6 +40,15 @@ Matrice3x3 Matrice3x3::produit(const Matrice3x3& other) const {
     return result;
 }
 
+Vector Matrice3x3::produit(Vector& other)
+{
+    Vector result;
+	result.setX(mat[0][0] * other.x() + mat[0][1] * other.y() + mat[0][2] * other.z());
+	result.setY(mat[1][0] * other.x() + mat[1][1] * other.y() + mat[1][2] * other.z());
+	result.setZ(mat[2][0] * other.x() + mat[2][1] * other.y() + mat[2][2] * other.z());
+	return result;
+}
+
 // Méthode pour calculer la somme de deux matrices
 Matrice3x3 Matrice3x3::somme(const Matrice3x3& other) const {
     Matrice3x3 result;
